@@ -1,6 +1,6 @@
 # Règles du style MrJ.am
 
-- Lire README.md, docs/INTEGRATION.md et docs/DEPLOIEMENT.md. L’état de la préparation est explicite : aucun site n’est encore migré.
+- Lire README.md, docs/INTEGRATION.md et docs/DEPLOIEMENT.md. Lire l’état de chaque consommateur : Vision est publié depuis le 21 septembre 2026 ; cela ne prouve ni la migration des autres sites ni l’activation de l’orchestrateur collectif.
 - Écrire les noms, commentaires, tests et explications en français, sauf identifiants imposés par les outils, les bibliothèques et les contrats externes.
 - Garder les appels compacts : `bouton "Valider" Valider`. La présentation usuelle doit être entièrement définie ici. Les variantes correspondent à des intentions distinctes, jamais à une suite d’options décoratives répétées dans les applications.
 - Mutualiser ce qui est réellement commun ; ne pas importer les données, secrets, autorisations ou règles métier des applications dans cette bibliothèque publique.

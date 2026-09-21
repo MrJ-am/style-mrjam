@@ -12,7 +12,7 @@ L’activation publie les artefacts déjà testés sans les reconstruire à part
 
 ## Cibles à raccorder
 
-Matheval dispose d’un workflow applicatif et d’une commande de publication dédiée. Vision possède une procédure d’intégration côté VPS à respecter. Apprendre à démontrer déclare un hébergement statique dans `.openai/hosting.json` : son workflow de vérification produit `dist`, mais ne prouve pas à lui seul un déploiement. Il faut confirmer et raccorder sa cible réelle, plutôt que supposer que les trois applications sont sur le même serveur.
+Matheval dispose d’un workflow applicatif et d’une commande de publication dédiée. Vision est publié : son infrastructure reçoit l’artefact testé et son manifeste, vérifie les empreintes et l’authentification réelle, puis enregistre la génération avec retour préparé. Ce parcours utilise une opération explicite ; il ne constitue pas l’orchestrateur collectif. Apprendre à démontrer déclare un hébergement statique dans `.openai/hosting.json` : son workflow de vérification produit `dist`, mais ne prouve pas à lui seul un déploiement. Il faut confirmer et raccorder sa cible réelle, plutôt que supposer que les trois applications sont sur le même serveur.
 
 VPS Infrastructure conserve le contrôle de NixOS, Nginx, PostgreSQL, des domaines et des accès. Cette migration ne justifie aucune modification de schéma, de privilège ou de configuration système. Les opérations serveur passent par les runners GitHub Actions, pas par une connexion SSH depuis l’atelier ChatGPT.
 

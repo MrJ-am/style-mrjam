@@ -9,7 +9,7 @@ Les ressources d’identité sont servies localement sous `assets/mrjam/`, relat
 ## Inventaire identifié
 
 - **Mémoire / Matheval** : `docs/src/Main.elm`, `Survey.elm`, `DemoCard.elm`, `Survey/Model.elm` ; styles `docs/site/enquete.css`, `sliders.css`, `admin/admin.css`. L’administration est également une interface à porter : ne pas l’oublier en migrant uniquement Main et Survey. Les lecteurs de texte mathématique, l’espace de manipulation et les ponts JavaScript demandent une vérification distincte.
-- **Vision** : interface HTML/CSS/JavaScript dans `docs/app.html`, `app.css`, `app.js`. Porter l’interface en Elm, pas le serveur Common Lisp. Conserver sessions, pagination serveur, filtres, tri stable, édition, conflits HTTP 409, historiques et archivage réversible.
+- **Vision** : interface ElmUI dans `interface/`, publiée le 21 septembre 2026 avec `c7b4d6e00cd0014a0a05e5a4e77627357498faa9`. Les fichiers HTML/CSS/JavaScript historiques restent dans `docs/`. Le serveur Common Lisp est conservé. Préserver sessions, pagination serveur, filtres, tri stable, édition, conflits HTTP 409, journaux et archivage réversible.
 - **Apprendre à démontrer** : `src/Main.elm`, `public/style.css`, les intégrations `bridge.js` et `video.js`. Conserver le correcteur, les identifiants pédagogiques, KaTeX, les vidéos et la navigation.
 
 Les trois projets partagent notamment l’accent `#087f71`, l’encre `#193d38` et des surfaces claires. Les styles métier ne se réduisent cependant pas à cette palette : tableaux, aide, comparaison, espaces mathématiques et navigation doivent être inventoriés écran par écran.

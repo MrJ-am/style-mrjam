@@ -6,7 +6,7 @@ Bibliothèque de composants **ElmUI**, avec une API française, destinée aux ap
 
 ## État de cette publication
 
-Le noyau est publié pour préparer l’intégration dans les applications. Il dispose d’une galerie et de tests d’interaction. **Les applications existantes ne sont pas encore migrées et aucun redéploiement n’a été effectué dans le cadre de cette préparation.** La disponibilité de cette bibliothèque ne doit pas être présentée comme la migration terminée. Consulter les exécutions du workflow de vérification pour connaître le résultat de la CI de chaque révision.
+Le noyau et les compléments disposent d’une galerie et de tests d’interaction. **Vision utilise la révision `c7b4d6e00cd0014a0a05e5a4e77627357498faa9` en production depuis le 21 septembre 2026 à 22:32 UTC**, sur [vision.mrj.am](https://vision.mrj.am/). Les tableaux, valeurs spécialisées, lecteur Markdown et dialogues sont intégrés et vérifiés. Cette publication de Vision ne prouve pas la migration des autres applications ni l’installation de l’orchestrateur collectif. Consulter les exécutions de vérification de chaque révision et les preuves propres à chaque déploiement.
 
 La licence de réutilisation du code n’a pas été choisie. Le caractère public du dépôt ne remplace pas cette décision. Les dépendances conservent leurs licences propres.
 
@@ -25,7 +25,7 @@ section "Modifier une fiche"
 
 Un lien de navigation utilise `lien`, pas un bouton sans destination. Les états non disponibles utilisent `boutonInactif` ou `boutonEnCours`. Une action destructive porte sa propre définition ; la confirmation et les permissions restent des responsabilités de l’application.
 
-Les composants couvrent actuellement les boutons, liens, champs, recherches, mots de passe, zones de texte, cases à cocher, choix exclusifs, cartes, sections, textes, messages et compositions simples. Les tableaux de données, menus, fenêtres modales accessibles, infobulles, curseurs et compositions métier restent à extraire lors du portage des interfaces. Ne pas improviser ces composants séparément dans chaque projet.
+Les composants couvrent les boutons, liens, champs, recherches, mots de passe, zones de texte, cases à cocher, choix exclusifs, sélecteurs, cartes, sections, textes, messages et compositions simples. `MrJam.Donnees` fournit tableaux et valeurs spécialisées, `MrJam.Lecture` le lecteur Markdown et `MrJam.Fenetres` les dialogues accessibles. Voir [COMPOSANTS-VISION.md](docs/COMPOSANTS-VISION.md). Les autres composants communs sont à extraire selon les besoins, sans les improviser séparément dans chaque projet.
 
 `MrJam.Theme` est interne. Ajouter des couleurs, arrondis ou bordures au point d’appel d’un composant usuel recréerait précisément la duplication à supprimer.
 
@@ -55,6 +55,6 @@ Ne pas dépendre d’une branche mobile, ne pas charger un CSS commun modifiable
 
 La source de référence est `MrJ-am/Signature`, à la révision enregistrée dans `identite.json`. Le logo SVG et la feuille de composition de la signature sont reproduits ici avec leurs empreintes. Ils sont des copies vérifiées de distribution, pas des sources à modifier : une mise à jour commence dans `Signature` puis actualise la révision et les empreintes.
 
-La signature reste le texte sélectionnable `MrJ.am` et le point ordinaire U+002E. Son rendu exact nécessite les ressources typographiques du dépôt d’origine, **non incluses dans cette préparation**. Le processus de publication des applications devra les fournir depuis la même révision autorisée ; la galerie peut sinon afficher une police de remplacement. Ne pas considérer ce remplacement comme la signature validée.
+La signature reste le texte sélectionnable `MrJ.am` et le point ordinaire U+002E. Son rendu exact nécessite les ressources typographiques du dépôt d’origine, **non distribuées dans ce dépôt public**. Chaque application doit les intégrer depuis la même révision autorisée avec leurs empreintes ; Vision le fait dans son artefact privé, et son rendu réel a été vérifié. La galerie peut afficher une police de remplacement : ce remplacement ne valide pas la signature.
 
 Le CSS technique de la signature et celui de KaTeX ne constituent pas une seconde bibliothèque de présentation : ils sont locaux, immuables pour une version et réservés à ces intégrations. Les interfaces ordinaires sont construites avec ElmUI.
