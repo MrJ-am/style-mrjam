@@ -3,6 +3,7 @@ module Galerie exposing (main)
 import Browser
 import Html exposing (Html)
 import MrJam exposing (..)
+import MrJam.Tableaux exposing (colonne, tableau)
 
 
 type alias Modele =
@@ -74,6 +75,17 @@ vue modele =
             , motDePasse "Mot de passe" modele.motDePasse ModifierMotDePasse
             , caseACocher "Inclure les fiches archivées" modele.accord Accepter
             , choix "Correspondance des étiquettes" [ ( "toutes", "Toutes les étiquettes" ), ( "une", "Au moins une étiquette" ) ] modele.choix Choisir
+            ]
+        , section "Composants administratifs"
+            [ identifiant "Identifiant de connexion" modele.titre ModifierTitre
+            , nouveauMotDePasse "Nouveau mot de passe" modele.motDePasse ModifierMotDePasse
+            , tableau "Valeurs de démonstration"
+                [ colonne "Intitulé" (\valeur -> paragraphe valeur)
+                , colonne "Action" (\_ -> boutonSecondaire "Consulter" Annuler)
+                , colonne "Note" (\_ -> paragraphe "0")
+                ]
+                [ "Une ligne avec des accents : éèàœ", "Deuxième ligne" ]
+            , tableau "Résultats vides" [ colonne "Valeur" paragraphe ] []
             ]
         , section "Informations"
             [ avis Avertissement "Une action destructive doit expliquer ses conséquences et être confirmée par l’application."

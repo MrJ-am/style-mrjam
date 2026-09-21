@@ -11,8 +11,10 @@ module MrJam exposing
     , caseACocher
     , champ
     , choix
+    , identifiant
     , lien
     , motDePasse
+    , nouveauMotDePasse
     , page
     , paragraphe
     , pile
@@ -143,6 +145,22 @@ saisie construire libelle valeur modifier =
 motDePasse : String -> String -> (String -> message) -> Element message
 motDePasse libelle valeur modifier =
     Saisie.currentPassword Theme.champ
+        { onChange = modifier, text = valeur, placeholder = Nothing, label = etiquette libelle, show = False }
+
+
+{-| L’identifiant de connexion conserve l’autocomplétion adaptée.
+-}
+identifiant : String -> String -> (String -> message) -> Element message
+identifiant =
+    saisie Saisie.username
+
+
+{-| Pour la création ou le remplacement du mot de passe, jamais la connexion.
+La confirmation et les contraintes de sécurité restent dans l’application.
+-}
+nouveauMotDePasse : String -> String -> (String -> message) -> Element message
+nouveauMotDePasse libelle valeur modifier =
+    Saisie.newPassword Theme.champ
         { onChange = modifier, text = valeur, placeholder = Nothing, label = etiquette libelle, show = False }
 
 
