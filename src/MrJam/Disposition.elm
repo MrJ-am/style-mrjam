@@ -1,4 +1,4 @@
-module MrJam.Disposition exposing (bandeau, boutonIcone, boutonIdentifie, boutonSelection, cadre, date, dialogue, etiquette, fragment, histogramme, panneau, progression)
+module MrJam.Disposition exposing (bandeau, boutonIcone, boutonIdentifie, boutonMenu, boutonSelection, cadre, date, dialogue, etiquette, fragment, histogramme, panneau, progression)
 
 {-| Compositions communes. Les identifiants raccordent les interactions et
 les tests ; les applications ne règlent pas la décoration des contrôles.
@@ -51,6 +51,7 @@ boutonIdentifie : String -> String -> Maybe message -> Element message
 boutonIdentifie identifiant libelle message =
     Saisie.button
         [ UI.htmlAttribute (A.id identifiant)
+        , UI.htmlAttribute (A.style "flex-basis" "auto")
         , UI.height (UI.minimum 44 UI.shrink)
         , UI.paddingXY 16 10
         , Bordure.rounded 12
@@ -86,6 +87,7 @@ boutonSelection : Bool -> String -> message -> Element message
 boutonSelection selectionne libelle message =
     Saisie.button
         [ UI.height (UI.minimum 44 UI.shrink)
+        , UI.htmlAttribute (A.style "flex-basis" "auto")
         , UI.paddingXY 12 8
         , Bordure.rounded 12
         , Bordure.width 1
@@ -184,3 +186,34 @@ boutonIcone : String -> String -> message -> Element message
 boutonIcone description symbole message =
     Saisie.button [ UI.width (UI.px 44), UI.height (UI.px 44), Bordure.rounded 22, Fond.color couleurs.doux, Police.color couleurs.accent, UI.htmlAttribute (A.attribute "aria-label" description) ]
         { onPress = Just message, label = UI.el [ UI.centerX, UI.centerY ] (UI.text symbole) }
+
+
+boutonMenu : String -> Bool -> message -> Element message
+boutonMenu cible ouvert message =
+    Saisie.button
+        [ UI.width (UI.px 44)
+        , UI.height (UI.px 44)
+        , Bordure.rounded 22
+        , Fond.color couleurs.doux
+        , Police.color couleurs.accent
+        , UI.htmlAttribute
+            (A.attribute "aria-label"
+                (if ouvert then
+                    "Fermer le menu"
+
+                 else
+                    "Ouvrir le menu"
+                )
+            )
+        , UI.htmlAttribute (A.attribute "aria-controls" cible)
+        , UI.htmlAttribute
+            (A.attribute "aria-expanded"
+                (if ouvert then
+                    "true"
+
+                 else
+                    "false"
+                )
+            )
+        ]
+        { onPress = Just message, label = UI.el [ UI.centerX, UI.centerY ] (UI.text "☰") }
