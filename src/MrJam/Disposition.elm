@@ -12,8 +12,8 @@ import Element.Font as Police
 import Element.Input as Saisie
 import Html exposing (Html)
 import Html.Attributes as A
-import Html.Events as Evenements
 import MrJam
+import MrJam.Donnees as Donnees
 import MrJam.Identite as Identite
 import MrJam.Theme as Theme exposing (couleurs)
 
@@ -112,8 +112,8 @@ boutonSelection selectionne libelle message =
 
 
 date : String -> String -> (String -> message) -> Element message
-date libelle valeur modifier =
-    UI.html (Html.label [] [ Html.text libelle, Html.input [ A.type_ "date", A.value valeur, A.attribute "aria-label" libelle, Evenements.onInput modifier, A.style "display" "block", A.style "font" "inherit", A.style "min-height" "44px", A.style "max-width" "100%", A.style "padding" "8px", A.style "border" "1px solid #d4e6e0", A.style "border-radius" "12px", A.style "color" "#193d38" ] [] ])
+date =
+    Donnees.date
 
 
 progression : String -> Float -> Element message
