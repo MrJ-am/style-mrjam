@@ -1,12 +1,14 @@
 module Galerie exposing (main)
 
 import Browser
+import Element as UI
 import Html exposing (Html)
+import Html.Attributes as Attributs
 import MrJam exposing (..)
 
 
 type alias Modele =
-    { titre : String, contenu : String, recherche : String, motDePasse : String, accord : Bool, choix : Maybe String, compteur : Int, notification : String }
+    { titre : String, contenu : String, recherche : String, motDePasse : String, accord : Bool, choix : Maybe String, compteur : Int, notification : String, reponse : String, choixRiche : Maybe String, aideOuverte : Bool }
 
 
 type Message
@@ -19,11 +21,14 @@ type Message
     | Enregistrer
     | Annuler
     | Archiver
+    | ModifierReponse String
+    | ChoisirRiche String
+    | DevoilerAide
 
 
 initial : Modele
 initial =
-    { titre = "Une fiche", contenu = "  Une indentation à préserver.\nUne seconde ligne.", recherche = "", motDePasse = "", accord = False, choix = Just "toutes", compteur = 0, notification = "Aucune action effectuée." }
+    { titre = "Une fiche", contenu = "  Une indentation à préserver.\nUne seconde ligne.", recherche = "", motDePasse = "", accord = False, choix = Just "toutes", compteur = 0, notification = "Aucune action effectuée.", reponse = "", choixRiche = Nothing, aideOuverte = False }
 
 
 actualiser : Message -> Modele -> Modele
@@ -56,6 +61,15 @@ actualiser message modele =
         Archiver ->
             { modele | notification = "Archivage demandé, aucune donnée réelle n’est modifiée." }
 
+        ModifierReponse valeur ->
+            { modele | reponse = valeur }
+
+        ChoisirRiche valeur ->
+            { modele | choixRiche = Just valeur }
+
+        DevoilerAide ->
+            { modele | aideOuverte = not modele.aideOuverte }
+
 
 vue : Modele -> Html Message
 vue modele =
@@ -74,6 +88,26 @@ vue modele =
             , motDePasse "Mot de passe" modele.motDePasse ModifierMotDePasse
             , caseACocher "Inclure les fiches archivées" modele.accord Accepter
             , choix "Correspondance des étiquettes" [ ( "toutes", "Toutes les étiquettes" ), ( "une", "Au moins une étiquette" ) ] modele.choix Choisir
+            ]
+        , section "Contrôles identifiés et contenu riche"
+            [ champIdentifie
+                { identifiant = "reponse-controle", libelle = "Réponse de contrôle", aide = Just "description-reponse", exemple = Just "Deux témoins distincts", limite = Just 500 }
+                modele.reponse
+                ModifierReponse
+            , UI.el [ UI.htmlAttribute (Attributs.id "description-reponse") ] (texteSecondaire "Au plus 500 caractères ; les espaces sont conservés.")
+            , choixRiches "Choix à contenu riche"
+                [ ( "distincts", UI.paragraph [ UI.width UI.fill ] [ UI.text "Choisir ", UI.html (Html.em [] [ Html.text "deux témoins distincts" ]) ] )
+                , ( "identiques", paragraphe "Choisir un même témoin pour les deux valeurs, avec un libellé suffisamment long pour tester les petits écrans." )
+                ]
+                modele.choixRiche
+                ChoisirRiche
+            , boutonDevoiler "aide-controle" "Afficher l’aide" modele.aideOuverte DevoilerAide
+            , if modele.aideOuverte then
+                UI.el [ UI.htmlAttribute (Attributs.id "aide-controle") ] (paragraphe "Chaque témoin possède son nom.")
+
+              else
+                UI.none
+            , actions [ lienActif True "Étape courante" "#courante", lienActif False "Étape suivante" "#suivante", lienExterne "Source de contrôle" "https://example.org/" ]
             ]
         , section "Informations"
             [ avis Avertissement "Une action destructive doit expliquer ses conséquences et être confirmée par l’application."

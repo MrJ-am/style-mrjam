@@ -1,0 +1,45 @@
+"""Contrats des ajouts communs, sans données ni correcteur d'application."""
+from playwright.sync_api import expect
+
+
+def verifier_controles(page):
+    saisie = page.get_by_role("textbox", name="Réponse de contrôle", exact=True)
+    expect(saisie).to_have_attribute("id", "reponse-controle")
+    expect(saisie).to_have_attribute("aria-describedby", "description-reponse")
+    expect(saisie).to_have_attribute("maxlength", "500")
+    expect(saisie).to_have_attribute("autocomplete", "off")
+    expect(saisie).to_have_attribute("spellcheck", "false")
+    expect(saisie).to_have_attribute("placeholder", "Deux témoins distincts")
+    saisie.fill("  éèàœ <script>texte littéral</script>")
+    expect(saisie).to_have_value("  éèàœ <script>texte littéral</script>")
+    saisie.fill("x" * 510)
+    assert len(saisie.input_value()) == 500
+    saisie.fill("Deux témoins distincts")
+    saisie.evaluate("e => e.focus()")
+    expect(saisie).to_be_focused()
+    riche = page.get_by_role("radio", name="Choisir deux témoins distincts", exact=True)
+    assert riche.locator("em").inner_text() == "deux témoins distincts"
+    riche.click()
+    expect(riche).to_be_checked()
+    groupe = page.get_by_role("radiogroup", name="Choix à contenu riche", exact=True)
+    groupe.focus()
+    groupe.press("ArrowDown")
+    long = page.get_by_role("radio", name="Choisir un même témoin", exact=False)
+    expect(long).to_be_checked()
+    groupe.press("ArrowUp")
+    expect(riche).to_be_checked()
+    devoiler = page.get_by_role("button", name="Afficher l’aide", exact=True)
+    expect(devoiler).to_have_attribute("aria-expanded", "false")
+    expect(devoiler).to_have_attribute("aria-controls", "aide-controle")
+    devoiler.focus()
+    devoiler.press("Space")
+    expect(devoiler).to_have_attribute("aria-expanded", "true")
+    expect(page.locator("#aide-controle")).to_be_visible()
+    devoiler.press("Enter")
+    expect(page.locator("#aide-controle")).to_have_count(0)
+    expect(devoiler).to_have_attribute("aria-expanded", "false")
+    expect(page.get_by_role("link", name="Étape courante", exact=True)).to_have_attribute("aria-current", "page")
+    assert page.get_by_role("link", name="Étape suivante", exact=True).get_attribute("aria-current") is None
+    externe = page.get_by_role("link", name="Source de contrôle — nouvel onglet", exact=True)
+    expect(externe).to_have_attribute("target", "_blank")
+    assert set(externe.get_attribute("rel").split()) >= {"noopener", "noreferrer"}

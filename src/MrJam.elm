@@ -1,17 +1,23 @@
 module MrJam exposing
-    ( Niveau(..)
+    ( ChampIdentifie
+    , Niveau(..)
     , actions
     , avis
     , bouton
     , boutonDestructif
+    , boutonDevoiler
     , boutonEnCours
     , boutonInactif
     , boutonSecondaire
     , carte
     , caseACocher
     , champ
+    , champIdentifie
     , choix
+    , choixRiches
     , lien
+    , lienActif
+    , lienExterne
     , motDePasse
     , page
     , paragraphe
@@ -55,6 +61,29 @@ bouton libelle message =
 boutonSecondaire : String -> message -> Element message
 boutonSecondaire libelle message =
     action couleurs.surface couleurs.encre couleurs.doux [] libelle (Just message)
+
+
+{-| Action de dévoilement : identifiant du contenu, libellé et état, sans décoration locale.
+Le contenu et sa présence dans le DOM restent gérés par l'application.
+-}
+boutonDevoiler : String -> String -> Bool -> message -> Element message
+boutonDevoiler cible libelle ouvert message =
+    action couleurs.surface
+        couleurs.encre
+        couleurs.doux
+        [ htmlAttribute (Attributs.attribute "aria-controls" cible)
+        , htmlAttribute
+            (Attributs.attribute "aria-expanded"
+                (if ouvert then
+                    "true"
+
+                 else
+                    "false"
+                )
+            )
+        ]
+        libelle
+        (Just message)
 
 
 boutonDestructif : String -> message -> Element message
@@ -125,6 +154,38 @@ champ =
     saisie Saisie.text
 
 
+{-| Contrats sémantiques d'un champ auquel un pont navigateur doit pouvoir rendre
+le focus. `aide` désigne l'identifiant d'une description existante ; `exemple`
+est une indication de saisie, jamais un remplacement du libellé accessible.
+-}
+type alias ChampIdentifie =
+    { identifiant : String
+    , libelle : String
+    , aide : Maybe String
+    , exemple : Maybe String
+    , limite : Maybe Int
+    }
+
+
+champIdentifie : ChampIdentifie -> String -> (String -> message) -> Element message
+champIdentifie contrat valeur modifier =
+    Saisie.text
+        (Theme.champ
+            ++ [ htmlAttribute (Attributs.id contrat.identifiant)
+               , htmlAttribute (Attributs.spellcheck False)
+               , htmlAttribute (Attributs.autocomplete False)
+               ]
+            ++ (contrat.exemple |> Maybe.map (\exemple -> [ htmlAttribute (Attributs.placeholder exemple) ]) |> Maybe.withDefault [])
+            ++ (contrat.aide |> Maybe.map (\identifiant -> [ htmlAttribute (Attributs.attribute "aria-describedby" identifiant) ]) |> Maybe.withDefault [])
+            ++ (contrat.limite |> Maybe.map (\limite -> [ htmlAttribute (Attributs.maxlength (Basics.max 0 limite)) ]) |> Maybe.withDefault [])
+        )
+        { onChange = modifier
+        , text = valeur
+        , placeholder = Nothing
+        , label = etiquette contrat.libelle
+        }
+
+
 recherche : String -> String -> (String -> message) -> Element message
 recherche =
     saisie Saisie.search
@@ -169,9 +230,18 @@ caseACocher libelle valeur modifier =
 
 choix : String -> List ( valeur, String ) -> Maybe valeur -> (valeur -> message) -> Element message
 choix libelle possibilites valeur modifier =
-    Saisie.radio [ spacing 8, width fill, Region.description libelle ]
+    choixRiches libelle (List.map (\( cle, nom ) -> ( cle, paragraphe nom )) possibilites) valeur modifier
+
+
+{-| Le libellé peut inclure du texte structuré ou un rendu spécialisé tel que
+KaTeX. Il ne doit pas contenir d'autre contrôle interactif. La bibliothèque
+n'interprète pas le contenu et ne connaît aucune règle de correction.
+-}
+choixRiches : String -> List ( valeur, Element message ) -> Maybe valeur -> (valeur -> message) -> Element message
+choixRiches libelle possibilites valeur modifier =
+    Saisie.radio [ spacing 8, width fill, htmlAttribute (Attributs.attribute "aria-label" libelle) ]
         { onChange = modifier
-        , options = List.map (\( cle, nom ) -> Saisie.optionWith cle (option nom)) possibilites
+        , options = List.map (\( cle, contenu ) -> Saisie.optionWith cle (optionRiche contenu)) possibilites
         , selected = valeur
         , label = etiquette libelle
         }
@@ -210,6 +280,11 @@ coche valeur =
 
 option : String -> Saisie.OptionState -> Element message
 option libelle etat =
+    optionRiche (paragraphe libelle) etat
+
+
+optionRiche : Element message -> Saisie.OptionState -> Element message
+optionRiche contenu etat =
     Element.row [ width fill, height (minimum 44 shrink), spacing 10 ]
         [ el [ width (px 20), height (px 20), Bordure.rounded 10, Bordure.width 1, Bordure.color couleurs.accent, htmlAttribute (Attributs.attribute "aria-hidden" "true") ]
             (if etat == Saisie.Selected then
@@ -218,14 +293,43 @@ option libelle etat =
              else
                 Element.none
             )
-        , paragraphe libelle
+        , contenu
         ]
 
 
 lien : String -> String -> Element message
 lien libelle adresse =
+    navigationLien [] libelle adresse
+
+
+lienActif : Bool -> String -> String -> Element message
+lienActif actif libelle adresse =
+    navigationLien
+        (if actif then
+            [ htmlAttribute (Attributs.attribute "aria-current" "page"), Police.semiBold ]
+
+         else
+            []
+        )
+        libelle
+        adresse
+
+
+lienExterne : String -> String -> Element message
+lienExterne libelle adresse =
+    navigationLien
+        [ htmlAttribute (Attributs.target "_blank")
+        , htmlAttribute (Attributs.rel "noopener noreferrer")
+        , htmlAttribute (Attributs.attribute "aria-label" (libelle ++ " — nouvel onglet"))
+        ]
+        libelle
+        adresse
+
+
+navigationLien : List (Attribute message) -> String -> String -> Element message
+navigationLien attributs libelle adresse =
     Element.link
-        [ Police.color couleurs.accent, Police.underline, paddingXY 0 10, height (minimum 44 shrink) ]
+        (attributs ++ [ Police.color couleurs.accent, Police.underline, paddingXY 0 10, height (minimum 44 shrink) ])
         { url = adresse, label = paragraphe libelle }
 
 

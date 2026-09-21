@@ -8,6 +8,7 @@ import re
 import os
 import threading
 from playwright.sync_api import expect, sync_playwright
+from controles import verifier_controles
 
 
 class ServeurSilencieux(SimpleHTTPRequestHandler):
@@ -73,6 +74,7 @@ def verifier():
                 expect(page.get_by_text("Confirmation : Annulation demandée.", exact=True)).to_be_visible()
                 page.get_by_role("button", name="Archiver", exact=True).click()
                 expect(page.get_by_text("Confirmation : Archivage demandé, aucune donnée réelle n’est modifiée.", exact=True)).to_be_visible()
+                verifier_controles(page)
                 assert page.locator(".mrjam").inner_text() == "MrJ.am"
                 assert page.locator(".mrjam").evaluate("element => getComputedStyle(element).fontSize") == "28px"
                 assert page.get_by_role("img", name="Logo MrJ.am").evaluate("image => image.complete && image.naturalWidth > 0")
