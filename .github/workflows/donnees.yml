@@ -1,0 +1,38 @@
+name: Vérifier les composants de données
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  donnees:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installer et vérifier les sources
+        run: |
+          npm ci
+          npm run verifier
+          npx --no-install elm make exemples/Donnees.elm --optimize --output=public/donnees.js
+      - name: Installer Chromium
+        run: |
+          python3 -m pip install -r tests/requirements.txt
+          python3 -m playwright install --with-deps chromium
+      - name: Tester les composants par HTTP
+        run: python3 tests/donnees.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: controles-donnees
+          path: |
+            tests/resultats-donnees.json
+            tests/donnees-*.png
+          retention-days: 7
+          if-no-files-found: warn
