@@ -296,6 +296,7 @@ selecteur libelle possibilites valeur modifier =
             [ Html.span [ Attributs.style "font-size" "14px", Attributs.style "font-weight" "600" ] [ Html.text libelle ]
             , Html.select
                 [ Attributs.value valeur
+                , Attributs.attribute "aria-label" libelle
                 , Evenements.onInput modifier
                 , Attributs.style "box-sizing" "border-box"
                 , Attributs.style "width" "100%"
