@@ -1,0 +1,21 @@
+{
+  "depot": "MrJ-am/Signature",
+  "revision": "17495b13cefa24473e37434b98336b27caec8cdf",
+  "fichiers": {
+    "Echologo.svg": {
+      "source": "artwork/Echologo.svg",
+      "git_blob": "d0b8244f8a3a5e0d637e1ad57aedae30f2b6f2f8",
+      "sha256": "ce9ff8bf622122aaec0b88a22b9633d1c09ef35b32b9f93289f17889d520a0b3"
+    },
+    "signature.css": {
+      "source": "web/signature.css",
+      "git_blob": "db7f88b0e1ddeddd93ff34603e09cd5dfdd6fb8a",
+      "sha256": "7d1b958a4073d71d506385fd0dc499169941ed546b4bf5a3da45b66dd8708830"
+    }
+  },
+  "ressources_externes": {
+    "web/MrJamSignature.woff2": "f0bf416230cce723e3e6b5795fef1840605fa2e2",
+    "web/EchoPoint.woff2": "26105a1a46b9fbeb288ce3dc3479d3c583c2b9be"
+  },
+  "droits": "Toute utilisation du logo et de la signature est strictement réservée. Autorisation préalable expresse du titulaire nécessaire."
+}

@@ -1,0 +1,10 @@
+node_modules/
+elm-stuff/
+public/galerie.js
+tests/galerie-*.png
+tests/resultats.json
+__pycache__/
+*.woff
+*.woff2
+*.ttf
+*.otf

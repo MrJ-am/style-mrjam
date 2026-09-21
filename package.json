@@ -1,0 +1,17 @@
+{
+  "name": "style-mrjam",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Composants ElmUI partagés et API française pour les interfaces MrJ.am.",
+  "scripts": {
+    "compiler": "elm make exemples/Galerie.elm --optimize --output=public/galerie.js",
+    "verifier": "elm-format src exemples --validate && python3 scripts/verifier-identite.py && npm run compiler"
+  },
+  "devDependencies": {
+    "@lydell/elm": "0.19.1-14",
+    "elm-format": "0.8.8"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

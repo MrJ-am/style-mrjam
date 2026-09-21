@@ -1,0 +1,37 @@
+name: Vérifier le style MrJ.am
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installer les outils verrouillés
+        run: npm ci
+      - name: Vérifier les sources, les empreintes et la compilation
+        run: npm run verifier
+      - name: Installer le navigateur de contrôle
+        run: |
+          python3 -m pip install -r tests/requirements.txt
+          python3 -m playwright install --with-deps chromium
+      - name: Tester les interactions et les petits écrans
+        run: python3 tests/navigation.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: controles-galerie
+          path: |
+            tests/resultats.json
+            tests/galerie-*.png
+          retention-days: 7
+          if-no-files-found: warn

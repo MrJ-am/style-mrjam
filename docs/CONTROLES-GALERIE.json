@@ -1,0 +1,22 @@
+[
+  {
+    "largeur": 320,
+    "resultat": "succès",
+    "mode": "mémoire"
+  },
+  {
+    "largeur": 390,
+    "resultat": "succès",
+    "mode": "mémoire"
+  },
+  {
+    "largeur": 768,
+    "resultat": "succès",
+    "mode": "mémoire"
+  },
+  {
+    "largeur": 1440,
+    "resultat": "succès",
+    "mode": "mémoire"
+  }
+]
