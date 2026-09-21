@@ -32,7 +32,7 @@ tableau libelle colonnes donnees =
         cellule nom contenu =
             Interface.el
                 [ Interface.width (Interface.px 180)
-                , Interface.height Interface.fill
+                , Interface.height Interface.shrink
                 , Interface.padding 12
                 , role nom
                 ]
@@ -69,7 +69,7 @@ tableau libelle colonnes donnees =
                 , Interface.htmlAttribute (Attributs.attribute "aria-label" (libelle ++ " — défilement horizontal"))
                 ]
                 (Interface.column
-                    [ Interface.width Interface.shrink
+                    [ Interface.width (Interface.px (180 * List.length colonnes))
                     , Fond.color couleurs.surface
                     , role "table"
                     , Interface.htmlAttribute (Attributs.attribute "aria-label" libelle)

@@ -89,6 +89,8 @@ def verifier():
                 expect(tableau.get_by_role("columnheader")).to_have_count(3)
                 expect(tableau.get_by_role("cell")).to_have_count(6)
                 expect(tableau.get_by_role("cell", name="0", exact=True)).to_have_count(2)
+                assert tableau.bounding_box()["height"] >= 150
+                tableau.get_by_role("button", name="Consulter", exact=True).first.click()
                 tableau.get_by_role("button", name="Consulter", exact=True).first.focus()
                 tableau.get_by_role("button", name="Consulter", exact=True).first.press("Enter")
                 expect(page.get_by_text("Confirmation : Annulation demandée.", exact=True)).to_be_visible()

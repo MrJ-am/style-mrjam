@@ -27,13 +27,14 @@ cadre attributs contenu =
 
 fragment : Element message -> Html message
 fragment =
-    UI.layout [ UI.width UI.fill, UI.height UI.fill ]
+    UI.layoutWith { options = [ UI.noStaticStyleSheet, Theme.focus ] }
+        [ UI.width UI.fill, UI.height UI.fill ]
 
 
 bandeau : String -> List (Element message) -> Element message
 bandeau titre commandes =
     UI.wrappedRow [ UI.width UI.fill, UI.spacing 12, UI.paddingXY 0 12 ]
-        [ Identite.logo, UI.el [ Police.bold, Police.size 24 ] (UI.text titre), UI.el [ UI.alignRight ] (MrJam.actions commandes) ]
+        [ Identite.logo, UI.paragraph [ UI.width (UI.minimum 0 UI.fill), Police.bold, Police.size 24 ] [ UI.text titre ], UI.el [ UI.alignRight ] (MrJam.actions commandes) ]
 
 
 panneau : List (UI.Attribute message) -> List (Element message) -> Element message

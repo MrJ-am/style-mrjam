@@ -1,4 +1,5 @@
-/* Focus et fond inerte pour les dialogues ElmUI, y compris les superpositions.+ * Ce pont ne lit ni les données métier ni les ports applicatifs. */
+/* Focus et fond inerte pour les dialogues ElmUI, y compris les superpositions.
+ * Ce pont ne lit ni les données métier ni les ports applicatifs. */
 (() => {
   let actif = null, precedents = [], neutralises = [], programme = false;
   const controles = noeud => [...noeud.querySelectorAll('button:not(:disabled),input:not(:disabled),select:not(:disabled),a[href],[tabindex="0"]')].filter(n => !n.closest('[inert]') && n.getClientRects().length);
@@ -30,7 +31,7 @@
   document.addEventListener('keydown', evenement => {
     if (!actif) return;
     if (evenement.key === 'Escape') {
-      const fermer = actif.querySelector('[data-mrjam-fermer] button,[data-mrjam-fermer][role="button"]');
+      const fermer = actif.querySelector('[data-mrjam-fermer] button,[data-mrjam-fermer] [role="button"],[data-mrjam-fermer][role="button"]');
       if (fermer) { evenement.preventDefault(); evenement.stopImmediatePropagation(); fermer.click(); }
     }
     if (evenement.key === 'Tab') {
