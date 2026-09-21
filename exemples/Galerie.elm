@@ -5,6 +5,8 @@ import Element as UI
 import Html exposing (Html)
 import Html.Attributes as Attributs
 import MrJam exposing (..)
+import MrJam.Disposition as Disposition
+import MrJam.Tableaux exposing (colonne, tableau)
 
 
 type alias Modele =
@@ -114,6 +116,23 @@ vue modele =
               else
                 UI.none
             , actions [ lienActif True "Étape courante" "#courante", lienActif False "Étape suivante" "#suivante", lienExterne "Source de contrôle" "https://example.org/" ]
+            ]
+        , section "Composants administratifs"
+            [ identifiant "Identifiant de connexion" modele.titre ModifierTitre
+            , nouveauMotDePasse "Nouveau mot de passe" modele.motDePasse ModifierMotDePasse
+            , tableau "Valeurs de démonstration"
+                [ colonne "Intitulé" (\valeur -> paragraphe valeur)
+                , colonne "Action" (\_ -> boutonSecondaire "Consulter" Annuler)
+                , colonne "Note" (\_ -> paragraphe "0")
+                ]
+                [ "Une ligne avec des accents : éèàœ", "Deuxième ligne" ]
+            , tableau "Résultats vides" [ colonne "Valeur" paragraphe ] []
+            ]
+        , section "Compositions communes"
+            [ Disposition.boutonIdentifie "controle-repere" "Action repérée" (Just Enregistrer)
+            , Disposition.progression "Progression" 40
+            , Disposition.histogramme "Comptages" [ ( "A", 2 ), ( "B", 4 ) ]
+            , Disposition.date "Depuis" "" ModifierReponse
             ]
         , section "Informations"
             [ avis Avertissement "Une action destructive doit expliquer ses conséquences et être confirmée par l’application."

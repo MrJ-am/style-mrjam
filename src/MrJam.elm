@@ -16,10 +16,12 @@ module MrJam exposing
     , champIdentifieSoumis
     , choix
     , choixRiches
+    , identifiant
     , lien
     , lienActif
     , lienExterne
     , motDePasse
+    , nouveauMotDePasse
     , page
     , paragraphe
     , pile
@@ -195,7 +197,7 @@ champIdentifieAvec attributs contrat valeur modifier =
                , htmlAttribute (Attributs.attribute "autocapitalize" "off")
                ]
             ++ (contrat.exemple |> Maybe.map (\exemple -> [ htmlAttribute (Attributs.placeholder exemple) ]) |> Maybe.withDefault [])
-            ++ (contrat.aide |> Maybe.map (\identifiant -> [ htmlAttribute (Attributs.attribute "aria-describedby" identifiant) ]) |> Maybe.withDefault [])
+            ++ (contrat.aide |> Maybe.map (\repereAide -> [ htmlAttribute (Attributs.attribute "aria-describedby" repereAide) ]) |> Maybe.withDefault [])
             ++ (contrat.limite |> Maybe.map (\limite -> [ htmlAttribute (Attributs.maxlength (Basics.max 0 limite)) ]) |> Maybe.withDefault [])
         )
         { onChange = modifier
@@ -236,6 +238,22 @@ saisie construire libelle valeur modifier =
 motDePasse : String -> String -> (String -> message) -> Element message
 motDePasse libelle valeur modifier =
     Saisie.currentPassword Theme.champ
+        { onChange = modifier, text = valeur, placeholder = Nothing, label = etiquette libelle, show = False }
+
+
+{-| L’identifiant de connexion conserve l’autocomplétion adaptée.
+-}
+identifiant : String -> String -> (String -> message) -> Element message
+identifiant =
+    saisie Saisie.username
+
+
+{-| Pour la création ou le remplacement du mot de passe, jamais la connexion.
+La confirmation et les contraintes de sécurité restent dans l’application.
+-}
+nouveauMotDePasse : String -> String -> (String -> message) -> Element message
+nouveauMotDePasse libelle valeur modifier =
+    Saisie.newPassword Theme.champ
         { onChange = modifier, text = valeur, placeholder = Nothing, label = etiquette libelle, show = False }
 
 
