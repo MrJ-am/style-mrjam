@@ -8,7 +8,7 @@ Les ressources d’identité sont servies localement sous `assets/mrjam/`, relat
 
 ## Inventaire identifié
 
-- **Mémoire / Matheval** : `docs/src/Main.elm`, `Survey.elm`, `DemoCard.elm`, `Survey/Model.elm` ; styles `docs/site/enquete.css`, `sliders.css`, `admin/admin.css`. L’administration est également une interface à porter : ne pas l’oublier en migrant uniquement Main et Survey. Les lecteurs de texte mathématique, l’espace de manipulation et les ponts JavaScript demandent une vérification distincte.
+- **Mémoire / Matheval** : questionnaire, prototype et administration publiés le 21 septembre 2026 avec `553e5a85fc28d09ab2d034401c6cb912ef97320d`. Les quatre points d’entrée sont `docs/src/Main.elm`, `Survey.elm`, `Administration.elm` et `DemoCard.elm`. Les styles locaux restants concernent le texte mathématique, la scène, les curseurs et leurs ponts géométriques. Les contrats de collecte et le serveur sont conservés. Voir [le relevé applicatif](https://github.com/MrJ-am/M-moire/blob/master/docs/PORTAGE-ELMUI.md).
 - **Vision** : interface ElmUI dans `interface/`, publiée le 21 septembre 2026 avec `c7b4d6e00cd0014a0a05e5a4e77627357498faa9`. Les fichiers HTML/CSS/JavaScript historiques restent dans `docs/`. Le serveur Common Lisp est conservé. Préserver sessions, pagination serveur, filtres, tri stable, édition, conflits HTTP 409, journaux et archivage réversible.
 - **Apprendre à démontrer** : `src/Main.elm`, `public/style.css`, les intégrations `bridge.js` et `video.js`. Conserver le correcteur, les identifiants pédagogiques, KaTeX, les vidéos et la navigation.
 
@@ -16,7 +16,7 @@ Les trois projets partagent notamment l’accent `#087f71`, l’encre `#193d38` 
 
 ## Point particulier de Mémoire
 
-`docs/scripts/build-elm.cjs` copie actuellement seulement `elm.json` et `src` dans un répertoire Linux temporaire. Ajouter un chemin de bibliothèque à `source-directories` sans adapter cette copie ferait échouer la compilation. La construction doit copier dans l’atelier la révision commune vérifiée en conservant les chemins attendus, puis compiler **Main et Survey**. Garder la compatibilité du stockage partagé Android.
+`docs/scripts/build-elm.cjs` prépare dans un atelier Linux temporaire les sources de l’application et la révision vérifiée de la bibliothèque. Il compile **Main, Survey, Administration et DemoCard** avant de recopier les sorties, puis installe les ressources d’identité et leurs manifestes. Les JavaScript et copies d’identité sont générés, sans duplication manuelle de sources communes. Garder ce fonctionnement pour le stockage partagé Android.
 
 ## Renommer sans perdre la traçabilité
 

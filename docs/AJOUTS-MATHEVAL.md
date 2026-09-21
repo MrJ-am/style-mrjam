@@ -1,4 +1,4 @@
-# Compléments communs préparés pour les interfaces d’administration
+# Composants communs adoptés par Matheval
 
 Ces ajouts complètent les composants adoptés en parallèle par Vision et Logique. Les applications verrouillent une révision Git complète et les empreintes de chaque source. La bibliothèque contient les deux séries de composants ; aucun consommateur ne suit une branche mobile.
 
@@ -24,3 +24,13 @@ La galerie et ses tests couvrent les nouveaux champs, les rôles, le zéro, l’
 Aucun symbole existant n’est renommé. Aucun logo, manifeste d’identité, droit réservé ou composition de signature n’est modifié. Matheval vérifie les polices originales contre la source autorisée à chaque construction. Cette branche ne contient aucun déploiement.
 
 Les fragments ElmUI de `MrJam.Disposition` s’intègrent sous un cadre ou une page ElmUI déjà présents. Ils ne réinjectent jamais la feuille de style statique. Le pont des dialogues animés conserve leur géométrie, rend le fond inerte et restitue le focus.
+
+## Publication attestée
+
+Matheval utilise `553e5a85fc28d09ab2d034401c6cb912ef97320d` en production depuis
+le 21 septembre 2026 à 23:11 UTC. Le
+[workflow 35665981516](https://github.com/MrJ-am/M-moire/actions/runs/35665981516)
+a validé les quatre compilations, 50 parcours navigateur et les tests de
+collecte, puis comparé 104 fichiers servis en HTTPS à l’artefact testé.
+L’administration est entièrement en ElmUI. Les fontes originales restent
+vérifiées par l’application contre la source Signature autorisée.
