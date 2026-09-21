@@ -12,6 +12,17 @@
       if (!dialogue.open) {
         ouverts.set(dialogue, document.activeElement);
         dialogue.showModal();
+        dialogue.addEventListener('keydown', evenement => {
+          if (evenement.key !== 'Tab') return;
+          const cibles = [...dialogue.querySelectorAll('button, input, textarea, select, a[href], [tabindex]')]
+            .filter(cible => cible.tabIndex >= 0 && !cible.disabled && !cible.closest('[inert]') && cible.getClientRects().length);
+          const premiere = cibles[0], derniere = cibles.at(-1);
+          if (evenement.shiftKey && document.activeElement === premiere) {
+            evenement.preventDefault(); derniere?.focus();
+          } else if (!evenement.shiftKey && document.activeElement === derniere) {
+            evenement.preventDefault(); premiere?.focus();
+          }
+        });
       }
     }
   };
