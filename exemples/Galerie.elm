@@ -8,7 +8,7 @@ import MrJam exposing (..)
 
 
 type alias Modele =
-    { titre : String, contenu : String, recherche : String, motDePasse : String, accord : Bool, choix : Maybe String, compteur : Int, notification : String, reponse : String, choixRiche : Maybe String, aideOuverte : Bool }
+    { titre : String, contenu : String, recherche : String, motDePasse : String, accord : Bool, choix : Maybe String, compteur : Int, notification : String, reponse : String, choixRiche : Maybe String, lecon : String, aideOuverte : Bool }
 
 
 type Message
@@ -23,12 +23,13 @@ type Message
     | Archiver
     | ModifierReponse String
     | ChoisirRiche String
+    | ChoisirLecon String
     | DevoilerAide
 
 
 initial : Modele
 initial =
-    { titre = "Une fiche", contenu = "  Une indentation à préserver.\nUne seconde ligne.", recherche = "", motDePasse = "", accord = False, choix = Just "toutes", compteur = 0, notification = "Aucune action effectuée.", reponse = "", choixRiche = Nothing, aideOuverte = False }
+    { titre = "Une fiche", contenu = "  Une indentation à préserver.\nUne seconde ligne.", recherche = "", motDePasse = "", accord = False, choix = Just "toutes", compteur = 0, notification = "Aucune action effectuée.", reponse = "", choixRiche = Nothing, lecon = "une", aideOuverte = False }
 
 
 actualiser : Message -> Modele -> Modele
@@ -67,6 +68,9 @@ actualiser message modele =
         ChoisirRiche valeur ->
             { modele | choixRiche = Just valeur }
 
+        ChoisirLecon valeur ->
+            { modele | lecon = valeur }
+
         DevoilerAide ->
             { modele | aideOuverte = not modele.aideOuverte }
 
@@ -90,10 +94,11 @@ vue modele =
             , choix "Correspondance des étiquettes" [ ( "toutes", "Toutes les étiquettes" ), ( "une", "Au moins une étiquette" ) ] modele.choix Choisir
             ]
         , section "Contrôles identifiés et contenu riche"
-            [ champIdentifie
+            [ champIdentifieSoumis
                 { identifiant = "reponse-controle", libelle = "Réponse de contrôle", aide = Just "description-reponse", exemple = Just "Deux témoins distincts", limite = Just 500 }
                 modele.reponse
                 ModifierReponse
+                Enregistrer
             , UI.el [ UI.htmlAttribute (Attributs.id "description-reponse") ] (texteSecondaire "Au plus 500 caractères ; les espaces sont conservés.")
             , choixRiches "Choix à contenu riche"
                 [ ( "distincts", UI.paragraph [ UI.width UI.fill ] [ UI.text "Choisir ", UI.html (Html.em [] [ Html.text "deux témoins distincts" ]) ] )
@@ -101,6 +106,7 @@ vue modele =
                 ]
                 modele.choixRiche
                 ChoisirRiche
+            , selecteur "Leçon" [ ( "une", "1 · Première leçon" ), ( "deux", "2 · Deuxième leçon" ) ] modele.lecon ChoisirLecon
             , boutonDevoiler "aide-controle" "Afficher l’aide" modele.aideOuverte DevoilerAide
             , if modele.aideOuverte then
                 UI.el [ UI.htmlAttribute (Attributs.id "aide-controle") ] (paragraphe "Chaque témoin possède son nom.")
