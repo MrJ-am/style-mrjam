@@ -13,6 +13,7 @@ module MrJam exposing
     , caseACocher
     , champ
     , champIdentifie
+    , champIdentifieSoumis
     , choix
     , choixRiches
     , lien
@@ -24,6 +25,7 @@ module MrJam exposing
     , pile
     , recherche
     , section
+    , selecteur
     , separateur
     , sousTitre
     , texteSecondaire
@@ -49,6 +51,8 @@ import Element.Input as Saisie
 import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes as Attributs
+import Html.Events as Evenements
+import Json.Decode as Decode
 import MrJam.Identite as Identite
 import MrJam.Theme as Theme exposing (couleurs)
 
@@ -168,12 +172,27 @@ type alias ChampIdentifie =
 
 
 champIdentifie : ChampIdentifie -> String -> (String -> message) -> Element message
-champIdentifie contrat valeur modifier =
+champIdentifie =
+    champIdentifieAvec []
+
+
+{-| Variante sémantique pour une réponse courte : Entrée émet le message de
+validation sans imposer de formulaire HTML dans l'application.
+-}
+champIdentifieSoumis : ChampIdentifie -> String -> (String -> message) -> message -> Element message
+champIdentifieSoumis contrat valeur modifier soumettre =
+    champIdentifieAvec [ htmlAttribute (Evenements.preventDefaultOn "keydown" (entree soumettre)) ] contrat valeur modifier
+
+
+champIdentifieAvec : List (Attribute message) -> ChampIdentifie -> String -> (String -> message) -> Element message
+champIdentifieAvec attributs contrat valeur modifier =
     Saisie.text
         (Theme.champ
+            ++ attributs
             ++ [ htmlAttribute (Attributs.id contrat.identifiant)
                , htmlAttribute (Attributs.spellcheck False)
                , htmlAttribute (Attributs.autocomplete False)
+               , htmlAttribute (Attributs.attribute "autocapitalize" "off")
                ]
             ++ (contrat.exemple |> Maybe.map (\exemple -> [ htmlAttribute (Attributs.placeholder exemple) ]) |> Maybe.withDefault [])
             ++ (contrat.aide |> Maybe.map (\identifiant -> [ htmlAttribute (Attributs.attribute "aria-describedby" identifiant) ]) |> Maybe.withDefault [])
@@ -184,6 +203,19 @@ champIdentifie contrat valeur modifier =
         , placeholder = Nothing
         , label = etiquette contrat.libelle
         }
+
+
+entree : message -> Decode.Decoder ( message, Bool )
+entree message =
+    Decode.field "key" Decode.string
+        |> Decode.andThen
+            (\touche ->
+                if touche == "Enter" then
+                    Decode.succeed ( message, True )
+
+                else
+                    Decode.fail "touche ignorée"
+            )
 
 
 recherche : String -> String -> (String -> message) -> Element message
@@ -245,6 +277,38 @@ choixRiches libelle possibilites valeur modifier =
         , selected = valeur
         , label = etiquette libelle
         }
+
+
+{-| Sélection compacte commune. ElmUI n'expose pas de contrôle select natif ;
+l'îlot HTML est encapsulé ici, avec sa présentation et son contrat clavier,
+plutôt que dupliqué dans les applications.
+-}
+selecteur : String -> List ( String, String ) -> String -> (String -> message) -> Element message
+selecteur libelle possibilites valeur modifier =
+    Element.html <|
+        Html.label
+            [ Attributs.style "display" "grid"
+            , Attributs.style "gap" "6px"
+            , Attributs.style "width" "100%"
+            , Attributs.style "color" "#193d38"
+            , Attributs.style "font" "inherit"
+            ]
+            [ Html.span [ Attributs.style "font-size" "14px", Attributs.style "font-weight" "600" ] [ Html.text libelle ]
+            , Html.select
+                [ Attributs.value valeur
+                , Evenements.onInput modifier
+                , Attributs.style "box-sizing" "border-box"
+                , Attributs.style "width" "100%"
+                , Attributs.style "min-height" "44px"
+                , Attributs.style "padding" "8px 12px"
+                , Attributs.style "border" "1px solid #bfd8ca"
+                , Attributs.style "border-radius" "10px"
+                , Attributs.style "background" "#ffffff"
+                , Attributs.style "color" "#193d38"
+                , Attributs.style "font" "inherit"
+                ]
+                (List.map (\( cle, nom ) -> Html.option [ Attributs.value cle ] [ Html.text nom ]) possibilites)
+            ]
 
 
 coche : Bool -> Element message
