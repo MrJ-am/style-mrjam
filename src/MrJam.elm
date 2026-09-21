@@ -326,7 +326,7 @@ selecteur libelle possibilites valeur modifier =
                 , Attributs.style "color" "#193d38"
                 , Attributs.style "font" "inherit"
                 ]
-                (List.map (\( cle, nom ) -> Html.option [ Attributs.value cle ] [ Html.text nom ]) possibilites)
+                (List.map (\( cle, nom ) -> Html.option [ Attributs.value cle, Attributs.selected (cle == valeur) ] [ Html.text nom ]) possibilites)
             ]
 
 

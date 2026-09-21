@@ -33,7 +33,7 @@ fragment =
 
 bandeau : String -> List (Element message) -> Element message
 bandeau titre commandes =
-    UI.wrappedRow [ UI.width UI.fill, UI.spacing 12, UI.paddingXY 0 12 ]
+    UI.wrappedRow [ UI.width UI.fill, UI.spacing 12, UI.paddingXY 0 6 ]
         [ Identite.logo, UI.paragraph [ UI.width (UI.minimum 0 UI.fill), Police.bold, Police.size 24 ] [ UI.text titre ], UI.el [ UI.alignRight ] (MrJam.actions commandes) ]
 
 
