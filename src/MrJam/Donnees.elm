@@ -77,6 +77,7 @@ tableau libelle colonnes lignes =
     el
         [ width fill
         , Element.scrollbarX
+        , htmlAttribute (Attributs.style "flex-basis" "auto")
         , role "region"
         , htmlAttribute (Attributs.attribute "aria-label" (libelle ++ " — défilement horizontal"))
         , htmlAttribute (Attributs.tabindex 0)

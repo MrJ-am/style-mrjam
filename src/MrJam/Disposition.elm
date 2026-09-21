@@ -28,7 +28,7 @@ cadre attributs contenu =
 fragment : Element message -> Html message
 fragment =
     UI.layoutWith { options = [ UI.noStaticStyleSheet, Theme.focus ] }
-        [ UI.width UI.fill, UI.height UI.fill ]
+        [ UI.width UI.fill, UI.height UI.shrink, UI.htmlAttribute (A.style "min-height" "0"), UI.htmlAttribute (A.style "font" "inherit"), UI.htmlAttribute (A.style "color" "inherit") ]
 
 
 bandeau : String -> List (Element message) -> Element message
@@ -136,7 +136,7 @@ histogramme libelle donnees =
         MrJam.texteSecondaire "Aucune évaluation pour cette sélection."
 
     else
-        UI.el [ UI.width UI.fill, UI.scrollbarX, UI.htmlAttribute (A.tabindex 0), UI.htmlAttribute (A.attribute "role" "img"), UI.htmlAttribute (A.attribute "aria-label" (libelle ++ ". " ++ String.join "; " (List.map (\( x, n ) -> x ++ " : " ++ String.fromFloat n) donnees))) ]
+        UI.el [ UI.width UI.fill, UI.scrollbarX, UI.htmlAttribute (A.style "flex-basis" "auto"), UI.htmlAttribute (A.tabindex 0), UI.htmlAttribute (A.attribute "role" "img"), UI.htmlAttribute (A.attribute "aria-label" (libelle ++ ". " ++ String.join "; " (List.map (\( x, n ) -> x ++ " : " ++ String.fromFloat n) donnees))) ]
             (UI.row [ UI.spacing 8, UI.alignBottom ] (List.map (\( x, n ) -> UI.column [ UI.width (UI.px 44), UI.alignBottom, UI.spacing 6, Police.size 12 ] [ UI.text (String.fromFloat n), UI.el [ UI.width (UI.px 30), UI.height (UI.px (Basics.max 1 (round (120 * n / maximum)))), Fond.color couleurs.accent, Bordure.rounded 4 ] UI.none, UI.text x ]) donnees))
 
 
