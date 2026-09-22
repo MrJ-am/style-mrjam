@@ -1,0 +1,35 @@
+/* Contrôles tactiles spécialisés : rails, billes et notes. Ressource locale figée. */
+axis-slider{display:block;width:100%;position:relative;color:var(--green);min-width:0;user-select:none}
+axis-slider[axis=y]{color:#1686a0}axis-slider[axis=z]{color:#7863b1}
+.slider-poles{display:flex;justify-content:space-between;font-size:.8125rem;font-weight:600;padding:0 3px;line-height:1.4}
+.slider-field{position:relative;touch-action:pan-y;isolation:isolate;min-height:44px}
+.slider-rail{position:absolute;left:22px;right:22px;top:var(--rail-y);height:6px;transform:translateY(-50%);border-radius:6px;background:linear-gradient(90deg,color-mix(in srgb,currentColor 18%,white),currentColor);box-shadow:inset 0 1px 1px #12352a0b}
+.axis-midpoint{position:absolute;left:50%;top:50%;width:2px;height:16px;background:currentColor;transform:translate(-50%,-50%);border-radius:2px;opacity:.65}
+.slider-leaders,.slider-handles{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.slider-leader{stroke:currentColor;stroke-width:1;opacity:.4}.slider-anchor{fill:currentColor;stroke:#fff;stroke-width:1}
+.slider-thumb{position:absolute;display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:5px;border:0;background:none;color:inherit;pointer-events:auto;cursor:grab;transform:translate(-50%,-50%);border-radius:50%;transition:none}
+.slider-thumb:active:not(:disabled){transform:translate(-50%,-50%)}
+.slider-thumb:disabled{opacity:1;cursor:default}
+.slider-sphere{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;font-size:.875rem;font-weight:650;color:inherit;background:radial-gradient(circle at 28% 19%,#fff 0%,#fffffff5 16%,color-mix(in srgb,currentColor 11%,white) 46%,color-mix(in srgb,currentColor 36%,white) 100%);border:1px solid #fff;box-shadow:inset 0 2px 2px #fffc,inset -3px -4px 5px #12352a13,0 5px 9px #123b292a;transition:box-shadow .2s,border-color .2s}
+.slider-thumb.selected .slider-sphere{border:1.5px solid currentColor;box-shadow:0 0 0 3px color-mix(in srgb,currentColor 9%,transparent),inset 0 2px 2px #fff,0 5px 10px #123b292a}
+.slider-thumb.pending .slider-sphere{border-style:dashed;border-color:color-mix(in srgb,currentColor 45%,white)}
+.slider-thumb.dragging{cursor:grabbing;transition:none}.slider-thumb.dragging .slider-sphere{box-shadow:0 0 0 5px color-mix(in srgb,currentColor 12%,transparent),inset 0 2px 2px white,0 10px 16px #123b2930}
+.slider-thumb:hover:not(:disabled) .slider-sphere{box-shadow:0 0 0 4px color-mix(in srgb,currentColor 10%,transparent),0 7px 13px #123b292b}
+/* The native range keeps keyboard and assistive-technology semantics.
+   Pointer gestures belong to the surrounding rail, never its jump-to-click default. */
+grade-slider{display:block;position:relative;flex:1;min-width:0;height:44px;touch-action:pan-y;user-select:none;color:var(--green);cursor:grab}
+grade-slider:active{cursor:grabbing}
+grade-slider input[type=range]{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
+.grade-rail{position:absolute;left:16px;right:16px;top:50%;height:6px;transform:translateY(-50%);border-radius:6px;background:linear-gradient(90deg,#b6d4c3,#67b69a,#087f71)}
+.grade-tick{position:absolute;top:50%;width:2px;height:13px;transform:translate(-50%,-50%);background:#729f90;border-radius:2px}
+.grade-knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:32px;height:32px;pointer-events:auto;border:1.5px solid var(--green)}
+.grade-knob::before{content:"";position:absolute;inset:-6px;border-radius:50%}
+/* The browser must decide this before pointerdown. Once a sphere or its rail
+   is grabbed, a curved finger path stays a drag, including outside the rail.
+   Empty space in the field retains pan-y for normal page scrolling. */
+.slider-thumb,.slider-rail,.grade-knob,.grade-rail{touch-action:none}
+.slider-rail::before,.grade-rail::before{content:"";position:absolute;left:0;right:0;top:50%;height:32px;transform:translateY(-50%)}
+.grade-knob.pending{color:#94ac9f;border-color:#94ac9f;border-style:dashed}
+grade-slider:focus-within .grade-knob{outline:3px solid #36a896;outline-offset:4px}
+.grade-track{gap:12px;margin-top:5px}
+

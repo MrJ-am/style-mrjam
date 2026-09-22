@@ -38,4 +38,7 @@ modale identifiant titre fermer contenu =
                     )
             )
         ]
-        [ Element.layoutWith { options = [ Theme.focus ] } [] (MrJam.section titre contenu) ]
+        [ Element.layoutWith { options = [ Theme.focus ] }
+            [ Element.htmlAttribute (A.style "min-height" "0") ]
+            (MrJam.section titre contenu)
+        ]

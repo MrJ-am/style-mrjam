@@ -110,6 +110,13 @@ def verifier():
                 declencheur.click()
                 dialogue = page.get_by_role('dialog', name='Confirmer', exact=True)
                 expect(dialogue).to_be_visible()
+                for dimensions in ({"width": 320, "height": 460}, {"width": 844, "height": 390}, {"width": largeur, "height": 1000}):
+                    page.set_viewport_size(dimensions)
+                    boite = dialogue.bounding_box()
+                    assert boite["x"] >= 0 and boite["y"] >= 0, boite
+                    assert boite["x"] + boite["width"] <= dimensions["width"] + 1, boite
+                    assert boite["y"] + boite["height"] <= dimensions["height"] + 1, boite
+                    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
                 expect(page.get_by_label('Valeur du dialogue', exact=True)).to_be_focused()
                 page.get_by_role('button', name='Fermer le dialogue').focus()
                 page.keyboard.press('Tab')

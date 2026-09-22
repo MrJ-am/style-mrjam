@@ -1,4 +1,4 @@
-module MrJam.Theme exposing (champ, couleurs, disposition, focus, panneau)
+module MrJam.Theme exposing (champ, couleurs, disposition, ecran, focus, panneau)
 
 {-| Réglages internes. Les applications utilisent les composants de `MrJam`,
 pas cette palette pour reconstruire leur propre version d'un bouton.
@@ -8,6 +8,18 @@ import Element exposing (Attribute, Color, Option, fill, minimum, padding, rgb25
 import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
+import Html.Attributes as Attributs
+
+
+ecran : List (Attribute message)
+ecran =
+    [ width fill
+    , Element.htmlAttribute (Attributs.class "mrjam-ecran")
+    , Element.htmlAttribute (Attributs.style "min-width" "0")
+    , Element.htmlAttribute (Attributs.style "min-height" "100dvh")
+    , Element.htmlAttribute (Attributs.style "height" "auto")
+    , Element.htmlAttribute (Attributs.style "max-width" "100%")
+    ]
 
 
 couleurs : { encre : Color, discret : Color, accent : Color, accentSurvol : Color, ligne : Color, papier : Color, surface : Color, doux : Color, danger : Color, dangerSurvol : Color }

@@ -21,7 +21,7 @@ import MrJam.Theme as Theme exposing (couleurs)
 cadre : List (UI.Attribute message) -> Element message -> Html message
 cadre attributs contenu =
     UI.layoutWith { options = [ Theme.focus ] }
-        ([ UI.width UI.fill, Fond.color couleurs.papier, Police.color couleurs.encre, Police.size 16, Police.family [ Police.typeface "Inter", Police.typeface "Segoe UI", Police.sansSerif ] ] ++ attributs)
+        (Theme.ecran ++ [ Fond.color couleurs.papier, Police.color couleurs.encre, Police.size 16, Police.family [ Police.typeface "Inter", Police.typeface "Segoe UI", Police.sansSerif ] ] ++ attributs)
         contenu
 
 
@@ -148,6 +148,8 @@ dialogue repere titre fermeture fermer contenu =
         [ UI.htmlAttribute (A.class (repere ++ "-layer"))
         , UI.htmlAttribute (A.style "position" "fixed")
         , UI.htmlAttribute (A.style "inset" "0")
+        , UI.htmlAttribute (A.style "height" "100dvh")
+        , UI.htmlAttribute (A.style "max-width" "100vw")
         , UI.htmlAttribute (A.style "z-index" "230")
         , UI.width UI.fill
         , UI.height UI.fill

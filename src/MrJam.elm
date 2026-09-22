@@ -483,12 +483,14 @@ avis niveau contenu =
 page : String -> List (Element message) -> Html message
 page titre contenu =
     Element.layoutWith { options = [ Theme.focus ] }
-        [ width fill
-        , Fond.color couleurs.papier
-        , Police.color couleurs.encre
-        , Police.size 16
-        , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
-        ]
+        (Theme.ecran
+            ++ [ width fill
+               , Fond.color couleurs.papier
+               , Police.color couleurs.encre
+               , Police.size 16
+               , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
+               ]
+        )
         (Element.column
             [ width (maximum 1120 fill), centerX, spacing 24, padding 16 ]
             [ Element.wrappedRow [ width fill, spacing 16, htmlAttribute (Attributs.attribute "role" "banner") ]
