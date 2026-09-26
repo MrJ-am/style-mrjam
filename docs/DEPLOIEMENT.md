@@ -1,6 +1,6 @@
 # Reconstruction et publication coordonnées
 
-Ce document décrit le fonctionnement retenu. **L’orchestrateur de publication n’est pas encore installé.** La bibliothèque est publiée séparément ; le raccordement des consommateurs, les autorisations inter-dépôts et la vérification des cibles précèdent l’activation de cet orchestrateur.
+Le 26 septembre 2026, la version `3aab7233465ac0abe49464fa26a360765ccb4004` a été publiée sur les trois consommateurs par une opération collective privée : artefacts figés, préparation, retour autonome, activation et constat des fichiers réellement servis. Ce mécanisme exige une demande explicite portant sur les révisions validées ; un push du dépôt public de style ne reçoit aucun secret et ne déclenche pas seul la production.
 
 Une évolution de la version partagée doit reconstruire et redéployer **tous** les projets concernés, pas seulement le premier utilisateur du composant modifié. Conserver un manifeste privé qui associe une révision exacte de style, une révision exacte de chaque application, une révision de Signature et les empreintes des artefacts.
 
@@ -12,7 +12,13 @@ L’activation publie les artefacts déjà testés sans les reconstruire à part
 
 ## Cibles à raccorder
 
-Matheval est publié depuis le 21 septembre 2026 à 23:11 UTC avec la révision commune `553e5a85fc28d09ab2d034401c6cb912ef97320d`. Son workflow applicatif publie l’artefact testé avec le compte dédié, vérifie les fichiers HTTPS et prépare le retour à la version précédente en cas d’échec. [Preuve applicative](https://github.com/MrJ-am/M-moire/actions/runs/35665981516). Vision est publié : son infrastructure reçoit l’artefact testé et son manifeste, vérifie les empreintes et l’authentification réelle, puis enregistre la génération avec retour préparé. Ce parcours utilise une opération explicite ; il ne constitue pas l’orchestrateur collectif. Apprendre à démontrer déclare un hébergement statique dans `.openai/hosting.json` : son workflow de vérification produit `dist`, mais ne prouve pas à lui seul un déploiement. Il faut confirmer et raccorder sa cible réelle, plutôt que supposer que les trois applications sont sur le même serveur.
+| Consommateur | Cible réelle | Révision publiée le 26 septembre |
+|---|---|---|
+| Vision | https://vision.mrj.am/ | `b33ce9f0c20f4b8af5790831b59217408b496fc0` |
+| Matheval | https://principiipetit.io/matheval/ | `fc3c2fcd36d920142de946b41154cc6f3a67d76e` |
+| Apprendre à démontrer | https://logique.echos.systems/ | `2e2dd6a48cbdad20bbc8d0ac34a9ace67f111a0f` |
+
+Les trois cibles sont sur le VPS existant. La publication collective utilise le publicateur et le compte dédiés de Matheval, bascule ensemble le serveur et l’interface Vision, et change le lien statique de Logique. Les empreintes des ressources, les seize vues publiques, l’authentification et les services ont été vérifiés avant désarmement du retour. Les preuves détaillées restent dans le registre privé VPS ; la configuration historique `.openai/hosting.json` de Logique ne désigne plus sa cible active.
 
 VPS Infrastructure conserve le contrôle de NixOS, Nginx, PostgreSQL, des domaines et des accès. Cette migration ne justifie aucune modification de schéma, de privilège ou de configuration système. Les opérations serveur passent par les runners GitHub Actions, pas par une connexion SSH depuis l’atelier ChatGPT.
 
