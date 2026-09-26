@@ -65,6 +65,11 @@ Les modales utilisent `noStaticStyleSheet` : une deuxième feuille statique ElmU
 injectée après la première racine écrasait les règles dynamiques de typographie
 et de marges. Le test reproduit l’ouverture puis contrôle l’invariance.
 
+La signature est un paragraphe ElmUI avec un unique texte sélectionnable. Son
+interligne natif de 1,183 est conservé par un attribut technique partagé :
+`spacing` n’accepte que des pixels entiers. Le contrôle de hauteur empêche le
+reset ElmUI de réduire cette métrique ; les polices et leur CSS restent intacts.
+
 ## Exécution
 
 ```sh

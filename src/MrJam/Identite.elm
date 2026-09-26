@@ -19,7 +19,16 @@ logo =
 
 signature : Element message
 signature =
-    el [ Element.htmlAttribute (Attributs.class "mrjam"), Police.family [ Police.typeface "MrJamSignature", Police.serif ], Police.size 28 ] (text "MrJ.am")
+    -- La métrique exacte de Signature est fractionnaire ; spacing est entier.
+    Element.paragraph
+        [ width Element.shrink
+        , Element.spacing 0
+        , Element.htmlAttribute (Attributs.class "mrjam")
+        , Element.htmlAttribute (Attributs.style "line-height" "1.183")
+        , Police.family [ Police.typeface "MrJamSignature", Police.serif ]
+        , Police.size 28
+        ]
+        [ text "MrJ.am" ]
 
 
 piedDePage : Element message

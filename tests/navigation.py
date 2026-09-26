@@ -45,6 +45,10 @@ def verifier():
                 else:
                     page.goto(f"http://127.0.0.1:{serveur.server_port}/", wait_until="networkidle")
                 expect(page.get_by_role("heading", name="Style MrJ.am")).to_be_visible()
+                signature = page.locator(".mrjam").first
+                expect(signature).to_have_text("MrJ.am")
+                hauteur, taille = signature.evaluate("e => [e.getBoundingClientRect().height, parseFloat(getComputedStyle(e).fontSize)]")
+                assert abs(hauteur - 1.183 * taille) < 0.1, (hauteur, taille)
                 enregistrer = page.get_by_role("button", name="Enregistrer", exact=True)
                 enregistrer.click()
                 expect(page.get_by_text("Nombre d’enregistrements : 1", exact=True)).to_be_visible()
