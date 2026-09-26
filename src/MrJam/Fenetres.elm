@@ -1,4 +1,4 @@
-module MrJam.Fenetres exposing (modale)
+module MrJam.Fenetres exposing (avecModale, modale)
 
 {-| Dialogue natif : le navigateur rend le fond inerte et retient le focus.
 Le compagnon fenetres.js ouvre le dialogue et restitue le focus à sa fermeture.
@@ -21,7 +21,7 @@ modale identifiant titre fermer contenu =
         , A.attribute "aria-label" titre
         , A.style "border" "0"
         , A.style "padding" "0"
-        , A.style "border-radius" "20px"
+        , A.style "border-radius" "6px"
         , A.style "max-width" "min(680px, calc(100vw - 24px))"
         , A.style "width" "680px"
         , A.style "max-height" "calc(100dvh - 24px)"
@@ -38,7 +38,17 @@ modale identifiant titre fermer contenu =
                     )
             )
         ]
-        [ Element.layoutWith { options = [ Theme.focus ] }
+        [ Element.layoutWith { options = [ Element.noStaticStyleSheet, Theme.focus ] }
             [ Element.htmlAttribute (A.style "min-height" "0") ]
             (MrJam.section titre contenu)
         ]
+
+
+{-| Deux racines ElmUI sœurs : imbriquer deux layout dans une même racine
+peut remplacer les règles dynamiques du premier lors de l'ouverture du dialogue.
+Le div ne porte aucune présentation de contrôle.
+-}
+avecModale : Maybe (Html message) -> Html message -> Html message
+avecModale dialogue contenu =
+    Html.div [ A.style "font-family" "Inter, Aptos, Segoe UI, sans-serif" ]
+        [ contenu, Maybe.withDefault (Html.text "") dialogue ]

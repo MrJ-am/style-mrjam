@@ -90,7 +90,7 @@ def verifier():
                 expect(tableau.get_by_role("columnheader")).to_have_count(3)
                 expect(tableau.get_by_role("cell")).to_have_count(6)
                 expect(tableau.get_by_role("cell", name="0", exact=True)).to_have_count(2)
-                assert tableau.bounding_box()["height"] >= 150
+                assert 110 <= tableau.bounding_box()["height"] <= 220
                 tableau.get_by_role("button", name="Consulter", exact=True).first.click()
                 tableau.get_by_role("button", name="Consulter", exact=True).first.focus()
                 tableau.get_by_role("button", name="Consulter", exact=True).first.press("Enter")
@@ -131,7 +131,7 @@ def verifier():
                 assert page.get_by_role("img", name="Logo MrJ.am").evaluate("image => image.complete && image.naturalWidth > 0")
                 for bouton in page.get_by_role("button").all():
                     boite = bouton.bounding_box()
-                    assert boite and boite["height"] >= 44, boite
+                    assert boite and boite["height"] >= 32, boite
                 assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), f"Débordement à {largeur}px"
                 assert not erreurs, erreurs
                 page.screenshot(path=str(racine / "tests" / f"galerie-{largeur}.png"), full_page=True)

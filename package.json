@@ -4,8 +4,8 @@
   "private": true,
   "description": "Composants ElmUI partagés et API française pour les interfaces MrJ.am.",
   "scripts": {
-    "compiler": "elm make exemples/Galerie.elm --optimize --output=public/galerie.js",
-    "verifier": "elm-format src exemples --validate && python3 scripts/verifier-identite.py && npm run compiler"
+    "compiler": "elm make exemples/Galerie.elm exemples/Bibliotheque.elm --optimize --output=public/galerie.js",
+    "verifier": "elm-format src exemples --validate && python3 scripts/verifier-identite.py && npm run compiler && python3 -m unittest discover -s tests -p test_architecture.py"
   },
   "devDependencies": {
     "@lydell/elm": "0.19.1-14",

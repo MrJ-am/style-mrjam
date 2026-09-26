@@ -10,7 +10,7 @@
 <body>
   <div id="application"></div>
   <script src="galerie.js"></script>
-  <script>Elm.Galerie.init({ node: document.getElementById('application') });</script>
+  <script>(new URLSearchParams(location.search).get('vue') === 'bibliotheque' ? Elm.Bibliotheque : Elm.Galerie).init({ node: document.getElementById('application') });</script>
   <script src="assets/mrjam/fenetres.js"></script>
 </body>
 </html>

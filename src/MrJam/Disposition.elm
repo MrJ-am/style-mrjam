@@ -9,10 +9,10 @@ import Element as UI exposing (Element)
 import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
-import Element.Input as Saisie
 import Html exposing (Html)
 import Html.Attributes as A
 import MrJam
+import MrJam.Controles as Controles exposing (Intention(..))
 import MrJam.Donnees as Donnees
 import MrJam.Identite as Identite
 import MrJam.Theme as Theme exposing (couleurs)
@@ -49,68 +49,12 @@ etiquette libelle =
 
 boutonIdentifie : String -> String -> Maybe message -> Element message
 boutonIdentifie identifiant libelle message =
-    Saisie.button
-        [ UI.htmlAttribute (A.id identifiant)
-        , UI.htmlAttribute (A.style "flex-basis" "auto")
-        , UI.height (UI.minimum 44 UI.shrink)
-        , UI.paddingXY 16 10
-        , Bordure.rounded 12
-        , Police.semiBold
-        , Fond.color
-            (if message == Nothing then
-                couleurs.doux
-
-             else
-                couleurs.accent
-            )
-        , Police.color
-            (if message == Nothing then
-                couleurs.discret
-
-             else
-                couleurs.surface
-            )
-        , UI.htmlAttribute
-            (A.attribute "aria-disabled"
-                (if message == Nothing then
-                    "true"
-
-                 else
-                    "false"
-                )
-            )
-        ]
-        { onPress = message, label = UI.paragraph [] [ UI.text libelle ] }
+    Controles.action Principale [ UI.htmlAttribute (A.id identifiant) ] libelle message
 
 
 boutonSelection : Bool -> String -> message -> Element message
 boutonSelection selectionne libelle message =
-    Saisie.button
-        [ UI.height (UI.minimum 44 UI.shrink)
-        , UI.htmlAttribute (A.style "flex-basis" "auto")
-        , UI.paddingXY 12 8
-        , Bordure.rounded 12
-        , Bordure.width 1
-        , Bordure.color
-            (if selectionne then
-                couleurs.accent
-
-             else
-                couleurs.ligne
-            )
-        , Fond.color couleurs.surface
-        , Police.color couleurs.encre
-        , UI.htmlAttribute
-            (A.attribute "aria-pressed"
-                (if selectionne then
-                    "true"
-
-                 else
-                    "false"
-                )
-            )
-        ]
-        { onPress = Just message, label = UI.paragraph [] [ UI.text libelle ] }
+    Controles.action (Selection selectionne) [] libelle (Just message)
 
 
 date : String -> String -> (String -> message) -> Element message
@@ -186,19 +130,13 @@ dialogue repere titre fermeture fermer contenu =
 
 boutonIcone : String -> String -> message -> Element message
 boutonIcone description symbole message =
-    Saisie.button [ UI.width (UI.px 44), UI.height (UI.px 44), Bordure.rounded 22, Fond.color couleurs.doux, Police.color couleurs.accent, UI.htmlAttribute (A.attribute "aria-label" description) ]
-        { onPress = Just message, label = UI.el [ UI.centerX, UI.centerY ] (UI.text symbole) }
+    Controles.action Icone [ UI.htmlAttribute (A.attribute "aria-label" description) ] symbole (Just message)
 
 
 boutonMenu : String -> Bool -> message -> Element message
 boutonMenu cible ouvert message =
-    Saisie.button
-        [ UI.width (UI.px 44)
-        , UI.height (UI.px 44)
-        , Bordure.rounded 22
-        , Fond.color couleurs.doux
-        , Police.color couleurs.accent
-        , UI.htmlAttribute
+    Controles.action Icone
+        [ UI.htmlAttribute
             (A.attribute "aria-label"
                 (if ouvert then
                     "Fermer le menu"
@@ -218,4 +156,5 @@ boutonMenu cible ouvert message =
                 )
             )
         ]
-        { onPress = Just message, label = UI.el [ UI.centerX, UI.centerY ] (UI.text "☰") }
+        "☰"
+        (Just message)

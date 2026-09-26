@@ -45,7 +45,7 @@ La galerie est une application de contrôle, pas un paquet publié sur le regist
 
 -}
 
-import Element exposing (Attribute, Color, Element, centerX, el, fill, height, htmlAttribute, maximum, minimum, padding, paddingXY, paragraph, px, shrink, spacing, text, width)
+import Element exposing (Attribute, Element, centerX, el, fill, height, htmlAttribute, maximum, minimum, padding, paddingXY, paragraph, px, shrink, spacing, text, width)
 import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
@@ -55,18 +55,19 @@ import Html exposing (Html)
 import Html.Attributes as Attributs
 import Html.Events as Evenements
 import Json.Decode as Decode
+import MrJam.Controles as Controles exposing (Intention(..))
 import MrJam.Identite as Identite
 import MrJam.Theme as Theme exposing (couleurs)
 
 
 bouton : String -> message -> Element message
 bouton libelle message =
-    action couleurs.accent couleurs.surface couleurs.accentSurvol [] libelle (Just message)
+    Controles.action Principale [] libelle (Just message)
 
 
 boutonSecondaire : String -> message -> Element message
 boutonSecondaire libelle message =
-    action couleurs.surface couleurs.encre couleurs.doux [] libelle (Just message)
+    Controles.action Secondaire [] libelle (Just message)
 
 
 {-| Action de dévoilement : identifiant du contenu, libellé et état, sans décoration locale.
@@ -74,9 +75,7 @@ Le contenu et sa présence dans le DOM restent gérés par l'application.
 -}
 boutonDevoiler : String -> String -> Bool -> message -> Element message
 boutonDevoiler cible libelle ouvert message =
-    action couleurs.surface
-        couleurs.encre
-        couleurs.doux
+    Controles.action Secondaire
         [ htmlAttribute (Attributs.attribute "aria-controls" cible)
         , htmlAttribute
             (Attributs.attribute "aria-expanded"
@@ -94,14 +93,12 @@ boutonDevoiler cible libelle ouvert message =
 
 boutonDestructif : String -> message -> Element message
 boutonDestructif libelle message =
-    action couleurs.danger couleurs.surface couleurs.dangerSurvol [] libelle (Just message)
+    Controles.action Destructive [] libelle (Just message)
 
 
 boutonInactif : String -> Element message
 boutonInactif libelle =
-    action couleurs.doux
-        couleurs.discret
-        couleurs.doux
+    Controles.action Secondaire
         [ htmlAttribute (Attributs.attribute "aria-disabled" "true")
         , htmlAttribute (Attributs.tabindex -1)
         ]
@@ -111,9 +108,7 @@ boutonInactif libelle =
 
 boutonEnCours : String -> Element message
 boutonEnCours libelle =
-    action couleurs.doux
-        couleurs.discret
-        couleurs.doux
+    Controles.action Secondaire
         [ htmlAttribute (Attributs.attribute "aria-disabled" "true")
         , htmlAttribute (Attributs.attribute "aria-busy" "true")
         , htmlAttribute (Attributs.tabindex -1)
@@ -122,37 +117,9 @@ boutonEnCours libelle =
         Nothing
 
 
-{-| Seule cette fonction interne connaît la décoration commune des actions.
--}
-action : Color -> Color -> Color -> List (Attribute message) -> String -> Maybe message -> Element message
-action fond encre survol attributs libelle message =
-    Saisie.button
-        (attributs
-            ++ [ height (minimum 44 shrink)
-               , width (maximum 360 shrink)
-               , paddingXY 16 10
-               , Police.size 16
-               , Police.semiBold
-               , Police.color encre
-               , Fond.color fond
-               , Bordure.rounded 12
-               , Bordure.width 1
-               , Bordure.color
-                    (if fond == couleurs.surface then
-                        couleurs.ligne
-
-                     else
-                        fond
-                    )
-               , Element.mouseOver [ Fond.color survol ]
-               ]
-        )
-        { onPress = message, label = paragraph [ Police.center ] [ text libelle ] }
-
-
 actions : List (Element message) -> Element message
 actions =
-    Element.wrappedRow [ width fill, spacing 10 ]
+    Element.wrappedRow [ width fill, spacing 8 ]
 
 
 champ : String -> String -> (String -> message) -> Element message
@@ -318,10 +285,10 @@ selecteur libelle possibilites valeur modifier =
                 , Evenements.onInput modifier
                 , Attributs.style "box-sizing" "border-box"
                 , Attributs.style "width" "100%"
-                , Attributs.style "min-height" "44px"
-                , Attributs.style "padding" "8px 12px"
+                , Attributs.style "min-height" "36px"
+                , Attributs.style "padding" "6px 8px"
                 , Attributs.style "border" "1px solid #bfd8ca"
-                , Attributs.style "border-radius" "10px"
+                , Attributs.style "border-radius" "5px"
                 , Attributs.style "background" "#ffffff"
                 , Attributs.style "color" "#193d38"
                 , Attributs.style "font" "inherit"

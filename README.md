@@ -33,7 +33,7 @@ section "Modifier une fiche"
 
 Un lien de navigation utilise `lien`, pas un bouton sans destination. Les états non disponibles utilisent `boutonInactif` ou `boutonEnCours`. Une action destructive porte sa propre définition ; la confirmation et les permissions restent des responsabilités de l’application.
 
-Les composants couvrent les boutons, liens, champs, recherches, mots de passe, zones de texte, cases à cocher, choix exclusifs, sélecteurs, cartes, sections, textes, messages et compositions simples. `MrJam.Donnees` fournit tableaux et valeurs spécialisées, `MrJam.Lecture` le lecteur Markdown et `MrJam.Fenetres` les dialogues accessibles. `MrJam.Disposition` fournit les bandeaux, commandes, progressions, graphiques et dialogues animés ; `MrJam.Tableaux` compose le tableau de `MrJam.Donnees` avec son titre et son état vide. Voir [COMPOSANTS-VISION.md](docs/COMPOSANTS-VISION.md) et [AJOUTS-MATHEVAL.md](docs/AJOUTS-MATHEVAL.md). Les autres composants communs sont à extraire selon les besoins, sans les improviser séparément dans chaque projet.
+Les composants couvrent les boutons, liens, champs, recherches, mots de passe, zones de texte, cases à cocher, choix exclusifs, sélecteurs, cartes, sections, textes, messages et compositions simples. `MrJam.Donnees` fournit tableaux et valeurs spécialisées, `MrJam.Lecture` le lecteur Markdown et `MrJam.Fenetres` les dialogues accessibles. `MrJam.Disposition` fournit les bandeaux, commandes, progressions, graphiques et dialogues animés ; `MrJam.Tableaux` est le moteur unique des tableaux, avec colonnes sémantiques et état vide. `MrJam.Documents` compose les interfaces documentaires compactes ; voir [INTERFACE-DOCUMENTAIRE.md](docs/INTERFACE-DOCUMENTAIRE.md). Voir [COMPOSANTS-VISION.md](docs/COMPOSANTS-VISION.md) et [AJOUTS-MATHEVAL.md](docs/AJOUTS-MATHEVAL.md). Les autres composants communs sont à extraire selon les besoins, sans les improviser séparément dans chaque projet.
 
 `MrJam.Theme` est interne. Ajouter des couleurs, arrondis ou bordures au point d’appel d’un composant usuel recréerait précisément la duplication à supprimer.
 
@@ -47,6 +47,7 @@ npm run verifier
 python3 -m pip install -r tests/requirements.txt
 python3 -m playwright install chromium
 python3 tests/navigation.py
+python3 tests/documentaire.py
 ```
 
 `npm run compiler` produit `public/galerie.js`. La galerie se sert depuis `public/`. Les tests vérifient clic, Entrée, Espace, champs libellés, saisie multiligne, états inactifs, cases, choix, taille tactile et absence de débordement à quatre largeurs.

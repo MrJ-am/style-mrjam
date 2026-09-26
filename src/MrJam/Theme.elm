@@ -54,23 +54,22 @@ disposition =
 panneau : List (Attribute message)
 panneau =
     disposition
-        ++ [ padding 20
+        ++ [ padding 16
            , Fond.color couleurs.surface
            , Bordure.color couleurs.ligne
            , Bordure.width 1
-           , Bordure.rounded 20
-           , Bordure.shadow { offset = ( 0, 2 ), size = 0, blur = 6, color = rgba255 22 77 64 0.04 }
+           , Bordure.rounded 6
            ]
 
 
 champ : List (Attribute message)
 champ =
     [ width fill
-    , Element.height (minimum 44 shrink)
-    , Element.paddingXY 12 10
+    , Element.height (minimum 36 shrink)
+    , Element.paddingXY 10 7
     , Fond.color couleurs.surface
     , Police.color couleurs.encre
     , Bordure.color couleurs.ligne
     , Bordure.width 1
-    , Bordure.rounded 12
+    , Bordure.rounded 5
     ]

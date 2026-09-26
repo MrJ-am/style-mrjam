@@ -5,9 +5,8 @@ de Signature. Ne pas redessiner le logo ni remplacer la signature par une image.
 Toute utilisation de ces signes d'identité est strictement réservée.
 -}
 
-import Element exposing (Element, el, fill, height, html, image, paddingXY, px, text, width, wrappedRow)
+import Element exposing (Element, el, fill, height, image, paddingXY, px, text, width, wrappedRow)
 import Element.Font as Police
-import Html
 import Html.Attributes as Attributs
 import MrJam.Theme exposing (couleurs)
 
@@ -20,10 +19,7 @@ logo =
 
 signature : Element message
 signature =
-    html <|
-        Html.span
-            [ Attributs.class "mrjam", Attributs.style "font-size" "28px" ]
-            [ Html.text "MrJ.am" ]
+    el [ Element.htmlAttribute (Attributs.class "mrjam"), Police.family [ Police.typeface "MrJamSignature", Police.serif ], Police.size 28 ] (text "MrJ.am")
 
 
 piedDePage : Element message
