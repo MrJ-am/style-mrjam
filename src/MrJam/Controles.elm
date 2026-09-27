@@ -129,7 +129,8 @@ action intention attributs libelle message =
         }
 
 
-{-| Une icône visible, un nom accessible et un titre au survol. -}
+{-| Une icône visible, un nom accessible et un titre au survol.
+-}
 icone : String -> String -> message -> Element message
 icone libelle symbole message =
     action Icone
