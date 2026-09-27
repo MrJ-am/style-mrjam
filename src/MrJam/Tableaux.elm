@@ -1,4 +1,4 @@
-module MrJam.Tableaux exposing (Colonne, colonne, commandes, mesure, principale, tableau)
+module MrJam.Tableaux exposing (Colonne, celluleEditable, colonne, commandes, mesure, outil, principale, tableau, tableauAvecOutils)
 
 {-| Un seul moteur de tableau. Le type opaque garantit les mêmes largeurs pour
 les en-têtes et cellules. Les variantes expriment l'intention de la colonne.
@@ -8,8 +8,10 @@ import Element as UI exposing (Element)
 import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
+import Element.Input as Saisie
 import Html.Attributes as A
 import MrJam
+import MrJam.Controles as Controles
 import MrJam.Theme exposing (couleurs)
 
 
@@ -125,3 +127,37 @@ tableau libelle colonnes donnees =
               else
                 UI.none
             ]
+
+
+{-| La bibliothèque place et dessine les commandes ; le projet choisit leurs
+états et applique le tri ou le filtre sur ses données.
+-}
+tableauAvecOutils : String -> List (Element message) -> List (Colonne donnee message) -> List donnee -> Element message
+tableauAvecOutils libelle commandesTable colonnes donnees =
+    UI.column [ UI.width UI.fill, UI.spacing 6 ]
+        [ UI.el
+            [ role "region"
+            , UI.htmlAttribute (A.attribute "aria-label" ("Outils du tableau " ++ libelle))
+            , UI.width UI.fill
+            ]
+            (UI.wrappedRow [ UI.spacing 4, UI.alignRight ] commandesTable)
+        , tableau libelle colonnes donnees
+        ]
+
+
+{-| Commande discrète à pictogramme et nom accessible. -}
+outil : String -> String -> message -> Element message
+outil =
+    Controles.icone
+
+
+{-| Champ de cellule compact. La sauvegarde et les conflits appartiennent au projet. -}
+celluleEditable : String -> String -> (String -> message) -> Element message
+celluleEditable libelle valeur modifier =
+    Saisie.text
+        (MrJam.Theme.champ ++ [ UI.width UI.fill, UI.htmlAttribute (A.attribute "aria-label" libelle) ])
+        { onChange = modifier
+        , text = valeur
+        , placeholder = Nothing
+        , label = Saisie.labelHidden libelle
+        }
