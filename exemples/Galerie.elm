@@ -9,7 +9,7 @@ import MrJam.Disposition as Disposition
 import MrJam.Donnees as Donnees
 import MrJam.Fenetres as Fenetres
 import MrJam.Lecture as Lecture
-import MrJam.Tableaux exposing (colonne, tableau)
+import MrJam.Tableaux as Tableaux exposing (colonne, tableau)
 
 
 type alias Modele =
@@ -132,7 +132,11 @@ vue modele =
             , section "Composants administratifs"
                 [ identifiant "Identifiant de connexion" modele.titre ModifierTitre
                 , nouveauMotDePasse "Nouveau mot de passe" modele.motDePasse ModifierMotDePasse
-                , tableau "Valeurs de démonstration"
+                , Tableaux.tableauAvecOutils "Valeurs de démonstration"
+                    [ Tableaux.outil "Trier le tableau" "⇅" Enregistrer
+                    , Tableaux.outil "Filtrer le tableau" "⛃" Enregistrer
+                    , Tableaux.outil "Modifier une cellule" "✎" Enregistrer
+                    ]
                     [ colonne "Intitulé" (\valeur -> paragraphe valeur)
                     , colonne "Action" (\_ -> boutonSecondaire "Consulter" Annuler)
                     , colonne "Note" (\_ -> paragraphe "0")
