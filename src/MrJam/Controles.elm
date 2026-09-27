@@ -1,4 +1,4 @@
-module MrJam.Controles exposing (Intention(..), action)
+module MrJam.Controles exposing (Intention(..), action, icone)
 
 {-| Moteur interne des actions. Les applications utilisent les noms sémantiques
 exposés par MrJam, Documents et Disposition, sans attributs décoratifs.
@@ -127,3 +127,14 @@ action intention attributs libelle message =
         { onPress = message
         , label = UI.paragraph [ UI.htmlAttribute (A.style "width" "max-content"), UI.htmlAttribute (A.style "max-width" "100%"), Police.center ] [ UI.text libelle ]
         }
+
+
+{-| Une icône visible, un nom accessible et un titre au survol. -}
+icone : String -> String -> message -> Element message
+icone libelle symbole message =
+    action Icone
+        [ UI.htmlAttribute (A.attribute "aria-label" libelle)
+        , UI.htmlAttribute (A.title libelle)
+        ]
+        symbole
+        (Just message)
