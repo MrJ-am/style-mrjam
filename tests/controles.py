@@ -53,3 +53,12 @@ def verifier_controles(page):
     externe = page.get_by_role("link", name="Source de contrôle — nouvel onglet", exact=True)
     expect(externe).to_have_attribute("target", "_blank")
     assert set(externe.get_attribute("rel").split()) >= {"noopener", "noreferrer"}
+
+    outils = page.get_by_role("region", name="Outils du tableau Valeurs de démonstration")
+    for nom in ("Trier le tableau", "Filtrer le tableau", "Modifier une cellule"):
+        bouton = outils.get_by_role("button", name=nom, exact=True)
+        expect(bouton).to_be_visible()
+        assert bouton.inner_text().strip() != nom
+        bouton.focus()
+        bouton.press("Enter")
+    expect(page.get_by_text("Nombre d’enregistrements : 5", exact=True)).to_be_visible()
