@@ -145,13 +145,15 @@ tableauAvecOutils libelle commandesTable colonnes donnees =
         ]
 
 
-{-| Commande discrète à pictogramme et nom accessible. -}
+{-| Commande discrète à pictogramme et nom accessible.
+-}
 outil : String -> String -> message -> Element message
 outil =
     Controles.icone
 
 
-{-| Champ de cellule compact. La sauvegarde et les conflits appartiennent au projet. -}
+{-| Champ de cellule compact. La sauvegarde et les conflits appartiennent au projet.
+-}
 celluleEditable : String -> String -> (String -> message) -> Element message
 celluleEditable libelle valeur modifier =
     Saisie.text
