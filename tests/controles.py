@@ -61,4 +61,4 @@ def verifier_controles(page):
         assert bouton.inner_text().strip() != nom
         bouton.focus()
         bouton.press("Enter")
-    expect(page.get_by_text("Nombre d’enregistrements : 5", exact=True)).to_be_visible()
+    expect(page.get_by_text("Nombre d’enregistrements : 7", exact=True)).to_be_visible()
