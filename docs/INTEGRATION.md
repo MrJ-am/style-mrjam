@@ -32,3 +32,7 @@ Les identifiants éditoriaux, les données déjà collectées, les migrations hi
 ## Critère de migration terminée
 
 Un simple `Element.html` autour de l’ancienne page HTML ne constitue pas une migration ElmUI. Les contrôles usuels doivent appeler les composants partagés ; les styles ordinaires dupliqués sont retirés seulement lorsque toutes leurs vues sont portées et testées. Les ponts spécialisés, comme KaTeX, restent documentés et versionnés localement.
+
+## Tableaux à commandes
+
+`MrJam.Tableaux.tableauAvecOutils` place une barre de commandes au-dessus d'un tableau accessible. `outil` dessine un pictogramme avec nom accessible, infobulle, clavier et focus ; `celluleEditable` garde une saisie compacte dans la cellule. Le consommateur fournit la liste des commandes, leur état et leurs actions. Un filtre appliqué à une liste paginée doit être exécuté avant la pagination côté application, et le nombre affiché doit refléter ce filtre. Aucune règle d'échéance ou d'autorisation n'est intégrée dans la bibliothèque.
