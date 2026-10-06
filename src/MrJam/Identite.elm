@@ -43,6 +43,7 @@ marque nom =
         [ width Element.shrink
         , Element.spacing 0
         , Element.htmlAttribute (Attributs.class "mrjam-marque")
+        , paddingXY 0 3
         , Police.family [ Police.typeface "MrJamEcriture", Police.serif ]
         , Police.size 28
         , Element.htmlAttribute (Attributs.style "line-height" "1.183")
