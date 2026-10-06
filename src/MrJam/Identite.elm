@@ -48,7 +48,8 @@ marque nom =
         , Police.size 28
         , Element.htmlAttribute (Attributs.style "line-height" "1.183")
         ]
-        [ text (nom ++ ".")
+        [ text nom
+        , pointMarque
         , el
             [ Element.htmlAttribute (Attributs.class "mrjam")
             , Police.family [ Police.typeface "MrJamSignature", Police.serif ]
@@ -56,6 +57,22 @@ marque nom =
             ]
             (text "MrJ.am")
         ]
+
+
+{-| EchoPoint contient le même dessin que le point de Signature. La composition
+originale dans mrjam.sty l'agrandit ×2 et l'abaisse de .01 em ; à cette taille
+double, le décalage vaut donc -.005 em. Le caractère copié reste un point U+002E.
+-}
+pointMarque : Element message
+pointMarque =
+    el
+        [ Element.htmlAttribute (Attributs.class "echo-point mrjam-marque-point")
+        , Element.htmlAttribute (Attributs.style "line-height" "0")
+        , Element.htmlAttribute (Attributs.style "vertical-align" "-0.005em")
+        , Police.family [ Police.typeface "EchoPoint", Police.serif ]
+        , Police.size 56
+        ]
+        (text ".")
 
 
 piedDePage : Element message
