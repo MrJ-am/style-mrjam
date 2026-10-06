@@ -194,16 +194,12 @@ cadre marque titre navigation dialogue contenu =
                         , UI.paragraph [ Region.heading 1, Police.size 20, Police.bold ] [ UI.text titre ]
                         ]
                      )
-                        ++ [ UI.wrappedRow
-                                ([ UI.spacing 12, UI.width (UI.minimum 200 UI.fill), Region.navigation ]
-                                    ++ (if marque then
-                                            [ UI.htmlAttribute (A.class "mrjam-marque-navigation") ]
+                        ++ [ if marque then
+                                UI.el [ UI.width (UI.minimum 200 UI.fill) ]
+                                    (UI.wrappedRow [ UI.spacing 12, UI.alignRight, Region.navigation ] navigation)
 
-                                        else
-                                            []
-                                       )
-                                )
-                                navigation
+                             else
+                                UI.wrappedRow [ UI.spacing 12, UI.width (UI.minimum 200 UI.fill), Region.navigation ] navigation
                            ]
                     )
                 , UI.column [ UI.width (UI.maximum 1280 UI.fill), UI.centerX, UI.padding 24, UI.spacing 20, Region.mainContent, UI.htmlAttribute (A.id "contenu-principal") ] contenu

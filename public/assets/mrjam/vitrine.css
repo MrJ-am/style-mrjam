@@ -1,7 +1,6 @@
 /* Les compositions restent ElmUI. Seuls les petits écrans et la souris tactile
    nécessitent ces ajustements communs. Aucun texte ni donnée de produit ici. */
 .mrjam-marque { white-space: nowrap; user-select: text; }
-.mrjam-marque-navigation, .mrjam-marque-navigation > div { justify-content: flex-end !important; }
 .mrjam-marque > * { color: #000; font-synthesis: none; }
 .mrjam-vitrine-titre { line-height: 1.06 !important; letter-spacing: -2.2px !important; }
 .mrjam-vitrine-titre-secondaire { line-height: 1.13 !important; letter-spacing: -1px !important; }
