@@ -3,6 +3,7 @@ from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import threading
+import os
 from playwright.sync_api import sync_playwright, expect
 
 RACINE = Path(__file__).resolve().parents[1]
@@ -21,7 +22,7 @@ def verifier():
     threading.Thread(target=serveur.serve_forever,daemon=True).start()
     try:
         with sync_playwright() as pw:
-            navigateur=pw.chromium.launch()
+            navigateur=pw.chromium.launch(**({'executable_path':os.environ['CHROMIUM']} if 'CHROMIUM' in os.environ else {}))
             for largeur in [320,390,768,1440]:
                 page=navigateur.new_page(viewport=dict(width=largeur,height=900))
                 # Même bundle optimisé ; le bootstrap reste un squelette technique.

@@ -1,4 +1,4 @@
-module MrJam.Documents exposing (action, actionSur, actions, document, entete, espace, filtres, lien, menu, onglet, pagination, repere, section)
+module MrJam.Documents exposing (action, actionSur, actions, document, entete, espace, espaceMarque, filtres, lien, menu, onglet, pagination, repere, section)
 
 {-| Présentation documentaire : données denses, actions discrètes, document sans
 carte imbriquée. Aucun état ni règle métier ne réside dans ces composants.
@@ -152,6 +152,19 @@ menu ouvert basculer contenu =
 
 espace : String -> List (Element message) -> Maybe (Html message) -> List (Element message) -> Html message
 espace titre navigation dialogue contenu =
+    cadre False titre navigation dialogue contenu
+
+
+{-| Cadre avec une marque liée à l'accueil et sans signature de bas de page.
+Cette variante est explicite : les consommateurs de `espace` gardent leur cadre.
+-}
+espaceMarque : String -> List (Element message) -> Maybe (Html message) -> List (Element message) -> Html message
+espaceMarque titre navigation dialogue contenu =
+    cadre True titre navigation dialogue contenu
+
+
+cadre : Bool -> String -> List (Element message) -> Maybe (Html message) -> List (Element message) -> Html message
+cadre marque titre navigation dialogue contenu =
     Fenetres.avecModale dialogue <|
         UI.layoutWith { options = [ Theme.focus ] }
             (Theme.ecran
@@ -171,12 +184,34 @@ espace titre navigation dialogue contenu =
                     , Bordure.color couleurs.ligne
                     , UI.htmlAttribute (A.attribute "role" "banner")
                     ]
-                    [ Identite.logo
-                    , UI.paragraph [ Region.heading 1, Police.size 20, Police.bold ] [ UI.text titre ]
-                    , UI.wrappedRow [ UI.spacing 12, UI.width (UI.minimum 200 UI.fill), Region.navigation ] navigation
-                    ]
-                , UI.column [ UI.width (UI.maximum 1280 UI.fill), UI.centerX, UI.padding 24, UI.spacing 20, Region.mainContent ] contenu
-                , UI.el [ UI.width UI.fill, UI.paddingXY 24 0 ] Identite.piedDePage
+                    ((if marque then
+                        [ UI.link [ UI.htmlAttribute (A.attribute "aria-label" (titre ++ ".MrJ.am — accueil")) ]
+                            { url = "./", label = Identite.marque titre }
+                        ]
+
+                      else
+                        [ Identite.logo
+                        , UI.paragraph [ Region.heading 1, Police.size 20, Police.bold ] [ UI.text titre ]
+                        ]
+                     )
+                        ++ [ UI.wrappedRow
+                                ([ UI.spacing 12, UI.width (UI.minimum 200 UI.fill), Region.navigation ]
+                                    ++ (if marque then
+                                            [ UI.htmlAttribute (A.class "mrjam-marque-navigation") ]
+
+                                        else
+                                            []
+                                       )
+                                )
+                                navigation
+                           ]
+                    )
+                , UI.column [ UI.width (UI.maximum 1280 UI.fill), UI.centerX, UI.padding 24, UI.spacing 20, Region.mainContent, UI.htmlAttribute (A.id "contenu-principal") ] contenu
+                , if marque then
+                    UI.none
+
+                  else
+                    UI.el [ UI.width UI.fill, UI.paddingXY 24 0 ] Identite.piedDePage
                 ]
             )
 

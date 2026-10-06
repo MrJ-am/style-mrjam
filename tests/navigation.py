@@ -120,7 +120,9 @@ def verifier():
                     assert boite["x"] >= 0 and boite["y"] >= 0, boite
                     assert boite["x"] + boite["width"] <= dimensions["width"] + 1, boite
                     assert boite["y"] + boite["height"] <= dimensions["height"] + 1, boite
-                    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+                    if not page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"):
+                        page.screenshot(path=str(racine / 'tests' / 'echec.png'), full_page=True)
+                        raise AssertionError(page.evaluate('({largeur:innerWidth,contenu:document.documentElement.scrollWidth,debordements:[...document.querySelectorAll("body *")].filter(e=>e.getBoundingClientRect().right>innerWidth+1&&getComputedStyle(e).display!=="none").map(e=>[e.tagName,e.className,e.getBoundingClientRect().width,getComputedStyle(e).whiteSpace]).slice(0,15)})'))
                 expect(page.get_by_label('Valeur du dialogue', exact=True)).to_be_focused()
                 page.get_by_role('button', name='Fermer le dialogue').focus()
                 page.keyboard.press('Tab')
@@ -137,6 +139,17 @@ def verifier():
                     boite = bouton.bounding_box()
                     assert boite and boite["height"] >= 32, boite
                 assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth"), f"Débordement à {largeur}px"
+                pictogramme = page.get_by_role('button', name='Modifier le contrôle', exact=True)
+                assert pictogramme.locator('svg[aria-hidden="true"]').count() == 1
+                pictogramme.focus(); pictogramme.press('Enter')
+                expect(page.get_by_text('Enregistrement demandé.', exact=True)).to_be_visible()
+                titre = page.get_by_role('heading', name='Style MrJ.am', exact=True)
+                taille = titre.evaluate('(e)=>getComputedStyle(e).fontSize')
+                resume = page.locator('summary').filter(has_text='Lire le complément de découverte')
+                resume.focus(); resume.press('Enter')
+                expect(page.get_by_text('Un complément accessible au clavier.', exact=True)).to_be_visible()
+                assert titre.evaluate('(e)=>getComputedStyle(e).fontSize') == taille
+                resume.press('Enter')
                 assert not erreurs, erreurs
                 page.screenshot(path=str(racine / "tests" / f"galerie-{largeur}.png"), full_page=True)
                 resultats.append({"largeur": largeur, "resultat": "succès", "mode": "mémoire" if os.environ.get("HORS_LIGNE") == "1" else "HTTP"})

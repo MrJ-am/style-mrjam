@@ -1,4 +1,4 @@
-module MrJam.Controles exposing (Intention(..), action, icone)
+module MrJam.Controles exposing (Intention(..), action, actionAvecContenu, icone)
 
 {-| Moteur interne des actions. Les applications utilisent les noms sémantiques
 exposés par MrJam, Documents et Disposition, sans attributs décoratifs.
@@ -24,6 +24,17 @@ type Intention
 
 action : Intention -> List (Attribute message) -> String -> Maybe message -> Element message
 action intention attributs libelle message =
+    actionAvecContenu intention
+        attributs
+        (UI.paragraph [ UI.htmlAttribute (A.style "width" "max-content"), UI.htmlAttribute (A.style "max-width" "100%"), Police.center ] [ UI.text libelle ])
+        message
+
+
+{-| Le même moteur pour un libellé ou un pictogramme. Les noms accessibles sont
+fournis par le composant sémantique qui l'appelle.
+-}
+actionAvecContenu : Intention -> List (Attribute message) -> Element message -> Maybe message -> Element message
+actionAvecContenu intention attributs contenu message =
     let
         ( fond, encre, survol ) =
             if message == Nothing then
@@ -125,7 +136,7 @@ action intention attributs libelle message =
             ++ attributs
         )
         { onPress = message
-        , label = UI.paragraph [ UI.htmlAttribute (A.style "width" "max-content"), UI.htmlAttribute (A.style "max-width" "100%"), Police.center ] [ UI.text libelle ]
+        , label = contenu
         }
 
 

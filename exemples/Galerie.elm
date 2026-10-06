@@ -9,7 +9,9 @@ import MrJam.Disposition as Disposition
 import MrJam.Donnees as Donnees
 import MrJam.Fenetres as Fenetres
 import MrJam.Lecture as Lecture
+import MrJam.Pictogrammes as Pictogrammes
 import MrJam.Tableaux as Tableaux exposing (colonne, tableau)
+import MrJam.Vitrine as Vitrine
 
 
 type alias Modele =
@@ -98,6 +100,10 @@ vue modele =
                 , actions [ boutonInactif "Indisponible", boutonEnCours "Enregistrement en cours…" ]
                 , paragraphe ("Nombre d’enregistrements : " ++ String.fromInt modele.compteur)
                 , avis Succes modele.notification
+                ]
+            , section "Pictogrammes et découverte"
+                [ actions [ Pictogrammes.action Pictogrammes.Modifier "Modifier le contrôle" Enregistrer, Pictogrammes.action Pictogrammes.Fermer "Fermer le contrôle" Annuler ]
+                , Vitrine.details "Lire le complément de découverte" [ paragraphe "Un complément accessible au clavier." ]
                 ]
             , section "Saisie"
                 [ champ "Titre" modele.titre ModifierTitre

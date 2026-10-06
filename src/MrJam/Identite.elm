@@ -1,4 +1,4 @@
-module MrJam.Identite exposing (logo, piedDePage, signature)
+module MrJam.Identite exposing (logo, marque, piedDePage, signature)
 
 {-| Les ressources sont copiées à la compilation depuis une révision précise
 de Signature. Ne pas redessiner le logo ni remplacer la signature par une image.
@@ -29,6 +29,23 @@ signature =
         , Police.size 28
         ]
         [ text "MrJ.am" ]
+
+
+{-| Nom de l'application dans la Parisienne originale, suivi de la signature
+intacte. La fonte complète est fournie par le consommateur depuis Signature ;
+la fonte de signature ne contient volontairement que ses six caractères.
+-}
+marque : String -> Element message
+marque nom =
+    Element.row [ Element.spacing 0, Element.htmlAttribute (Attributs.class "mrjam-marque") ]
+        [ el
+            [ Police.family [ Police.typeface "MrJamEcriture", Police.serif ]
+            , Police.size 28
+            , Element.htmlAttribute (Attributs.style "line-height" "1.183")
+            ]
+            (text (nom ++ "."))
+        , signature
+        ]
 
 
 piedDePage : Element message

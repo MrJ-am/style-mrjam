@@ -35,6 +35,8 @@ Un lien de navigation utilise `lien`, pas un bouton sans destination. Les états
 
 Les composants couvrent les boutons, liens, champs, recherches, mots de passe, zones de texte, cases à cocher, choix exclusifs, sélecteurs, cartes, sections, textes, messages et compositions simples. `MrJam.Donnees` fournit tableaux et valeurs spécialisées, `MrJam.Lecture` le lecteur Markdown et `MrJam.Fenetres` les dialogues accessibles. `MrJam.Disposition` fournit les bandeaux, commandes, progressions, graphiques et dialogues animés ; `MrJam.Tableaux` est le moteur unique des tableaux, avec colonnes sémantiques et état vide. `MrJam.Documents` compose les interfaces documentaires compactes ; voir [INTERFACE-DOCUMENTAIRE.md](docs/INTERFACE-DOCUMENTAIRE.md). Voir [COMPOSANTS-VISION.md](docs/COMPOSANTS-VISION.md) et [AJOUTS-MATHEVAL.md](docs/AJOUTS-MATHEVAL.md). Les autres composants communs sont à extraire selon les besoins, sans les improviser séparément dans chaque projet.
 
+`MrJam.Vitrine` compose les pages de présentation, captures agrandissables et chapitres. `MrJam.Pictogrammes` fournit des commandes SVG avec nom accessible. `Documents.espaceMarque` affiche le nom de l’application avec la signature et retire le footer uniquement pour cette variante. Voir [VITRINE.md](docs/VITRINE.md).
+
 `MrJam.Theme` est interne. Ajouter des couleurs, arrondis ou bordures au point d’appel d’un composant usuel recréerait précisément la duplication à supprimer.
 
 ## Vérifier la bibliothèque
