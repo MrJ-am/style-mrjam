@@ -37,14 +37,23 @@ la fonte de signature ne contient volontairement que ses six caractères.
 -}
 marque : String -> Element message
 marque nom =
-    Element.row [ Element.spacing 0, Element.htmlAttribute (Attributs.class "mrjam-marque") ]
-        [ el
-            [ Police.family [ Police.typeface "MrJamEcriture", Police.serif ]
+    -- Une même ligne partage la baseline : centrer deux boîtes indépendantes
+    -- décale les lettres, car Parisienne et Signature ont des métriques différentes.
+    Element.paragraph
+        [ width Element.shrink
+        , Element.spacing 0
+        , Element.htmlAttribute (Attributs.class "mrjam-marque")
+        , Police.family [ Police.typeface "MrJamEcriture", Police.serif ]
+        , Police.size 28
+        , Element.htmlAttribute (Attributs.style "line-height" "1.183")
+        ]
+        [ text (nom ++ ".")
+        , el
+            [ Element.htmlAttribute (Attributs.class "mrjam")
+            , Police.family [ Police.typeface "MrJamSignature", Police.serif ]
             , Police.size 28
-            , Element.htmlAttribute (Attributs.style "line-height" "1.183")
             ]
-            (text (nom ++ "."))
-        , signature
+            (text "MrJ.am")
         ]
 
 
