@@ -2,6 +2,9 @@
    nécessitent ces ajustements communs. Aucun texte ni donnée de produit ici. */
 .mrjam-marque { white-space: nowrap; user-select: text; }
 .mrjam-marque > * { color: #000; font-synthesis: none; }
+/* Le glyphe Echo est agrandi, mais sa boîte de texte ElmUI ne doit pas
+   doubler l'interligne de toute la marque. */
+.mrjam-marque-point > .t { line-height: 0 !important; }
 .mrjam-vitrine-titre { line-height: 1.06 !important; letter-spacing: -2.2px !important; }
 .mrjam-vitrine-titre-secondaire { line-height: 1.13 !important; letter-spacing: -1px !important; }
 .mrjam-vitrine-hero-image { aspect-ratio: 1; object-fit: cover; }
