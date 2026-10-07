@@ -183,6 +183,8 @@ vue modele =
             , column [ width fill, spacing 16 ]
                 [ Ui.heading 3 "Z : prendre de la hauteur"
                 , MrJam.paragraphe "L’axe Z ajoute métaphoriquement une dimension : en prenant de la hauteur, on voit la structure de ce que l’on considérait jusque-là dans le plan. On passe de cet objet et de cet essai à une relation que l’on peut reconnaître et utiliser ailleurs. C’est le rôle particulier de l’abstraction."
+                , MrJam.paragraphe "Le prénom Zoé fait aussi écho au lojban zo’e : un mot qui tient la place d’un argument laissé implicite ou non précisé, à comprendre dans le contexte. Dans le projet, ce rapprochement évoque l’idée de laisser les détails d’un objet de côté pour penser les relations. L’image de l’« objet abstrait absolu » exprime cette intention symbolique ; la définition linguistique de zo’e porte sur l’implicite. Cette évocation accompagne le travail d’abstraction de Zoé."
+                , MrJam.lien "Source : zo’e dans la grammaire du lojban (§ 7.7)" "https://lojban.org/publications/cll/cll_v1.1_xhtml-section-chunks/section-zohe-cohe-series.html"
                 , MrJam.paragraphe "Cette prise de hauteur ramène aussi à l’expérience : le principe du levier invite à essayer un autre point d’appui ; l’entraînement peut faire apparaître une nouvelle question. On revient ainsi d’un axe à l’autre selon ce que l’on cherche à comprendre. Audio, visio et kino peuvent intervenir dans chacune de ces directions."
                 , Ui.small "Les silhouettes X, Y et Z donnent un visage à ces trois directions. Elles sont composées des mêmes courbes que le logo ; l’atelier permet d’en explorer les placements et les transformations."
                 ]

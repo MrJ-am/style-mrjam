@@ -2,6 +2,8 @@
 
 Zoé est un personnage de religieuse, en lien avec Ève. Elle invite à prendre de la hauteur et incarne **conceptualiser** : relier, structurer et abstraire. Avec Xiaoping (expérimenter) et Ydris (apprendre), elle accompagne une direction complémentaire de l’apprentissage, sans imposer un ordre entre les trois axes.
 
+Le prénom fait aussi écho au lojban **zo’e**. La [grammaire de référence, § 7.7](https://lojban.org/publications/cll/cll_v1.1_xhtml-section-chunks/section-zohe-cohe-series.html), le décrit comme un substitut pour un argument (*sumti*) laissé implicite ou non précisé. Sa valeur dépend du contexte. L’« objet abstrait absolu » est ici une image symbolique du projet, et non la définition du mot en lojban : le rapprochement avec Zoé évoque le fait de laisser les détails d’un objet de côté pour penser les relations. L’abstraction grammaticale en lojban est décrite séparément au [chapitre 11](https://lojban.org/publications/cll/cll_v1.1_xhtml-section-chunks/chapter-abstractions.html#section-syntax). Sources consultées le 7 octobre 2026.
+
 La reprise part du [Z original retrouvé](../references/Z-original.svg), conservé sans modification. La photographie fournie permet d’identifier le personnage parmi les essais de la feuille : une tête détachée, deux bras, un corps en diagonale et un pied. Le disque isolé, les deux contours d’essai et le rectangle vert restent dans l’archive originale.
 
 ## Retouches
