@@ -1,0 +1,24 @@
+{
+  "Logo": {
+    "moteur": "CairoSVG 2.8.2",
+    "taille_px": [
+      1200,
+      1200
+    ],
+    "difference_max_sur_255": 0,
+    "nombre_pixels_differents": 0,
+    "ecart_absolu_moyen_par_composante": 0.0,
+    "statut": "Comparaison raster de références statiques, pas test navigateur de l’application Elm"
+  },
+  "X": {
+    "moteur": "CairoSVG 2.8.2",
+    "taille_px": [
+      1200,
+      1200
+    ],
+    "difference_max_sur_255": 5,
+    "nombre_pixels_differents": 2443,
+    "ecart_absolu_moyen_par_composante": 0.0009894097222222223,
+    "statut": "Comparaison raster de références statiques, pas test navigateur de l’application Elm"
+  }
+}

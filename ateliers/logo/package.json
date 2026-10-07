@@ -1,0 +1,23 @@
+{
+  "name": "atelier-logo-mrjam",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Atelier des briques du logo, de X et de Y",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && python3 -m http.server 4187 --directory dist",
+    "format": "elm-format src tests --yes",
+    "format:check": "elm-format src tests --validate",
+    "test": "node scripts/test-elm.cjs",
+    "test:reference": "python3 -m unittest discover -s references/kit_codex_logo_X/outils -p 'test_*.py' -v",
+    "test:browser": "playwright test",
+    "test:geometry": "python3 scripts/verify-production.py",
+    "test:raster": "node scripts/verify-rasters.cjs"
+  },
+  "devDependencies": {
+    "elm": "0.19.1-6",
+    "elm-format": "0.8.8",
+    "elm-test": "0.19.1-revision17",
+    "@playwright/test": "1.61.0"
+  }
+}

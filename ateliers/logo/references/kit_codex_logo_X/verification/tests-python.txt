@@ -1,0 +1,26 @@
+test_arc_quart_cercle (test_geometrie.GeometrieTest.test_arc_quart_cercle) ... ok
+test_deux_echelles (test_geometrie.GeometrieTest.test_deux_echelles) ... ok
+test_export_sans_paths_dupliques (test_geometrie.GeometrieTest.test_export_sans_paths_dupliques) ... ok
+test_matrice_cumulee_groupes (test_geometrie.GeometrieTest.test_matrice_cumulee_groupes) ... ok
+test_repartition_et_reflexions (test_geometrie.GeometrieTest.test_repartition_et_reflexions) ... ok
+test_rotation_autour_point (test_geometrie.GeometrieTest.test_rotation_autour_point) ... ok
+test_structure_sources (test_geometrie.GeometrieTest.test_structure_sources) ... ok
+test_syntaxe_inconnue_refusee (test_geometrie.GeometrieTest.test_syntaxe_inconnue_refusee) ... ok
+test_tokens_exposants_et_signes (test_geometrie.GeometrieTest.test_tokens_exposants_et_signes) ... ok
+test_tolerance_continue (test_geometrie.GeometrieTest.test_tolerance_continue) ... ok
+test_transformations_composees (test_geometrie.GeometrieTest.test_transformations_composees) ... ok
+test_arrivee_reflexion (test_miroir.MiroirTest.test_arrivee_reflexion) ... ok
+test_composition_terminale (test_miroir.MiroirTest.test_composition_terminale) ... ok
+test_continuite_de_la_projection (test_miroir.MiroirTest.test_continuite_de_la_projection) ... ok
+test_depart_identite (test_miroir.MiroirTest.test_depart_identite) ... ok
+test_determinant_au_cours_du_retournement (test_miroir.MiroirTest.test_determinant_au_cours_du_retournement) ... ok
+test_dispersion_vitesse_et_saturation (test_miroir.MiroirTest.test_dispersion_vitesse_et_saturation) ... ok
+test_fondu_endpoints (test_miroir.MiroirTest.test_fondu_endpoints) ... ok
+test_parametres_invalides (test_miroir.MiroirTest.test_parametres_invalides) ... ok
+test_progression_reversible (test_miroir.MiroirTest.test_progression_reversible) ... ok
+test_tranche_singuliere_sans_nan (test_miroir.MiroirTest.test_tranche_singuliere_sans_nan) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.120s
+
+OK

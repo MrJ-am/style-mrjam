@@ -1,0 +1,2 @@
+# Garder exactement les octets et les fins de ligne du SVG fourni.
+ateliers/logo/references/Y-original.svg -text whitespace=cr-at-eol

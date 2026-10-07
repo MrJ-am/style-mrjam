@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+  <defs>
+    <circle id="x-esprit" cx="0" cy="0" r="2"/>
+    <g id="x-auditif" transform="translate(-13.8 -9)"><path d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407"/></g>
+    <g id="x-visuel" transform="translate(-13.8 -9)"><path d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3"/></g>
+    <g id="x-kinesthesique" transform="translate(-13.8 -9)"><path d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563"/></g>
+  </defs>
+  <circle cx="15" cy="15" r="15" fill="#9c3e65"/>
+  <use data-instance="kinesthesique-0" href="#x-kinesthesique" transform="matrix(0.5433332742288359 0.1455857120505743 -0.1455857120505743 0.5433332742288359 16.23050087479121 18.45995841831958)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="kinesthesique-1" href="#x-kinesthesique" transform="matrix(-0.5433332742288359 0.1455857120505743 0.1455857120505743 0.5433332742288359 16.230501244730434 18.4599733270296)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="visuel-1" href="#x-visuel" transform="matrix(-0.39774756217826157 -0.3977475621782615 -0.3977475621782615 0.39774756217826157 14.605360609843535 11.73215430509174)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="auditif-0" href="#x-auditif" transform="matrix(3.4443191032116905e-17 0.5624999968333334 -0.5624999968333334 3.4443191032116905e-17 11.950691574212154 11.382670188127214)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="kinesthesique-2" href="#x-kinesthesique" transform="matrix(0.5433332742288358 -0.14558571205057444 -0.14558571205057444 -0.5433332742288358 14.605346382776183 11.732157806695412)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="visuel-2" href="#x-visuel" transform="matrix(-0.7129619224430784 -0.19103757135276359 -0.19103757135276359 0.7129619224430784 16.687547146037186 17.872035417457298)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="visuel-0" href="#x-visuel" transform="matrix(0.3690562479223501 -0.6392241722522461 0.6392241722522461 0.3690562479223501 16.46633669934393 18.406089582638366)" opacity="1" fill="#ffffff" stroke="none"/>
+</svg>

@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "tolerance": 0.0001,
+  "points_par_arc": 129,
+  "valide": true,
+  "nature": "Similitudes des arcs arrondis ; borne continue conservative, calcul flottant.",
+  "doublons": {
+    "path14": "path8",
+    "path16": "path10"
+  },
+  "sources_sha256": {
+    "references/kit_codex_logo_X/sources/logo-original.svg": "2ab1a8adab21934b47825413ee2a652e2092ed83677319fbe3963d839d1f7a44",
+    "references/Y-original.svg": "ec02abc49bb1ea3609c14beb71d1bf376d6c8de6b512a0e454b39659e0d76f60"
+  },
+  "instances": [
+    {
+      "translation": [
+        14.136732644972108,
+        12.561555972981434
+      ],
+      "angle_degres": 117,
+      "echelle": 1.000000032,
+      "miroir": true,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.9460255744693967e-05,
+      "erreur_rms": 1.060113713995974e-05,
+      "borne_continue": 7.373726993616203e-05,
+      "brique": "Visuel",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          14.136721959497596,
+          12.561566603818761
+        ],
+        "angle_degres": 116.99998920320562,
+        "echelle": 1.000002758954309,
+        "miroir": true,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 6.359345050575384e-06,
+        "erreur_rms": 3.4115694486739403e-06,
+        "borne_continue": 9.674592633661359e-05,
+        "brique": "Visuel"
+      },
+      "path_id": "path4",
+      "transform_originale_cumulee": [
+        -0.23622048,
+        0.0,
+        0.0,
+        0.23622048,
+        44.773535,
+        -16.361185
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        16.0196384348549,
+        12.842961481678763
+      ],
+      "angle_degres": -100,
+      "echelle": 1.000000032,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.7556736639941007e-05,
+      "erreur_rms": 9.926835869991032e-06,
+      "borne_continue": 7.163257855579284e-05,
+      "brique": "Visuel",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          16.019645926632847,
+          12.842973661679409
+        ],
+        "angle_degres": -99.9999986912814,
+        "echelle": 1.0000026251132699,
+        "miroir": false,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 6.447464675797099e-06,
+        "erreur_rms": 2.805228398051324e-06,
+        "borne_continue": 9.452547868911426e-05,
+        "brique": "Visuel"
+      },
+      "path_id": "path6",
+      "transform_originale_cumulee": [
+        -0.23622048,
+        0.0,
+        0.0,
+        0.23622048,
+        44.773535,
+        -16.361185
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        15.079212386953419,
+        13.886925717559862
+      ],
+      "angle_degres": 0,
+      "echelle": 0.7500000239999999,
+      "miroir": true,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.3528413009324032e-05,
+      "erreur_rms": 8.934551698152096e-06,
+      "borne_continue": 5.825114057287844e-05,
+      "brique": "Kinesthesique",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          15.079209751869815,
+          13.886932607097705
+        ],
+        "angle_degres": -1.2329615053726067e-05,
+        "echelle": 0.7499991605865297,
+        "miroir": true,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 1.0373909849545869e-05,
+        "erreur_rms": 7.108365428288342e-06,
+        "borne_continue": 7.319001364368831e-05,
+        "brique": "Kinesthesique"
+      },
+      "path_id": "path8",
+      "transform_originale_cumulee": [
+        -0.35433072,
+        0.0,
+        0.0,
+        0.35433072,
+        39.41100246619424,
+        -26.16077649468928
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        14.25565104058675,
+        14.710500153363062
+      ],
+      "angle_degres": 0,
+      "echelle": 0.7500000239999999,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.3528413011913062e-05,
+      "erreur_rms": 8.934551697118907e-06,
+      "borne_continue": 5.8251140567295226e-05,
+      "brique": "Kinesthesique",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          14.255653675670347,
+          14.710507042900915
+        ],
+        "angle_degres": 1.2329615065213736e-05,
+        "echelle": 0.7499991605865296,
+        "miroir": false,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 1.0373909829228327e-05,
+        "erreur_rms": 7.108365425706049e-06,
+        "borne_continue": 7.31900136347401e-05,
+        "brique": "Kinesthesique"
+      },
+      "path_id": "path10",
+      "transform_originale_cumulee": [
+        -0.35433072,
+        0.0,
+        0.0,
+        0.35433072,
+        39.41100246619424,
+        -26.16077649468928
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        15.079212386953419,
+        13.886925717559862
+      ],
+      "angle_degres": 0,
+      "echelle": 0.7500000239999999,
+      "miroir": true,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.3528413009324032e-05,
+      "erreur_rms": 8.934551698152096e-06,
+      "borne_continue": 5.825114057287844e-05,
+      "brique": "Kinesthesique",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          15.079209751869815,
+          13.886932607097705
+        ],
+        "angle_degres": -1.2329615053726067e-05,
+        "echelle": 0.7499991605865297,
+        "miroir": true,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 1.0373909849545869e-05,
+        "erreur_rms": 7.108365428288342e-06,
+        "borne_continue": 7.319001364368831e-05,
+        "brique": "Kinesthesique"
+      },
+      "path_id": "path14",
+      "transform_originale_cumulee": [
+        -0.35433072,
+        0.0,
+        0.0,
+        0.35433072,
+        39.41100246619424,
+        -26.16077649468928
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        14.25565104058675,
+        14.710500153363062
+      ],
+      "angle_degres": 0,
+      "echelle": 0.7500000239999999,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.3528413011913062e-05,
+      "erreur_rms": 8.934551697118907e-06,
+      "borne_continue": 5.8251140567295226e-05,
+      "brique": "Kinesthesique",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          14.255653675670347,
+          14.710507042900915
+        ],
+        "angle_degres": 1.2329615065213736e-05,
+        "echelle": 0.7499991605865296,
+        "miroir": false,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 1.0373909829228327e-05,
+        "erreur_rms": 7.108365425706049e-06,
+        "borne_continue": 7.31900136347401e-05,
+        "brique": "Kinesthesique"
+      },
+      "path_id": "path16",
+      "transform_originale_cumulee": [
+        -0.35433072,
+        0.0,
+        0.0,
+        0.35433072,
+        39.41100246619424,
+        -26.16077649468928
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        14.703647000419906,
+        2.9347715381014736
+      ],
+      "angle_degres": 171,
+      "echelle": 0.7500000316485607,
+      "miroir": false,
+      "parcours_inverse": true,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.3026348061860582e-05,
+      "erreur_rms": 8.352629139517285e-06,
+      "borne_continue": 6.145063250968448e-05,
+      "brique": "Auditif",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          14.703655962100452,
+          2.9347760060084798
+        ],
+        "angle_degres": 171.0000333505918,
+        "echelle": 0.7499974927933291,
+        "miroir": false,
+        "parcours_inverse": true,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 1.1285228092218227e-05,
+        "erreur_rms": 5.044042344469079e-06,
+        "borne_continue": 7.785251077323893e-05,
+        "brique": "Auditif"
+      },
+      "path_id": "path22",
+      "transform_originale_cumulee": [
+        -0.17619483162248642,
+        -0.0185188210650432,
+        -0.0185188210650432,
+        0.17619483162248642,
+        49.59380854007552,
+        -19.34758730028928
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        17.034785013074142,
+        6.73882839511939
+      ],
+      "angle_degres": 6,
+      "echelle": 0.7500000316485607,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.303743669358567e-05,
+      "erreur_rms": 8.353086207778801e-06,
+      "borne_continue": 6.15495978122599e-05,
+      "brique": "Auditif",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          17.034780090156744,
+          6.738819692125098
+        ],
+        "angle_degres": 5.999968414131747,
+        "echelle": 0.7499974927933143,
+        "miroir": false,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 1.1325046901097683e-05,
+        "erreur_rms": 5.0577804272685115e-06,
+        "borne_continue": 7.784525418828001e-05,
+        "brique": "Auditif"
+      },
+      "path_id": "path24",
+      "transform_originale_cumulee": [
+        -0.17619483162248642,
+        -0.0185188210650432,
+        -0.0185188210650432,
+        0.17619483162248642,
+        49.59380854007552,
+        -19.34758730028928
+      ],
+      "valide": true
+    }
+  ]
+}

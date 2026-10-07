@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "origine_locale": [
+    13.8,
+    9
+  ],
+  "fond_logo": "#64c29b",
+  "fond_Y": "#64c29b",
+  "formule": "T(p)=translation+echelle*R(angle)*F^miroir(p), F(x,y)=(-x,y)",
+  "ordre_de_dessin": "Ordre de la liste instances ; doublons historiques conservés",
+  "doublons": {
+    "path14": "path8",
+    "path16": "path10"
+  },
+  "instances": [
+    {
+      "id": "visuel-1",
+      "path_source": "path4",
+      "brique": "Visuel",
+      "translation": [
+        14.136732644972108,
+        12.561555972981434
+      ],
+      "angle_degres": 117,
+      "echelle": 1.000000032,
+      "chiralite": "Reflechie"
+    },
+    {
+      "id": "visuel-0",
+      "path_source": "path6",
+      "brique": "Visuel",
+      "translation": [
+        16.0196384348549,
+        12.842961481678763
+      ],
+      "angle_degres": -100,
+      "echelle": 1.000000032,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "kinesthesique-1",
+      "path_source": "path8",
+      "brique": "Kinesthesique",
+      "translation": [
+        15.079212386953419,
+        13.886925717559862
+      ],
+      "angle_degres": 0,
+      "echelle": 0.7500000239999999,
+      "chiralite": "Reflechie"
+    },
+    {
+      "id": "kinesthesique-0",
+      "path_source": "path10",
+      "brique": "Kinesthesique",
+      "translation": [
+        14.25565104058675,
+        14.710500153363062
+      ],
+      "angle_degres": 0,
+      "echelle": 0.7500000239999999,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "kinesthesique-2",
+      "path_source": "path14",
+      "brique": "Kinesthesique",
+      "translation": [
+        15.079212386953419,
+        13.886925717559862
+      ],
+      "angle_degres": 0,
+      "echelle": 0.7500000239999999,
+      "chiralite": "Reflechie"
+    },
+    {
+      "id": "kinesthesique-3",
+      "path_source": "path16",
+      "brique": "Kinesthesique",
+      "translation": [
+        14.25565104058675,
+        14.710500153363062
+      ],
+      "angle_degres": 0,
+      "echelle": 0.7500000239999999,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "auditif-1",
+      "path_source": "path22",
+      "brique": "Auditif",
+      "translation": [
+        14.703647000419906,
+        2.9347715381014736
+      ],
+      "angle_degres": 171,
+      "echelle": 0.7500000316485607,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "auditif-0",
+      "path_source": "path24",
+      "brique": "Auditif",
+      "translation": [
+        17.034785013074142,
+        6.73882839511939
+      ],
+      "angle_degres": 6,
+      "echelle": 0.7500000316485607,
+      "chiralite": "Directe"
+    }
+  ]
+}

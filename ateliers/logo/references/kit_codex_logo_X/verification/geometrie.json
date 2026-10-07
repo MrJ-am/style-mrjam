@@ -1,0 +1,322 @@
+{
+  "version": 1,
+  "unites": "viewBox SVG 30 × 30 ; y vers le bas",
+  "origine_locale": [
+    13.8,
+    9.0
+  ],
+  "formule": "T(p)=translation+echelle*R(angle)*F^miroir(p), F(x,y)=(-x,y)",
+  "nature": "Ajustement numérique des arcs arrondis, pas égalité symbolique exacte",
+  "tolerance": 0.0001,
+  "points_par_arc": 129,
+  "methode": "Toutes briques, deux sens, trois départs, deux chiralités ; moindres carrés complexes",
+  "critere": "Borne continue conservative des arcs et fermetures ; voir le code",
+  "sources_sha256": {
+    "logo-original.svg": "2ab1a8adab21934b47825413ee2a652e2092ed83677319fbe3963d839d1f7a44",
+    "X-original.svg": "2de8f2d81e34a28308f97c18e461e1432295c2fd89ab8e3069ded956bfad6478"
+  },
+  "valide": true,
+  "instances": [
+    {
+      "translation": [
+        16.23050087479121,
+        18.45995841831958
+      ],
+      "angle_degres": 15,
+      "echelle": 0.5624999968333334,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.0704591785311489e-05,
+      "erreur_rms": 6.850193499238083e-06,
+      "borne_continue": 4.4314742308992665e-05,
+      "brique": "Kinesthesique",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          16.23050158719673,
+          18.459964064104142
+        ],
+        "angle_degres": 15.000014172719965,
+        "echelle": 0.562499333639659,
+        "miroir": false,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 7.93902462155826e-06,
+        "erreur_rms": 5.430329556894127e-06,
+        "borne_continue": 5.598381457986908e-05,
+        "brique": "Kinesthesique"
+      },
+      "path_id": "path4",
+      "determinant": 0.3164062464375001,
+      "fermeture_cible": 1.464821375527116e-14,
+      "transform_originale_cumulee": [
+        0.26574803,
+        0.0,
+        0.0,
+        0.26574803,
+        0.08745603,
+        -46.010578
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        16.230501244730434,
+        18.4599733270296
+      ],
+      "angle_degres": -15,
+      "echelle": 0.5624999968333334,
+      "miroir": true,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.1753751489956463e-05,
+      "erreur_rms": 7.0150626845519255e-06,
+      "borne_continue": 4.5404600774595966e-05,
+      "brique": "Kinesthesique",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          16.23050138325224,
+          18.45997839851259
+        ],
+        "angle_degres": -15.000003319941698,
+        "echelle": 0.5624993935745384,
+        "miroir": true,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 8.607293840660409e-06,
+        "erreur_rms": 5.945719484460831e-06,
+        "borne_continue": 5.48027648936702e-05,
+        "brique": "Kinesthesique"
+      },
+      "path_id": "path6",
+      "determinant": -0.3164062464375001,
+      "fermeture_cible": 0.0,
+      "transform_originale_cumulee": [
+        0.26574803,
+        0.0,
+        0.0,
+        0.26574803,
+        0.08745603,
+        -46.010578
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        14.605360609843535,
+        11.73215430509174
+      ],
+      "angle_degres": 45,
+      "echelle": 0.5624999968333334,
+      "miroir": true,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 7.898551140944153e-06,
+      "erreur_rms": 5.048985238216638e-06,
+      "borne_continue": 3.0446438658799757e-05,
+      "brique": "Visuel",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          14.60536054305507,
+          11.73216111761474
+        ],
+        "angle_degres": 45.00005010435732,
+        "echelle": 0.5625011301890503,
+        "miroir": true,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 3.432682132996274e-06,
+        "erreur_rms": 2.2159307798114688e-06,
+        "borne_continue": 3.874891427593493e-05,
+        "brique": "Visuel"
+      },
+      "path_id": "path8",
+      "determinant": -0.3164062464375001,
+      "fermeture_cible": 0.0,
+      "transform_originale_cumulee": [
+        0.132874015,
+        0.0,
+        0.0,
+        0.132874015,
+        6.828270145595021,
+        -14.9593132141772
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        11.950691574212154,
+        11.382670188127214
+      ],
+      "angle_degres": 90,
+      "echelle": 0.5624999968333334,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 9.715138834742306e-06,
+      "erreur_rms": 6.2114532952874985e-06,
+      "borne_continue": 4.574866323881904e-05,
+      "brique": "Auditif",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          11.950697623071054,
+          11.382665881458292
+        ],
+        "angle_degres": 89.99996857441413,
+        "echelle": 0.5624981116663078,
+        "miroir": false,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 8.443770701334883e-06,
+        "erreur_rms": 3.7696631609433904e-06,
+        "borne_continue": 5.786218476626015e-05,
+        "brique": "Auditif"
+      },
+      "path_id": "path10",
+      "determinant": 0.3164062464375001,
+      "fermeture_cible": 1.0629921199267756e-05,
+      "transform_originale_cumulee": [
+        0.132874015,
+        0.0,
+        0.0,
+        0.132874015,
+        6.828270145595021,
+        -14.9593132141772
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        14.605346382776183,
+        11.732157806695412
+      ],
+      "angle_degres": 165,
+      "echelle": 0.5624999968333334,
+      "miroir": true,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.336621426354341e-05,
+      "erreur_rms": 7.855444347171434e-06,
+      "borne_continue": 5.101079885805884e-05,
+      "brique": "Kinesthesique",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          14.605347025120688,
+          11.732150346817889
+        ],
+        "angle_degres": 164.99998488768264,
+        "echelle": 0.5624991176528792,
+        "miroir": true,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 8.333593586332654e-06,
+        "erreur_rms": 5.614319575082085e-06,
+        "borne_continue": 6.634225615053773e-05,
+        "brique": "Kinesthesique"
+      },
+      "path_id": "path12",
+      "determinant": -0.3164062464375001,
+      "fermeture_cible": 0.0,
+      "transform_originale_cumulee": [
+        0.132874015,
+        0.0,
+        0.0,
+        0.132874015,
+        6.828270145595021,
+        -14.9593132141772
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        16.687547146037186,
+        17.872035417457298
+      ],
+      "angle_degres": 15,
+      "echelle": 0.7381124958447001,
+      "miroir": true,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 9.622156824524326e-06,
+      "erreur_rms": 5.9084753639001215e-06,
+      "borne_continue": 3.349750981857878e-05,
+      "brique": "Visuel",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          16.68755189559363,
+          17.872041864790578
+        ],
+        "angle_degres": 15.000032058280276,
+        "echelle": 0.7381138881016905,
+        "miroir": true,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 4.06500438976937e-06,
+        "erreur_rms": 2.5444714609026447e-06,
+        "borne_continue": 4.72311331577476e-05,
+        "brique": "Visuel"
+      },
+      "path_id": "path16",
+      "determinant": -0.5448100565220924,
+      "fermeture_cible": 7.944109290391274e-15,
+      "transform_originale_cumulee": [
+        -0.26574803,
+        3.254474743192148e-17,
+        -3.254474743192148e-17,
+        -0.26574803,
+        31.07607124924637,
+        77.96072386114261
+      ],
+      "valide": true
+    },
+    {
+      "translation": [
+        16.46633669934393,
+        18.406089582638366
+      ],
+      "angle_degres": -60,
+      "echelle": 0.7381124958447001,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 9.930014867388355e-06,
+      "erreur_rms": 6.33955171251217e-06,
+      "borne_continue": 3.823103890943969e-05,
+      "brique": "Visuel",
+      "parametres_normalises": true,
+      "ajustement_libre": {
+        "translation": [
+          16.46633826065989,
+          18.4060975553383
+        ],
+        "angle_degres": -60.000037196185865,
+        "echelle": 0.7381138890423332,
+        "miroir": false,
+        "parcours_inverse": false,
+        "decalage_arcs": 0,
+        "erreur_max_echantillons": 5.06456652562072e-06,
+        "erreur_rms": 3.3049385136785773e-06,
+        "borne_continue": 4.675383246931797e-05,
+        "brique": "Visuel"
+      },
+      "path_id": "path18",
+      "determinant": 0.5448100565220924,
+      "fermeture_cible": 0.0,
+      "transform_originale_cumulee": [
+        -0.26574803,
+        3.254474743192148e-17,
+        -3.254474743192148e-17,
+        -0.26574803,
+        31.07607124924637,
+        77.96072386114261
+      ],
+      "valide": true
+    }
+  ]
+}

@@ -27,3 +27,11 @@ VPS Infrastructure conserve le contrôle de NixOS, Nginx, PostgreSQL, des domain
 Le redéploiement est coordonné, mais plusieurs applications ou hébergeurs ne constituent pas une transaction atomique. Conserver les anciens artefacts applicatifs et préparer le retour des applications déjà activées si une activation suivante échoue. Ne jamais restaurer une base ou supprimer des réponses collectées pour annuler une modification d’interface.
 
 Une page déjà ouverte peut continuer à exécuter son ancien JavaScript : maintenir la compatibilité des contrats et vérifier le rechargement/cache. Enregistrer les commits, exécutions, tests et versions effectivement servis avant d’annoncer la migration achevée.
+
+## Atelier du logo sur GitHub Pages
+
+Le site public de démonstration est publié séparément à `https://mrj-am.github.io/style-mrjam/` par `.github/workflows/pages.yml`. La racine accueille l’atelier X/Y ; `philosophie.html` présente le sens du logo ; `galerie/` conserve la galerie de contrôle existante.
+
+Le job de construction utilise les sources du commit, vérifie l’identité, compile la bibliothèque et l’atelier, puis teste géométrie, interactions et rendu dans Chromium et Firefox. Le job de publication déploie ce même artefact avec les seuls droits GitHub Pages. Une pull request ne dispose pas de droits de publication. Le manifeste public `revision.json` donne la révision et les SHA-256 des fichiers servis.
+
+La source Pages doit être « GitHub Actions ». Une nouvelle exécution manuelle du workflow reconstruit et vérifie la révision de `main`. Pour revenir à une version précédente, rétablir le changement concerné dans Git puis laisser les mêmes contrôles précéder la publication. Aucun domaine personnalisé ni secret VPS n’est utilisé par cette publication.

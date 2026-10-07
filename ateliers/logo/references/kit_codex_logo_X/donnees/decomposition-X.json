@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "origine_locale": [
+    13.8,
+    9
+  ],
+  "repere": "SVG : y vers le bas",
+  "formule": "T(p)=translation+echelle*R(angle)*F^miroir(p), F(x,y)=(-x,y)",
+  "fond_logo": "#64c29b",
+  "fond_X": "#9c3e65",
+  "ordre_de_dessin": "Ordre de la liste instances",
+  "instances": [
+    {
+      "id": "kinesthesique-0",
+      "path_source": "path4",
+      "brique": "Kinesthesique",
+      "translation": [
+        16.23050087479121,
+        18.45995841831958
+      ],
+      "angle_degres": 15,
+      "echelle": 0.5624999968333334,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "kinesthesique-1",
+      "path_source": "path6",
+      "brique": "Kinesthesique",
+      "translation": [
+        16.230501244730434,
+        18.4599733270296
+      ],
+      "angle_degres": -15,
+      "echelle": 0.5624999968333334,
+      "chiralite": "Reflechie"
+    },
+    {
+      "id": "visuel-1",
+      "path_source": "path8",
+      "brique": "Visuel",
+      "translation": [
+        14.605360609843535,
+        11.73215430509174
+      ],
+      "angle_degres": 45,
+      "echelle": 0.5624999968333334,
+      "chiralite": "Reflechie"
+    },
+    {
+      "id": "auditif-0",
+      "path_source": "path10",
+      "brique": "Auditif",
+      "translation": [
+        11.950691574212154,
+        11.382670188127214
+      ],
+      "angle_degres": 90,
+      "echelle": 0.5624999968333334,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "kinesthesique-2",
+      "path_source": "path12",
+      "brique": "Kinesthesique",
+      "translation": [
+        14.605346382776183,
+        11.732157806695412
+      ],
+      "angle_degres": 165,
+      "echelle": 0.5624999968333334,
+      "chiralite": "Reflechie"
+    },
+    {
+      "id": "visuel-2",
+      "path_source": "path16",
+      "brique": "Visuel",
+      "translation": [
+        16.687547146037186,
+        17.872035417457298
+      ],
+      "angle_degres": 15,
+      "echelle": 0.7381124958447001,
+      "chiralite": "Reflechie"
+    },
+    {
+      "id": "visuel-0",
+      "path_source": "path18",
+      "brique": "Visuel",
+      "translation": [
+        16.46633669934393,
+        18.406089582638366
+      ],
+      "angle_degres": -60,
+      "echelle": 0.7381124958447001,
+      "chiralite": "Directe"
+    }
+  ]
+}

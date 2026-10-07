@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 30 30">
+  <defs>
+    <circle id="ref-x-esprit" cx="0" cy="0" r="2" />
+    <g id="ref-x-auditif" transform="translate(-13.8 -9)">
+      <path d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407" />
+    </g>
+    <g id="ref-x-visuel" transform="translate(-13.8 -9)">
+      <path d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3" />
+    </g>
+    <g id="ref-x-kinesthesique" transform="translate(-13.8 -9)">
+      <path d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563" />
+    </g>
+  </defs>
+  <circle cx="15" cy="15" r="15" fill="#9c3e65" />
+  <g fill="#fff" stroke="none">
+    <use id="kinesthesique-0" href="#ref-x-kinesthesique" transform="translate(16.230500874791211 18.45995841831958) rotate(15) scale(0.5624999968333334)" />
+    <use id="kinesthesique-1" href="#ref-x-kinesthesique" transform="translate(16.230501244730434 18.459973327029601) rotate(-15) scale(0.5624999968333334) scale(-1 1)" />
+    <use id="visuel-1" href="#ref-x-visuel" transform="translate(14.605360609843535 11.73215430509174) rotate(45) scale(0.5624999968333334) scale(-1 1)" />
+    <use id="auditif-0" href="#ref-x-auditif" transform="translate(11.950691574212154 11.382670188127214) rotate(90) scale(0.5624999968333334)" />
+    <use id="kinesthesique-2" href="#ref-x-kinesthesique" transform="translate(14.605346382776183 11.732157806695412) rotate(165) scale(0.5624999968333334) scale(-1 1)" />
+    <use id="visuel-2" href="#ref-x-visuel" transform="translate(16.687547146037186 17.872035417457298) rotate(15) scale(0.73811249584470007) scale(-1 1)" />
+    <use id="visuel-0" href="#ref-x-visuel" transform="translate(16.46633669934393 18.406089582638366) rotate(-60) scale(0.73811249584470007)" />
+  </g>
+</svg>

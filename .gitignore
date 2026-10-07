@@ -8,3 +8,9 @@ __pycache__/
 *.woff2
 *.ttf
 *.otf
+.pages/
+ateliers/logo/dist/
+ateliers/logo/test-results/
+ateliers/logo/verification/captures/
+ateliers/logo/verification/rasters/
+ateliers/logo/verification/browser-results.json

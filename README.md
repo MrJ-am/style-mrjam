@@ -18,6 +18,14 @@ et les contrôles de collecte ont réussi. Les 104 fichiers HTTPS servis ont
 
 La licence de réutilisation du code n’a pas été choisie. Le caractère public du dépôt ne remplace pas cette décision. Les dépendances conservent leurs licences propres.
 
+## Atelier du logo
+
+[Explorer le logo, X et Y sur GitHub Pages](https://mrj-am.github.io/style-mrjam/) · [Philosophie du logo](https://mrj-am.github.io/style-mrjam/philosophie.html)
+
+L’atelier ajoute la recomposition réversible, la rotation centrifuge et l’inspection des quatre briques canoniques. Les [versions factorisées](public/assets/mrjam/factorises/) du logo, de X et de Y sont versionnées avec leurs poses et leurs mesures. Y conserve les huit occurrences du SVG fourni, dont deux doublons. Voir [la documentation de l’atelier](ateliers/logo/README.md).
+
+La publication GitHub Pages dispose de son workflow et de ses validations. Les composants consommés par les applications restent aux révisions explicitement épinglées ; l’ajout de cet atelier n’entraîne pas leur redéploiement.
+
 ## Utiliser les composants
 
 ```elm

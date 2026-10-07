@@ -1,0 +1,90 @@
+name: Publier l’atelier sur GitHub Pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ateliers/logo/**'
+      - 'src/**'
+      - 'exemples/**'
+      - 'public/**'
+      - 'identite.json'
+      - 'package*.json'
+      - 'elm.json'
+      - 'scripts/**'
+      - '.github/workflows/pages.yml'
+  pull_request:
+    paths:
+      - 'ateliers/logo/**'
+      - 'src/**'
+      - 'public/**'
+      - 'scripts/construire-pages.mjs'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Vérifier la bibliothèque et compiler la galerie
+        run: npm ci && npm run verifier
+      - name: Installer l’atelier et les navigateurs
+        working-directory: ateliers/logo
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium firefox
+          python3 -m pip install -r requirements-verification.txt
+      - name: Vérifier les géométries, compiler et tester
+        working-directory: ateliers/logo
+        run: |
+          python3 scripts/analyser-y.py
+          python3 scripts/generate-data.py
+          npx elm-format src/Echo/ReferenceData.elm --yes
+          git diff --exit-code -- donnees src/Echo/ReferenceData.elm
+          npm run format:check
+          npm run build
+          npm test -- --seed 20261007
+          npm run test:reference
+          npm run test:geometry
+          npm run test:browser
+          npm run test:raster
+      - name: Assembler le site et son manifeste
+        run: node scripts/construire-pages.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verifications-atelier
+          path: |
+            ateliers/logo/verification/
+            ateliers/logo/test-results/
+          retention-days: 7
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .pages
+  publier:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: construire
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.publication.outputs.page_url }}
+    steps:
+      - name: Publier l’artefact vérifié
+        id: publication
+        uses: actions/deploy-pages@v4
