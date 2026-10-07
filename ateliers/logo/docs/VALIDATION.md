@@ -15,7 +15,7 @@ La première comparaison textuelle de l’export Y détectait une différence du
 
 ## Palette OKLCH
 
-Les 14 nouveaux tests Elm couvrent angles, rôles, L/C communs, conversions, projection et frontières sRGB, ainsi que l’URL sans arrondi. Les parcours navigateur couvrent les sept SVG réutilisés, les huit sommets, le clavier, la saisie directe et les erreurs, la capture de souris, le glissement tactile natif Chromium et quatre largeurs. Les résultats détaillés et les limites sont dans [PALETTE.md](PALETTE.md).
+Les 14 nouveaux tests Elm couvrent angles, rôles, L/C communs, conversions, projection et frontières sRGB, ainsi que l’URL sans arrondi. Les parcours navigateur couvrent les sept SVG réutilisés, les huit sommets, le clavier, la saisie directe et les erreurs, la capture de souris, le glissement tactile natif Chromium et quatre largeurs. Le libellé supérieur a été raccourci après détection en CI d’un débordement de 4 px avec DejaVu Sans ; le parcours à 320 px impose cette fonte de repli. Les résultats détaillés et les limites sont dans [PALETTE.md](PALETTE.md).
 
 ## Géométrie effectivement exportée
 

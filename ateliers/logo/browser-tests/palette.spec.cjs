@@ -75,6 +75,7 @@ for(const largeur of [320,375,768,1440]){
   await page.setViewportSize({width:largeur,height:1000});
   await page.goto('/');await page.getByRole('link',{name:'Palette OKLCH',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Une palette, deux paramètres.'})).toBeVisible();
+  if(largeur===320) await page.addStyleTag({content:'.mrjam-ecran {font-family:"DejaVu Sans",sans-serif!important}'});
   await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(largeur);
   const b=await plan(page).boundingBox();expect(b.height).toBeGreaterThanOrEqual(280);expect(b.width).toBeGreaterThan(200);
   await valeurs(page,'.712345678912345','.0912345678912345');

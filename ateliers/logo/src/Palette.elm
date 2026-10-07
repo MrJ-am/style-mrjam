@@ -444,7 +444,7 @@ vue m =
             ]
             [ wrappedRow [ width fill, spacing 24, Region.navigation, htmlAttribute (H.attribute "aria-label" "Pages de l’atelier") ]
                 [ MrJam.lien "Atelier du logo" "./", MrJam.lien "Philosophie du logo" "philosophie.html", MrJam.lienActif True "Palette OKLCH" "palette.html" ]
-            , Ui.label "Mister Jam · Laboratoire de couleur"
+            , Ui.label "Mister Jam · Couleurs"
             , Element.paragraph
                 [ width fill
                 , Region.heading 1
