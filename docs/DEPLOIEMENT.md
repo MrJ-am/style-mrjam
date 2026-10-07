@@ -30,7 +30,7 @@ Une page déjà ouverte peut continuer à exécuter son ancien JavaScript : main
 
 ## Atelier du logo sur GitHub Pages
 
-Le site public de démonstration est publié séparément à `https://mrj-am.github.io/style-mrjam/` par `.github/workflows/pages.yml`. La racine accueille l’atelier X/Y ; `philosophie.html` présente le sens du logo ; `galerie/` conserve la galerie de contrôle existante.
+Le site public de démonstration est publié séparément à `https://mrj-am.github.io/style-mrjam/` par `.github/workflows/pages.yml`. La racine accueille l’atelier X/Y ; `philosophie.html` présente le sens du logo.
 
 Le job de construction utilise les sources du commit, vérifie l’identité, compile la bibliothèque et l’atelier, puis teste géométrie, interactions et rendu dans Chromium et Firefox. Le job de publication déploie ce même artefact avec les seuls droits GitHub Pages. Une pull request ne dispose pas de droits de publication. Le manifeste public `revision.json` donne la révision et les SHA-256 des fichiers servis.
 

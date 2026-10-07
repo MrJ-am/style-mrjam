@@ -10,7 +10,6 @@ mkdirSync(destination);
 for (const nom of ['index.html', 'philosophie.html', 'atelier-logo.html', '.nojekyll', 'exports']) {
   cpSync(`ateliers/logo/dist/${nom}`, `${destination}/${nom}`, { recursive: true });
 }
-cpSync('public', `${destination}/galerie`, { recursive: true });
 // Les variantes distribuées sont générées par le même rendu que l’atelier.
 for (const nom of ['Logo-factorise.svg', 'X-factorise.svg', 'Y-factorise.svg', 'decomposition-X.json', 'decomposition-Y.json']) {
   if (!readFileSync(`public/assets/mrjam/factorises/${nom}`).equals(readFileSync(`ateliers/logo/dist/exports/${nom}`))) {

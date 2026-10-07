@@ -279,7 +279,8 @@ for (const viewport of [{ width: 320, height: 800 }, { width: 375, height: 850 }
     await page.setViewportSize(viewport);
     for (const tab of ['recomposition', 'rotation', 'geometrie']) {
       await page.goto(`/?vue=${tab}&p=1`);
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(viewport.width);
+      // Attendre la mise en page après le redimensionnement et l’injection des styles ElmUI.
+      await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(viewport.width);
       expect(await page.getByRole('slider').evaluateAll(inputs => inputs.every(input => {
         const box = input.getBoundingClientRect(); return box.left >= 0 && box.right <= innerWidth && box.width > 100;
       }))).toBe(true);

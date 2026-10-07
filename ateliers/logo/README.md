@@ -40,7 +40,7 @@ npm run dev
 
 `dist/` contient deux pages autonomes (`index.html`, `philosophie.html`), une copie téléchargeable `atelier-logo.html` et `exports/`. Les pages emploient des liens relatifs et fonctionnent sous le préfixe GitHub Pages `/style-mrjam/`. Les références SVG et les licences des dépendances sont embarquées ; aucune fonte réservée ni requête tierce n’est nécessaire à l’atelier.
 
-Depuis la racine, `npm run compiler:pages` assemble `.pages/` avec la galerie existante sous `galerie/`. Le workflow `pages.yml` exécute les contrôles avant de publier l’artefact sur GitHub Pages. Les vérifications d’une pull request ne publient pas le site.
+Depuis la racine, `npm run compiler:pages` assemble les deux pages et leurs exports dans `.pages/`. Le workflow `pages.yml` exécute les contrôles avant de publier l’artefact sur GitHub Pages. Les vérifications d’une pull request ne publient pas le site.
 
 ## Organisation
 

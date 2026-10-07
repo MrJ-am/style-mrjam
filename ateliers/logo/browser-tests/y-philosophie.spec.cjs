@@ -75,13 +75,13 @@ for (const largeur of [320,375,768,1440]) {
     const erreurs=[]; page.on('pageerror',e=>erreurs.push(e.message));
     for (const vue of ['recomposition','geometrie']) {
       await page.goto(`/?cible=Y&vue=${vue}&p=1`);
-      expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(largeur);
+      await expect.poll(() => page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(largeur);
     }
     await page.getByRole('link',{name:'Philosophie du logo',exact:true}).click();
     await expect(page).toHaveURL(/philosophie.html$/);
     await expect(page.getByRole('heading',{name:'Un esprit ouvert à l’expérience.'})).toBeVisible();
     await expect(page.getByRole('heading',{name:'La croissance inscrite dans le dessin.'})).toBeVisible();
-    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(largeur);
+    await expect.poll(() => page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(largeur);
     expect(await page.getByRole('img').count()).toBe(7);
     await page.screenshot({path:`verification/captures/${info.project.name}/philosophie-${largeur}.png`,fullPage:true});
     await page.getByRole('link',{name:'Explorer les briques dans l’atelier →',exact:true}).click();
