@@ -122,6 +122,7 @@ vue modele =
             [ wrappedRow [ width fill, spacing 24, Region.navigation, htmlAttribute (A.attribute "aria-label" "Pages de l’atelier") ]
                 [ MrJam.lien "Atelier du logo" "./"
                 , MrJam.lienActif True "Philosophie du logo" "philosophie.html"
+                , MrJam.lien "Palette OKLCH" "palette.html"
                 , MrJam.lien "Style MrJ.am" "https://github.com/MrJ-am/style-mrjam"
                 ]
             , column [ width fill, spacing 20, paddingXY 0 22 ]

@@ -23,6 +23,10 @@ Aucune lecture automatique. `prefers-reduced-motion` sélectionne le fondu local
 
 Paramètres d’ouverture : `?cible=Z&p=1`, `?vue=geometrie&cible=Y&miroir=0.5`, `?vue=rotation&p=0.5` et `?strategie=fondu`.
 
+## Explorer la palette OKLCH
+
+[Palette interactive](https://mrj-am.github.io/style-mrjam/palette.html?L=0.7&C=0.1) : un plan L × C, le gamut sRGB commun aux huit teintes et les sept dessins réels recolorés. Les valeurs restent dans l’URL ; l’état initial L = 0,7, C = 0,1 est une proposition de départ. Voir [les formules, les rôles et les tests](docs/PALETTE.md).
+
 ## Construction et vérification
 
 Depuis ce dossier, avec Node.js 24, Python 3 et les navigateurs Playwright :
@@ -46,9 +50,9 @@ npm run test:raster
 npm run dev
 ```
 
-`dist/` contient deux pages autonomes (`index.html`, `philosophie.html`), une copie téléchargeable `atelier-logo.html` et `exports/`. Les pages emploient des liens relatifs et fonctionnent sous le préfixe GitHub Pages `/style-mrjam/`. Les références SVG et les licences des dépendances sont embarquées ; aucune fonte réservée ni requête tierce n’est nécessaire à l’atelier.
+`dist/` contient trois pages autonomes (`index.html`, `philosophie.html`, `palette.html`), une copie téléchargeable `atelier-logo.html` et `exports/`. Les pages emploient des liens relatifs et fonctionnent sous le préfixe GitHub Pages `/style-mrjam/`. Les références SVG et les licences des dépendances sont embarquées ; aucune fonte réservée ni requête tierce n’est nécessaire à l’atelier.
 
-Depuis la racine, `npm run compiler:pages` assemble les deux pages et leurs exports dans `.pages/`. Le workflow `pages.yml` exécute les contrôles avant de publier l’artefact sur GitHub Pages. Les vérifications d’une pull request ne publient pas le site.
+Depuis la racine, `npm run compiler:pages` assemble les trois pages et leurs exports dans `.pages/`. Le workflow `pages.yml` exécute les contrôles avant de publier l’artefact sur GitHub Pages. Les vérifications d’une pull request ne publient pas le site.
 
 ## Organisation
 

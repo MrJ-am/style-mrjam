@@ -20,7 +20,7 @@ La licence de réutilisation du code n’a pas été choisie. Le caractère publ
 
 ## Atelier du logo
 
-[Explorer le logo et les axes X, Y, Z sur GitHub Pages](https://mrj-am.github.io/style-mrjam/) · [Philosophie du logo](https://mrj-am.github.io/style-mrjam/philosophie.html)
+[Explorer le logo et les axes X, Y, Z sur GitHub Pages](https://mrj-am.github.io/style-mrjam/) · [Philosophie du logo](https://mrj-am.github.io/style-mrjam/philosophie.html) · [Explorer la palette OKLCH](https://mrj-am.github.io/style-mrjam/palette.html)
 
 L’atelier propose la recomposition réversible, la rotation centrifuge et l’inspection des formes du logo. Le disque central représente la **connaissance** ; les pictogrammes **audio, visio et kino** associent chacun leur contour à ce disque. **Xiaoping (X), Ydris (Y) et Zoé (Z)** sont les trois tuteurs des trois axes. Les [versions factorisées et les pictogrammes complets](public/assets/mrjam/factorises/) sont versionnés ; `Z.svg` fournit aussi le dessin explicite de Zoé. X et Y conservent les dessins fournis, y compris les deux doublons de Y. Voir [la documentation de l’atelier](ateliers/logo/README.md).
 

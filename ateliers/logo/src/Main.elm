@@ -494,6 +494,7 @@ navigation =
     wrappedRow [ width fill, spacing 24, Region.navigation, htmlAttribute (H.attribute "aria-label" "Pages de l’atelier") ]
         [ MrJam.lienActif True "Atelier du logo" "./"
         , MrJam.lien "Philosophie du logo" "philosophie.html"
+        , MrJam.lien "Palette OKLCH" "palette.html"
         , MrJam.lien "Style MrJ.am" "https://github.com/MrJ-am/style-mrjam"
         ]
 

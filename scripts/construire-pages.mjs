@@ -7,7 +7,7 @@ import { join, relative } from 'node:path';
 const destination = '.pages';
 rmSync(destination, { recursive: true, force: true });
 mkdirSync(destination);
-for (const nom of ['index.html', 'philosophie.html', 'atelier-logo.html', '.nojekyll', 'exports']) {
+for (const nom of ['index.html', 'philosophie.html', 'palette.html', 'atelier-logo.html', '.nojekyll', 'exports']) {
   cpSync(`ateliers/logo/dist/${nom}`, `${destination}/${nom}`, { recursive: true });
 }
 // Les variantes distribuées sont générées par le même rendu que l’atelier.

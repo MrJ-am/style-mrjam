@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 mkdirSync('dist/exports', { recursive: true });
-execFileSync('node_modules/.bin/elm', ['make', 'src/Main.elm', 'src/Philosophie.elm', '--optimize', '--output=dist/elm.js'], { stdio: 'inherit' });
+execFileSync('node_modules/.bin/elm', ['make', 'src/Main.elm', 'src/Philosophie.elm', 'src/Palette.elm', '--optimize', '--output=dist/elm.js'], { stdio: 'inherit' });
 execFileSync('node_modules/.bin/elm', ['make', 'src/Exporter.elm', '--optimize', '--output=dist/exporter.js'], { stdio: 'inherit' });
 await new Promise((resolve) => {
   require('../dist/exporter.js').Elm.Exporter.init().ports.files.subscribe(files => {
@@ -31,5 +31,7 @@ writeFileSync('dist/atelier-logo.html', html);
 writeFileSync('dist/atelier-logo-x.html', html); // Nom historique de la première livraison.
 const philosophie = html.replace('<title>Écho — Atelier du mouvement</title>', '<title>Philosophie du logo — Écho · MrJ.am</title>').replace('Atelier vectoriel interactif : rotation centrifuge du logo et recomposition en Xiaoping (X), Ydris (Y) et Zoé (Z).', 'La philosophie du logo Écho : connaissance, audio, visio, kino et les tuteurs Xiaoping, Ydris et Zoé.').replace(/<script>\(\(\) => \{[\s\S]*?<\/script>/, '<script>Elm.Philosophie.init({node:document.getElementById("app"),flags:{width:innerWidth}});</script>');
 writeFileSync('dist/philosophie.html', philosophie);
+const palette = template.replace('/* STYLES */', () => style).replace('/* ELM */', () => script).replace('/* BOOT */', () => readFileSync('web/palette.js', 'utf8')).replace('/* LICENSES */', () => licenses).replace('<title>Écho — Atelier du mouvement</title>', '<title>Palette OKLCH — Mister Jam</title>').replace(/<meta name="description"[^>]*>/, '<meta name="description" content="Explorer la palette OKLCH Mister Jam : deux paramètres communs, huit sommets et sept couleurs principales dans le gamut sRGB.">');
+writeFileSync('dist/palette.html', palette);
 writeFileSync('dist/.nojekyll', '');
 console.log('Atelier et philosophie : dist/ ; exports : dist/exports/');
