@@ -61,11 +61,63 @@ assert len(logo.find(NS+'defs')) == 4 and len(list(logo.iter(NS+'use'))) == 4
 assert logo.find(NS+'circle').attrib['fill'] == '#64c29b'
 for occurrence in logo.iter(NS+'use'):
     assert geometrie.transformation(occurrence.attrib['transform']) == (1, 0, 0, 1, 13.8, 9)
+
+# Les trois pictogrammes doivent réellement rendre le centre ET leur contour.
+pictogrammes = {}
+for nom, brique in [('Audio', 'Auditif'), ('Visio', 'Visuel'), ('Kino', 'Kinesthesique')]:
+    svg = ET.parse(RACINE/f'dist/exports/{nom}.svg').getroot()
+    definitions = {n.attrib['id']: n for n in svg.find(NS+'defs')}
+    occurrences = list(svg.iter(NS+'use'))
+    assert len(occurrences) == 2, (nom, 'disque central manquant ou dupliqué')
+    centre, contour = [definitions[u.attrib['href'][1:]] for u in occurrences]
+    assert centre.tag == NS+'circle' and centre.attrib['r'] == '2'
+    assert centre.attrib['cx'] == '0' and centre.attrib['cy'] == '0'
+    assert contour.find(NS+'path').attrib['d'] == contours[brique]
+    assert contour.attrib['transform'] == 'translate(-13.8 -9)'
+    assert svg.find(NS+'circle').attrib['fill'] == '#64c29b'
+    for occurrence in occurrences:
+        assert geometrie.transformation(occurrence.attrib['transform']) == (1, 0, 0, 1, 13.8, 9)
+        assert occurrence.attrib['opacity'] == '1'
+    pictogrammes[nom] = 'Disque de rayon 2 et contour canonique, au même placement'
+
+# Z est une création : contrôler les poses définies et les arcs, sans inventer
+# de mesure d'ajustement face à un original qui n'a jamais été fourni.
+z = ET.parse(RACINE/'dist/exports/Z-factorise.svg').getroot()
+definitions = {n.attrib['id']: n for n in z.find(NS+'defs')}
+occurrences = list(z.iter(NS+'use'))
+donnees_z = json.loads((RACINE/'donnees/decomposition-Z.json').read_text())
+source_z = ET.parse(RACINE/'dist/exports/Z.svg').getroot()
+dessins_z = list(source_z.iter(NS+'path'))
+assert len(occurrences) == len(dessins_z) == len(donnees_z['instances']) == 5
+assert z.find(NS+'circle').attrib['fill'] == source_z.find(NS+'circle').attrib['fill'] == '#087f71'
+lignes_z = []
+for occurrence, dessin, instance in zip(occurrences, dessins_z, donnees_z['instances']):
+    definition = definitions[occurrence.attrib['href'][1:]]
+    assert definition.find(NS+'path').attrib['d'] == dessin.attrib['d'] == contours[instance['brique']]
+    assert occurrence.attrib['data-instance'] == instance['id']
+    matrice = geometrie.transformation(occurrence.attrib['transform'])
+    angle = math.radians(instance['angle_degres'])
+    echelle = instance['echelle']
+    a, b = echelle * math.cos(angle), echelle * math.sin(angle)
+    signe = -1 if instance['chiralite'] == 'Reflechie' else 1
+    attendue = (signe*a, signe*b, -b, a, *instance['translation'])
+    assert all(abs(v-w) < 1e-12 for v, w in zip(matrice, attendue))
+    matrice_dessin = geometrie.transformation(dessin.attrib['transform'])
+    for point in geometrie.echantillons([(arc, False) for arc in canoniques[instance['brique']].arcs], 129):
+        rendu = geometrie.appliquer(matrice, point-geometrie.ORIGINE)
+        reference = geometrie.appliquer(matrice_dessin, point)
+        assert abs(rendu-reference) < 1e-12
+        assert abs(rendu-complex(15, 15)) < 15, ('Z hors du disque', instance['id'], rendu)
+    lignes_z.append(dict(id=instance['id'], path=instance['path_source'], matrice=matrice))
+resultats['Z'] = lignes_z
+print('Z : 5 placements définis ; dessin explicite et export concordants à 1e-12 ; pictogrammes complets.')
+
 # Le logo du kit correspond aux contours de Signature distribués par le dépôt.
 autorite = ET.parse(RACINE/'../../public/assets/mrjam/Echologo.svg').getroot()
 assert ET.tostring(autorite) == ET.tostring(ET.parse(KIT/'sources/logo-original.svg').getroot())
 sortie = dict(source='SVG produits par Echo.Render, compilation Elm optimisée', tolerance=1e-4,
-              valide=True, logo='4 occurrences canoniques, translation exacte, fond exact ; source Signature vérifiée', compositions=resultats)
+              valide=True, logo='4 occurrences canoniques, translation exacte, fond exact ; source Signature vérifiée', compositions=resultats,
+              pictogrammes=pictogrammes, nature_Z='Création, poses définies ; comparaison dessin/export à 1e-12, sans ajustement historique')
 (RACINE/'verification').mkdir(exist_ok=True)
 texte = json.dumps(sortie, ensure_ascii=False, indent=2)+'\n'
 (RACINE/'verification/production-geometrie.json').write_text(texte)

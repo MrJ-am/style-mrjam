@@ -51,9 +51,10 @@ jobs:
         working-directory: ateliers/logo
         run: |
           python3 scripts/analyser-y.py
+          python3 scripts/construire-z.py
           python3 scripts/generate-data.py
           npx elm-format src/Echo/ReferenceData.elm --yes
-          git diff --exit-code -- donnees src/Echo/ReferenceData.elm
+          git diff --exit-code -- donnees dessins src/Echo/ReferenceData.elm
           npm run format:check
           npm run build
           npm test -- --seed 20261007

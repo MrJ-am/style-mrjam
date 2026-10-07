@@ -43,7 +43,7 @@ test('Y : pause, reprise et inversion pendant la lecture', async ({page}) => {
   await page.getByRole('button',{name:'Y → Logo',exact:true}).click(); await page.clock.runFor(20);
   const avant = await progression(); await page.clock.runFor(300);
   expect(await progression()).toBeLessThan(avant);
-  await page.getByRole('button',{name:'Personnage X',exact:true}).click(); await page.clock.runFor(20);
+  await page.getByRole('button',{name:'X · Xiaoyu',exact:true}).click(); await page.clock.runFor(20);
   expect(await progression()).toBe(0);
   await expect(page.locator('[data-running]')).toHaveAttribute('data-running','false');
   await expect(page.getByRole('button',{name:'Fixer X',exact:true})).toBeVisible();
@@ -81,13 +81,13 @@ for (const largeur of [320,375,768,1440]) {
     await page.getByRole('link',{name:'Philosophie du logo',exact:true}).click();
     await expect(page).toHaveURL(/philosophie.html$/);
     if (largeur === 320) await page.addStyleTag({content:'.mrjam-ecran { font-family: "DejaVu Sans", sans-serif !important }'});
-    await expect(page.getByRole('heading',{name:'Un esprit ouvert à l’expérience.'})).toBeVisible();
-    await expect(page.getByRole('heading',{name:'La croissance inscrite dans le dessin.'})).toBeVisible();
+    await expect(page.getByRole('heading',{name:'Du sensoriel au sens.'})).toBeVisible();
+    await expect(page.getByRole('heading',{name:'Des proportions reproductibles.'})).toBeVisible();
     await expect.poll(() => page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(largeur);
-    expect(await page.getByRole('img').count()).toBe(7);
+    expect(await page.getByRole('img').count()).toBe(8);
     await page.screenshot({path:`verification/captures/${info.project.name}/philosophie-${largeur}.png`,fullPage:true});
     await page.getByRole('link',{name:'Explorer les briques dans l’atelier →',exact:true}).click();
-    await expect(page.getByRole('heading',{name:'Les huit correspondances'})).toBeVisible();
+    await expect(page.getByRole('heading',{name:'Les cinq placements de Zoé'})).toBeVisible();
     expect(erreurs).toEqual([]);
   });
 }

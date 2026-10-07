@@ -76,7 +76,7 @@ suite =
             , test "logo : les quatre poses sont exactement canoniques" <|
                 \_ ->
                     assertTrue "poses et identité" (List.all (\i -> i.pose == Transform.canonical && String.endsWith "-0" i.id) Composition.logo)
-            , test "X : répartition 1/3/3, sans esprit, ordre historique" <|
+            , test "X : répartition 1/3/3, sans disque central, ordre historique" <|
                 \_ ->
                     Expect.equal [ Kinesthesique, Kinesthesique, Visuel, Auditif, Kinesthesique, Visuel, Visuel ] (List.map .brick Composition.x)
             , test "les deux échelles sont positives et explicites" <|
@@ -138,7 +138,7 @@ suite =
                         , \_ -> assertTrue "poses" (List.all (\v -> v.pose == Transform.canonical && v.mirror == 0) scene.pieces)
                         ]
                         ()
-            , test "p=1 : sept instances exactes, esprit éteint" <|
+            , test "p=1 : sept instances exactes, disque central effacé" <|
                 \_ ->
                     let
                         scene =
@@ -146,7 +146,7 @@ suite =
                     in
                     Expect.all
                         [ \_ -> Expect.equal (List.map .id Composition.x |> List.sort) (visible scene)
-                        , \_ -> Expect.equal (Just 0) (get "esprit-0" scene |> Maybe.map .opacity)
+                        , \_ -> Expect.equal (Just 0) (get "connaissance-0" scene |> Maybe.map .opacity)
                         , \_ -> assertTrue "cibles exactes" (List.all (\v -> v.pose == v.source.pose) scene.pieces)
                         ]
                         ()
@@ -209,7 +209,7 @@ suite =
                 \_ ->
                     let
                         weights p =
-                            Animation.faces LocalFade { source = List.head (List.drop 1 Composition.x) |> Maybe.withDefault Composition.spirit, pose = Transform.canonical, opacity = 0.8, mirror = p } |> List.map Tuple.second
+                            Animation.faces LocalFade { source = List.head (List.drop 1 Composition.x) |> Maybe.withDefault Composition.connaissance, pose = Transform.canonical, opacity = 0.8, mirror = p } |> List.map Tuple.second
                     in
                     Expect.equal [ [ 0.8, 0 ], [ 0.4, 0.4 ], [ 0, 0.8 ], [ 0.4, 0.4 ], [ 0.8, 0 ] ] (List.map weights [ 0, 0.5, 1, 0.5, 0 ])
             , fuzz (Fuzz.floatRange 0 1) "toutes les matrices restent finies aux réglages extrêmes" <|
@@ -296,7 +296,7 @@ suite =
                             Animation.rotationStats s 0.5
                     in
                     assertTrue "saturation et sens" (fast.spread == s.spread && reverse.spread == forward.spread && reverse.omega == -forward.omega)
-            , fuzz (Fuzz.floatRange 0 1) "zéro tour conserve la scène canonique, esprit immobile" <|
+            , fuzz (Fuzz.floatRange 0 1) "zéro tour conserve la scène canonique, connaissance immobile" <|
                 \p ->
                     Expect.equal (List.map .pose Composition.logo) (List.map .pose (Animation.rotation { s | turns = 0 } p).pieces)
             , fuzz (Fuzz.floatRange 0 1) "aucune brique centrifugée ne change de taille" <|

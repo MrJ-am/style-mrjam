@@ -6,7 +6,7 @@ from PIL import Image, ImageChops, ImageFilter
 root = Path(__file__).resolve().parents[1]/'verification'
 results = []
 for engine in ['chromium','firefox']:
-    for name in ['logo','x','y']:
+    for name in ['logo','x','y','z']:
         source = Image.open(root/'rasters'/f'{engine}-{name}-source.png').convert('RGBA')
         for kind in ['export','scene']:
             target = Image.open(root/'rasters'/f'{engine}-{name}-{kind}.png').convert('RGBA')

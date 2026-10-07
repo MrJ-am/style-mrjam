@@ -104,7 +104,7 @@ view options scene =
         , H.attribute "data-svg" options.prefix
         ]
         ([ Svg.title [ A.id (options.prefix ++ "-title") ] [ Svg.text options.title ]
-         , Svg.desc [ A.id (options.prefix ++ "-description") ] [ Svg.text "Quatre briques canoniques, réutilisées par des transformations vectorielles. Les contrôles permettent de figer et d'inspecter le mouvement." ]
+         , Svg.desc [ A.id (options.prefix ++ "-description") ] [ Svg.text "Assemblage vectoriel des formes du logo. Audio, visio et kino associent chacun leur contour au disque de connaissance." ]
          , definitions options.prefix
          , Svg.circle [ A.cx "15", A.cy "15", A.r "15", A.fill scene.background, H.attribute "data-background" "true" ] []
          ]

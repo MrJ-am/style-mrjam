@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
   <defs>
-    <circle id="x-esprit" cx="0" cy="0" r="2"/>
+    <circle id="x-connaissance" cx="0" cy="0" r="2"/>
     <g id="x-auditif" transform="translate(-13.8 -9)"><path d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407"/></g>
     <g id="x-visuel" transform="translate(-13.8 -9)"><path d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3"/></g>
     <g id="x-kinesthesique" transform="translate(-13.8 -9)"><path d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563"/></g>

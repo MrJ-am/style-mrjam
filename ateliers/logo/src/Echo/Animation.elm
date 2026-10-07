@@ -194,29 +194,24 @@ recomposer cible rawSettings rawP =
                     0
             }
 
-        spirit =
-            { source = Composition.spirit, pose = Transform.canonical, opacity = 1 - smooth (window 0.06 0.45 p), mirror = 0 }
+        centre =
+            { source = Composition.connaissance, pose = Transform.canonical, opacity = 1 - smooth (window 0.06 0.45 p), mirror = 0 }
     in
-    { pieces = spirit :: List.indexedMap piece (Composition.instances cible)
-    , background =
-        if cible == Composition.Y then
-            Composition.fond cible
-
-        else
-            backgroundColor settings.fadeBackground p
+    { pieces = centre :: List.indexedMap piece (Composition.instances cible)
+    , background = backgroundColor cible settings.fadeBackground p
     , strategy = settings.strategy
     }
 
 
 {-| Interpolation des composantes sRGB, bornée. Les hexadécimaux terminaux sont exacts.
 -}
-backgroundColor : Bool -> Float -> String
-backgroundColor enabled p =
+backgroundColor : Composition.Cible -> Bool -> Float -> String
+backgroundColor cible enabled p =
     if not enabled || p <= 0 then
         "#64c29b"
 
     else if p >= 1 then
-        "#9c3e65"
+        Composition.fond cible
 
     else
         let
@@ -225,8 +220,23 @@ backgroundColor enabled p =
 
             component a b =
                 String.fromInt (round (a + (b - a) * h))
+
+            ( rouge, vert, bleu ) =
+                case cible of
+                    Composition.X ->
+                        ( 156, 62, 101 )
+
+                    Composition.Y ->
+                        ( 100, 194, 155 )
+
+                    Composition.Z ->
+                        ( 8, 127, 113 )
         in
-        "rgb(" ++ component 100 156 ++ "," ++ component 194 62 ++ "," ++ component 155 101 ++ ")"
+        if cible == Composition.Y then
+            Composition.fond cible
+
+        else
+            "rgb(" ++ component 100 rouge ++ "," ++ component 194 vert ++ "," ++ component 155 bleu ++ ")"
 
 
 {-| Les opacités source-over du fondu local ne sont pas additives à l'intersection.
@@ -296,11 +306,11 @@ rotation settings p =
                         Kinesthesique ->
                             degrees 75
 
-                        Esprit ->
+                        Connaissance ->
                             0
 
                 pose =
-                    if source.brick == Esprit then
+                    if source.brick == Connaissance then
                         Transform.canonical
 
                     else

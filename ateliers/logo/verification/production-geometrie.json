@@ -247,6 +247,74 @@
         "erreur_max_echantillons": 1.303743669358567e-05,
         "borne_continue": 6.15495978122599e-05
       }
+    ],
+    "Z": [
+      {
+        "id": "kinesthesique-0",
+        "path": "bras",
+        "matrice": [
+          5.5109105961630896e-17,
+          0.9,
+          -0.9,
+          5.5109105961630896e-17,
+          22.0,
+          8.0
+        ]
+      },
+      {
+        "id": "kinesthesique-1",
+        "path": "diagonale",
+        "matrice": [
+          0.5785088487178854,
+          0.6894399988070802,
+          -0.6894399988070802,
+          0.5785088487178854,
+          22.0,
+          9.0
+        ]
+      },
+      {
+        "id": "kinesthesique-2",
+        "path": "jambes",
+        "matrice": [
+          5.5109105961630896e-17,
+          -0.9,
+          0.9,
+          5.5109105961630896e-17,
+          6.0,
+          23.0
+        ]
+      },
+      {
+        "id": "visuel-0",
+        "path": "tete-visio",
+        "matrice": [
+          -0.10352761804100835,
+          -0.38637033051562736,
+          0.38637033051562736,
+          -0.10352761804100835,
+          22.0,
+          8.0
+        ]
+      },
+      {
+        "id": "auditif-0",
+        "path": "tete-audio",
+        "matrice": [
+          -0.1215537243668512,
+          0.6893654271085455,
+          -0.6893654271085455,
+          -0.1215537243668512,
+          22.0,
+          8.0
+        ]
+      }
     ]
-  }
+  },
+  "pictogrammes": {
+    "Audio": "Disque de rayon 2 et contour canonique, au même placement",
+    "Visio": "Disque de rayon 2 et contour canonique, au même placement",
+    "Kino": "Disque de rayon 2 et contour canonique, au même placement"
+  },
+  "nature_Z": "Création, poses définies ; comparaison dessin/export à 1e-12, sans ajustement historique"
 }

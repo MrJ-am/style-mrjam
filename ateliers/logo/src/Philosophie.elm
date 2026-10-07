@@ -6,7 +6,6 @@ import Echo.Animation as Animation
 import Echo.Composition as Composition
 import Echo.Primitives as Primitives exposing (Brick(..))
 import Echo.Render as Render
-import Echo.Transform as Transform
 import Element exposing (Element, column, el, fill, height, html, htmlAttribute, padding, paddingXY, px, row, spacing, text, width, wrappedRow)
 import Element.Background as Fond
 import Element.Border as Bordure
@@ -52,7 +51,7 @@ brique forme titre sens =
     Ui.card [ width fill, spacing 14 ]
         [ illustration ("sens-" ++ Primitives.key forme)
             titre
-            (Animation.static "#64c29b" [ { id = Primitives.key forme, brick = forme, pose = Transform.canonical } ])
+            (Animation.static "#64c29b" (Composition.pictogramme forme))
         , Ui.heading 2 titre
         , MrJam.paragraphe sens
         ]
@@ -113,51 +112,59 @@ vue modele =
                         )
                     , Police.letterSpacing -1.5
                     ]
-                    [ text "Un esprit ouvert à l’expérience." ]
-                , MrJam.paragraphe "Le logo met en relation l’esprit, les sens et le corps. Quatre formes simples racontent une même intention : apprendre en donnant du sens à ce que l’on entend, à ce que l’on voit et à ce que l’on fait."
+                    [ text "Du sensoriel au sens." ]
+                , MrJam.paragraphe "Le logo relie la manière de manipuler une information à ce qu’elle signifie. Audio, visio et kino portent les modalités sensorielles ; le disque central représente la connaissance, l’aspect sémantique de l’apprentissage."
                 ]
             , ensemble
                 [ visuel "Le logo" "philo-logo" (Animation.static "#64c29b" Composition.logo)
-                , visuel "Le personnage X" "philo-x" (Animation.static "#9c3e65" Composition.x)
-                , visuel "Le personnage Y" "philo-y" (Animation.static "#64c29b" Composition.y)
+                , visuel "X · Xiaoyu" "philo-x" (Animation.static (Composition.fond Composition.X) Composition.x)
+                , visuel "Y · Ydriss" "philo-y" (Animation.static (Composition.fond Composition.Y) Composition.y)
+                , visuel "Z · Zoé" "philo-z" (Animation.static (Composition.fond Composition.Z) Composition.z)
                 ]
             , chapitre "01 · Le sens des formes"
-                "Quatre présences, une même expérience."
-                [ "Le petit disque représente l’esprit et les connaissances qu’il contient. Les trois contours qui l’entourent prennent leur sens dans leur relation avec lui : une oreille, un regard, un corps."
-                , "Ces modalités se répondent. Écouter, observer et agir sont des portes d’entrée dans une même expérience d’apprentissage ; elles ne répartissent pas les personnes en catégories fixes."
+                "Trois modalités, une connaissance."
+                [ "La connaissance désigne ici ce que l’élève comprend : le sens qu’iel donne à ce qu’iel entend, observe ou manipule, et les liens qu’iel peut en tirer. Le disque central rend cette dimension commune visible."
+                , "Chaque pictogramme comprend deux pièces : son contour et le disque de connaissance. Audio évoque une oreille, visio un œil avec son sourcil, kino un corps avec sa tête. Dans le logo complet, les trois contours partagent le même disque."
+                , "Écouter, observer et agir peuvent se combiner au cours d’un même apprentissage. Ces modalités décrivent des activités, pas des catégories fixes d’élèves."
                 ]
             , ensemble
-                [ brique Esprit "L’esprit" "Un disque, une présence. Il évoque l’activité intérieure et les connaissances que l’expérience vient enrichir."
-                , brique Auditif "Écouter" "À gauche, la forme auditive et le disque suggèrent une oreille : accueillir une parole, un rythme, une résonance."
+                [ brique Connaissance "Connaissance" "Le disque central représente le sens : comprendre une information, l’interpréter et la relier à ce que l’on sait."
+                , brique Auditif "Audio" "Le contour audio et le disque central forment ensemble le pictogramme. Écouter une explication, distinguer un son, formuler une idée à voix haute."
                 ]
             , ensemble
-                [ brique Visuel "Regarder" "À droite, la forme visuelle et le disque évoquent l’œil et son sourcil : observer, distinguer, mettre en relation."
-                , brique Kinesthesique "Agir" "La forme qui descend, associée au disque, fait apparaître un corps et sa tête : éprouver, manipuler, mettre en mouvement."
+                [ brique Visuel "Visio" "Le contour visio et le disque central forment ensemble le pictogramme. Observer une figure, lire un schéma, comparer des représentations."
+                , brique Kinesthesique "Kino" "Le contour kino et le disque central forment ensemble le pictogramme. Manipuler, faire un geste, essayer et ajuster une action : la dimension kinesthésique."
                 ]
             , chapitre "02 · Les proportions"
-                "La croissance inscrite dans le dessin."
-                [ "Le dessin repose sur des arcs de cercle. Le disque-esprit a un rayon de 2 ; les raccords aux trois modalités utilisent un rayon de 3. Les rayons principaux 3, 6 et 12 se doublent, tandis que d’autres arcs font apparaître 5, 8 et 13."
-                , "On y rencontre donc une progression de raison 2 et les nombres 2, 3, 5, 8, 13 de la suite de Fibonacci. Ces rapports donnent une cohérence aux courbes et portent l’idée d’effets qui se multiplient : les expériences et les connaissances prennent une autre portée lorsqu’elles se relient. C’est le langage symbolique du logo."
+                "Des proportions reproductibles."
+                [ "Le dessin repose sur des arcs de cercle. Le disque de connaissance a un rayon de 2 ; les raccords aux trois contours utilisent un rayon de 3. Les rayons principaux 3, 6 et 12 se doublent, tandis que d’autres arcs utilisent 5, 8 et 13."
+                , "La progression 3, 6, 12 et les nombres 2, 3, 5, 8, 13 de la suite de Fibonacci sont des choix de construction. Ils donnent des rapports précis aux courbes et permettent de les reproduire, de les comparer et de les recomposer."
                 ]
             , Ui.card [ Fond.color (Element.rgb255 234 245 239), padding 24, spacing 12 ]
                 [ Ui.label "Une géométrie commune"
-                , wrappedRow [ width fill, spacing 16 ] [ Ui.badge "Rayon de l’esprit · 2", Ui.badge "Progression · 3 → 6 → 12", Ui.badge "Fibonacci · 2, 3, 5, 8, 13" ]
+                , wrappedRow [ width fill, spacing 16 ] [ Ui.badge "Disque central · rayon 2", Ui.badge "Progression · 3 → 6 → 12", Ui.badge "Fibonacci · 2, 3, 5, 8, 13" ]
                 ]
-            , chapitre "03 · La recomposition"
-                "Changer de figure, garder ses formes."
-                [ "X et Y prolongent ce vocabulaire. Leurs silhouettes naissent de copies des mêmes briques, déplacées, tournées, agrandies ou réfléchies. Leurs contours restent ceux du logo. Une forme peut changer de place et de rôle tout en gardant son identité."
-                , "X réunit sept occurrences. Y en conserve huit, dont deux doublons historiques : six placements distincts composent sa silhouette. Aucun des deux personnages ne contient le petit disque comme pièce séparée. L’atelier rend ces choix visibles et permet de remonter du personnage au logo."
+            , chapitre "03 · Les trois axes"
+                "Xiaoyu, Ydriss et Zoé."
+                [ "X, Y et Z sont à la fois trois axes et les initiales des prénoms Xiaoyu, Ydriss et Zoé. Ce sont trois tuteurs : iels font travailler l’élève chacun dans une direction. Leurs silhouettes reprennent la lettre de leur axe."
+                , "Xiaoyu déploie une silhouette en X. Ydriss lève les bras dans une silhouette en Y. Zoé forme un Z avec ses bras, son corps en diagonale et ses jambes. Les trois personnages utilisent les mêmes contours, déplacés, tournés, mis à l’échelle ou réfléchis."
+                , "X et Y conservent les dessins fournis : sept occurrences pour X, huit pour Y dont deux superpositions historiques. Zoé est une nouvelle composition de cinq contours. Dans ces silhouettes, la tête se lit entre les courbes ; le disque de connaissance reste une pièce explicite du logo et des pictogrammes sensoriels."
+                ]
+            , wrappedRow [ width fill, spacing 16 ]
+                [ MrJam.lien "Explorer Xiaoyu →" "./?cible=X&p=1"
+                , MrJam.lien "Explorer Ydriss →" "./?cible=Y&p=1"
+                , MrJam.lien "Explorer Zoé →" "./?cible=Z&p=1"
                 ]
             , chapitre "04 · Le mouvement"
                 "Voir les relations se construire."
-                [ "L’animation permet de suivre une brique, de repérer ses copies et de comprendre un retournement. La rotation autour de l’esprit fait apparaître les relations entre les trois modalités ; la recomposition montre comment un même ensemble engendre d’autres figures."
+                [ "L’animation permet de suivre un contour, de repérer ses copies et de comprendre un retournement. La rotation garde la connaissance au centre ; la recomposition montre les placements qui font apparaître chaque personnage."
                 , "Le mouvement reste à votre rythme : lancer, arrêter, revenir, observer une étape. L’immobilité fait aussi partie de l’exploration."
                 ]
-            , MrJam.lien "Explorer les briques dans l’atelier →" "./?vue=geometrie&cible=Y"
+            , MrJam.lien "Explorer les briques dans l’atelier →" "./?vue=geometrie&cible=Z"
             , Ui.divider
             , column [ width fill, spacing 12 ]
                 [ Ui.heading 2 "Une construction, une histoire"
-                , MrJam.paragraphe "La construction géométrique a été élaborée dans GeoGebra, puis transcrite en SVG et en TikZ. Le dépôt Signature conserve l’identité de référence. Cet atelier en expose les briques et les transformations, à partir du logo et des dessins X et Y fournis."
+                , MrJam.paragraphe "La construction géométrique du logo a été élaborée dans GeoGebra, puis transcrite en SVG et en TikZ. Le dépôt Signature conserve l’identité de référence. Cet atelier présente le logo, les dessins X et Y fournis, les pictogrammes complets et la création de Zoé pour l’axe Z."
                 , MrJam.lien "Consulter le logo de référence dans Signature" "https://github.com/MrJ-am/Signature/blob/17495b13cefa24473e37434b98336b27caec8cdf/artwork/Echologo.svg"
                 , MrJam.lien "Voir les sources et les mesures de l’atelier" "https://github.com/MrJ-am/style-mrjam/tree/main/ateliers/logo"
                 , Ui.small "Logo, signature et déclinaisons : toute utilisation est strictement réservée. Leur présence publique ne vaut pas autorisation de reproduction, de modification ou de redistribution. Les licences des dépendances ne s’étendent pas à ces éléments d’identité."

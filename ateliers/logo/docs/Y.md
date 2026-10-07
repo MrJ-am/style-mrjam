@@ -2,20 +2,20 @@
 
 Le fichier fourni contient huit tracés blancs mais six placements distincts. Les couples path8/path14 et path10/path16 possèdent exactement les mêmes arcs et transformations cumulées. Ils sont conservés dans leur ordre original : supprimer un doublon modifierait notamment l’anticrénelage de ses bords.
 
-Le fond est `#64c29b`, identique à celui du logo. Y ne contient pas de disque-esprit explicite.
+Le fond est `#64c29b`, identique à celui du logo. Y ne contient pas de disque de connaissance explicite.
 
 La formule et l’origine sont celles de [X](GEOMETRIE.md) : `T(p) = t + s R(θ) Fᵐ p`, O=(13,8 ; 9). Les rotations entières et les échelles dérivées des rayons sont retenues après vérification de la borne, jamais par simple arrondi supposé.
 
-| Tracé | Brique | tx | ty | Angle | Échelle | Face | Borne continue |
+| Tracé | Contour | tx | ty | Angle | Échelle | Face | Borne continue |
 |---|---|---:|---:|---:|---:|---|---:|
-| path4 | Visuel | 14.136732644972 | 12.561555972981 | 117° | 1.000000032 | Reflechie | 7.37372699e-05 |
-| path6 | Visuel | 16.019638434855 | 12.842961481679 | -100° | 1.000000032 | Directe | 7.16325786e-05 |
-| path8 | Kinesthesique | 15.079212386953 | 13.886925717560 | 0° | 0.750000024 | Reflechie | 5.82511406e-05 |
-| path10 | Kinesthesique | 14.255651040587 | 14.710500153363 | 0° | 0.750000024 | Directe | 5.82511406e-05 |
-| path14 | Kinesthesique | 15.079212386953 | 13.886925717560 | 0° | 0.750000024 | Reflechie | 5.82511406e-05 |
-| path16 | Kinesthesique | 14.255651040587 | 14.710500153363 | 0° | 0.750000024 | Directe | 5.82511406e-05 |
-| path22 | Auditif | 14.703647000420 | 2.934771538101 | 171° | 0.750000031648561 | Directe | 6.14506325e-05 |
-| path24 | Auditif | 17.034785013074 | 6.738828395119 | 6° | 0.750000031648561 | Directe | 6.15495978e-05 |
+| path4 | visio | 14.136732644972 | 12.561555972981 | 117° | 1.000000032 | Reflechie | 7.37372699e-05 |
+| path6 | visio | 16.019638434855 | 12.842961481679 | -100° | 1.000000032 | Directe | 7.16325786e-05 |
+| path8 | kino | 15.079212386953 | 13.886925717560 | 0° | 0.750000024 | Reflechie | 5.82511406e-05 |
+| path10 | kino | 14.255651040587 | 14.710500153363 | 0° | 0.750000024 | Directe | 5.82511406e-05 |
+| path14 | kino | 15.079212386953 | 13.886925717560 | 0° | 0.750000024 | Reflechie | 5.82511406e-05 |
+| path16 | kino | 14.255651040587 | 14.710500153363 | 0° | 0.750000024 | Directe | 5.82511406e-05 |
+| path22 | audio | 14.703647000420 | 2.934771538101 | 171° | 0.750000031648561 | Directe | 6.14506325e-05 |
+| path24 | audio | 17.034785013074 | 6.738828395119 | 6° | 0.750000031648561 | Directe | 6.15495978e-05 |
 
 L’arc auditif possède plusieurs correspondances géométriques valides. Comme dans le vérificateur X, une similitude directe est privilégiée lorsqu’elle satisfait le seuil : les deux occurrences auditives sont donc directes dans cette réalisation. Trois occurrences se retournent, dont deux rejoignent le même placement kinesthésique. Le sens de parcours des arcs est traité indépendamment de la chiralité.
 

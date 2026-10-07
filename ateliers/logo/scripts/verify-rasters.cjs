@@ -18,7 +18,7 @@ const serveur = spawn('python3', ['-m', 'http.server', '4188', '--bind', '127.0.
     const browser = await launcher.launch(options);
     const page = await browser.newPage({ viewport: { width: 1200, height: 1200 } });
     const app = await browser.newPage();
-    for (const [name, original, p] of [['logo', 'logo', 0], ['x', 'X', 1], ['y', 'Y', 1]]) {
+    for (const [name, original, p] of [['logo', 'logo', 0], ['x', 'X', 1], ['y', 'Y', 1], ['z', 'Z', 1]]) {
       await app.goto(`http://127.0.0.1:4188/?p=${p}&cible=${original}`);
       const live = await app.locator('[data-svg="main-scene"]').evaluate(svg => {
         const copy = svg.cloneNode(true);
@@ -26,7 +26,7 @@ const serveur = spawn('python3', ['-m', 'http.server', '4188', '--bind', '127.0.
         return new XMLSerializer().serializeToString(copy);
       });
       const samples = [
-        ['source', readFileSync(original === 'Y' ? 'references/Y-original.svg' : `references/kit_codex_logo_X/sources/${original}-original.svg`)],
+        ['source', readFileSync(original === 'Z' ? 'dessins/Z.svg' : original === 'Y' ? 'references/Y-original.svg' : `references/kit_codex_logo_X/sources/${original}-original.svg`)],
         ['export', readFileSync(`dist/exports/${name === 'logo' ? 'Logo' : original}-factorise.svg`)],
         ['scene', Buffer.from(live)]
       ];

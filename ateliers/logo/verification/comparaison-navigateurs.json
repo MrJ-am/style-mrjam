@@ -96,6 +96,38 @@
     "passed": true
   },
   {
+    "engine": "chromium",
+    "composition": "z",
+    "comparison": "export",
+    "size": [
+      1200,
+      1200
+    ],
+    "background": "white",
+    "maximum_component_error": 6,
+    "mean_component_error": 1.9444444444444445e-05,
+    "different_pixels": 27,
+    "different_pixels_outside_3px_contours": 0,
+    "threshold_mean": 0.02,
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "composition": "z",
+    "comparison": "scene",
+    "size": [
+      1200,
+      1200
+    ],
+    "background": "white",
+    "maximum_component_error": 6,
+    "mean_component_error": 1.9444444444444445e-05,
+    "different_pixels": 27,
+    "different_pixels_outside_3px_contours": 0,
+    "threshold_mean": 0.02,
+    "passed": true
+  },
+  {
     "engine": "firefox",
     "composition": "logo",
     "comparison": "export",
@@ -187,6 +219,38 @@
     "maximum_component_error": 61,
     "mean_component_error": 0.011868576388888889,
     "different_pixels": 3411,
+    "different_pixels_outside_3px_contours": 0,
+    "threshold_mean": 0.02,
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "composition": "z",
+    "comparison": "export",
+    "size": [
+      1200,
+      1200
+    ],
+    "background": "white",
+    "maximum_component_error": 0,
+    "mean_component_error": 0.0,
+    "different_pixels": 0,
+    "different_pixels_outside_3px_contours": 0,
+    "threshold_mean": 0.02,
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "composition": "z",
+    "comparison": "scene",
+    "size": [
+      1200,
+      1200
+    ],
+    "background": "white",
+    "maximum_component_error": 0,
+    "mean_component_error": 0.0,
+    "different_pixels": 0,
     "different_pixels_outside_3px_contours": 0,
     "threshold_mean": 0.02,
     "passed": true

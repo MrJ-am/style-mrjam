@@ -8,7 +8,7 @@ appartiennent à la suite de Fibonacci. Le disque de fond n'est pas une brique.
 
 
 type Brick
-    = Esprit
+    = Connaissance
     | Auditif
     | Visuel
     | Kinesthesique
@@ -26,13 +26,13 @@ origin =
 
 all : List Brick
 all =
-    [ Esprit, Auditif, Visuel, Kinesthesique ]
+    [ Connaissance, Auditif, Visuel, Kinesthesique ]
 
 
 shape : Brick -> Shape
 shape brick =
     case brick of
-        Esprit ->
+        Connaissance ->
             Disc 2
 
         Auditif ->
@@ -48,8 +48,8 @@ shape brick =
 key : Brick -> String
 key brick =
     case brick of
-        Esprit ->
-            "esprit"
+        Connaissance ->
+            "connaissance"
 
         Auditif ->
             "auditif"
@@ -64,23 +64,23 @@ key brick =
 label : Brick -> String
 label brick =
     case brick of
-        Esprit ->
-            "Esprit"
+        Connaissance ->
+            "Connaissance"
 
         Auditif ->
-            "Auditif"
+            "Audio"
 
         Visuel ->
-            "Visuel"
+            "Visio"
 
         Kinesthesique ->
-            "Kinesthésique"
+            "Kino"
 
 
 color : Brick -> String
 color brick =
     case brick of
-        Esprit ->
+        Connaissance ->
             "#ffffff"
 
         Auditif ->
@@ -96,7 +96,7 @@ color brick =
 radii : Brick -> String
 radii brick =
     case brick of
-        Esprit ->
+        Connaissance ->
             "Rayon 2"
 
         Auditif ->

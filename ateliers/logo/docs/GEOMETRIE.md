@@ -1,6 +1,6 @@
 # Décomposition de X et correspondances
 
-Les sept occurrences utilisent les trois mêmes contours non circulaires. Le petit disque-esprit ne figure pas dans X. Les transformations ci-dessous sont celles effectivement sérialisées par le code Elm et vérifiées contre le SVG historique.
+Les sept occurrences utilisent les trois mêmes contours non circulaires. Le petit disque de connaissance ne figure pas dans X. Les transformations ci-dessous sont celles effectivement sérialisées par le code Elm et vérifiées contre le SVG historique.
 
 `T(p) = t + s R(theta) F^m p`, `F(x,y)=(-x,y)`. Origine locale O=(13,8 ; 9), angles en degrés SVG, échelle uniforme positive. Ordre effectif : réflexion, échelle, rotation, translation.
 

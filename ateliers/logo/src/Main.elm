@@ -105,6 +105,8 @@ type Msg
     | ExportLogo
     | ExportX
     | ExporterY
+    | ExporterZ
+    | ExporterPictogramme Primitives.Brick
 
 
 main : Program Flags Model Msg
@@ -139,6 +141,9 @@ init flags =
       , cible =
             if String.toUpper flags.cible == "Y" then
                 Composition.Y
+
+            else if String.toUpper flags.cible == "Z" then
+                Composition.Z
 
             else
                 Composition.X
@@ -380,6 +385,12 @@ update msg model =
         ExporterY ->
             ( model, download { name = "Y-factorise.svg", mime = "image/svg+xml", content = Render.svgString "y" "0 0 30 30" (Animation.static (Composition.fond Composition.Y) Composition.y) } )
 
+        ExporterZ ->
+            ( model, download { name = "Z-factorise.svg", mime = "image/svg+xml", content = Render.svgString "z" "0 0 30 30" (Animation.static (Composition.fond Composition.Z) Composition.z) } )
+
+        ExporterPictogramme forme ->
+            ( model, download { name = Primitives.label forme ++ ".svg", mime = "image/svg+xml", content = Render.svgString (Primitives.key forme) "0 0 30 30" (Animation.static "#64c29b" (Composition.pictogramme forme)) } )
+
 
 currentScene : Model -> Animation.Scene
 currentScene model =
@@ -445,7 +456,7 @@ header model =
             , column [ spacing 3 ] [ Ui.label "Atelier graphique", Ui.small "Explorer le mouvement" ]
             ]
         , if model.width > 630 then
-            el [ alignRight ] (Ui.badge "4 briques · 1 vocabulaire")
+            el [ alignRight ] (Ui.badge "1 centre · 3 contours")
 
           else
             none
@@ -469,7 +480,7 @@ intro model =
             , Font.letterSpacing -1.5
             ]
             [ text "Du logo au mouvement." ]
-        , Ui.paragraph "Quatre formes, une même géométrie. Faites-les tourner, suivez leur dédoublement et composez les personnages X et Y."
+        , Ui.paragraph "Une connaissance, trois modalités : audio, visio, kino. Explorez leurs formes et composez Xiaoyu, Ydriss et Zoé, les trois tuteurs des axes X, Y et Z."
         , if model.reduced then
             Ui.badge "Réduction du mouvement · lecture à votre initiative"
 
@@ -491,11 +502,15 @@ choixCible : Model -> Element Msg
 choixCible model =
     wrappedRow [ width fill, spacing 12 ]
         [ Ui.label "Composer"
-        , Ui.button (model.cible == Composition.X) (ChoisirCible Composition.X) "Personnage X"
-        , Ui.button (model.cible == Composition.Y) (ChoisirCible Composition.Y) "Personnage Y"
+        , Ui.button (model.cible == Composition.X) (ChoisirCible Composition.X) "X · Xiaoyu"
+        , Ui.button (model.cible == Composition.Y) (ChoisirCible Composition.Y) "Y · Ydriss"
+        , Ui.button (model.cible == Composition.Z) (ChoisirCible Composition.Z) "Z · Zoé"
         , Ui.small
             (if model.cible == Composition.Y then
                 "8 occurrences · 6 placements distincts"
+
+             else if model.cible == Composition.Z then
+                "5 occurrences · une silhouette en Z"
 
              else
                 "7 occurrences · 7 placements distincts"
@@ -719,7 +734,7 @@ settingsPanel model =
                             "Logo et Y partagent le même fond : vert #64c29b."
 
                          else if s.fadeBackground then
-                            "Vert #64c29b → prune #9c3e65"
+                            "Vert #64c29b → " ++ Composition.fond model.cible
 
                          else
                             "Fond fixe : vert #64c29b"
@@ -745,15 +760,18 @@ anatomy model =
         , Ui.checkbox "Afficher le repère O" model.axes Axes
         , Ui.small
             (if model.tab == Spin then
-                "L’esprit reste en O. Les trois modalités tournent et s’écartent suivant des directions espacées de 120°. Le cadrage reste fixe."
+                "La connaissance reste en O. Les trois contours tournent et s’écartent suivant des directions espacées de 120°. Le cadrage reste fixe."
 
              else
-                "Les copies naissent sur leur source. L’esprit s’efface. "
+                "Les copies naissent sur leur contour source. Le disque central s’efface pendant la recomposition. "
                     ++ (if model.cible == Composition.X then
-                            "Visuel-1, Visuel-2, Kinesthésique-1 et Kinesthésique-2 se retournent."
+                            "Deux contours visio et deux contours kino se retournent."
+
+                        else if model.cible == Composition.Y then
+                            "Un contour visio et deux contours kino se retournent. Les doublons rejoignent les mêmes placements."
 
                         else
-                            "Visuel-1, Kinesthésique-1 et Kinesthésique-2 se retournent. Les doublons rejoignent les mêmes placements."
+                            "Les cinq contours de Zoé se déplacent et tournent, sans réflexion."
                        )
             )
         , if model.diagnostic then
@@ -767,7 +785,8 @@ anatomy model =
 geometryView : Model -> Element Msg
 geometryView model =
     column [ width fill, spacing 24 ]
-        [ row [ width fill ] [ Ui.heading 2 "Un vocabulaire de quatre briques", el [ alignRight ] (Ui.badge "Arcs canoniques") ]
+        [ Ui.heading 2 "Connaissance, audio, visio, kino"
+        , Ui.paragraph "Le disque représente la connaissance, l’aspect sémantique. Chaque pictogramme sensoriel réunit ce même disque et un contour. Le logo complet partage un seul disque entre les trois contours."
         , brickGallery model
         , referenceGallery model
         , if model.width < 900 then
@@ -776,7 +795,7 @@ geometryView model =
           else
             row [ width fill, spacing 24, Element.alignTop ] [ comparisonPanel model, el [ width (px 340) ] (mirrorPanel model) ]
         , correspondence model
-        , wrappedRow [ spacing 8 ] [ Ui.button False ExportLogo "↓ Logo factorisé SVG", Ui.button False ExportX "↓ X factorisé SVG", Ui.button False ExporterY "↓ Y factorisé SVG", Ui.button False ExportSettings "↓ Réglages JSON", Ui.button False ImportSettings "↑ Charger des réglages" ]
+        , wrappedRow [ spacing 8 ] [ Ui.button False ExportLogo "↓ Logo factorisé SVG", Ui.button False ExportX "↓ X factorisé SVG", Ui.button False ExporterY "↓ Y factorisé SVG", Ui.button False ExporterZ "↓ Z factorisé SVG", MrJam.lien "↓ Z.svg" "exports/Z.svg", Ui.button False ExportSettings "↓ Réglages JSON", Ui.button False ImportSettings "↑ Charger des réglages" ]
         ]
 
 
@@ -787,14 +806,22 @@ brickGallery model =
             let
                 options =
                     Render.defaults ("brick-" ++ Primitives.key brick)
-
-                source =
-                    { id = Primitives.key brick ++ "-preview", brick = brick, pose = Transform.canonical }
             in
             Ui.card [ padding 16, spacing 10 ]
-                [ el [ width fill, height (px 120), Background.color (Element.rgb255 36 65 68), Border.rounded 10 ] (html (Render.view { options | box = "-3 -4 36 36", title = "Brique " ++ Primitives.label brick } (Animation.static "none" [ source ])))
+                [ el [ width fill, height (px 120), Background.color (Element.rgb255 36 65 68), Border.rounded 10 ] (html (Render.view { options | box = "-3 -4 36 36", title = Primitives.label brick } (Animation.static "none" (Composition.pictogramme brick))))
                 , el [ Font.semiBold ] (text (Primitives.label brick))
-                , Ui.small (Primitives.radii brick)
+                , Ui.small
+                    (if brick == Primitives.Connaissance then
+                        "Disque central · rayon 2"
+
+                     else
+                        "Disque + contour · " ++ Primitives.radii brick
+                    )
+                , if brick == Primitives.Connaissance then
+                    none
+
+                  else
+                    Ui.button False (ExporterPictogramme brick) ("↓ " ++ Primitives.label brick ++ " SVG")
                 ]
 
         pair a b =
@@ -804,7 +831,7 @@ brickGallery model =
         column [ width fill, spacing 12 ] (List.map brickCard Primitives.all)
 
     else if model.width < 700 then
-        column [ width fill, spacing 12 ] [ pair Primitives.Esprit Primitives.Auditif, pair Primitives.Visuel Primitives.Kinesthesique ]
+        column [ width fill, spacing 12 ] [ pair Primitives.Connaissance Primitives.Auditif, pair Primitives.Visuel Primitives.Kinesthesique ]
 
     else
         row [ width fill, spacing 16 ] (List.map brickCard Primitives.all)
@@ -827,7 +854,18 @@ referenceGallery model =
             [ sourceCard "Logo original" Reference.logoSource, rebuilt "Logo reconstruit" "ref-logo" (Animation.static "#64c29b" Composition.logo) ]
 
         xPair =
-            [ sourceCard (Composition.nom model.cible ++ " original") (Composition.reference model.cible), rebuilt (Composition.nom model.cible ++ " factorisé") "ref-cible" (Animation.static (Composition.fond model.cible) (Composition.instances model.cible)) ]
+            [ sourceCard
+                (Composition.nom model.cible
+                    ++ (if model.cible == Composition.Z then
+                            " · dessin de Zoé"
+
+                        else
+                            " original"
+                       )
+                )
+                (Composition.reference model.cible)
+            , rebuilt (Composition.nom model.cible ++ " factorisé") "ref-cible" (Animation.static (Composition.fond model.cible) (Composition.instances model.cible))
+            ]
     in
     if model.width < 980 then
         column [ width fill, spacing 12 ]
@@ -903,7 +941,7 @@ mirrorPanel : Model -> Element Msg
 mirrorPanel model =
     let
         source =
-            List.filter (\i -> i.id == model.selected) (Composition.instances model.cible) |> List.head |> Maybe.withDefault Composition.spirit
+            List.filter (\i -> i.id == model.selected) (Composition.instances model.cible) |> List.head |> Maybe.withDefault Composition.connaissance
 
         reflected =
             source.pose.chirality == Reflected
@@ -974,7 +1012,16 @@ correspondence model =
                             "Directe"
                         )
                 )
-            , col "Borne" (\t -> mono (Ui.format 2 (t.bound * 100000) ++ "e−5"))
+            , col "Borne"
+                (\t ->
+                    mono
+                        (if model.cible == Composition.Z then
+                            "—"
+
+                         else
+                            Ui.format 2 (t.bound * 100000) ++ "e−5"
+                        )
+                )
             ]
 
         columns =
@@ -992,10 +1039,13 @@ correspondence model =
             (if model.cible == Composition.X then
                 "Les sept correspondances"
 
-             else
+             else if model.cible == Composition.Y then
                 "Les huit correspondances"
+
+             else
+                "Les cinq placements de Zoé"
             )
-        , Ui.paragraph "Sélectionnez une ligne pour inspecter son placement et sa chiralité. Les erreurs sont exprimées dans le viewBox 30 × 30."
+        , Ui.paragraph "Sélectionnez une ligne pour inspecter son placement et sa chiralité dans le viewBox 30 × 30."
         , Element.table [ width fill, spacing 12 ] { data = Composition.donnees model.cible, columns = columns }
         , Ui.divider
         , case selected of
@@ -1022,9 +1072,17 @@ correspondence model =
                                     "chiralité directe"
                                )
                         )
-                    , Ui.small ("Erreur maximale échantillonnée : " ++ Ui.format 4 (target.error * 100000) ++ " × 10⁻⁵. Borne continue conservative : " ++ Ui.format 4 (target.bound * 100000) ++ " × 10⁻⁵.")
+                    , if model.cible == Composition.Z then
+                        Ui.small "Placement de création : ces valeurs définissent le dessin de Zoé."
+
+                      else
+                        Ui.small ("Erreur maximale échantillonnée : " ++ Ui.format 4 (target.error * 100000) ++ " × 10⁻⁵. Borne continue conservative : " ++ Ui.format 4 (target.bound * 100000) ++ " × 10⁻⁵.")
                     ]
-        , Ui.small ("129 points par arc ; seuil 10⁻⁴. Borne maximale mesurée : " ++ Ui.format 5 (100000 * (List.maximum (List.map .bound (Composition.donnees model.cible)) |> Maybe.withDefault 0)) ++ " × 10⁻⁵. Calcul flottant conservatif sur les arcs et les petites fermetures, sans revendication d’identité symbolique.")
+        , if model.cible == Composition.Z then
+            Ui.small "Z est une nouvelle composition. Le dessin explicite et le SVG factorisé sont vérifiés à partir des mêmes courbes et de ces placements."
+
+          else
+            Ui.small ("129 points par arc ; seuil 10⁻⁴. Borne maximale mesurée : " ++ Ui.format 5 (100000 * (List.maximum (List.map .bound (Composition.donnees model.cible)) |> Maybe.withDefault 0)) ++ " × 10⁻⁵. Calcul flottant conservatif sur les arcs et les petites fermetures, sans revendication d’identité symbolique.")
         , if model.cible == Composition.Y then
             Ui.small "L’arc auditif admet plusieurs correspondances équivalentes. Comme pour X, l’ajustement privilégie une similitude directe lorsqu’elle respecte le seuil."
 

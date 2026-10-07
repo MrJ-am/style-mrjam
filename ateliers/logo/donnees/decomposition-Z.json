@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "personnage": "Zoé",
+  "nature": "Création par placement des contours canoniques ; aucune source Z antérieure fournie",
+  "origine_locale": [13.8, 9],
+  "fond_logo": "#64c29b",
+  "fond_Z": "#087f71",
+  "formule": "T(p)=translation+echelle*R(angle)*F^miroir(p), F(x,y)=(-x,y)",
+  "ordre_de_dessin": "Bras, diagonale, jambes, deux contours de la tête",
+  "instances": [
+    {"id":"kinesthesique-0","path_source":"bras","brique":"Kinesthesique","translation":[22,8],"angle_degres":90,"echelle":0.9,"chiralite":"Directe"},
+    {"id":"kinesthesique-1","path_source":"diagonale","brique":"Kinesthesique","translation":[22,9],"angle_degres":50,"echelle":0.9,"chiralite":"Directe"},
+    {"id":"kinesthesique-2","path_source":"jambes","brique":"Kinesthesique","translation":[6,23],"angle_degres":-90,"echelle":0.9,"chiralite":"Directe"},
+    {"id":"visuel-0","path_source":"tete-visio","brique":"Visuel","translation":[22,8],"angle_degres":-105,"echelle":0.4,"chiralite":"Directe"},
+    {"id":"auditif-0","path_source":"tete-audio","brique":"Auditif","translation":[22,8],"angle_degres":100,"echelle":0.7,"chiralite":"Directe"}
+  ]
+}

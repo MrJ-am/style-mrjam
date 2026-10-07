@@ -16,7 +16,8 @@ for (const [source, target] of [
   ['donnees/decomposition-X.json', 'decomposition-X.json'],
   ['verification/geometrie.json', 'geometrie.json'],
 ]) copyFileSync(`references/kit_codex_logo_X/${source}`, `dist/exports/${target}`);
-for (const name of ['decomposition-Y.json', 'geometrie-Y.json']) copyFileSync(`donnees/${name}`, `dist/exports/${name}`);
+for (const name of ['decomposition-Y.json', 'geometrie-Y.json', 'decomposition-Z.json']) copyFileSync(`donnees/${name}`, `dist/exports/${name}`);
+copyFileSync('dessins/Z.svg', 'dist/exports/Z.svg');
 const template = readFileSync('web/index.html', 'utf8');
 const script = readFileSync('dist/elm.js', 'utf8').replaceAll('</script', '<\\/script');
 const boot = readFileSync('web/boot.js', 'utf8');
@@ -26,7 +27,7 @@ const html = template.replace('/* STYLES */', () => style).replace('/* ELM */', 
 writeFileSync('dist/index.html', html);
 writeFileSync('dist/atelier-logo.html', html);
 writeFileSync('dist/atelier-logo-x.html', html); // Nom historique de la première livraison.
-const philosophie = html.replace('<title>Écho — Atelier du mouvement</title>', '<title>Philosophie du logo — Écho · MrJ.am</title>').replace('Atelier vectoriel interactif : rotation centrifuge du logo et recomposition en personnages X et Y.', 'La philosophie du logo Écho : esprit, richesse sensorielle, proportions et recompositions.').replace(/<script>\(\(\) => \{[\s\S]*?<\/script>/, '<script>Elm.Philosophie.init({node:document.getElementById("app"),flags:{width:innerWidth}});</script>');
+const philosophie = html.replace('<title>Écho — Atelier du mouvement</title>', '<title>Philosophie du logo — Écho · MrJ.am</title>').replace('Atelier vectoriel interactif : rotation centrifuge du logo et recomposition en Xiaoyu (X), Ydriss (Y) et Zoé (Z).', 'La philosophie du logo Écho : connaissance, audio, visio, kino et les tuteurs Xiaoyu, Ydriss et Zoé.').replace(/<script>\(\(\) => \{[\s\S]*?<\/script>/, '<script>Elm.Philosophie.init({node:document.getElementById("app"),flags:{width:innerWidth}});</script>');
 writeFileSync('dist/philosophie.html', philosophie);
 writeFileSync('dist/.nojekyll', '');
 console.log('Atelier et philosophie : dist/ ; exports : dist/exports/');

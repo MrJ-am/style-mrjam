@@ -2,7 +2,7 @@
   "name": "atelier-logo-mrjam",
   "version": "1.0.0",
   "private": true,
-  "description": "Atelier des briques du logo, de X et de Y",
+  "description": "Atelier du logo, des pictogrammes audio, visio, kino et des tuteurs X, Y, Z",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "npm run build && python3 -m http.server 4187 --directory dist",
