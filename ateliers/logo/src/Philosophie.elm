@@ -134,7 +134,7 @@ vue modele =
                 [ brique Visuel "Regarder" "À droite, la forme visuelle et le disque évoquent l’œil et son sourcil : observer, distinguer, mettre en relation."
                 , brique Kinesthesique "Agir" "La forme qui descend, associée au disque, fait apparaître un corps et sa tête : éprouver, manipuler, mettre en mouvement."
                 ]
-            , chapitre "02 · Des proportions qui se répondent"
+            , chapitre "02 · Les proportions"
                 "La croissance inscrite dans le dessin."
                 [ "Le dessin repose sur des arcs de cercle. Le disque-esprit a un rayon de 2 ; les raccords aux trois modalités utilisent un rayon de 3. Les rayons principaux 3, 6 et 12 se doublent, tandis que d’autres arcs font apparaître 5, 8 et 13."
                 , "On y rencontre donc une progression de raison 2 et les nombres 2, 3, 5, 8, 13 de la suite de Fibonacci. Ces rapports donnent une cohérence aux courbes et portent l’idée d’effets qui se multiplient : les expériences et les connaissances prennent une autre portée lorsqu’elles se relient. C’est le langage symbolique du logo."
@@ -143,12 +143,12 @@ vue modele =
                 [ Ui.label "Une géométrie commune"
                 , wrappedRow [ width fill, spacing 16 ] [ Ui.badge "Rayon de l’esprit · 2", Ui.badge "Progression · 3 → 6 → 12", Ui.badge "Fibonacci · 2, 3, 5, 8, 13" ]
                 ]
-            , chapitre "03 · Un vocabulaire à recomposer"
+            , chapitre "03 · La recomposition"
                 "Changer de figure, garder ses formes."
                 [ "X et Y prolongent ce vocabulaire. Leurs silhouettes naissent de copies des mêmes briques, déplacées, tournées, agrandies ou réfléchies. Leurs contours restent ceux du logo. Une forme peut changer de place et de rôle tout en gardant son identité."
                 , "X réunit sept occurrences. Y en conserve huit, dont deux doublons historiques : six placements distincts composent sa silhouette. Aucun des deux personnages ne contient le petit disque comme pièce séparée. L’atelier rend ces choix visibles et permet de remonter du personnage au logo."
                 ]
-            , chapitre "04 · Le mouvement comme lecture"
+            , chapitre "04 · Le mouvement"
                 "Voir les relations se construire."
                 [ "L’animation permet de suivre une brique, de repérer ses copies et de comprendre un retournement. La rotation autour de l’esprit fait apparaître les relations entre les trois modalités ; la recomposition montre comment un même ensemble engendre d’autres figures."
                 , "Le mouvement reste à votre rythme : lancer, arrêter, revenir, observer une étape. L’immobilité fait aussi partie de l’exploration."
