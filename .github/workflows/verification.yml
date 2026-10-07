@@ -28,6 +28,7 @@ jobs:
         run: |
           python3 tests/navigation.py
           python3 tests/documentaire.py
+          python3 tests/blocs.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
