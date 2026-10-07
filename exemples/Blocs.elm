@@ -14,7 +14,8 @@ main =
         , view =
             \n ->
                 MrJam.page "Constructions emboîtées"
-                    [ Blocs.emboitable Blocs.Neutre
+                    [ Blocs.styles
+                    , Blocs.emboitable Blocs.Neutre
                         []
                         (MrJam.paragraphe "Une construction à deux cavités")
                         [ Blocs.cavite [] (MrJam.bouton "Placer dans la première cavité" ())
