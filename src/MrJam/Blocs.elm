@@ -98,7 +98,10 @@ proposition : List (Attribute msg) -> Element msg -> Element msg
 proposition attributs contenu =
     UI.el
         ([ UI.paddingXY 12 7
-         , UI.width (UI.minimum 0 UI.shrink)
+         , UI.width UI.shrink
+         , UI.htmlAttribute (A.style "width" "max-content")
+         , UI.htmlAttribute (A.style "max-width" "100%")
+         , UI.htmlAttribute (A.style "flex-basis" "auto")
          , Fond.color couleurs.surface
          , Bordure.rounded 24
          , Bordure.width 1
