@@ -63,6 +63,17 @@ chapitre numero titre paragraphes =
         ([ Ui.label numero, Ui.heading 2 titre ] ++ List.map MrJam.paragraphe paragraphes)
 
 
+axe : Composition.Cible -> String -> String -> String -> Element msg
+axe cible titre resume description =
+    Ui.card [ width fill, spacing 14, Element.alignTop ]
+        [ Ui.label (Composition.prenom cible)
+        , Ui.heading 3 (Composition.nom cible ++ " — " ++ titre)
+        , el [ Police.semiBold ] (MrJam.paragraphe resume)
+        , MrJam.paragraphe description
+        , MrJam.lien ("Explorer " ++ Composition.prenom cible ++ " →") ("./?cible=" ++ Composition.nom cible ++ "&p=1")
+        ]
+
+
 vue : Modele -> Html.Html Message
 vue modele =
     let
@@ -78,6 +89,21 @@ vue modele =
 
         visuel titre identifiant scene =
             Ui.card [ spacing 10 ] [ illustration identifiant titre scene, el [ Element.centerX ] (Ui.label titre) ]
+
+        axes =
+            [ axe Composition.X
+                "Expérimenter"
+                "Agir et observer."
+                "Agir, manipuler, essayer et observer les effets pour comprendre le fonctionnement d’un objet par l’expérience. Avec Xiaoyu, on peut déplacer le point d’appui d’un levier, soulever une charge et sentir ce qui change."
+            , axe Composition.Y
+                "Apprendre"
+                "Acquérir et stabiliser."
+                "Acquérir des connaissances, répéter, mémoriser et s’entraîner pour stabiliser ce qui a été acquis. Avec Idriss, on apprend à nommer les parties du levier, on retrouve les notions de mémoire et on s’exerce à les utiliser dans plusieurs situations."
+            , axe Composition.Z
+                "Conceptualiser"
+                "Relier, structurer et abstraire."
+                "Relier les connaissances, les organiser et changer de niveau de description. Avec Zoé, abstraire consiste à dégager une relation commune à plusieurs situations en laissant de côté leurs détails particuliers : reconnaître, par exemple, le principe du levier dans des ciseaux et une balançoire."
+            ]
     in
     Disposition.cadre []
         (column
@@ -118,7 +144,7 @@ vue modele =
             , ensemble
                 [ visuel "Le logo" "philo-logo" (Animation.static "#64c29b" Composition.logo)
                 , visuel "X · Xiaoyu" "philo-x" (Animation.static (Composition.fond Composition.X) Composition.x)
-                , visuel "Y · Ydriss" "philo-y" (Animation.static (Composition.fond Composition.Y) Composition.y)
+                , visuel "Y · Idriss" "philo-y" (Animation.static (Composition.fond Composition.Y) Composition.y)
                 , visuel "Z · Zoé" "philo-z" (Animation.static (Composition.fond Composition.Z) Composition.z)
                 ]
             , chapitre "01 · Le sens des formes"
@@ -145,15 +171,20 @@ vue modele =
                 , wrappedRow [ width fill, spacing 16 ] [ Ui.badge "Disque central · rayon 2", Ui.badge "Progression · 3 → 6 → 12", Ui.badge "Fibonacci · 2, 3, 5, 8, 13" ]
                 ]
             , chapitre "03 · Les trois axes"
-                "Xiaoyu, Ydriss et Zoé."
-                [ "X, Y et Z sont à la fois trois axes et les initiales des prénoms Xiaoyu, Ydriss et Zoé. Ce sont trois tuteurs : iels font travailler l’élève chacun dans une direction. Leurs silhouettes reprennent la lettre de leur axe."
-                , "Xiaoyu déploie une silhouette en X. Ydriss lève les bras dans une silhouette en Y. Zoé forme un Z avec ses bras, son corps en diagonale et ses jambes. Les trois personnages utilisent les mêmes contours, déplacés, tournés, mis à l’échelle ou réfléchis."
-                , "X et Y conservent les dessins fournis : sept occurrences pour X, huit pour Y dont deux superpositions historiques. Zoé est une nouvelle composition de cinq contours. Dans ces silhouettes, la tête se lit entre les courbes ; le disque de connaissance reste une pièce explicite du logo et des pictogrammes sensoriels."
+                "Expérimenter — Apprendre — Conceptualiser"
+                [ "Xiaoyu (X), Idriss (Y) et Zoé (Z) incarnent trois directions complémentaires de l’apprentissage. Iels accompagnent l’élève pour agir et observer, acquérir et stabiliser, relier, structurer et abstraire."
+                , "Ces trois axes ne sont pas trois étapes successives d’une méthode. L’apprentissage circule continuellement entre eux : une observation suscite une question, une connaissance donne envie d’essayer, une relation comprise éclaire ce que l’on observe."
                 ]
-            , wrappedRow [ width fill, spacing 16 ]
-                [ MrJam.lien "Explorer Xiaoyu →" "./?cible=X&p=1"
-                , MrJam.lien "Explorer Ydriss →" "./?cible=Y&p=1"
-                , MrJam.lien "Explorer Zoé →" "./?cible=Z&p=1"
+            , if modele.largeur < 950 then
+                column [ width fill, spacing 18 ] axes
+
+              else
+                ensemble axes
+            , column [ width fill, spacing 16 ]
+                [ Ui.heading 3 "Z : prendre de la hauteur"
+                , MrJam.paragraphe "L’axe Z ajoute métaphoriquement une dimension : en prenant de la hauteur, on voit la structure de ce que l’on considérait jusque-là dans le plan. On passe de cet objet et de cet essai à une relation que l’on peut reconnaître et utiliser ailleurs. C’est le rôle particulier de l’abstraction."
+                , MrJam.paragraphe "Cette prise de hauteur ramène aussi à l’expérience : le principe du levier invite à essayer un autre point d’appui ; l’entraînement peut faire apparaître une nouvelle question. On revient ainsi d’un axe à l’autre selon ce que l’on cherche à comprendre. Audio, visio et kino peuvent intervenir dans chacune de ces directions."
+                , Ui.small "Les silhouettes X, Y et Z donnent un visage à ces trois directions. Elles sont composées des mêmes courbes que le logo ; l’atelier permet d’en explorer les placements et les transformations."
                 ]
             , chapitre "04 · Le mouvement"
                 "Voir les relations se construire."

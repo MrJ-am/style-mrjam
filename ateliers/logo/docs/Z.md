@@ -1,6 +1,6 @@
 # Zoé : construction de l’axe Z
 
-Xiaoyu (X), Ydriss (Y) et Zoé (Z) sont trois tuteurs, chacun faisant travailler l’élève dans une direction. La silhouette reprend l’initiale du prénom et la lettre de l’axe.
+Xiaoyu (X), Idriss (Y) et Zoé (Z) sont trois tuteurs, chacun faisant travailler l’élève dans une direction. La silhouette reprend la lettre de l’axe.
 
 Contrairement à X et Y, aucun dessin Z antérieur n’a été fourni. Zoé est une nouvelle composition : une ligne de bras, un corps en diagonale et une ligne de jambes forment un Z. Deux petits contours complètent la tête en haut à droite. Sa couleur `#087f71` est l’accent déjà présent dans la palette MrJ.am.
 

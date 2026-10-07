@@ -9,7 +9,7 @@ Les SVG autonomes sont produits par [l’atelier Elm](../../../../ateliers/logo/
 | `Visio.svg` | Disque de connaissance + contour visio |
 | `Kino.svg` | Disque de connaissance + contour kino |
 | `X-factorise.svg` | Xiaoyu, sept occurrences de contours |
-| `Y-factorise.svg` | Ydriss, huit occurrences dont deux doublons historiques |
+| `Y-factorise.svg` | Idriss, huit occurrences dont deux doublons historiques |
 | `Z-factorise.svg` | Zoé, cinq occurrences de contours |
 | `Z.svg` | Même Zoé, cinq tracés explicites |
 

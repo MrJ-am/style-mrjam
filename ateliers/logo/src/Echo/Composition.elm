@@ -97,7 +97,7 @@ prenom cible =
             "Xiaoyu"
 
         Y ->
-            "Ydriss"
+            "Idriss"
 
         Z ->
             "Zoé"
@@ -162,7 +162,7 @@ description cible =
             "Xiaoyu · Sept occurrences de contours : 1 audio, 3 visio et 3 kino. Le disque de connaissance n’est pas une pièce séparée dans le dessin X fourni."
 
         Y ->
-            "Ydriss · Huit occurrences de contours : 2 audio, 2 visio et 4 kino. Six placements distincts : path14 double path8, path16 double path10. Ces superpositions originales sont conservées. Le disque de connaissance n’est pas une pièce séparée dans le dessin Y fourni."
+            "Idriss · Huit occurrences de contours : 2 audio, 2 visio et 4 kino. Six placements distincts : path14 double path8, path16 double path10. Ces superpositions originales sont conservées. Le disque de connaissance n’est pas une pièce séparée dans le dessin Y fourni."
 
         Z ->
             "Zoé · Cinq occurrences de contours : 1 audio, 1 visio et 3 kino. Les bras, le corps en diagonale et les jambes dessinent un Z. Cette nouvelle composition réutilise les courbes du logo ; sa tête se lit dans l’espace entre elles."
