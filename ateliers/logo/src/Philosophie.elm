@@ -195,7 +195,7 @@ vue modele =
             , Ui.divider
             , column [ width fill, spacing 12 ]
                 [ Ui.heading 2 "Une construction, une histoire"
-                , MrJam.paragraphe "La construction géométrique du logo a été élaborée dans GeoGebra, puis transcrite en SVG et en TikZ. Le dépôt Signature conserve l’identité de référence. Cet atelier présente le logo, les dessins X et Y fournis, les pictogrammes complets et la création de Zoé pour l’axe Z."
+                , MrJam.paragraphe "La construction géométrique du logo a été élaborée dans GeoGebra, puis transcrite en SVG et en TikZ. Le dépôt Signature conserve l’identité de référence. Cet atelier présente le logo, les dessins X et Y fournis, les pictogrammes complets et la reprise de l’ébauche retrouvée de Zoé pour l’axe Z."
                 , MrJam.lien "Consulter le logo de référence dans Signature" "https://github.com/MrJ-am/Signature/blob/17495b13cefa24473e37434b98336b27caec8cdf/artwork/Echologo.svg"
                 , MrJam.lien "Voir les sources et les mesures de l’atelier" "https://github.com/MrJ-am/style-mrjam/tree/main/ateliers/logo"
                 , Ui.small "Logo, signature et déclinaisons : toute utilisation est strictement réservée. Leur présence publique ne vaut pas autorisation de reproduction, de modification ou de redistribution. Les licences des dépendances ne s’étendent pas à ces éléments d’identité."

@@ -26,14 +26,14 @@ for nom, decomposition, rapport in [
     erreurs = {r['path_id']: r for r in json.loads(rapport.read_text())['instances']} if rapport else {}
     lignes = []
     for inst in donnees['instances']:
-        # Z est une création à poses définies, sans ajustement sur un dessin ancien.
+        # Les poses Z retouchées sont distinctes des mesures de l’ébauche originale.
         e = erreurs.get(inst['path_source'], {'erreur_max_echantillons': 0, 'borne_continue': 0})
         lignes.append('    { id = %s, path = %s, brick = %s, x = %r, y = %r, angle = %s, scale = %r, reflected = %s, error = %r, bound = %r }' % (
             json.dumps(inst['id']), json.dumps(inst['path_source']), inst['brique'], *inst['translation'],
             inst['angle_degres'], inst['echelle'], 'True' if inst['chiralite'] == 'Reflechie' else 'False',
             e['erreur_max_echantillons'], e['borne_continue']))
     sortie += f'\n{nom} : List Target\n{nom} =\n    [\n' + '\n    ,\n'.join(lignes) + '\n    ]\n'
-for cle, chemin in [('logoSource', KIT/'sources/logo-original.svg'), ('xSource', KIT/'sources/X-original.svg'), ('sourceY', RACINE/'references/Y-original.svg'), ('sourceZ', RACINE/'dessins/Z.svg')]:
+for cle, chemin in [('logoSource', KIT/'sources/logo-original.svg'), ('xSource', KIT/'sources/X-original.svg'), ('sourceY', RACINE/'references/Y-original.svg'), ('sourceZ', RACINE/'references/Z-reference.svg')]:
     url = 'data:image/svg+xml;base64,' + base64.b64encode(chemin.read_bytes()).decode()
     sortie += f'\n{cle} : String\n{cle} =\n    "{url}"\n'
 (RACINE/'src/Echo/ReferenceData.elm').write_text(sortie)

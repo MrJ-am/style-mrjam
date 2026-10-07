@@ -104,9 +104,9 @@
       1200
     ],
     "background": "white",
-    "maximum_component_error": 6,
-    "mean_component_error": 1.9444444444444445e-05,
-    "different_pixels": 27,
+    "maximum_component_error": 7,
+    "mean_component_error": 2.0486111111111113e-05,
+    "different_pixels": 33,
     "different_pixels_outside_3px_contours": 0,
     "threshold_mean": 0.02,
     "passed": true
@@ -120,9 +120,9 @@
       1200
     ],
     "background": "white",
-    "maximum_component_error": 6,
-    "mean_component_error": 1.9444444444444445e-05,
-    "different_pixels": 27,
+    "maximum_component_error": 7,
+    "mean_component_error": 2.0486111111111113e-05,
+    "different_pixels": 33,
     "different_pixels_outside_3px_contours": 0,
     "threshold_mean": 0.02,
     "passed": true

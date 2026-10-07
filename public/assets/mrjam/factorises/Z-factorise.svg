@@ -6,9 +6,9 @@
     <g id="z-kinesthesique" transform="translate(-13.8 -9)"><path d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563"/></g>
   </defs>
   <circle cx="15" cy="15" r="15" fill="#087f71"/>
-  <use data-instance="kinesthesique-0" href="#z-kinesthesique" transform="matrix(5.5109105961630896e-17 0.9 -0.9 5.5109105961630896e-17 22 8)" opacity="1" fill="#ffffff" stroke="none"/>
-  <use data-instance="kinesthesique-1" href="#z-kinesthesique" transform="matrix(0.5785088487178854 0.6894399988070802 -0.6894399988070802 0.5785088487178854 22 9)" opacity="1" fill="#ffffff" stroke="none"/>
-  <use data-instance="kinesthesique-2" href="#z-kinesthesique" transform="matrix(5.5109105961630896e-17 -0.9 0.9 5.5109105961630896e-17 6 23)" opacity="1" fill="#ffffff" stroke="none"/>
-  <use data-instance="visuel-0" href="#z-visuel" transform="matrix(-0.10352761804100835 -0.38637033051562736 0.38637033051562736 -0.10352761804100835 22 8)" opacity="1" fill="#ffffff" stroke="none"/>
-  <use data-instance="auditif-0" href="#z-auditif" transform="matrix(-0.1215537243668512 0.6893654271085455 -0.6893654271085455 -0.1215537243668512 22 8)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="auditif-0" href="#z-auditif" transform="matrix(0.5557899849832856 -0.7649792869099393 0.7649792869099393 0.5557899849832856 24.25467483084517 7.275468475324056)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="visuel-0" href="#z-visuel" transform="matrix(-0.904249645398846 0.2764568602965415 -0.2764568602965415 -0.904249645398846 19.1441882766561 8.651908599581088)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="kinesthesique-0" href="#z-kinesthesique" transform="matrix(0.06595937775492723 -0.943263047773601 0.943263047773601 0.06595937775492723 3.9012901261107453 23.56889136319993)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="kinesthesique-1" href="#z-kinesthesique" transform="matrix(0.6915434867667133 0.6448747341302005 -0.6448747341302005 0.6915434867667133 19.1441882766561 8.651908599581088)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="visuel-1" href="#z-visuel" transform="matrix(0.2764568602965411 0.9042496453988461 0.9042496453988461 -0.2764568602965411 19.14418813049609 8.651908463284673)" opacity="1" fill="#ffffff" stroke="none"/>
 </svg>

@@ -1,17 +1,81 @@
 {
-  "version": 1,
+  "version": 2,
   "personnage": "Zoé",
-  "nature": "Création par placement des contours canoniques ; aucune source Z antérieure fournie",
-  "origine_locale": [13.8, 9],
+  "nature": "Reprise de Z-original.svg : tête rapprochée, raccords des épaules et du pied alignés ; arcs canoniques inchangés.",
+  "source": "references/Z-original.svg",
+  "origine_locale": [
+    13.8,
+    9
+  ],
   "fond_logo": "#64c29b",
   "fond_Z": "#087f71",
   "formule": "T(p)=translation+echelle*R(angle)*F^miroir(p), F(x,y)=(-x,y)",
-  "ordre_de_dessin": "Bras, diagonale, jambes, deux contours de la tête",
+  "ordre_de_dessin": "Tête, bras gauche, pied, diagonale, bras droit",
   "instances": [
-    {"id":"kinesthesique-0","path_source":"bras","brique":"Kinesthesique","translation":[22,8],"angle_degres":90,"echelle":0.9,"chiralite":"Directe"},
-    {"id":"kinesthesique-1","path_source":"diagonale","brique":"Kinesthesique","translation":[22,9],"angle_degres":50,"echelle":0.9,"chiralite":"Directe"},
-    {"id":"kinesthesique-2","path_source":"jambes","brique":"Kinesthesique","translation":[6,23],"angle_degres":-90,"echelle":0.9,"chiralite":"Directe"},
-    {"id":"visuel-0","path_source":"tete-visio","brique":"Visuel","translation":[22,8],"angle_degres":-105,"echelle":0.4,"chiralite":"Directe"},
-    {"id":"auditif-0","path_source":"tete-audio","brique":"Auditif","translation":[22,8],"angle_degres":100,"echelle":0.7,"chiralite":"Directe"}
+    {
+      "id": "auditif-0",
+      "path_source": "tete",
+      "path_original": "path6",
+      "brique": "Auditif",
+      "translation": [
+        24.25467483084517,
+        7.275468475324056
+      ],
+      "angle_degres": -54,
+      "echelle": 0.9455664,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "visuel-0",
+      "path_source": "bras-gauche",
+      "path_original": "path8",
+      "brique": "Visuel",
+      "translation": [
+        19.1441882766561,
+        8.651908599581088
+      ],
+      "angle_degres": 163,
+      "echelle": 0.9455664,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "kinesthesique-0",
+      "path_source": "pied",
+      "path_original": "path10",
+      "brique": "Kinesthesique",
+      "translation": [
+        3.9012901261107453,
+        23.56889136319993
+      ],
+      "angle_degres": -86,
+      "echelle": 0.9455664,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "kinesthesique-1",
+      "path_source": "diagonale",
+      "path_original": "path10-2",
+      "brique": "Kinesthesique",
+      "translation": [
+        19.1441882766561,
+        8.651908599581088
+      ],
+      "angle_degres": 43,
+      "echelle": 0.9455664,
+      "chiralite": "Directe"
+    },
+    {
+      "id": "visuel-1",
+      "path_source": "bras-droit",
+      "path_original": "path8-2",
+      "brique": "Visuel",
+      "translation": [
+        19.14418813049609,
+        8.651908463284673
+      ],
+      "angle_degres": -107,
+      "echelle": 0.9455664,
+      "chiralite": "Reflechie"
+    }
   ]
 }

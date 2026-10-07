@@ -13,9 +13,9 @@ Les SVG autonomes sont produits par [l’atelier Elm](../../../../ateliers/logo/
 | `Z-factorise.svg` | Zoé, cinq occurrences de contours |
 | `Z.svg` | Même Zoé, cinq tracés explicites |
 
-Les contours ne sont pas redessinés. Les poses complètes sont dans `decomposition-X.json`, `decomposition-Y.json` et `decomposition-Z.json`. Les contrôles sur les SVG réellement exportés figurent dans [le rapport](../../../../ateliers/logo/verification/production-geometrie.json). Z est une création, décrite dans [sa construction](../../../../ateliers/logo/docs/Z.md).
+Les contours ne sont pas redessinés. Les poses complètes sont dans `decomposition-X.json`, `decomposition-Y.json` et `decomposition-Z.json`. Les contrôles sur les SVG réellement exportés figurent dans [le rapport](../../../../ateliers/logo/verification/production-geometrie.json). Z reprend l’ébauche retrouvée, avec une tête détachée et des raccords alignés, décrits dans [sa construction](../../../../ateliers/logo/docs/Z.md).
 
-Pour régénérer : construire Z et les données Elm, construire et vérifier l’atelier, puis recopier les huit SVG et les trois décompositions depuis `ateliers/logo/dist/exports/`. La construction GitHub Pages vérifie que tous les fichiers distribués correspondent aux exports contrôlés.
+Pour régénérer : analyser Y et Z, construire Z et les données Elm, construire et vérifier l’atelier, puis recopier les huit SVG et les trois décompositions depuis `ateliers/logo/dist/exports/`. La construction GitHub Pages vérifie que tous les fichiers distribués correspondent aux exports contrôlés.
 
 La source d’identité reste `MrJ-am/Signature`, à la révision déclarée dans `identite.json`. Le logo original `../Echologo.svg` et sa feuille de signature restent les copies de référence vérifiées.
 

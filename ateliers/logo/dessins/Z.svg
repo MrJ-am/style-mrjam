@@ -2,9 +2,9 @@
   <title id="titre">Zoé · axe Z</title>
   <desc id="description">Une silhouette en Z composée des courbes audio, visio et kino du logo. Utilisation strictement réservée.</desc>
   <circle cx="15" cy="15" r="15" fill="#087f71"/>
-  <path id="bras" fill="#ffffff" d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563" transform="translate(22 8) rotate(90) scale(0.9 0.9) translate(-13.8 -9)"/>
-  <path id="diagonale" fill="#ffffff" d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563" transform="translate(22 9) rotate(50) scale(0.9 0.9) translate(-13.8 -9)"/>
-  <path id="jambes" fill="#ffffff" d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563" transform="translate(6 23) rotate(-90) scale(0.9 0.9) translate(-13.8 -9)"/>
-  <path id="tete-visio" fill="#ffffff" d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3" transform="translate(22 8) rotate(-105) scale(0.4 0.4) translate(-13.8 -9)"/>
-  <path id="tete-audio" fill="#ffffff" d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407" transform="translate(22 8) rotate(100) scale(0.7 0.7) translate(-13.8 -9)"/>
+  <path id="tete" fill="#ffffff" d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407" transform="translate(24.25467483084517 7.275468475324056) rotate(-54) scale(0.9455664 0.9455664) translate(-13.8 -9)"/>
+  <path id="bras-gauche" fill="#ffffff" d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3" transform="translate(19.1441882766561 8.651908599581088) rotate(163) scale(0.9455664 0.9455664) translate(-13.8 -9)"/>
+  <path id="pied" fill="#ffffff" d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563" transform="translate(3.9012901261107453 23.56889136319993) rotate(-86) scale(0.9455664 0.9455664) translate(-13.8 -9)"/>
+  <path id="diagonale" fill="#ffffff" d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563" transform="translate(19.1441882766561 8.651908599581088) rotate(43) scale(0.9455664 0.9455664) translate(-13.8 -9)"/>
+  <path id="bras-droit" fill="#ffffff" d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3" transform="translate(19.14418813049609 8.651908463284673) rotate(-107) scale(-0.9455664 0.9455664) translate(-13.8 -9)"/>
 </svg>

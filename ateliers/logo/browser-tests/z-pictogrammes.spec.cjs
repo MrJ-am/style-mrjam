@@ -13,6 +13,9 @@ for (const strategie of ['relief', 'fondu']) {
     await page.getByRole('button', {name:'Fixer Z', exact:true}).click(); await attendre(page);
     const zoe = await poses(page);
     expect(zoe).toHaveLength(5);
+    // Le bras droit de l’ébauche est un visio réfléchi dans les deux stratégies.
+    const matrices = zoe.map(([id, transformation]) => [id, transformation.match(/matrix\(([^)]+)\)/)[1].trim().split(/[ ,]+/).map(Number)]);
+    expect(matrices.filter(([, [a,b,c,d]]) => a*d-b*c < 0).map(([id]) => id)).toEqual(['visuel-1']);
     await expect(scene(page).locator('[data-background]')).toHaveAttribute('fill', '#087f71');
     await page.getByRole('button', {name:'Fixer le logo', exact:true}).click(); await attendre(page);
     expect(await poses(page)).toEqual(logo);
@@ -69,6 +72,12 @@ test('Zoé : placements inspectables et deux formes du fichier SVG', async ({pag
   const source = await page.request.get(await page.getByRole('link',{name:'↓ Z.svg',exact:true}).getAttribute('href'));
   expect(source.ok()).toBe(true);
   expect(await source.text()).toBe(fs.readFileSync('dessins/Z.svg','utf8'));
+  const ebauche = await page.request.get(await page.getByRole('link',{name:'↓ Ébauche Z originale',exact:true}).getAttribute('href'));
+  expect(ebauche.ok()).toBe(true);
+  expect(await ebauche.body()).toEqual(fs.readFileSync('references/Z-original.svg'));
+  await expect(page.getByRole('img',{name:'Z · ébauche recadrée',exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Écart visuel',exact:true}).click();
+  await expect(page.getByText(/Les écarts montrent les retouches de placement/)).toBeVisible();
   const ids = await page.locator('[id]').evaluateAll(es => es.map(e => e.id));
   expect(new Set(ids).size).toBe(ids.length);
 });

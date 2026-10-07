@@ -756,6 +756,11 @@ anatomy : Model -> Element Msg
 anatomy model =
     Ui.card [ Background.color (Element.rgb255 238 243 237), spacing 13 ]
         [ Ui.label "Suivre les briques"
+        , if model.cible == Composition.Z then
+            MrJam.lien "↓ Ébauche Z originale" "exports/Z-original.svg"
+
+          else
+            Element.none
         , Ui.checkbox "Couleurs diagnostiques" model.diagnostic Diagnostic
         , Ui.checkbox "Afficher le repère O" model.axes Axes
         , Ui.small
@@ -771,7 +776,7 @@ anatomy model =
                             "Un contour visio et deux contours kino se retournent. Les doublons rejoignent les mêmes placements."
 
                         else
-                            "Les cinq contours de Zoé se déplacent et tournent, sans réflexion."
+                            "Les cinq contours de Zoé se déplacent et tournent. Le contour visio du bras droit se retourne."
                        )
             )
         , if model.diagnostic then
@@ -857,7 +862,7 @@ referenceGallery model =
             [ sourceCard
                 (Composition.nom model.cible
                     ++ (if model.cible == Composition.Z then
-                            " · dessin de Zoé"
+                            " · ébauche recadrée"
 
                         else
                             " original"
@@ -921,7 +926,10 @@ comparisonPanel model =
                 )
             )
         , Ui.small
-            (if model.comparison == 2 then
+            (if model.cible == Composition.Z && model.comparison /= 0 then
+                "L’ébauche est recadrée sur le même fond que la reprise. Les écarts montrent les retouches de placement : tête rapprochée, épaules et pied alignés. En mode écart, le noir indique le rendu commun. Désactivez le diagnostic et affichez toutes les pièces pour comparer."
+
+             else if model.comparison == 2 then
                 "Noir : rendu commun. Pixels colorés : écart, notamment sur les contours anticrénelés. Désactivez le diagnostic et affichez toutes les pièces pour comparer la cible entière."
 
              else if model.comparison == 1 then
@@ -930,6 +938,11 @@ comparisonPanel model =
              else
                 Composition.description model.cible
             )
+        , if model.cible == Composition.Z then
+            MrJam.lien "↓ Ébauche Z originale" "exports/Z-original.svg"
+
+          else
+            Element.none
         , Ui.checkbox "Couleurs diagnostiques" model.diagnostic Diagnostic
         , Ui.checkbox "Afficher le repère O" model.axes Axes
         , Ui.checkbox "Isoler la sélection" model.isolate Isolate
@@ -1073,13 +1086,13 @@ correspondence model =
                                )
                         )
                     , if model.cible == Composition.Z then
-                        Ui.small "Placement de création : ces valeurs définissent le dessin de Zoé."
+                        Ui.small "Placement retravaillé à partir de l’ébauche de Zoé."
 
                       else
                         Ui.small ("Erreur maximale échantillonnée : " ++ Ui.format 4 (target.error * 100000) ++ " × 10⁻⁵. Borne continue conservative : " ++ Ui.format 4 (target.bound * 100000) ++ " × 10⁻⁵.")
                     ]
         , if model.cible == Composition.Z then
-            Ui.small "Z est une nouvelle composition. Le dessin explicite et le SVG factorisé sont vérifiés à partir des mêmes courbes et de ces placements."
+            Ui.small "L’ébauche retrouvée est conservée. Sa silhouette a été recadrée, sa tête rapprochée et les raccords des épaules et du pied alignés. Le dessin retravaillé et son export factorisé utilisent exactement les mêmes courbes et placements."
 
           else
             Ui.small ("129 points par arc ; seuil 10⁻⁴. Borne maximale mesurée : " ++ Ui.format 5 (100000 * (List.maximum (List.map .bound (Composition.donnees model.cible)) |> Maybe.withDefault 0)) ++ " × 10⁻⁵. Calcul flottant conservatif sur les arcs et les petites fermetures, sans revendication d’identité symbolique.")

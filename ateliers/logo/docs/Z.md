@@ -1,23 +1,31 @@
-# Zoé : construction de l’axe Z
+# Zoé : reprise de l’ébauche de l’axe Z
 
-Xiaoyu (X), Idriss (Y) et Zoé (Z) sont trois tuteurs, chacun faisant travailler l’élève dans une direction. La silhouette reprend la lettre de l’axe.
+Zoé incarne **conceptualiser** : relier, structurer et abstraire. Avec Xiaoyu (expérimenter) et Idriss (apprendre), elle accompagne une direction complémentaire de l’apprentissage, sans imposer un ordre entre les trois axes.
 
-Contrairement à X et Y, aucun dessin Z antérieur n’a été fourni. Zoé est une nouvelle composition : une ligne de bras, un corps en diagonale et une ligne de jambes forment un Z. Deux petits contours complètent la tête en haut à droite. Sa couleur `#087f71` est l’accent déjà présent dans la palette MrJ.am.
+La reprise part du [Z original retrouvé](../references/Z-original.svg), conservé sans modification. La photographie fournie permet d’identifier le personnage parmi les essais de la feuille : une tête détachée, deux bras, un corps en diagonale et un pied. Le disque isolé, les deux contours d’essai et le rectangle vert restent dans l’archive originale.
 
-Les cinq tracés réutilisent exactement les contours du logo. Aucun point de leurs arcs n’est redessiné. Les pictogrammes complets audio, visio et kino associent leur contour au disque central de **connaissance** ; la recomposition des personnages utilise les contours, comme les X et Y fournis.
+## Retouches
 
-| Tracé | Contour | Translation | Angle | Échelle | Face |
-|---|---|---|---:|---:|---|
-| bras | kino | (22 ; 8) | 90° | 0,9 | Directe |
-| diagonale | kino | (22 ; 9) | 50° | 0,9 | Directe |
-| jambes | kino | (6 ; 23) | −90° | 0,9 | Directe |
-| tete-visio | visio | (22 ; 8) | −105° | 0,4 | Directe |
-| tete-audio | audio | (22 ; 8) | 100° | 0,7 | Directe |
+La silhouette conserve son mouvement et ses cinq pièces : **1 audio, 2 visio et 2 kino**. La tête en croissant est légèrement rapprochée du buste ; les épaules sont alignées sur le corps et le pied rejoint la pointe de la diagonale. Les angles sont ramenés à des degrés entiers et les cinq pièces partagent la même échelle. Les courbes du logo ne sont pas redessinées.
 
-La formule est `T(p) = translation + échelle × R(angle) × p`, après centrage des contours sur O=(13,8 ; 9). Les poses sont définies dans [decomposition-Z.json](../donnees/decomposition-Z.json). Ce sont des choix de dessin, pas des mesures obtenues en ajustant un fichier historique.
+Le bras droit utilise une réflexion du contour visio. Le fond circulaire `#087f71` reprend l’accent de la palette MrJ.am. Le [recadrage de l’ébauche](../references/Z-reference.svg) applique seulement une translation et une réduction uniforme aux cinq tracés originaux, sur ce même fond : la comparaison de l’atelier montre ainsi les retouches de placement. Elle ne prétend pas à l’identité entre avant et après.
 
-`scripts/construire-z.py` produit [Z.svg](../dessins/Z.svg) avec cinq tracés explicites. Le module Elm `Exporter` produit `Z-factorise.svg` avec cinq occurrences `<use>`. La vérification indépendante des matrices et des arcs impose un écart inférieur à 10⁻¹² et contrôle que les contours restent dans le disque de fond. Les rendus du dessin, de l’export et de l’animation sont comparés dans Chromium et Firefox.
+| Pièce | Source originale | Contour | Angle | Face |
+|---|---|---|---:|---|
+| Tête | path6 | audio | −54° | Directe |
+| Bras gauche | path8 | visio | 163° | Directe |
+| Pied | path10 | kino | −86° | Directe |
+| Diagonale | path10-2 | kino | 43° | Directe |
+| Bras droit | path8-2 | visio | −107° | Réfléchie |
 
-La transformation démarre avec les quatre pièces du logo : une connaissance et un contour de chaque modalité. Deux copies de kino deviennent visibles, le disque central s’efface et les cinq contours prennent leur pose finale. La tête se lit alors dans l’espace entre les courbes. Le même calcul de scène sert à l’aller et au retour, sans lecture automatique.
+Les pictogrammes complets audio, visio et kino associent toujours leur contour au disque de **connaissance**. La recomposition des personnages utilise les contours, comme dans les dessins X et Y.
+
+## Sources et vérifications
+
+`scripts/analyser-z.py` reconnaît les cinq contours de l’original avec une borne continue inférieure à 10⁻⁴, enregistre leurs mesures et les empreintes des sources dans [geometrie-Z-original.json](../donnees/geometrie-Z-original.json), puis produit le recadrage et les [placements retravaillés](../donnees/decomposition-Z.json). Ces placements distinguent le tracé original de sa fonction dans le personnage. Les translations des bras et du pied sont calculées à partir des points de raccord du corps.
+
+`scripts/construire-z.py` produit [Z.svg](../dessins/Z.svg) avec cinq tracés explicites ; Elm produit `Z-factorise.svg` avec cinq occurrences `<use>`. La vérification des matrices et des arcs impose un écart dessin/export inférieur à 10⁻¹², contrôle les trois raccords à 10⁻⁶ et le maintien de la silhouette dans le disque. Les rendus du dessin retravaillé, de l’export et de l’animation sont comparés dans Chromium et Firefox.
+
+La transformation démarre avec les quatre pièces du logo. Une copie de visio et une copie de kino deviennent visibles, le disque central s’efface et le bras droit se retourne. Les deux stratégies de retournement et le retour au logo sont vérifiés dans les navigateurs.
 
 **Toute utilisation du logo et de ses déclinaisons est strictement réservée.**

@@ -18,6 +18,8 @@ for (const [source, target] of [
 ]) copyFileSync(`references/kit_codex_logo_X/${source}`, `dist/exports/${target}`);
 for (const name of ['decomposition-Y.json', 'geometrie-Y.json', 'decomposition-Z.json']) copyFileSync(`donnees/${name}`, `dist/exports/${name}`);
 copyFileSync('dessins/Z.svg', 'dist/exports/Z.svg');
+for (const nom of ['Z-original.svg', 'Z-reference.svg']) copyFileSync(`references/${nom}`, `dist/exports/${nom}`);
+copyFileSync('donnees/geometrie-Z-original.json', 'dist/exports/geometrie-Z-original.json');
 const template = readFileSync('web/index.html', 'utf8');
 const script = readFileSync('dist/elm.js', 'utf8').replaceAll('</script', '<\\/script');
 const boot = readFileSync('web/boot.js', 'utf8');

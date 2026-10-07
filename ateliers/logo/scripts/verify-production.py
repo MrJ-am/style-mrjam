@@ -1,6 +1,7 @@
 """Mesurer les SVG réellement exportés par Elm face aux références immuables."""
 from pathlib import Path
 import json
+import hashlib
 import math
 import sys
 import xml.etree.ElementTree as ET
@@ -80,8 +81,8 @@ for nom, brique in [('Audio', 'Auditif'), ('Visio', 'Visuel'), ('Kino', 'Kinesth
         assert occurrence.attrib['opacity'] == '1'
     pictogrammes[nom] = 'Disque de rayon 2 et contour canonique, au même placement'
 
-# Z est une création : contrôler les poses définies et les arcs, sans inventer
-# de mesure d'ajustement face à un original qui n'a jamais été fourni.
+# Z : distinguer la reconnaissance de l’ébauche des placements retravaillés.
+# Les exports doivent reproduire la reprise ; les retouches diffèrent de l’original.
 z = ET.parse(RACINE/'dist/exports/Z-factorise.svg').getroot()
 definitions = {n.attrib['id']: n for n in z.find(NS+'defs')}
 occurrences = list(z.iter(NS+'use'))
@@ -110,6 +111,20 @@ for occurrence, dessin, instance in zip(occurrences, dessins_z, donnees_z['insta
         assert abs(rendu-complex(15, 15)) < 15, ('Z hors du disque', instance['id'], rendu)
     lignes_z.append(dict(id=instance['id'], path=instance['path_source'], matrice=matrice))
 resultats['Z'] = lignes_z
+rapport_z = json.loads((RACINE/'donnees/geometrie-Z-original.json').read_text())
+for chemin, empreinte in rapport_z['sources_sha256'].items():
+    assert hashlib.sha256((RACINE/chemin).read_bytes()).hexdigest() == empreinte
+assert [i['path_original'] for i in donnees_z['instances']] == [i['path_id'] for i in rapport_z['instances']]
+assert all(i['borne_continue'] < 1e-4 for i in rapport_z['instances'])
+assert [i['brique'] for i in donnees_z['instances']] == ['Auditif', 'Visuel', 'Kinesthesique', 'Kinesthesique', 'Visuel']
+assert [i['id'] for i in donnees_z['instances'] if i['chiralite'] == 'Reflechie'] == ['visuel-1']
+matrices_z = {i['path']: i['matrice'] for i in lignes_z}
+def point_z(nom, x, y):
+    return geometrie.appliquer(matrices_z[nom], complex(x, y))
+# Tolérance liée aux six décimales des points canoniques, sans retoucher leurs arcs.
+assert abs(point_z('bras-gauche', 3, 0) - point_z('diagonale', -1.5, 2.598076)) < 1e-6
+assert abs(point_z('bras-droit', 3, 0) - point_z('diagonale', 2.598076, 1.5)) < 1e-6
+assert abs(point_z('pied', 2.598076, 1.5) - point_z('diagonale', -1.5, 19.568639)) < 1e-6
 print('Z : 5 placements définis ; dessin explicite et export concordants à 1e-12 ; pictogrammes complets.')
 
 # Le logo du kit correspond aux contours de Signature distribués par le dépôt.
@@ -117,7 +132,7 @@ autorite = ET.parse(RACINE/'../../public/assets/mrjam/Echologo.svg').getroot()
 assert ET.tostring(autorite) == ET.tostring(ET.parse(KIT/'sources/logo-original.svg').getroot())
 sortie = dict(source='SVG produits par Echo.Render, compilation Elm optimisée', tolerance=1e-4,
               valide=True, logo='4 occurrences canoniques, translation exacte, fond exact ; source Signature vérifiée', compositions=resultats,
-              pictogrammes=pictogrammes, nature_Z='Création, poses définies ; comparaison dessin/export à 1e-12, sans ajustement historique')
+              pictogrammes=pictogrammes, nature_Z='Reprise de l’ébauche reconnue à 1e-4 ; comparaison dessin retravaillé/export à 1e-12')
 (RACINE/'verification').mkdir(exist_ok=True)
 texte = json.dumps(sortie, ensure_ascii=False, indent=2)+'\n'
 (RACINE/'verification/production-geometrie.json').write_text(texte)

@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "tolerance": 0.0001,
+  "points_par_arc": 129,
+  "valide": true,
+  "nature": "Reconnaissance des cinq contours de l’ébauche, avant les retouches de placement.",
+  "sources_sha256": {
+    "references/Z-original.svg": "a1a1c0d446496cea9eb7f890e24fca02a92b1e6246c09690e39f6b1460d34f29",
+    "references/kit_codex_logo_X/sources/logo-original.svg": "2ab1a8adab21934b47825413ee2a652e2092ed83677319fbe3963d839d1f7a44"
+  },
+  "elements_ecartes": [
+    "rect66",
+    "circle4",
+    "path10-2-9",
+    "path8-2-8"
+  ],
+  "instances": [
+    {
+      "translation": [
+        145.88668707711292,
+        77.18867118831014
+      ],
+      "angle_degres": -54.28287571293993,
+      "echelle": 2.363914829140186,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 1.2618455234657747e-05,
+      "erreur_rms": 7.83308659432328e-06,
+      "borne_continue": 4.9731856600448975e-05,
+      "path_id": "path6",
+      "brique": "Auditif"
+    },
+    {
+      "translation": [
+        131.87556623410018,
+        83.17819882368033
+      ],
+      "angle_degres": 162.88920351267942,
+      "echelle": 2.363916045633574,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 4.060429682170827e-06,
+      "erreur_rms": 2.9566927666322934e-06,
+      "borne_continue": 1.9360708965705605e-05,
+      "path_id": "path8",
+      "brique": "Visuel"
+    },
+    {
+      "translation": [
+        94.07918777048687,
+        120.75736119758004
+      ],
+      "angle_degres": -86.38047202014565,
+      "echelle": 2.3639160287077687,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 2.565416141433004e-06,
+      "erreur_rms": 1.5690533134611316e-06,
+      "borne_continue": 1.1957928085284318e-05,
+      "path_id": "path10",
+      "brique": "Kinesthesique"
+    },
+    {
+      "translation": [
+        131.86047069164024,
+        83.12977149895272
+      ],
+      "angle_degres": 42.47938714632229,
+      "echelle": 2.363916281784401,
+      "miroir": false,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 3.503068524660617e-06,
+      "erreur_rms": 2.3178624626120523e-06,
+      "borne_continue": 2.0458609209522306e-05,
+      "path_id": "path10-2",
+      "brique": "Kinesthesique"
+    },
+    {
+      "translation": [
+        130.34893865727017,
+        83.81009573697649
+      ],
+      "angle_degres": -120.94322515067502,
+      "echelle": 2.363916108910674,
+      "miroir": true,
+      "parcours_inverse": false,
+      "decalage_arcs": 0,
+      "erreur_max_echantillons": 4.7402055753762465e-06,
+      "erreur_rms": 3.443786959220791e-06,
+      "borne_continue": 2.191766832561064e-05,
+      "path_id": "path8-2",
+      "brique": "Visuel"
+    }
+  ]
+}

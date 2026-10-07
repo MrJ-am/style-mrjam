@@ -31,6 +31,8 @@ Depuis ce dossier, avec Node.js 24, Python 3 et les navigateurs Playwright :
 npm ci
 python3 -m pip install -r requirements-verification.txt
 npx playwright install --with-deps chromium firefox
+python3 scripts/analyser-y.py
+python3 scripts/analyser-z.py
 python3 scripts/construire-z.py
 python3 scripts/generate-data.py
 npx elm-format src/Echo/ReferenceData.elm --yes
@@ -55,8 +57,8 @@ Depuis la racine, `npm run compiler:pages` assemble les deux pages et leurs expo
 - `Animation.elm`, `Player.elm` : scène pure et chronologie suspendable.
 - `Render.elm`, `Exporter.elm` : même géométrie pour la scène et les SVG exportés.
 - `src/Shared/Ui.elm` : adaptation aux composants existants `MrJam` et `MrJam.Disposition`. Le curseur natif évite les annonces `aria-live` à chaque frame.
-- `scripts/analyser-y.py`, `construire-z.py`, `generate-data.py` : reconnaissance de Y, construction de Z et génération des données Elm.
-- `references/` : originaux et outils de mesure ; `donnees/` : poses et rapport Y ; `dessins/Z.svg` : nouvelle création.
+- `scripts/analyser-y.py`, `analyser-z.py`, `construire-z.py`, `generate-data.py` : reconnaissance des sources, reprise de Z et génération des données Elm.
+- `references/` : originaux et outils de mesure, dont l’ébauche Z intacte et son recadrage ; `donnees/` : poses et rapports ; `dessins/Z.svg` : reprise de Zoé. Voir [les retouches et leur provenance](docs/Z.md).
 
 Les contours du logo fourni sont identiques à ceux du logo de Signature épinglé dans `../../identite.json`, vérification incluse. Les nouveaux fichiers sont des déclinaisons explicites ; ils ne remplacent pas le logo original distribué par la bibliothèque.
 
