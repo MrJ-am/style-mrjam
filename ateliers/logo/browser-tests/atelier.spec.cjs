@@ -279,6 +279,7 @@ for (const viewport of [{ width: 320, height: 800 }, { width: 375, height: 850 }
     await page.setViewportSize(viewport);
     for (const tab of ['recomposition', 'rotation', 'geometrie']) {
       await page.goto(`/?vue=${tab}&p=1`);
+      if (viewport.width === 320) await page.addStyleTag({ content: '.app-root { font-family: "DejaVu Sans", sans-serif !important }' });
       // Attendre la mise en page après le redimensionnement et l’injection des styles ElmUI.
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(viewport.width);
       expect(await page.getByRole('slider').evaluateAll(inputs => inputs.every(input => {

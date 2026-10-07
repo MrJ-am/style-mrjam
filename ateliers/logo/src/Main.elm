@@ -1041,6 +1041,6 @@ footer model =
         , Ui.small "Logo, signature et déclinaisons : toute utilisation est strictement réservée. Leur présence publique ne vaut pas autorisation de réutilisation."
         , wrappedRow [ width fill, spacing 12 ]
             [ Ui.small "Écho · Atelier du logo · MrJ.am"
-            , el [ alignRight ] (Ui.small "Contours préservés. Échelles et symétries explicites.")
+            , el [ alignRight, width (Element.maximum 420 fill) ] (MrJam.texteSecondaire "Contours préservés. Échelles et symétries explicites.")
             ]
         ]

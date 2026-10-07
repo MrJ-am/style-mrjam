@@ -75,6 +75,7 @@ for (const largeur of [320,375,768,1440]) {
     const erreurs=[]; page.on('pageerror',e=>erreurs.push(e.message));
     for (const vue of ['recomposition','geometrie']) {
       await page.goto(`/?cible=Y&vue=${vue}&p=1`);
+      if (largeur === 320) await page.addStyleTag({content:'.app-root { font-family: "DejaVu Sans", sans-serif !important }'});
       await expect.poll(() => page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(largeur);
     }
     await page.getByRole('link',{name:'Philosophie du logo',exact:true}).click();

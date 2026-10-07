@@ -7,6 +7,8 @@ Vérifications locales du 7 octobre 2026 : Elm 0.19.1, ElmUI 1.1.8, Elm Animator
 - Navigateurs : 55 parcours réussis dans Chromium 151 et Firefox 151, un contrôle `file:` non exécuté dans Chromium en raison de la politique du navigateur géré. L’ouverture directe est vérifiée dans Firefox ; les deux navigateurs couvrent la version HTTP.
 - Quatre largeurs : 320, 375, 768 et 1440 px. Navigation entre pages, contrôles clavier, interaction tactile simulée, préférence de mouvement réduit, absence de débordement, pause/reprise/inversion et exports vérifiés.
 
+La CI Linux a aussi révélé un pied de page trop large à 320 px avec DejaVu Sans. Son texte dispose maintenant d’une largeur bornée et peut passer à la ligne ; les parcours à 320 px imposent cette fonte de repli pour couvrir le défaut.
+
 La première comparaison textuelle de l’export Y détectait une différence du dernier bit de `Math.cos` entre moteurs JavaScript. Le contrôle compare désormais les matrices avec une tolérance de 10⁻¹², en exigeant l’identité du reste du SVG. Le seuil géométrique des arcs reste 10⁻⁴.
 
 ## Géométrie effectivement exportée
