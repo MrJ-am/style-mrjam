@@ -1,6 +1,6 @@
 # Zoé : reprise de l’ébauche de l’axe Z
 
-Zoé incarne **conceptualiser** : relier, structurer et abstraire. Avec Xiaoyu (expérimenter) et Idriss (apprendre), elle accompagne une direction complémentaire de l’apprentissage, sans imposer un ordre entre les trois axes.
+Zoé est un personnage de religieuse, en lien avec Ève. Elle invite à prendre de la hauteur et incarne **conceptualiser** : relier, structurer et abstraire. Avec Xiaoping (expérimenter) et Ydris (apprendre), elle accompagne une direction complémentaire de l’apprentissage, sans imposer un ordre entre les trois axes.
 
 La reprise part du [Z original retrouvé](../references/Z-original.svg), conservé sans modification. La photographie fournie permet d’identifier le personnage parmi les essais de la feuille : une tête détachée, deux bras, un corps en diagonale et un pied. Le disque isolé, les deux contours d’essai et le rectangle vert restent dans l’archive originale.
 

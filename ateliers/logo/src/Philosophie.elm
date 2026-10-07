@@ -94,15 +94,15 @@ vue modele =
             [ axe Composition.X
                 "Expérimenter"
                 "Agir et observer."
-                "Agir, manipuler, essayer et observer les effets pour comprendre le fonctionnement d’un objet par l’expérience. Avec Xiaoyu, on peut déplacer le point d’appui d’un levier, soulever une charge et sentir ce qui change."
+                "Xiaoping fait écho à XP, les points d’expérience dans les jeux. Expérimenter, c’est jouer avec les objets : les manipuler, essayer et observer les effets pour comprendre leur fonctionnement. Avec Xiaoping, on peut déplacer le point d’appui d’un levier, soulever une charge et sentir ce qui change."
             , axe Composition.Y
                 "Apprendre"
                 "Acquérir et stabiliser."
-                "Acquérir des connaissances, répéter, mémoriser et s’entraîner pour stabiliser ce qui a été acquis. Avec Idriss, on apprend à nommer les parties du levier, on retrouve les notions de mémoire et on s’exerce à les utiliser dans plusieurs situations."
+                "Le prénom Ydris fait référence à la racine arabe DRS, associée à l’étude et à l’apprentissage. Acquérir des connaissances, répéter, mémoriser et s’entraîner permet de stabiliser ce qui a été acquis. Avec Ydris, on apprend à nommer les parties du levier, on retrouve les notions de mémoire et on s’exerce à les utiliser dans plusieurs situations."
             , axe Composition.Z
                 "Conceptualiser"
                 "Relier, structurer et abstraire."
-                "Relier les connaissances, les organiser et changer de niveau de description. Avec Zoé, abstraire consiste à dégager une relation commune à plusieurs situations en laissant de côté leurs détails particuliers : reconnaître, par exemple, le principe du levier dans des ciseaux et une balançoire."
+                "Zoé est un personnage de religieuse, en lien avec Ève. Elle invite à prendre de la hauteur : relier les connaissances, les organiser et changer de niveau de description. Avec Zoé, abstraire consiste à dégager une relation commune à plusieurs situations en laissant de côté leurs détails particuliers : reconnaître, par exemple, le principe du levier dans des ciseaux et une balançoire."
             ]
     in
     Disposition.cadre []
@@ -143,8 +143,8 @@ vue modele =
                 ]
             , ensemble
                 [ visuel "Le logo" "philo-logo" (Animation.static "#64c29b" Composition.logo)
-                , visuel "X · Xiaoyu" "philo-x" (Animation.static (Composition.fond Composition.X) Composition.x)
-                , visuel "Y · Idriss" "philo-y" (Animation.static (Composition.fond Composition.Y) Composition.y)
+                , visuel "X · Xiaoping" "philo-x" (Animation.static (Composition.fond Composition.X) Composition.x)
+                , visuel "Y · Ydris" "philo-y" (Animation.static (Composition.fond Composition.Y) Composition.y)
                 , visuel "Z · Zoé" "philo-z" (Animation.static (Composition.fond Composition.Z) Composition.z)
                 ]
             , chapitre "01 · Le sens des formes"
@@ -172,7 +172,7 @@ vue modele =
                 ]
             , chapitre "03 · Les trois axes"
                 "Expérimenter — Apprendre — Conceptualiser"
-                [ "Xiaoyu (X), Idriss (Y) et Zoé (Z) incarnent trois directions complémentaires de l’apprentissage. Iels accompagnent l’élève pour agir et observer, acquérir et stabiliser, relier, structurer et abstraire."
+                [ "Xiaoping (X), Ydris (Y) et Zoé (Z) incarnent trois directions complémentaires de l’apprentissage. Iels accompagnent l’élève pour agir et observer, acquérir et stabiliser, relier, structurer et abstraire."
                 , "Ces trois axes ne sont pas trois étapes successives d’une méthode. L’apprentissage circule continuellement entre eux : une observation suscite une question, une connaissance donne envie d’essayer, une relation comprise éclaire ce que l’on observe."
                 ]
             , if modele.largeur < 950 then

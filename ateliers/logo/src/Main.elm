@@ -480,7 +480,7 @@ intro model =
             , Font.letterSpacing -1.5
             ]
             [ text "Du logo au mouvement." ]
-        , Ui.paragraph "Une connaissance, trois modalités : audio, visio, kino. Explorez leurs formes et composez Xiaoyu, Idriss et Zoé, les trois tuteurs des axes X, Y et Z."
+        , Ui.paragraph "Une connaissance, trois modalités : audio, visio, kino. Explorez leurs formes et composez Xiaoping, Ydris et Zoé, les trois tuteurs des axes X, Y et Z."
         , if model.reduced then
             Ui.badge "Réduction du mouvement · lecture à votre initiative"
 
@@ -502,8 +502,8 @@ choixCible : Model -> Element Msg
 choixCible model =
     wrappedRow [ width fill, spacing 12 ]
         [ Ui.label "Composer"
-        , Ui.button (model.cible == Composition.X) (ChoisirCible Composition.X) "X · Xiaoyu"
-        , Ui.button (model.cible == Composition.Y) (ChoisirCible Composition.Y) "Y · Idriss"
+        , Ui.button (model.cible == Composition.X) (ChoisirCible Composition.X) "X · Xiaoping"
+        , Ui.button (model.cible == Composition.Y) (ChoisirCible Composition.Y) "Y · Ydris"
         , Ui.button (model.cible == Composition.Z) (ChoisirCible Composition.Z) "Z · Zoé"
         , Ui.small
             (if model.cible == Composition.Y then

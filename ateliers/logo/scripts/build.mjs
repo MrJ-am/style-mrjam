@@ -29,7 +29,7 @@ const html = template.replace('/* STYLES */', () => style).replace('/* ELM */', 
 writeFileSync('dist/index.html', html);
 writeFileSync('dist/atelier-logo.html', html);
 writeFileSync('dist/atelier-logo-x.html', html); // Nom historique de la première livraison.
-const philosophie = html.replace('<title>Écho — Atelier du mouvement</title>', '<title>Philosophie du logo — Écho · MrJ.am</title>').replace('Atelier vectoriel interactif : rotation centrifuge du logo et recomposition en Xiaoyu (X), Idriss (Y) et Zoé (Z).', 'La philosophie du logo Écho : connaissance, audio, visio, kino et les tuteurs Xiaoyu, Idriss et Zoé.').replace(/<script>\(\(\) => \{[\s\S]*?<\/script>/, '<script>Elm.Philosophie.init({node:document.getElementById("app"),flags:{width:innerWidth}});</script>');
+const philosophie = html.replace('<title>Écho — Atelier du mouvement</title>', '<title>Philosophie du logo — Écho · MrJ.am</title>').replace('Atelier vectoriel interactif : rotation centrifuge du logo et recomposition en Xiaoping (X), Ydris (Y) et Zoé (Z).', 'La philosophie du logo Écho : connaissance, audio, visio, kino et les tuteurs Xiaoping, Ydris et Zoé.').replace(/<script>\(\(\) => \{[\s\S]*?<\/script>/, '<script>Elm.Philosophie.init({node:document.getElementById("app"),flags:{width:innerWidth}});</script>');
 writeFileSync('dist/philosophie.html', philosophie);
 writeFileSync('dist/.nojekyll', '');
 console.log('Atelier et philosophie : dist/ ; exports : dist/exports/');

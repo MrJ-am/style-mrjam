@@ -94,10 +94,10 @@ prenom : Cible -> String
 prenom cible =
     case cible of
         X ->
-            "Xiaoyu"
+            "Xiaoping"
 
         Y ->
-            "Idriss"
+            "Ydris"
 
         Z ->
             "Zoé"
@@ -159,10 +159,10 @@ description : Cible -> String
 description cible =
     case cible of
         X ->
-            "Xiaoyu · Sept occurrences de contours : 1 audio, 3 visio et 3 kino. Le disque de connaissance n’est pas une pièce séparée dans le dessin X fourni."
+            "Xiaoping · Sept occurrences de contours : 1 audio, 3 visio et 3 kino. Le disque de connaissance n’est pas une pièce séparée dans le dessin X fourni."
 
         Y ->
-            "Idriss · Huit occurrences de contours : 2 audio, 2 visio et 4 kino. Six placements distincts : path14 double path8, path16 double path10. Ces superpositions originales sont conservées. Le disque de connaissance n’est pas une pièce séparée dans le dessin Y fourni."
+            "Ydris · Huit occurrences de contours : 2 audio, 2 visio et 4 kino. Six placements distincts : path14 double path8, path16 double path10. Ces superpositions originales sont conservées. Le disque de connaissance n’est pas une pièce séparée dans le dessin Y fourni."
 
         Z ->
             "Zoé · Cinq occurrences de contours : 1 audio, 2 visio et 2 kino. Une tête détachée, deux bras, une diagonale et un pied dessinent un Z en mouvement. La reprise de l’ébauche conserve les courbes du logo et aligne leurs raccords."

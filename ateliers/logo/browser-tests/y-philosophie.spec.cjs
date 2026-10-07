@@ -43,7 +43,7 @@ test('Y : pause, reprise et inversion pendant la lecture', async ({page}) => {
   await page.getByRole('button',{name:'Y → Logo',exact:true}).click(); await page.clock.runFor(20);
   const avant = await progression(); await page.clock.runFor(300);
   expect(await progression()).toBeLessThan(avant);
-  await page.getByRole('button',{name:'X · Xiaoyu',exact:true}).click(); await page.clock.runFor(20);
+  await page.getByRole('button',{name:'X · Xiaoping',exact:true}).click(); await page.clock.runFor(20);
   expect(await progression()).toBe(0);
   await expect(page.locator('[data-running]')).toHaveAttribute('data-running','false');
   await expect(page.getByRole('button',{name:'Fixer X',exact:true})).toBeVisible();

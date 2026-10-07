@@ -22,7 +22,7 @@ La licence de réutilisation du code n’a pas été choisie. Le caractère publ
 
 [Explorer le logo et les axes X, Y, Z sur GitHub Pages](https://mrj-am.github.io/style-mrjam/) · [Philosophie du logo](https://mrj-am.github.io/style-mrjam/philosophie.html)
 
-L’atelier propose la recomposition réversible, la rotation centrifuge et l’inspection des formes du logo. Le disque central représente la **connaissance** ; les pictogrammes **audio, visio et kino** associent chacun leur contour à ce disque. **Xiaoyu (X), Idriss (Y) et Zoé (Z)** sont les trois tuteurs des trois axes. Les [versions factorisées et les pictogrammes complets](public/assets/mrjam/factorises/) sont versionnés ; `Z.svg` fournit aussi le dessin explicite de Zoé. X et Y conservent les dessins fournis, y compris les deux doublons de Y. Voir [la documentation de l’atelier](ateliers/logo/README.md).
+L’atelier propose la recomposition réversible, la rotation centrifuge et l’inspection des formes du logo. Le disque central représente la **connaissance** ; les pictogrammes **audio, visio et kino** associent chacun leur contour à ce disque. **Xiaoping (X), Ydris (Y) et Zoé (Z)** sont les trois tuteurs des trois axes. Les [versions factorisées et les pictogrammes complets](public/assets/mrjam/factorises/) sont versionnés ; `Z.svg` fournit aussi le dessin explicite de Zoé. X et Y conservent les dessins fournis, y compris les deux doublons de Y. Voir [la documentation de l’atelier](ateliers/logo/README.md).
 
 La publication GitHub Pages dispose de son workflow et de ses validations. Les composants consommés par les applications restent aux révisions explicitement épinglées ; l’ajout de cet atelier n’entraîne pas leur redéploiement.
 

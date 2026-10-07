@@ -28,7 +28,7 @@ for (const strategie of ['relief', 'fondu']) {
     expect(fs.readFileSync(await fichier.path(),'utf8').match(/<use /g)).toHaveLength(5);
     fs.mkdirSync(`verification/captures/${info.project.name}`, {recursive:true});
     await scene(page).screenshot({path:`verification/captures/${info.project.name}/zoe-${strategie}.png`});
-    await page.getByRole('button', {name:'Y · Idriss', exact:true}).click(); await attendre(page);
+    await page.getByRole('button', {name:'Y · Ydris', exact:true}).click(); await attendre(page);
     expect(await poses(page)).toHaveLength(4);
     await expect(page.locator('[data-running]')).toHaveAttribute('data-running','false');
   });
