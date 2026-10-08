@@ -6,6 +6,6 @@
     <g id="mode-visio-kinesthesique" transform="translate(-13.8 -9)"><path d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563"/></g>
   </defs>
   <circle cx="15" cy="15" r="15" fill="rgb(18.781339109664252%,73.37244845610327%,92.7083830888488%)"/>
-  <use data-instance="connaissance-0" href="#mode-visio-connaissance" transform="matrix(1 0 0 1 13.8 9)" opacity="1" fill="#ffffff" stroke="none"/>
-  <use data-instance="visuel-0" href="#mode-visio-visuel" transform="matrix(1 0 0 1 13.8 9)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="connaissance-0" href="#mode-visio-connaissance" transform="matrix(1.6 0 0 1.6 7.4117752 16.8481456)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="visuel-0" href="#mode-visio-visuel" transform="matrix(1.6 0 0 1.6 7.4117752 16.8481456)" opacity="1" fill="#ffffff" stroke="none"/>
 </svg>

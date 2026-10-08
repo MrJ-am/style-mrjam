@@ -5,7 +5,6 @@ carte imbriquée. Aucun état ni règle métier ne réside dans ces composants.
 -}
 
 import Element as UI exposing (Element)
-import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Region as Region
@@ -41,7 +40,7 @@ onglet : Bool -> String -> message -> Element message
 onglet actif libelle message =
     UI.el
         [ Bordure.widthEach { bottom = 2, top = 0, right = 0, left = 0 }
-        , Bordure.color
+        , Theme.bordure
             (if actif then
                 couleurs.accent
 
@@ -68,8 +67,8 @@ lien titre url =
         , UI.height (UI.minimum 30 UI.shrink)
         , UI.paddingXY 0 4
         , Police.semiBold
-        , Police.color couleurs.encre
-        , UI.mouseOver [ Police.color couleurs.accent ]
+        , Theme.police couleurs.encre
+        , Theme.survolPolice couleurs.accent
         ]
         { url = url, label = UI.paragraph [ UI.width UI.fill ] [ UI.text titre ] }
 
@@ -165,27 +164,30 @@ espaceMarque titre navigation dialogue contenu =
 
 cadre : Bool -> String -> List (Element message) -> Maybe (Html message) -> List (Element message) -> Html message
 cadre marque titre navigation dialogue contenu =
-    Fenetres.avecModale dialogue <|
+    Fenetres.avecModalePour titre dialogue <|
         UI.layoutWith { options = [ Theme.focus ] }
             (Theme.ecran
-                ++ [ Fond.color couleurs.surface
-                   , Police.color couleurs.encre
+                ++ Theme.identite titre
+                ++ [ Theme.fond couleurs.surface
+                   , Theme.police couleurs.encre
                    , Police.size 15
                    , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
                    ]
             )
             (UI.column [ UI.width UI.fill, UI.spacing 0 ]
-                [ UI.wrappedRow
+                [ UI.html Theme.styles
+                , UI.wrappedRow
                     [ UI.width UI.fill
                     , UI.paddingXY 20 12
                     , UI.spacing 18
-                    , Fond.color couleurs.papier
+                    , Theme.fond couleurs.papier
                     , Bordure.widthEach { bottom = 1, top = 0, left = 0, right = 0 }
-                    , Bordure.color couleurs.ligne
+                    , Theme.bordure couleurs.ligne
                     , UI.htmlAttribute (A.attribute "role" "banner")
                     ]
                     ((if marque then
-                        [ UI.link [ UI.htmlAttribute (A.attribute "aria-label" (titre ++ ".MrJ.am — accueil")) ]
+                        [ Identite.logoPour titre
+                        , UI.link [ UI.htmlAttribute (A.attribute "aria-label" (titre ++ ".MrJ.am — accueil")) ]
                             { url = "./", label = Identite.marque titre }
                         ]
 

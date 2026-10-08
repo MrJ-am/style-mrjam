@@ -5,7 +5,6 @@ appartiennent au produit. Les espacements, le rythme et les tailles sont communs
 -}
 
 import Element as UI exposing (Element)
-import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Region as Region
@@ -13,7 +12,7 @@ import Html
 import Html.Attributes as A
 import MrJam
 import MrJam.Pictogrammes as Pictogrammes exposing (Icone)
-import MrJam.Theme exposing (couleurs)
+import MrJam.Theme as Theme exposing (couleurs)
 
 
 classe : String -> UI.Attribute message
@@ -36,10 +35,10 @@ navigation libelle url =
     UI.link
         [ UI.paddingXY 20 13
         , Bordure.rounded 8
-        , Fond.color couleurs.accent
-        , Police.color couleurs.surface
+        , Theme.fond couleurs.accent
+        , Theme.police couleurs.surface
         , Police.semiBold
-        , UI.mouseOver [ Fond.color couleurs.accentSurvol ]
+        , Theme.survol couleurs.accentSurvol
         ]
         { url = url, label = UI.row [ UI.spacing 12 ] [ UI.text libelle, Pictogrammes.vue Pictogrammes.Fleche ] }
 
@@ -60,7 +59,7 @@ hero contenu actions =
 
 etiquette : String -> Element message
 etiquette contenu =
-    UI.paragraph [ Police.size 12, Police.letterSpacing 1.5, Police.bold, Police.color couleurs.accent ] [ UI.text contenu ]
+    UI.paragraph [ Police.size 12, Police.letterSpacing 1.5, Police.bold, Theme.police couleurs.accent ] [ UI.text contenu ]
 
 
 introduction : String -> String -> String -> Element message
@@ -78,7 +77,7 @@ benefices contenus =
         (List.map
             (\contenu ->
                 UI.column [ UI.width (UI.minimum 240 UI.fill), UI.spacing 14, UI.paddingXY 0 10 ]
-                    [ UI.el [ Police.color couleurs.accent ] (Pictogrammes.vue contenu.icone)
+                    [ UI.el [ Theme.police couleurs.accent ] (Pictogrammes.vue contenu.icone)
                     , UI.paragraph [ Region.heading 2, Police.size 20, Police.bold ] [ UI.text contenu.titre ]
                     , texte contenu.texte
                     ]
@@ -100,7 +99,7 @@ partie repere titre contenu =
 illustration : { image : String, description : String, legende : String } -> Element message
 illustration contenu =
     UI.column [ UI.width UI.fill, UI.spacing 12 ]
-        [ UI.image [ UI.width UI.fill, Bordure.rounded 12, Bordure.width 1, Bordure.color couleurs.ligne, classe "capture" ]
+        [ UI.image [ UI.width UI.fill, Bordure.rounded 12, Bordure.width 1, Theme.bordure couleurs.ligne, classe "capture" ]
             { src = contenu.image, description = contenu.description }
         , MrJam.texteSecondaire contenu.legende
         ]
@@ -112,7 +111,7 @@ etapes contenus =
         (List.indexedMap
             (\numero contenu ->
                 UI.column [ UI.width (UI.minimum 240 UI.fill), UI.spacing 12 ]
-                    [ UI.el [ Police.color couleurs.accent, Police.size 32, Police.bold ] (UI.text ("0" ++ String.fromInt (numero + 1)))
+                    [ UI.el [ Theme.police couleurs.accent, Police.size 32, Police.bold ] (UI.text ("0" ++ String.fromInt (numero + 1)))
                     , UI.paragraph [ Region.heading 3, Police.size 22, Police.bold ] [ UI.text contenu.titre ]
                     , texte contenu.texte
                     ]
@@ -140,13 +139,13 @@ details titre contenu =
                 -- Une racine imbriquée ne doit pas remplacer les styles de la page.
                 , UI.layoutWith { options = [ UI.noStaticStyleSheet ] }
                     []
-                    (UI.column [ UI.width UI.fill, UI.spacing 18, UI.paddingXY 0 20, Police.family [ Police.typeface "Inter", Police.sansSerif ], Police.size 16, Police.color couleurs.encre ] contenu)
+                    (UI.column [ UI.width UI.fill, UI.spacing 18, UI.paddingXY 0 20, Police.family [ Police.typeface "Inter", Police.sansSerif ], Police.size 16, Theme.police couleurs.encre ] contenu)
                 ]
 
 
 conclusion : String -> String -> List (Element message) -> Element message
 conclusion titre description actions =
-    UI.column [ UI.width UI.fill, UI.spacing 22, UI.padding 32, Fond.color couleurs.papier, Bordure.rounded 20, classe "conclusion" ]
+    UI.column [ UI.width UI.fill, UI.spacing 22, UI.padding 32, Theme.fond couleurs.papier, Bordure.rounded 20, classe "conclusion" ]
         [ UI.paragraph [ UI.width UI.fill, Region.heading 2, Police.size 32, Police.bold ] [ UI.text titre ]
         , texte description
         , UI.wrappedRow [ UI.width UI.fill, UI.spacing 18 ] actions
@@ -161,7 +160,7 @@ capture contenu =
     UI.column [ UI.width UI.fill, UI.spacing 10 ]
         [ UI.link [ UI.width UI.fill, UI.htmlAttribute (A.title "Agrandir la capture") ]
             { url = contenu.image
-            , label = UI.image [ UI.width UI.fill, Bordure.rounded 12, Bordure.width 1, Bordure.color couleurs.ligne ] { src = contenu.image, description = contenu.description }
+            , label = UI.image [ UI.width UI.fill, Bordure.rounded 12, Bordure.width 1, Theme.bordure couleurs.ligne ] { src = contenu.image, description = contenu.description }
             }
         , UI.wrappedRow [ UI.width UI.fill, UI.spacing 12 ]
             [ MrJam.texteSecondaire contenu.legende

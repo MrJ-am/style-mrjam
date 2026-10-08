@@ -78,9 +78,10 @@ for nom, brique in [('Audio', 'Auditif'), ('Visio', 'Visuel'), ('Kino', 'Kinesth
     assert contour.attrib['transform'] == 'translate(-13.8 -9)'
     assert svg.find(NS+'circle').attrib['fill'] == '#64c29b'
     for occurrence in occurrences:
-        assert geometrie.transformation(occurrence.attrib['transform']) == (1, 0, 0, 1, 13.8, 9)
+        attendu = (1.6, 0, 0, 1.6, 7.4117752, 16.8481456) if nom == 'Visio' else (1, 0, 0, 1, 13.8, 9)
+        assert geometrie.transformation(occurrence.attrib['transform']) == attendu
         assert occurrence.attrib['opacity'] == '1'
-    pictogrammes[nom] = 'Disque de rayon 2 et contour canonique, au même placement'
+    pictogrammes[nom] = 'Contours canoniques ; Visio centré et agrandi ×1.6' if nom == 'Visio' else 'Disque et contour au placement original'
 
 # Z : distinguer la reconnaissance de l’ébauche des placements retravaillés.
 # Les exports doivent reproduire la reprise ; les retouches diffèrent de l’original.

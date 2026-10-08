@@ -5,10 +5,9 @@ un nom accessible et une infobulle. Une commande utilise le moteur des boutons.
 -}
 
 import Element as UI exposing (Element)
-import Element.Font as Police
 import Html.Attributes as A
 import MrJam.Controles as Controles exposing (Intention(..))
-import MrJam.Theme exposing (couleurs)
+import MrJam.Theme as Theme exposing (couleurs)
 import Svg
 import Svg.Attributes as S
 
@@ -64,8 +63,8 @@ lien icone libelle url =
         , UI.height (UI.px 44)
         , UI.htmlAttribute (A.attribute "aria-label" libelle)
         , UI.htmlAttribute (A.title libelle)
-        , Police.color couleurs.encre
-        , UI.mouseOver [ Police.color couleurs.accent ]
+        , Theme.police couleurs.encre
+        , Theme.survolPolice couleurs.accent
         ]
         { url = url, label = UI.el [ UI.centerX, UI.centerY ] (vue icone) }
 

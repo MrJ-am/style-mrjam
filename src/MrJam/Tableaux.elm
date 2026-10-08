@@ -5,14 +5,13 @@ les en-têtes et cellules. Les variantes expriment l'intention de la colonne.
 -}
 
 import Element as UI exposing (Element)
-import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Input as Saisie
 import Html.Attributes as A
 import MrJam
 import MrJam.Controles as Controles
-import MrJam.Theme exposing (couleurs)
+import MrJam.Theme as Theme exposing (couleurs)
 
 
 type Colonne donnee message
@@ -89,7 +88,7 @@ tableau libelle colonnes donnees =
 
         rangee attributs cellules =
             UI.row
-                ([ role "row", UI.width UI.fill, Bordure.widthEach { bottom = 1, top = 0, left = 0, right = 0 }, Bordure.color couleurs.ligne ] ++ attributs)
+                ([ role "row", UI.width UI.fill, Bordure.widthEach { bottom = 1, top = 0, left = 0, right = 0 }, Theme.bordure couleurs.ligne ] ++ attributs)
                 cellules
     in
     if List.isEmpty colonnes then
@@ -111,11 +110,11 @@ tableau libelle colonnes donnees =
                     , UI.htmlAttribute (A.attribute "aria-label" libelle)
                     , Police.size 14
                     ]
-                    (rangee [ Police.color couleurs.discret, Police.size 13 ]
+                    (rangee [ Theme.police couleurs.discret, Police.size 13 ]
                         (List.map (\((Colonne _ nom _) as col) -> cellule "columnheader" (UI.text nom) col) colonnes)
                         :: List.map
                             (\donnee ->
-                                rangee [ UI.mouseOver [ Fond.color couleurs.papier ] ]
+                                rangee [ Theme.survol couleurs.papier ]
                                     (List.map (\((Colonne _ _ afficher) as col) -> cellule "cell" (afficher donnee) col) colonnes)
                             )
                             donnees
@@ -157,7 +156,7 @@ outil =
 celluleEditable : String -> String -> (String -> message) -> Element message
 celluleEditable libelle valeur modifier =
     Saisie.text
-        (MrJam.Theme.champ ++ [ UI.width UI.fill, UI.htmlAttribute (A.attribute "aria-label" libelle) ])
+        (Theme.champ ++ [ UI.width UI.fill, UI.htmlAttribute (A.attribute "aria-label" libelle) ])
         { onChange = modifier
         , text = valeur
         , placeholder = Nothing

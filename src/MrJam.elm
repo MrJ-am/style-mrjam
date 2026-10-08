@@ -20,6 +20,7 @@ module MrJam exposing
     , lien
     , lienActif
     , lienExterne
+    , mapper
     , motDePasse
     , nouveauMotDePasse
     , page
@@ -46,7 +47,6 @@ La galerie est une application de contrôle, pas un paquet publié sur le regist
 -}
 
 import Element exposing (Attribute, Element, centerX, el, fill, height, htmlAttribute, maximum, minimum, padding, paddingXY, paragraph, px, shrink, spacing, text, width)
-import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Input as Saisie
@@ -58,6 +58,13 @@ import Json.Decode as Decode
 import MrJam.Controles as Controles exposing (Intention(..))
 import MrJam.Identite as Identite
 import MrJam.Theme as Theme exposing (couleurs)
+
+
+{-| Raccorder un composant applicatif à ses messages parents.
+-}
+mapper : (a -> b) -> Element a -> Element b
+mapper =
+    Element.map
 
 
 bouton : String -> message -> Element message
@@ -304,15 +311,15 @@ coche valeur =
         , height (px 20)
         , Bordure.rounded 4
         , Bordure.width 1
-        , Bordure.color couleurs.accent
-        , Fond.color
+        , Theme.bordure couleurs.accent
+        , Theme.fond
             (if valeur then
                 couleurs.accent
 
              else
                 couleurs.surface
             )
-        , Police.color couleurs.surface
+        , Theme.police couleurs.surface
         , Police.size 16
         , htmlAttribute (Attributs.attribute "aria-hidden" "true")
         ]
@@ -336,9 +343,9 @@ option libelle etat =
 optionRiche : Element message -> Saisie.OptionState -> Element message
 optionRiche contenu etat =
     Element.row [ width fill, height (minimum 44 shrink), spacing 10 ]
-        [ el [ width (px 20), height (px 20), Bordure.rounded 10, Bordure.width 1, Bordure.color couleurs.accent, htmlAttribute (Attributs.attribute "aria-hidden" "true") ]
+        [ el [ width (px 20), height (px 20), Bordure.rounded 10, Bordure.width 1, Theme.bordure couleurs.accent, htmlAttribute (Attributs.attribute "aria-hidden" "true") ]
             (if etat == Saisie.Selected then
-                el [ width (px 10), height (px 10), Bordure.rounded 5, Fond.color couleurs.accent, Element.centerX, Element.centerY ] Element.none
+                el [ width (px 10), height (px 10), Bordure.rounded 5, Theme.fond couleurs.accent, Element.centerX, Element.centerY ] Element.none
 
              else
                 Element.none
@@ -379,7 +386,7 @@ lienExterne libelle adresse =
 navigationLien : List (Attribute message) -> String -> String -> Element message
 navigationLien attributs libelle adresse =
     Element.link
-        (attributs ++ [ Police.color couleurs.accent, Police.underline, paddingXY 0 10, height (minimum 44 shrink) ])
+        (attributs ++ [ Theme.police couleurs.accent, Police.underline, paddingXY 0 10, height (minimum 44 shrink) ])
         { url = adresse, label = paragraphe libelle }
 
 
@@ -410,12 +417,12 @@ paragraphe contenu =
 
 texteSecondaire : String -> Element message
 texteSecondaire contenu =
-    paragraph [ width fill, Police.size 14, Police.color couleurs.discret, spacing 5 ] [ text contenu ]
+    paragraph [ width fill, Police.size 14, Theme.police couleurs.discret, spacing 5 ] [ text contenu ]
 
 
 separateur : Element message
 separateur =
-    el [ width fill, height (px 1), Fond.color couleurs.ligne ] Element.none
+    el [ width fill, height (px 1), Theme.fond couleurs.ligne ] Element.none
 
 
 type Niveau
@@ -443,7 +450,7 @@ avis niveau contenu =
                     ( "Erreur", couleurs.danger )
     in
     paragraph
-        [ width fill, padding 14, spacing 6, Fond.color couleurs.doux, Police.color couleur, Bordure.rounded 12, Region.announce ]
+        [ width fill, padding 14, spacing 6, Theme.fond couleurs.doux, Theme.police couleur, Bordure.rounded 12, Region.announce ]
         [ el [ Police.bold ] (text (prefixe ++ " : ")), text contenu ]
 
 
@@ -451,9 +458,10 @@ page : String -> List (Element message) -> Html message
 page titre contenu =
     Element.layoutWith { options = [ Theme.focus ] }
         (Theme.ecran
+            ++ Theme.identite titre
             ++ [ width fill
-               , Fond.color couleurs.papier
-               , Police.color couleurs.encre
+               , Theme.fond couleurs.papier
+               , Theme.police couleurs.encre
                , Police.size 16
                , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
                ]
@@ -461,7 +469,7 @@ page titre contenu =
         (Element.column
             [ width (maximum 1120 fill), centerX, spacing 24, padding 16 ]
             [ Element.wrappedRow [ width fill, spacing 16, htmlAttribute (Attributs.attribute "role" "banner") ]
-                [ Identite.logo, paragraph [ Region.heading 1, Police.size 32, Police.bold ] [ text titre ] ]
+                [ Element.html Theme.styles, Identite.logo, paragraph [ Region.heading 1, Police.size 32, Police.bold ] [ text titre ] ]
             , Element.column [ width fill, spacing 20, Region.mainContent ] contenu
             , Identite.piedDePage
             ]
