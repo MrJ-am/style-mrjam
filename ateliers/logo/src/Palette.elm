@@ -491,7 +491,7 @@ carteCouleur m index role =
                                 | box = "-2 -2 34 34"
                                 , title =
                                     if m.licorneVisible then
-                                        "Licorne : encolure oblique, corne en spirale et trois mèches"
+                                        "Licorne : tête, corne en spirale et crinière"
 
                                     else
                                         "Licorne invisible : seul le fond rose reste visible"
@@ -507,7 +507,7 @@ carteCouleur m index role =
                             (Animation.static css Composition.licorne)
                         )
                     )
-                , Ui.small "Proposition · Une encolure oblique, une corne en spirale et trois mèches. Neuf contours du logo, avec un seul petit évidement pour l’œil."
+                , Ui.small "Proposition · La crinière suggère le profil, sans contour de cou. Huit contours du logo, une corne en spirale et un seul petit évidement pour l’œil."
                 , wrappedRow [ width fill, spacing 8 ]
                     [ Ui.button (not m.licorneVisible)
                         BasculerLicorne
@@ -527,7 +527,7 @@ carteCouleur m index role =
                         )
                     ]
                 , if m.licorneDiagnostic then
-                    Ui.small "Audio : oreille. Visio : tête, trois mèches et trois pièces de la corne. Kino : encolure. Le disque sert uniquement à évider l’œil."
+                    Ui.small "Audio : oreille. Visio : tête, trois mèches et trois pièces de la corne. Le disque sert uniquement à évider l’œil."
 
                   else
                     Element.none

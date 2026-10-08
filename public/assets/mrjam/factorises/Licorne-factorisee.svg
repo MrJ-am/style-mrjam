@@ -8,7 +8,6 @@
   </defs>
   <circle cx="15" cy="15" r="15" fill="oklch(0.7 0.1 2.5077640500378493)"/>
   <g mask="url(#licorne-trous)">
-  <use data-instance="encolure" href="#licorne-kinesthesique" transform="matrix(-0.646038676790312 -0.23513884853639722 0.23513884853639722 -0.646038676790312 13.5445947429 23.3893893733)" opacity="1" fill="#ffffff" stroke="none"/>
   <use data-instance="tete" href="#licorne-visuel" transform="matrix(0.9896881034440218 0.46149914182084384 -0.46149914182084384 0.9896881034440218 14.075 11.1)" opacity="1" fill="#ffffff" stroke="none"/>
   <use data-instance="corne-pointe" href="#licorne-visuel" transform="matrix(0.19824299505486198 -0.2537394626613645 0.2537394626613645 0.19824299505486198 21.3445100917 6.5166525594)" opacity="1" fill="#ffffff" stroke="none"/>
   <use data-instance="corne-milieu" href="#licorne-visuel" transform="matrix(0.2930548622550133 -0.3750931187167997 0.3750931187167997 0.2930548622550133 19.6740772534 9.5642998704)" opacity="1" fill="#ffffff" stroke="none"/>

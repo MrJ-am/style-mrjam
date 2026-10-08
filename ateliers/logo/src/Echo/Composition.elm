@@ -48,7 +48,7 @@ z =
     depuisDonnees Reference.ciblesZ
 
 
-{-| Neuf contours : encolure oblique, tête, oreille, trois mèches
+{-| Huit contours : tête, oreille, trois mèches
 et trois pièces en homothétie pour la corne en spirale. Aucun tracé ajouté.
 -}
 licorne : List Instance
@@ -57,8 +57,7 @@ licorne =
         placer id brick xPose yPose angle echelle face =
             { id = id, brick = brick, pose = { x = xPose, y = yPose, angle = degrees angle, scale = echelle, chirality = face } }
     in
-    [ placer "encolure" Kinesthesique 13.5445947429 23.3893893733 200 0.6875 Direct
-    , placer "tete" Visuel 14.075 11.1 25 1.092 Direct
+    [ placer "tete" Visuel 14.075 11.1 25 1.092 Direct
     , placer "corne-pointe" Visuel 21.3445100917 6.5166525594 -52 0.322 Direct
     , placer "corne-milieu" Visuel 19.6740772534 9.5642998704 -52 0.476 Direct
     , placer "corne-base" Visuel 17.995 13.76 -52 0.672 Direct

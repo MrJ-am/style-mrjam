@@ -58,6 +58,6 @@ Vérifications locales : 80 tests Elm, 21 tests Python de référence, 86 parcou
 
 ## Proposition de Licorne — 8 octobre 2026
 
-La palette réutilise neuf contours du logo : visage simplifié, encolure oblique de longueur comparable à la tête, trois mèches et trois pièces pour la corne en spirale. Seul l’œil est évidé, avec le disque canonique. Les tests vérifient l’identité des tracés, l’absence d’étirement, le rapport des longueurs tête/cou, le cadrage, l’export factorisé et la transparence réelle de l’œil. Ils couvrent aussi les commandes au clavier et la synchronisation du rose, y compris lorsque la silhouette est masquée.
+La palette réutilise huit contours du logo : visage simplifié, oreille, trois mèches et trois pièces pour la corne en spirale. Le cou n’est plus représenté. Seul l’œil est évidé, avec le disque canonique. Les tests vérifient l’identité des tracés, l’absence d’étirement, le cadrage, l’export factorisé et la transparence réelle de l’œil. Ils couvrent aussi les commandes au clavier et la synchronisation du rose, y compris lorsque la silhouette est masquée.
 
 Sur la version finale, les 21 parcours de palette dans Chromium et Firefox réussissent ; l’injection tactile CDP est exclue dans Firefox comme auparavant. Les 80 tests Elm, les contrôles géométriques, les comparaisons de rasters et le formatage passent. Les exports des autres personnages sont inchangés. Les captures incluent les largeurs 320, 375, 768 et 1440 px.

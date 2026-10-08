@@ -4,7 +4,7 @@ La proposition figure sur `palette.html`, dans la carte du huitième sommet. Ell
 
 ## Lecture et composition
 
-L’image fournie sert de repère pour le profil : une corne projetée vers l’avant, une tête inclinée et une crinière rejetée vers l’arrière. Son petit trait intérieur représente **l’angle du cou, pas un œil**. Les essais ont conduit à incliner davantage l’encolure, conserver une corne en spirale et limiter la crinière à trois mèches. La tête a été agrandie et l’encolure raccourcie : leurs longueurs de référence sont comparables (environ 13 et 11,7 unités), tout en conservant l’oblique. Aucun disque ne remplit la tête. Le visage a ensuite été simplifié : le contour supplémentaire du museau et la narine sont retirés. Seul un petit œil en creux est conservé.
+L’image fournie sert de repère pour le profil : une corne projetée vers l’avant, une tête inclinée et une crinière rejetée vers l’arrière. Son petit trait intérieur représente l’angle du cou, pas un œil. Dans cette proposition, **le contour du cou est supprimé** : les trois mèches suffisent à suggérer l’arrière du profil. La corne en spirale est conservée. Le visage utilise un seul contour et un petit œil en creux ; aucun disque ne remplit la tête.
 
 Le dessin assemble exclusivement les contours canoniques du logo :
 
@@ -14,9 +14,8 @@ Le dessin assemble exclusivement les contours canoniques du logo :
 | Tête | Visio | 1 |
 | Corne en spirale, tailles décroissantes | Visio | 3 |
 | Crinière | Visio | 3 |
-| Encolure oblique | Kino | 1 |
 
-Soit **neuf contours : 1 audio, 7 visio, 1 kino**. Les transformations sont des translations, rotations, réflexions et homothéties. `Echo.Composition.licorne` est l’unique définition des placements ; `Echo.Render` réutilise les mêmes définitions SVG que pour le logo et les tuteurs.
+Soit **huit contours : 1 audio et 7 visio**. Les transformations sont des translations, rotations, réflexions et homothéties. `Echo.Composition.licorne` est l’unique définition des placements ; `Echo.Render` réutilise les mêmes définitions SVG que pour le logo et les tuteurs.
 
 Le disque canonique est réutilisé à petite échelle, uniquement pour évider l’œil (`trousLicorne`). Le masque SVG découpe réellement la silhouette : ce point devient transparent si le fond est retiré. Son rectangle blanc est un support de masque, pas une nouvelle pièce du dessin. Le disque rose de fond conserve le cadrage des autres personnages.
 

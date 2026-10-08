@@ -21,7 +21,7 @@ test('palette : rôles, géométrie et véritables SVG paramétrés',async({page
   expect(teintes['mode-audio']).toBeCloseTo(47.507764,6);
   expect(teintes['mode-visio']).toBeCloseTo(227.507764,6);
   expect(teintes['mode-kino']).toBeCloseTo(317.507764,6);
-  for(const [cle,n] of [['logo',4],['mode-audio',2],['mode-visio',2],['mode-kino',2],['xiaoping',7],['ydris',8],['zoe',5],['licorne',9]]){
+  for(const [cle,n] of [['logo',4],['mode-audio',2],['mode-visio',2],['mode-kino',2],['xiaoping',7],['ydris',8],['zoe',5],['licorne',8]]){
     const svg=page.locator(`[data-svg="palette-${cle}"]`);
     expect(await svg.locator('g[data-instance]').count()).toBe(n);
     await expect(svg.locator('[data-background]')).toHaveAttribute('fill',/^oklch\(/);
@@ -152,13 +152,7 @@ test('licorne : contours du logo, similitudes, cadrage et export commun',async({
    }
    return {source:source.id,matrice:[m.a,m.b,m.c,m.d,m.e,m.f],orthogonal:m.a*m.c+m.b*m.d,ecartEchelles:m.a*m.a+m.b*m.b-m.c*m.c-m.d*m.d,rayon};
  }));
- expect(mesures).toHaveLength(9);
- const rapport=await svg.evaluate(svg=>{
-   const longueur=(id,dx,dy)=>{const m=svg.querySelector('[data-instance="'+id+'"] use').transform.baseVal.getItem(0).matrix;return Math.hypot(m.a*dx+m.c*dy,m.b*dx+m.d*dy)};
-   return longueur('encolure',0,16.970563)/longueur('tete',11.485281,3);
- });
- expect(rapport).toBeGreaterThan(.8);expect(rapport).toBeLessThan(1.2);
-
+ expect(mesures).toHaveLength(8);
  for(const mesure of mesures){
    expect(mesure.source).toMatch(/^palette-licorne-(auditif|visuel|kinesthesique)$/);
    expect(Math.abs(mesure.orthogonal)).toBeLessThan(1e-12);
@@ -166,7 +160,7 @@ test('licorne : contours du logo, similitudes, cadrage et export commun',async({
    expect(mesure.rayon).toBeLessThan(15);
  }
  await expect(svg.locator('[data-instance^="criniere-"]')).toHaveCount(3);
- await expect(svg.locator('[data-instance="encolure"]')).toHaveCount(1);
+ await expect(svg.locator('[data-instance="encolure"]')).toHaveCount(0);
  await expect(svg.locator('[data-instance^="corne-"]')).toHaveCount(3);
  await expect(svg.locator('[data-trou]')).toHaveCount(1);
  const contenu=await (await page.request.get('/exports/Licorne-factorisee.svg')).text();
@@ -174,7 +168,7 @@ test('licorne : contours du logo, similitudes, cadrage et export commun',async({
    const d=new DOMParser().parseFromString(contenu,'image/svg+xml');
    return {contours:[...d.querySelectorAll('defs path')].map(e=>e.getAttribute('d')),matrices:[...d.querySelectorAll('use[data-instance]')].map(e=>{const m=e.transform.baseVal.getItem(0).matrix;return [m.a,m.b,m.c,m.d,m.e,m.f]})};
  },contenu);
- expect(exporte.contours).toEqual(await contours(svg));expect(exporte.matrices).toHaveLength(9);
+ expect(exporte.contours).toEqual(await contours(svg));expect(exporte.matrices).toHaveLength(8);
  exporte.matrices.forEach((m,i)=>m.forEach((v,j)=>expect(v).toBeCloseTo(mesures[i].matrice[j],12)));
  const transparence=await page.evaluate(async contenu=>{
    const d=new DOMParser().parseFromString(contenu,'image/svg+xml');
@@ -206,11 +200,11 @@ test('licorne : invisibilité, inspection au clavier et couleur synchronisée',a
  await expect(svg.locator('[data-instance]')).toHaveCount(0);
  expect(await fond.getAttribute('fill')).not.toBe(initial);
  await page.getByRole('button',{name:'Révéler la licorne',exact:true}).click();
- await expect(svg.locator('[data-instance]')).toHaveCount(9);
+ await expect(svg.locator('[data-instance]')).toHaveCount(8);
  const inspecter=page.getByRole('button',{name:'Voir les pièces',exact:true});
  await inspecter.focus();await page.keyboard.press('Space');
  await expect(svg.locator('[data-instance="oreille"] use')).toHaveAttribute('fill','#ffca91');
- await expect(svg.locator('[data-instance="encolure"] use')).toHaveAttribute('fill','#e8b8ed');
+ await expect(svg.locator('[data-instance="tete"] use')).toHaveAttribute('fill','#9ed8fa');
  await valeurs(page,'0.7','0.1');
  await expect(svg.locator('[data-instance="criniere-haute"] use')).toHaveAttribute('fill','#9ed8fa');
  await page.getByRole('button',{name:'Voir la silhouette',exact:true}).click();
