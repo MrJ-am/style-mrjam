@@ -111,7 +111,7 @@ tableau libelle colonnes donnees =
                     , Police.size 14
                     ]
                     (rangee [ Theme.police couleurs.discret, Police.size 13 ]
-                        (List.map (\((Colonne _ nom _) as col) -> cellule "columnheader" (UI.text nom) col) colonnes)
+                        (List.map (\((Colonne _ nom _) as col) -> cellule "columnheader" (UI.paragraph [ UI.width UI.fill ] [ UI.text nom ]) col) colonnes)
                         :: List.map
                             (\donnee ->
                                 rangee [ Theme.survol couleurs.papier ]

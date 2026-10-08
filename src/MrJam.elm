@@ -282,7 +282,7 @@ selecteur libelle possibilites valeur modifier =
             [ Attributs.style "display" "grid"
             , Attributs.style "gap" "6px"
             , Attributs.style "width" "100%"
-            , Attributs.style "color" "#193d38"
+            , Attributs.style "color" "var(--mrjam-encre)"
             , Attributs.style "font" "inherit"
             ]
             [ Html.span [ Attributs.style "font-size" "14px", Attributs.style "font-weight" "600" ] [ Html.text libelle ]
@@ -294,10 +294,10 @@ selecteur libelle possibilites valeur modifier =
                 , Attributs.style "width" "100%"
                 , Attributs.style "min-height" "36px"
                 , Attributs.style "padding" "6px 8px"
-                , Attributs.style "border" "1px solid #bfd8ca"
+                , Attributs.style "border" "1px solid var(--mrjam-controle)"
                 , Attributs.style "border-radius" "5px"
-                , Attributs.style "background" "#ffffff"
-                , Attributs.style "color" "#193d38"
+                , Attributs.style "background" "var(--mrjam-surface)"
+                , Attributs.style "color" "var(--mrjam-encre)"
                 , Attributs.style "font" "inherit"
                 ]
                 (List.map (\( cle, nom ) -> Html.option [ Attributs.value cle, Attributs.selected (cle == valeur) ] [ Html.text nom ]) possibilites)
