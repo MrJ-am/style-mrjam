@@ -11,7 +11,7 @@ for (const nom of ['index.html', 'philosophie.html', 'palette.html', 'atelier-lo
   cpSync(`ateliers/logo/dist/${nom}`, `${destination}/${nom}`, { recursive: true });
 }
 // Les variantes distribuées sont générées par le même rendu que l’atelier.
-for (const nom of ['Logo-factorise.svg', 'X-factorise.svg', 'Y-factorise.svg', 'Z-factorise.svg', 'Z.svg', 'Audio.svg', 'Visio.svg', 'Kino.svg', 'decomposition-X.json', 'decomposition-Y.json', 'decomposition-Z.json']) {
+for (const nom of ['Logo-factorise.svg', 'X-factorise.svg', 'Y-factorise.svg', 'Z-factorise.svg', 'Licorne-factorisee.svg', 'Z.svg', 'Audio.svg', 'Visio.svg', 'Kino.svg', 'decomposition-X.json', 'decomposition-Y.json', 'decomposition-Z.json']) {
   if (!readFileSync(`public/assets/mrjam/factorises/${nom}`).equals(readFileSync(`ateliers/logo/dist/exports/${nom}`))) {
     throw new Error(`Variante à régénérer : ${nom}`);
   }

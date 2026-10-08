@@ -1,6 +1,7 @@
-module Echo.Render exposing (Options, defaults, svgString, view)
+module Echo.Render exposing (Options, defaults, svgString, svgStringAvecTrous, view)
 
 import Echo.Animation as Animation exposing (Scene, Visual)
+import Echo.Composition exposing (Instance)
 import Echo.Primitives as Primitives exposing (Brick, Shape(..))
 import Echo.Transform as Transform
 import Html exposing (Html)
@@ -19,12 +20,13 @@ type alias Options =
     , isolated : Maybe String
     , reference : Maybe String
     , difference : Bool
+    , trous : List Instance
     }
 
 
 defaults : String -> Options
 defaults prefix =
-    { prefix = prefix, box = "-9 -12 48 48", title = "Composition vectorielle du logo", diagnostic = False, axes = False, hidden = [], isolated = Nothing, reference = Nothing, difference = False }
+    { prefix = prefix, box = "-9 -12 48 48", title = "Composition vectorielle du logo", diagnostic = False, axes = False, hidden = [], isolated = Nothing, reference = Nothing, difference = False, trous = [] }
 
 
 definitions : String -> Svg msg
@@ -44,6 +46,19 @@ definition prefix brick =
 
         Contour path ->
             Svg.g [ id, A.transform "translate(-13.8 -9)" ] [ Svg.path [ A.d path ] [] ]
+
+
+{-| Le rectangle blanc du masque est un support technique : seules les copies
+noires du disque canonique évident la silhouette ; le fond reste indépendant.
+-}
+masque : String -> List Instance -> Svg msg
+masque prefix trous =
+    Svg.defs []
+        [ Svg.mask [ A.id (prefix ++ "-trous"), A.maskUnits "userSpaceOnUse", A.x "-20", A.y "-20", A.width "70", A.height "70" ]
+            (Svg.rect [ A.x "-20", A.y "-20", A.width "70", A.height "70", A.fill "white" ] []
+                :: List.map (\trou -> Svg.use [ H.attribute "href" ("#" ++ prefix ++ "-" ++ Primitives.key trou.brick), A.transform (Transform.serialize (Transform.terminal trou.pose)), A.fill "black", H.attribute "data-trou" trou.id ] []) trous
+            )
+        ]
 
 
 view : Options -> Scene -> Html msg
@@ -94,6 +109,18 @@ view options scene =
 
             else
                 []
+
+        pieces =
+            List.map (renderPiece options scene) (List.filter visible scene.pieces)
+
+        silhouette =
+            if List.isEmpty options.trous then
+                pieces
+
+            else
+                [ masque options.prefix options.trous
+                , Svg.g [ A.mask ("url(#" ++ options.prefix ++ "-trous)") ] pieces
+                ]
     in
     Svg.svg
         [ A.viewBox options.box
@@ -108,7 +135,7 @@ view options scene =
          , definitions options.prefix
          , Svg.circle [ A.cx "15", A.cy "15", A.r "15", A.fill scene.background, H.attribute "data-background" "true" ] []
          ]
-            ++ List.map (renderPiece options scene) (List.filter visible scene.pieces)
+            ++ silhouette
             ++ reference
             ++ axes
         )
@@ -149,6 +176,11 @@ Le cadrage 0 0 30 30 convient aux deux compositions statiques.
 -}
 svgString : String -> String -> Scene -> String
 svgString prefix box scene =
+    svgStringAvecTrous prefix box [] scene
+
+
+svgStringAvecTrous : String -> String -> List Instance -> Scene -> String
+svgStringAvecTrous prefix box trous scene =
     let
         def brick =
             let
@@ -161,6 +193,17 @@ svgString prefix box scene =
 
                 Contour path ->
                     "    <g id=\"" ++ id ++ "\" transform=\"translate(-13.8 -9)\"><path d=\"" ++ path ++ "\"/></g>"
+
+        masqueTexte =
+            if List.isEmpty trous then
+                ""
+
+            else
+                "\n    <mask id=\""
+                    ++ prefix
+                    ++ "-trous\" maskUnits=\"userSpaceOnUse\" x=\"-20\" y=\"-20\" width=\"70\" height=\"70\"><rect x=\"-20\" y=\"-20\" width=\"70\" height=\"70\" fill=\"white\"/>"
+                    ++ String.join "" (List.map (\trou -> "<use data-trou=\"" ++ trou.id ++ "\" href=\"#" ++ prefix ++ "-" ++ Primitives.key trou.brick ++ "\" transform=\"" ++ Transform.serialize (Transform.terminal trou.pose) ++ "\" fill=\"black\"/>") trous)
+                    ++ "</mask>"
 
         piece visual =
             Animation.faces scene.strategy visual
@@ -185,8 +228,21 @@ svgString prefix box scene =
         ++ box
         ++ "\">\n  <defs>\n"
         ++ String.join "\n" (List.map def Primitives.all)
+        ++ masqueTexte
         ++ "\n  </defs>\n  <circle cx=\"15\" cy=\"15\" r=\"15\" fill=\""
         ++ scene.background
         ++ "\"/>\n"
+        ++ (if List.isEmpty trous then
+                ""
+
+            else
+                "  <g mask=\"url(#" ++ prefix ++ "-trous)\">\n"
+           )
         ++ String.join "\n" (List.filter (not << String.isEmpty) (List.map piece scene.pieces))
+        ++ (if List.isEmpty trous then
+                ""
+
+            else
+                "\n  </g>"
+           )
         ++ "\n</svg>\n"

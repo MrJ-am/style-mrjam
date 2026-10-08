@@ -55,3 +55,9 @@ Le workflow [pages.yml](../../../.github/workflows/pages.yml) reconstruit et con
 Le sélecteur affiche huit frontières échantillonnées à 513 clartés et leur enveloppe commune. La sélection et les valeurs numériques utilisent les dichotomies exactes à L courant. Cinq tests Elm supplémentaires vérifient les frontières individuelles, le minimum des huit teintes, les contraintes actives et leurs égalités, et la correspondance des tracés avec les rôles. Le parcours navigateur supplémentaire contrôle les neuf frontières, la légende, la stabilité des tracés et la projection au clavier. Les tests incluent explicitement la Licorne.
 
 Vérifications locales : 80 tests Elm, 21 tests Python de référence, 86 parcours navigateur réussis (deux exclusions techniques déjà documentées), contrôles de géométrie et de rasters dans les deux moteurs, formatage et compilation. La bibliothèque commune passe également ses contrôles d’architecture, de navigation et de composants documentaires. L’assemblage Pages produit les 22 fichiers attendus.
+
+## Proposition de Licorne — 8 octobre 2026
+
+La palette réutilise neuf contours du logo : visage simplifié, encolure oblique de longueur comparable à la tête, trois mèches et trois pièces pour la corne en spirale. Seul l’œil est évidé, avec le disque canonique. Les tests vérifient l’identité des tracés, l’absence d’étirement, le rapport des longueurs tête/cou, le cadrage, l’export factorisé et la transparence réelle de l’œil. Ils couvrent aussi les commandes au clavier et la synchronisation du rose, y compris lorsque la silhouette est masquée.
+
+Sur la version finale, les 21 parcours de palette dans Chromium et Firefox réussissent ; l’injection tactile CDP est exclue dans Firefox comme auparavant. Les 80 tests Elm, les contrôles géométriques, les comparaisons de rasters et le formatage passent. Les exports des autres personnages sont inchangés. Les captures incluent les largeurs 320, 375, 768 et 1440 px.

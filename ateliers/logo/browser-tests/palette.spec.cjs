@@ -21,7 +21,7 @@ test('palette : rôles, géométrie et véritables SVG paramétrés',async({page
   expect(teintes['mode-audio']).toBeCloseTo(47.507764,6);
   expect(teintes['mode-visio']).toBeCloseTo(227.507764,6);
   expect(teintes['mode-kino']).toBeCloseTo(317.507764,6);
-  for(const [cle,n] of [['logo',4],['mode-audio',2],['mode-visio',2],['mode-kino',2],['xiaoping',7],['ydris',8],['zoe',5]]){
+  for(const [cle,n] of [['logo',4],['mode-audio',2],['mode-visio',2],['mode-kino',2],['xiaoping',7],['ydris',8],['zoe',5],['licorne',9]]){
     const svg=page.locator(`[data-svg="palette-${cle}"]`);
     expect(await svg.locator('g[data-instance]').count()).toBe(n);
     await expect(svg.locator('[data-background]')).toHaveAttribute('fill',/^oklch\(/);
@@ -133,4 +133,87 @@ test('palette : huit frontières fixes, enveloppe et contraintes actives',async(
  }
  for(const [cle,trace] of Object.entries(traces)) await expect(page.locator(`[data-frontiere-role="${cle}"]`)).toHaveAttribute('d',trace.d);
  await expect(limite).toContainText('Licorne rose invisible');
+});
+
+test('licorne : contours du logo, similitudes, cadrage et export commun',async({page})=>{
+ await page.goto('/palette.html');
+ const svg=page.locator('[data-svg="palette-licorne"]');
+ const contours=async source=>source.locator('defs path').evaluateAll(es=>es.map(e=>e.getAttribute('d')));
+ expect(await contours(svg)).toEqual(await contours(page.locator('[data-svg="palette-logo"]')));
+ const mesures=await svg.evaluate(svg=>[...svg.querySelectorAll('g[data-instance] use')].map(use=>{
+   const m=use.transform.baseVal.getItem(0).matrix;
+   const source=document.getElementById(use.getAttribute('href').slice(1));
+   const chemin=source.querySelector('path');
+   const origine=source.transform.baseVal.getItem(0).matrix;
+   const longueur=chemin.getTotalLength();let rayon=0;
+   for(let i=0;i<=128;i++){
+     const p=chemin.getPointAtLength(longueur*i/128).matrixTransform(origine).matrixTransform(m);
+     rayon=Math.max(rayon,Math.hypot(p.x-15,p.y-15));
+   }
+   return {source:source.id,matrice:[m.a,m.b,m.c,m.d,m.e,m.f],orthogonal:m.a*m.c+m.b*m.d,ecartEchelles:m.a*m.a+m.b*m.b-m.c*m.c-m.d*m.d,rayon};
+ }));
+ expect(mesures).toHaveLength(9);
+ const rapport=await svg.evaluate(svg=>{
+   const longueur=(id,dx,dy)=>{const m=svg.querySelector('[data-instance="'+id+'"] use').transform.baseVal.getItem(0).matrix;return Math.hypot(m.a*dx+m.c*dy,m.b*dx+m.d*dy)};
+   return longueur('encolure',0,16.970563)/longueur('tete',11.485281,3);
+ });
+ expect(rapport).toBeGreaterThan(.8);expect(rapport).toBeLessThan(1.2);
+
+ for(const mesure of mesures){
+   expect(mesure.source).toMatch(/^palette-licorne-(auditif|visuel|kinesthesique)$/);
+   expect(Math.abs(mesure.orthogonal)).toBeLessThan(1e-12);
+   expect(Math.abs(mesure.ecartEchelles)).toBeLessThan(1e-12);
+   expect(mesure.rayon).toBeLessThan(15);
+ }
+ await expect(svg.locator('[data-instance^="criniere-"]')).toHaveCount(3);
+ await expect(svg.locator('[data-instance="encolure"]')).toHaveCount(1);
+ await expect(svg.locator('[data-instance^="corne-"]')).toHaveCount(3);
+ await expect(svg.locator('[data-trou]')).toHaveCount(1);
+ const contenu=await (await page.request.get('/exports/Licorne-factorisee.svg')).text();
+ const exporte=await page.evaluate(contenu=>{
+   const d=new DOMParser().parseFromString(contenu,'image/svg+xml');
+   return {contours:[...d.querySelectorAll('defs path')].map(e=>e.getAttribute('d')),matrices:[...d.querySelectorAll('use[data-instance]')].map(e=>{const m=e.transform.baseVal.getItem(0).matrix;return [m.a,m.b,m.c,m.d,m.e,m.f]})};
+ },contenu);
+ expect(exporte.contours).toEqual(await contours(svg));expect(exporte.matrices).toHaveLength(9);
+ exporte.matrices.forEach((m,i)=>m.forEach((v,j)=>expect(v).toBeCloseTo(mesures[i].matrice[j],12)));
+ const transparence=await page.evaluate(async contenu=>{
+   const d=new DOMParser().parseFromString(contenu,'image/svg+xml');
+   d.querySelector('svg > circle').remove();
+   const pixels=async()=>{
+     const im=new Image();const url=URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(d)],{type:'image/svg+xml'}));
+     await new Promise((res,rej)=>{im.onload=res;im.onerror=rej;im.src=url;});
+     const c=document.createElement('canvas');c.width=c.height=600;const ctx=c.getContext('2d');ctx.drawImage(im,0,0,600,600);URL.revokeObjectURL(url);
+     return [...d.querySelectorAll('[data-trou]')].map(e=>{const m=e.transform.baseVal.getItem(0).matrix;return ctx.getImageData(Math.round(m.e*20),Math.round(m.f*20),1,1).data[3]});
+   };
+   const avec=await pixels();d.querySelector('g[mask]').removeAttribute('mask');return {avec,sans:await pixels()};
+ },contenu);
+ expect(transparence.avec).toEqual([0]);
+ for(const alpha of transparence.sans) expect(alpha).toBeGreaterThan(245);
+
+});
+
+test('licorne : invisibilité, inspection au clavier et couleur synchronisée',async({page})=>{
+ await page.goto('/palette.html');
+ const svg=page.locator('[data-svg="palette-licorne"]');
+ const fond=svg.locator('[data-background]');
+ const initial=await fond.getAttribute('fill');const url=page.url();
+ const masquer=page.getByRole('button',{name:'Rendre invisible',exact:true});
+ await masquer.focus();await page.keyboard.press('Enter');
+ await expect(svg.locator('[data-instance]')).toHaveCount(0);
+ await expect(svg.locator('title')).toContainText('Licorne invisible');
+ expect(page.url()).toBe(url);
+ await valeurs(page,'0.65','0.08');
+ await expect(svg.locator('[data-instance]')).toHaveCount(0);
+ expect(await fond.getAttribute('fill')).not.toBe(initial);
+ await page.getByRole('button',{name:'Révéler la licorne',exact:true}).click();
+ await expect(svg.locator('[data-instance]')).toHaveCount(9);
+ const inspecter=page.getByRole('button',{name:'Voir les pièces',exact:true});
+ await inspecter.focus();await page.keyboard.press('Space');
+ await expect(svg.locator('[data-instance="oreille"] use')).toHaveAttribute('fill','#ffca91');
+ await expect(svg.locator('[data-instance="encolure"] use')).toHaveAttribute('fill','#e8b8ed');
+ await valeurs(page,'0.7','0.1');
+ await expect(svg.locator('[data-instance="criniere-haute"] use')).toHaveAttribute('fill','#9ed8fa');
+ await page.getByRole('button',{name:'Voir la silhouette',exact:true}).click();
+ expect(await svg.locator('[data-instance] use').evaluateAll(es=>es.every(e=>e.getAttribute('fill')==='#ffffff'))).toBe(true);
+ await expect(fond).toHaveAttribute('fill',initial);
 });

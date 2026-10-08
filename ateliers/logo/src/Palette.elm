@@ -31,7 +31,7 @@ port navigationQuery : (String -> msg) -> Sub msg
 
 
 type alias Modele =
-    { largeur : Int, parametres : P.Parametres, saisieL : String, saisieC : String, message : String, frontiereSelectionnee : Maybe Role }
+    { largeur : Int, parametres : P.Parametres, saisieL : String, saisieC : String, message : String, frontiereSelectionnee : Maybe Role, licorneVisible : Bool, licorneDiagnostic : Bool }
 
 
 type Message
@@ -44,11 +44,13 @@ type Message
     | Reinitialiser
     | Naviguer String
     | Inspecter Role
+    | BasculerLicorne
+    | InspecterLicorne
 
 
 modele : Int -> P.Parametres -> Modele
 modele largeur p =
-    { largeur = largeur, parametres = p, saisieL = String.fromFloat p.l, saisieC = String.fromFloat p.c, message = "", frontiereSelectionnee = Nothing }
+    { largeur = largeur, parametres = p, saisieL = String.fromFloat p.l, saisieC = String.fromFloat p.c, message = "", frontiereSelectionnee = Nothing, licorneVisible = True, licorneDiagnostic = False }
 
 
 main : Program { width : Int, query : String } Modele Message
@@ -83,7 +85,7 @@ choisir demande m =
             else
                 ""
     in
-    ( { nouveau | message = message, frontiereSelectionnee = m.frontiereSelectionnee }, remplacerQuery (P.encoder p) )
+    ( { nouveau | message = message, frontiereSelectionnee = m.frontiereSelectionnee, licorneVisible = m.licorneVisible, licorneDiagnostic = m.licorneDiagnostic }, remplacerQuery (P.encoder p) )
 
 
 update : Message -> Modele -> ( Modele, Cmd Message )
@@ -103,6 +105,12 @@ update message m =
               }
             , Cmd.none
             )
+
+        BasculerLicorne ->
+            ( { m | licorneVisible = not m.licorneVisible }, Cmd.none )
+
+        InspecterLicorne ->
+            ( { m | licorneDiagnostic = not m.licorneDiagnostic, licorneVisible = True }, Cmd.none )
 
         Pointer pos ->
             choisir { l = 1 - pos.y, c = pos.x * P.chromaPlan } m
@@ -432,7 +440,7 @@ scene role fond =
             Just (Animation.static fond Composition.z)
 
         Licorne ->
-            Nothing
+            Just (Animation.static fond Composition.licorne)
 
 
 illustration : String -> String -> Animation.Scene -> Element msg
@@ -449,9 +457,12 @@ code contenu =
     el [ width fill, Police.size 12, Police.family [ Police.monospace ], htmlAttribute (H.style "overflow-wrap" "anywhere"), htmlAttribute (H.style "word-break" "break-word") ] (Element.paragraph [ width fill ] [ text contenu ])
 
 
-carteCouleur : P.Parametres -> Int -> Role -> Element msg
-carteCouleur p index role =
+carteCouleur : Modele -> Int -> Role -> Element Message
+carteCouleur m index role =
     let
+        p =
+            m.parametres
+
         col =
             P.couleur p role
 
@@ -467,15 +478,70 @@ carteCouleur p index role =
     Ui.card [ width fill, spacing 12, htmlAttribute (H.attribute "data-role-palette" (P.cle role)), htmlAttribute (H.attribute "data-l" (String.fromFloat p.l)), htmlAttribute (H.attribute "data-c" (String.fromFloat p.c)), htmlAttribute (H.attribute "data-h" (String.fromFloat col.h)) ]
         [ Ui.label (String.fromInt (index + 1) ++ " · Tétrade " ++ String.fromInt (P.tetrade role))
         , Ui.heading 3 (P.nom role)
-        , case scene role css of
-            Just rendu ->
-                illustration prefixe (P.nom role ++ " · palette candidate") rendu
+        , if role == Licorne then
+            let
+                options =
+                    Render.defaults prefixe
+            in
+            column [ width fill, spacing 12 ]
+                [ el [ width fill, height (px 155) ]
+                    (html
+                        (Render.view
+                            { options
+                                | box = "-2 -2 34 34"
+                                , title =
+                                    if m.licorneVisible then
+                                        "Licorne : encolure oblique, corne en spirale et trois mèches"
 
-            Nothing ->
-                column [ width fill, height (px 155), spacing 12, Element.centerY ]
-                    [ el [ width fill, height (px 65), htmlAttribute (H.style "background" css), htmlAttribute (H.style "border" "2px dashed #193d38"), htmlAttribute (H.attribute "data-echantillon" "licorne") ] Element.none
-                    , Ui.small "Sommet géométrique seulement. Non retenu parmi les sept couleurs principales."
+                                    else
+                                        "Licorne invisible : seul le fond rose reste visible"
+                                , trous = Composition.trousLicorne
+                                , diagnostic = m.licorneDiagnostic
+                                , hidden =
+                                    if m.licorneVisible then
+                                        []
+
+                                    else
+                                        List.map .id Composition.licorne
+                            }
+                            (Animation.static css Composition.licorne)
+                        )
+                    )
+                , Ui.small "Proposition · Une encolure oblique, une corne en spirale et trois mèches. Neuf contours du logo, avec un seul petit évidement pour l’œil."
+                , wrappedRow [ width fill, spacing 8 ]
+                    [ Ui.button (not m.licorneVisible)
+                        BasculerLicorne
+                        (if m.licorneVisible then
+                            "Rendre invisible"
+
+                         else
+                            "Révéler la licorne"
+                        )
+                    , Ui.button m.licorneDiagnostic
+                        InspecterLicorne
+                        (if m.licorneDiagnostic then
+                            "Voir la silhouette"
+
+                         else
+                            "Voir les pièces"
+                        )
                     ]
+                , if m.licorneDiagnostic then
+                    Ui.small "Audio : oreille. Visio : tête, trois mèches et trois pièces de la corne. Kino : encolure. Le disque sert uniquement à évider l’œil."
+
+                  else
+                    Element.none
+                , MrJam.lien "↓ SVG de la proposition" "exports/Licorne-factorisee.svg"
+                , Ui.small "Sommet géométrique. Non retenu parmi les sept couleurs principales."
+                ]
+
+          else
+            case scene role css of
+                Just rendu ->
+                    illustration prefixe (P.nom role ++ " · palette candidate") rendu
+
+                Nothing ->
+                    Element.none
         , code css
         , Ui.small ("h = " ++ Ui.format 6 col.h ++ "°")
         , code ("sRGB = (" ++ String.fromFloat rgb.r ++ ", " ++ String.fromFloat rgb.g ++ ", " ++ String.fromFloat rgb.b ++ ")")
@@ -572,7 +638,7 @@ vue m =
                 ]
             , Ui.heading 2 "La candidate sur les dessins"
             , Ui.paragraph "Les modalités conservent leurs associations : Audio orangé, Visio bleu, Kino mauve. Les personnages prennent les sommets prévus : Xiaoping jaune, Ydris vert, Zoé bleu. Tous partagent exactement le même L et le même C, y compris le sommet invisible."
-            , rangees nombre (List.indexedMap (carteCouleur p) P.roles)
+            , rangees nombre (List.indexedMap (carteCouleur m) P.roles)
             , Ui.card [ width fill, padding 24, spacing 16 ]
                 [ Ui.heading 2 "Un repère : le logo actuel"
                 , duo (illustration "palette-logo-actuel" "Logo actuel · #64c29b" (Animation.static "#64c29b" Composition.logo))

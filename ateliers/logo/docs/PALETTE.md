@@ -5,7 +5,7 @@ Route : [`palette.html`](https://mrj-am.github.io/style-mrjam/palette.html?L=0.7
 ## Architecture et réemploi
 
 - `src/Palette/Couleurs.elm` : module pur, seule définition des rôles, des angles, des conversions, du gamut et de la sérialisation. Les consommateurs utilisent les rôles `Logo`, `Audio`, `Visio`, `Kino`, `Xiaoping`, `Ydris`, `Zoe`, `Licorne`, ou leurs clés sémantiques.
-- `src/Palette.elm` : programme Elm/ElmUI, cartes et champs MrJam, plan L × C, plan OKLab a,b, état local et ports. `Echo.Composition`, `Echo.Animation.static` et `Echo.Render` fournissent les sept dessins, y compris les disques centraux des pictogrammes. Aucun tracé SVG n’est recopié.
+- `src/Palette.elm` : programme Elm/ElmUI, cartes et champs MrJam, plan L × C, plan OKLab a,b, état local et ports. `Echo.Composition`, `Echo.Animation.static` et `Echo.Render` fournissent les dessins, y compris les disques centraux des pictogrammes. Aucun tracé SVG n’est recopié.
 - `web/palette.js` : pont technique Pointer Events avec capture du pointeur, regroupement par animation frame et `history.replaceState`. La colorimétrie et la projection sont entièrement dans Elm. Aucun serveur ni stockage persistant.
 - `scripts/build.mjs` et le constructeur Pages de la racine compilent, embarquent et publient la page avec le même template, les mêmes styles et le même manifeste que l’atelier. La navigation des deux pages existantes donne accès à la palette.
 
@@ -26,7 +26,7 @@ Aucune dépendance ajoutée. `avh4/elm-color`, déjà présent indirectement, ne
 | 6 | Audio | 47,507764° | 1 |
 | 7 | Xiaoping | 92,507764° | 2 |
 
-Les couleurs diagnostiques existantes de `Echo.Primitives` sont Audio orangé `#ffca91`, Visio bleu `#9ed8fa`, Kino mauve `#e8b8ed`. Cette sémantique détermine l’affectation des trois sommets de la première tétrade. Les associations des personnages suivent la demande. La Licorne participe aux calculs et au diagramme mais sa carte indique explicitement qu’elle est exclue des sept couleurs principales ; aucun personnage graphique supplémentaire n’est inventé.
+Les couleurs diagnostiques existantes de `Echo.Primitives` sont Audio orangé `#ffca91`, Visio bleu `#9ed8fa`, Kino mauve `#e8b8ed`. Cette sémantique détermine l’affectation des trois sommets de la première tétrade. Les associations des personnages suivent la demande. La Licorne participe aux calculs et au diagramme mais sa carte indique explicitement qu’elle est exclue des sept couleurs principales ; sa proposition graphique réutilise exclusivement les contours du logo, sans en faire un quatrième tuteur. Voir [la composition de la Licorne](LICORNE.md).
 
 Le logo actuel `#64c29b`, conservé comme repère fixe, est converti par le même module : environ `oklch(0.74536012 0.10726360 164.559056°)`.
 

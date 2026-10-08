@@ -25,7 +25,7 @@ Paramètres d’ouverture : `?cible=Z&p=1`, `?vue=geometrie&cible=Y&miroir=0.5`,
 
 ## Explorer la palette OKLCH
 
-[Palette interactive](https://mrj-am.github.io/style-mrjam/palette.html?L=0.7&C=0.1) : un plan L × C, le gamut sRGB commun aux huit teintes et les sept dessins réels recolorés. Les valeurs restent dans l’URL ; l’état initial L = 0,7, C = 0,1 est une proposition de départ. Voir [les formules, les rôles et les tests](docs/PALETTE.md).
+[Palette interactive](https://mrj-am.github.io/style-mrjam/palette.html?L=0.7&C=0.1) : un plan L × C, le gamut sRGB commun aux huit teintes et les sept dessins réels recolorés, accompagnés de la [proposition de Licorne rose invisible](docs/LICORNE.md). Les valeurs restent dans l’URL ; l’état initial L = 0,7, C = 0,1 est une proposition de départ. Voir [les formules, les rôles et les tests](docs/PALETTE.md).
 
 ## Construction et vérification
 
