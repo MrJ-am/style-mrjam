@@ -49,3 +49,9 @@ Les rapports JSON sont dans `../verification/`. Captures, rasters et traces sont
 ## Publication
 
 Le workflow [pages.yml](../../../.github/workflows/pages.yml) reconstruit et contrôle le site avant chaque publication. Le manifeste `https://mrj-am.github.io/style-mrjam/revision.json` identifie le commit effectivement servi et les empreintes des fichiers. Les exécutions et les captures de validation sont disponibles dans l’onglet Actions du dépôt.
+
+## Frontières individuelles sRGB — 8 octobre 2026
+
+Le sélecteur affiche huit frontières échantillonnées à 513 clartés et leur enveloppe commune. La sélection et les valeurs numériques utilisent les dichotomies exactes à L courant. Cinq tests Elm supplémentaires vérifient les frontières individuelles, le minimum des huit teintes, les contraintes actives et leurs égalités, et la correspondance des tracés avec les rôles. Le parcours navigateur supplémentaire contrôle les neuf frontières, la légende, la stabilité des tracés et la projection au clavier. Les tests incluent explicitement la Licorne.
+
+Vérifications locales : 80 tests Elm, 21 tests Python de référence, 86 parcours navigateur réussis (deux exclusions techniques déjà documentées), contrôles de géométrie et de rasters dans les deux moteurs, formatage et compilation. La bibliothèque commune passe également ses contrôles d’architecture, de navigation et de composants documentaires. L’assemblage Pages produit les 22 fichiers attendus.

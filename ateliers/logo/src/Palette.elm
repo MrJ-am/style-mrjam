@@ -31,7 +31,7 @@ port navigationQuery : (String -> msg) -> Sub msg
 
 
 type alias Modele =
-    { largeur : Int, parametres : P.Parametres, saisieL : String, saisieC : String, message : String }
+    { largeur : Int, parametres : P.Parametres, saisieL : String, saisieC : String, message : String, frontiereSelectionnee : Maybe Role }
 
 
 type Message
@@ -43,11 +43,12 @@ type Message
     | Appliquer
     | Reinitialiser
     | Naviguer String
+    | Inspecter Role
 
 
 modele : Int -> P.Parametres -> Modele
 modele largeur p =
-    { largeur = largeur, parametres = p, saisieL = String.fromFloat p.l, saisieC = String.fromFloat p.c, message = "" }
+    { largeur = largeur, parametres = p, saisieL = String.fromFloat p.l, saisieC = String.fromFloat p.c, message = "", frontiereSelectionnee = Nothing }
 
 
 main : Program { width : Int, query : String } Modele Message
@@ -82,7 +83,7 @@ choisir demande m =
             else
                 ""
     in
-    ( { nouveau | message = message }, remplacerQuery (P.encoder p) )
+    ( { nouveau | message = message, frontiereSelectionnee = m.frontiereSelectionnee }, remplacerQuery (P.encoder p) )
 
 
 update : Message -> Modele -> ( Modele, Cmd Message )
@@ -91,8 +92,20 @@ update message m =
         Redimensionner largeur _ ->
             ( { m | largeur = largeur }, Cmd.none )
 
+        Inspecter role ->
+            ( { m
+                | frontiereSelectionnee =
+                    if m.frontiereSelectionnee == Just role then
+                        Nothing
+
+                    else
+                        Just role
+              }
+            , Cmd.none
+            )
+
         Pointer pos ->
-            choisir { l = 1 - pos.y, c = pos.x * P.chromaAffiche } m
+            choisir { l = 1 - pos.y, c = pos.x * P.chromaPlan } m
 
         Clavier dl dc ->
             let
@@ -162,12 +175,44 @@ clavier =
 
 point : P.Parametres -> String
 point p =
-    String.fromFloat (400 * p.c / P.chromaAffiche) ++ "," ++ String.fromFloat (300 * (1 - p.l))
+    String.fromFloat (400 * p.c / P.chromaPlan) ++ "," ++ String.fromFloat (300 * (1 - p.l))
+
+
+chemin : List P.Parametres -> String
+chemin points =
+    "M" ++ String.join " L" (List.map point points)
 
 
 regionValide : String
 regionValide =
-    "M0,300 L" ++ String.join " L" (List.map point P.frontiere) ++ " L0,0 Z"
+    chemin P.frontiere ++ " Z"
+
+
+
+-- Les chaînes SVG et les couleurs de légende sont constantes, pas recalculées
+-- à chaque geste. La teinte reste celle du rôle même lorsque la candidate est grise.
+
+
+traces : List { role : Role, d : String, couleur : String, tirets : String }
+traces =
+    let
+        motifs =
+            [ "none", "8 3", "2 3", "10 3 2 3", "5 3", "1 3", "12 3 4 3", "6 2 1 2" ]
+
+        repere =
+            P.normaliser { l = 0.52, c = 0.14 }
+    in
+    List.map2
+        (\frontiere motif ->
+            { role = frontiere.role, d = chemin frontiere.points, couleur = P.css (P.couleur repere frontiere.role), tirets = motif }
+        )
+        P.frontieres
+        motifs
+
+
+traceCommun : String
+traceCommun =
+    chemin P.frontiere
 
 
 plan : Modele -> Element Message
@@ -175,6 +220,44 @@ plan m =
     let
         p =
             m.parametres
+
+        limite =
+            P.limiteCommune p.l
+
+        courbe trace =
+            Svg.path
+                [ A.d trace.d
+                , A.fill "none"
+                , A.stroke trace.couleur
+                , A.strokeWidth
+                    (if m.frontiereSelectionnee == Just trace.role then
+                        "4"
+
+                     else
+                        "2"
+                    )
+                , A.strokeDasharray trace.tirets
+                , A.opacity
+                    (if m.frontiereSelectionnee == Nothing || m.frontiereSelectionnee == Just trace.role then
+                        "1"
+
+                     else
+                        "0.25"
+                    )
+                , H.attribute "vector-effect" "non-scaling-stroke"
+                , H.attribute "data-frontiere-role" (P.cle trace.role)
+                , H.attribute "data-h" (String.fromFloat (P.angle trace.role))
+                ]
+                [ Svg.title [] [ Svg.text ("Limite sRGB · " ++ P.nom trace.role) ] ]
+
+        legende trace =
+            column [ width fill, spacing 5 ]
+                [ html
+                    (Svg.svg [ A.viewBox "0 0 100 6", A.width "100%", A.height "6", H.attribute "aria-hidden" "true" ]
+                        [ Svg.line [ A.x1 "0", A.x2 "100", A.y1 "3", A.y2 "3", A.stroke trace.couleur, A.strokeWidth "2", A.strokeDasharray trace.tirets ] [] ]
+                    )
+                , Ui.button (m.frontiereSelectionnee == Just trace.role) (Inspecter trace.role) (P.nom trace.role)
+                ]
     in
     column [ width fill, spacing 14 ]
         [ Ui.heading 2 "Choisir L et C"
@@ -197,25 +280,44 @@ plan m =
                     , H.style "overflow" "visible"
                     , Events.preventDefaultOn "keydown" clavier
                     ]
-                    [ Svg.title [] [ Svg.text "Domaine sRGB commun aux huit sommets" ]
-                    , Svg.defs []
-                        [ Svg.pattern [ A.id "hors-gamut", A.width "10", A.height "10", A.patternUnits "userSpaceOnUse" ]
-                            [ Svg.rect [ A.width "10", A.height "10", A.fill "#f1eeeb" ] []
-                            , Svg.path [ A.d "M0 10L10 0", A.stroke "#d9d1ca", A.strokeWidth "1" ] []
-                            ]
-                        ]
-                    , Svg.rect [ A.width "400", A.height "300", A.fill "url(#hors-gamut)" ] []
-                    , Svg.path [ A.d regionValide, A.fill "#d6e9df", A.stroke "#087f71", A.strokeWidth "2", H.attribute "data-gamut-frontiere" "true" ] []
-                    , Svg.g [ A.stroke "#193d38", A.strokeOpacity "0.18", A.strokeWidth "1", H.style "pointer-events" "none" ]
+                    ([ Svg.title [] [ Svg.text "Huit frontières sRGB et leur enveloppe commune" ]
+                     , Svg.rect [ A.width "400", A.height "300", A.fill "#f1eeeb", A.stroke "#b9c8c3", A.strokeWidth "1" ] []
+                     , Svg.path [ A.d regionValide, A.fill "#d6e9df", H.attribute "data-gamut-region" "true" ] []
+                     , Svg.g [ A.stroke "#193d38", A.strokeOpacity "0.18", A.strokeWidth "1", H.style "pointer-events" "none" ]
                         (List.range 1 3 |> List.map (\i -> Svg.line [ A.x1 "0", A.x2 "400", A.y1 (String.fromInt (i * 75)), A.y2 (String.fromInt (i * 75)) ] []))
-                    , Svg.line [ A.x1 "0", A.x2 "400", A.y1 (String.fromFloat (300 * (1 - p.l))), A.y2 (String.fromFloat (300 * (1 - p.l))), A.stroke "#193d38", A.strokeDasharray "3 4" ] []
-                    , Svg.circle [ A.cx (String.fromFloat (400 * p.c / P.chromaAffiche)), A.cy (String.fromFloat (300 * (1 - p.l))), A.r "7", A.fill "#193d38", A.stroke "white", A.strokeWidth "3", H.attribute "data-palette-curseur" "true" ] []
-                    ]
+                     ]
+                        ++ List.map courbe
+                            (List.sortBy
+                                (\trace ->
+                                    if m.frontiereSelectionnee == Just trace.role then
+                                        1
+
+                                    else
+                                        0
+                                )
+                                traces
+                            )
+                        ++ [ Svg.path [ A.d traceCommun, A.fill "none", A.stroke "white", A.strokeWidth "5", H.attribute "vector-effect" "non-scaling-stroke", H.attribute "aria-hidden" "true" ] []
+                           , Svg.path [ A.d traceCommun, A.fill "none", A.stroke "#193d38", A.strokeWidth "2.5", A.strokeDasharray "3 2", H.attribute "vector-effect" "non-scaling-stroke", H.attribute "data-gamut-frontiere" "true" ] []
+                           , Svg.line [ A.x1 "0", A.x2 "400", A.y1 (String.fromFloat (300 * (1 - p.l))), A.y2 (String.fromFloat (300 * (1 - p.l))), A.stroke "#193d38", A.strokeOpacity "0.35", A.strokeDasharray "3 4" ] []
+                           , Svg.circle [ A.cx (String.fromFloat (400 * p.c / P.chromaPlan)), A.cy (String.fromFloat (300 * (1 - p.l))), A.r "7", A.fill "#193d38", A.stroke "white", A.strokeWidth "3", H.attribute "data-palette-curseur" "true" ] []
+                           ]
+                    )
                 )
             )
-        , Ui.small ("C → · chroma : 0 à " ++ Ui.format 4 P.chromaAffiche)
-        , el [ htmlAttribute (H.id "aide-plan") ] (Ui.paragraph "Déplacez le point à la souris ou au toucher. Au clavier : flèches, pas de 0,001 ; Maj + flèches, pas de 0,01. La zone verte est admissible ; les hachures sont hors gamut commun. Le point est ramené sur la frontière si nécessaire.")
-        , Ui.small ("À cette clarté, C maximal commun = " ++ String.fromFloat (P.cmaxCommun p.l))
+        , Ui.small ("C → · chroma : 0 à " ++ Ui.format 4 P.chromaPlan)
+        , el [ width fill, htmlAttribute (H.id "aide-plan") ] (Ui.paragraph "Huit courbes colorées : les limites sRGB individuelles. La ligne sombre bordée de blanc est leur enveloppe commune ; seule la zone verte à sa gauche est sélectionnable. Déplacez le point à la souris ou au toucher. Au clavier : flèches, pas de 0,001 ; Maj + flèches, pas de 0,01. Au-delà de l’enveloppe, le point revient sur la limite commune.")
+        , el [ width fill, htmlAttribute (H.attribute "data-limite-commune" (String.fromFloat limite.c)), htmlAttribute (H.attribute "data-limitantes" (String.join " " (List.map P.cle limite.roles))) ]
+            (Ui.paragraph ("À cette clarté, C maximal commun = " ++ Ui.format 9 limite.c ++ " — limité par " ++ String.join ", " (List.map P.nom limite.roles)))
+        , Ui.small "Sélectionnez un nom pour mettre sa courbe en évidence ; sélectionnez-le à nouveau pour tout rétablir. Les couleurs de repère restent fixes, même à C = 0. Les motifs de trait permettent aussi de distinguer les teintes proches."
+        , rangees
+            (if m.largeur < 420 then
+                1
+
+             else
+                2
+            )
+            (List.map legende traces)
         ]
 
 

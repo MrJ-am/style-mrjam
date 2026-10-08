@@ -103,3 +103,34 @@ test('palette : glissement tactile réel et absence de défilement du plan',asyn
  expect((await paire(page)).c).toBeGreaterThan(.02);
  await context.close();
 });
+
+test('palette : huit frontières fixes, enveloppe et contraintes actives',async({page})=>{
+ await page.goto('/palette.html');
+ const courbes=page.locator('[data-frontiere-role]');
+ await expect(courbes).toHaveCount(8);
+ await expect(page.locator('[data-gamut-frontiere]')).toHaveCount(1);
+ const traces=await courbes.evaluateAll(es=>Object.fromEntries(es.map(e=>[e.dataset.frontiereRole,{h:+e.dataset.h,d:e.getAttribute('d'),couleur:e.getAttribute('stroke'),motif:e.getAttribute('stroke-dasharray')}])));
+ for(const col of await roles(page).evaluateAll(es=>es.map(e=>e.dataset))){
+   expect(traces[col.rolePalette].h).toBe(+col.h);
+   expect(traces[col.rolePalette].couleur).toMatch(/^oklch\(/);
+   expect(traces[col.rolePalette].d.split(' L')).toHaveLength(513);
+ }
+ expect(new Set(Object.values(traces).map(t=>t.motif)).size).toBe(8);
+ await page.getByRole('button',{name:'Licorne rose invisible',exact:true}).click();
+ await expect(page.locator('[data-frontiere-role="licorne"]')).toHaveAttribute('stroke-width','4');
+ expect(await paire(page)).toEqual({l:.7,c:.1});
+ const limite=page.locator('[data-limite-commune]');
+ for(const l of ['0','0.2','0.7','0.95','1']){
+   await valeurs(page,l,'1');
+   expect((await paire(page)).c).toBe(+(await limite.getAttribute('data-limite-commune')));
+   const actives=(await limite.getAttribute('data-limitantes')).split(' ');
+   expect(actives.length).toBeGreaterThan(0);
+   if(l==='0'||l==='1') expect(actives.sort()).toEqual(Object.keys(traces).sort());
+   else expect(actives).toEqual([l==='0.95'?'zoe':'ydris']);
+   for(const cle of actives) expect(traces[cle]).toBeDefined();
+   await plan(page).focus();await page.keyboard.press('Shift+ArrowRight');
+   expect((await paire(page)).c).toBe(+(await limite.getAttribute('data-limite-commune')));
+ }
+ for(const [cle,trace] of Object.entries(traces)) await expect(page.locator(`[data-frontiere-role="${cle}"]`)).toHaveAttribute('d',trace.d);
+ await expect(limite).toContainText('Licorne rose invisible');
+});

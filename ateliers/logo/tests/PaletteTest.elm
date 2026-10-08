@@ -77,6 +77,59 @@ suite =
                         List.map (P.angle >> P.cmax l) P.roles |> List.minimum |> Maybe.withDefault -1
                 in
                 Expect.equal True (limite == minimum && List.all P.dansGamut sur && List.any (not << P.dansGamut) apres)
+        , fuzz (Fuzz.floatRange 0.001 0.999) "chaque frontière individuelle est admissible et maximale" <|
+            \l ->
+                P.roles
+                    |> List.all
+                        (\role ->
+                            let
+                                h =
+                                    P.angle role
+
+                                c =
+                                    P.cmax l h
+                            in
+                            P.dansGamut { l = l, c = c, h = h }
+                                && not (P.dansGamut { l = l, c = c + 1.0e-8, h = h })
+                        )
+                    |> Expect.equal True
+        , fuzz (Fuzz.floatRange 0 1) "toutes les contraintes actives sont retournées à la tolérance annoncée" <|
+            \l ->
+                let
+                    valeurs =
+                        P.limites l
+
+                    minimum =
+                        List.map .c valeurs |> List.minimum |> Maybe.withDefault -1
+
+                    attendues =
+                        List.filter (\v -> abs (v.c - minimum) <= P.toleranceLimites) valeurs |> List.map .role
+
+                    limite =
+                        P.limiteCommune l
+                in
+                Expect.equal ( minimum, attendues, P.roles ) ( limite.c, limite.roles, List.map .role valeurs )
+        , test "Ydris limite à L=0,7 ; Zoé limite à L=0,95" <|
+            \_ ->
+                Expect.equal [ [ Ydris ], [ Zoe ] ] (List.map (P.limiteCommune >> .roles) [ 0.7, 0.95 ])
+        , test "aux extrémités les huit contraintes sont actives, Licorne comprise" <|
+            \_ ->
+                Expect.equal [ { c = 0, roles = P.roles }, { c = 0, roles = P.roles } ]
+                    (List.map P.limiteCommune [ 0, 1 ])
+        , test "les huit courbes affichées échantillonnent leurs propres teintes, Licorne comprise" <|
+            \_ ->
+                Expect.all
+                    [ \_ -> Expect.equal P.roles (List.map .role P.frontieres)
+                    , \_ ->
+                        P.frontieres
+                            |> List.all (\f -> List.length f.points == 513 && List.all (\p -> p.c == P.cmax p.l (P.angle f.role)) f.points)
+                            |> Expect.equal True
+                    , \_ ->
+                        P.frontiere
+                            |> List.all (\p -> p.c == P.cmaxCommun p.l)
+                            |> Expect.equal True
+                    ]
+                    ()
         , test "projection réduit seulement le chroma commun à L fixé" <|
             \_ ->
                 Expect.equal { l = 0.6, c = P.cmaxCommun 0.6 } (P.normaliser { l = 0.6, c = 10 })

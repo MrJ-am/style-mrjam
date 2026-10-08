@@ -36,7 +36,11 @@ Le logo actuel `#64c29b`, conservé comme repère fixe, est converti par le mêm
 
 La sélection est projetée en conservant L (borné à `[0,1]`) et en ramenant C dans `[0,CmaxCommon(L)]`. Le calcul se fait à chaque clarté sélectionnée ; aucun canal RGB n’est tronqué et aucune teinte n’est ajustée isolément. `hex` renvoie une absence de valeur pour une couleur hors gamut. Le calcul utilise les flottants double précision d’Elm/JavaScript, avec les coefficients publiés des matrices.
 
-Le tracé vert est une approximation visuelle à **257 clartés**, calculée une fois. L’étendue horizontale est dérivée de son maximum avec 12 % de marge : le rectangle englobant n’est pas intégralement sélectionnable. La frontière exacte est recalculée pour la sélection, indépendamment de ce tracé. Aucune limite Display-P3 n’est ajoutée.
+Les huit frontières individuelles sont échantillonnées à **513 clartés**, une seule fois ; leur minimum fournit la neuvième frontière. Les polylignes sont mises en cache, indépendamment des interactions. Le plan C,L couvre le maximum des huit courbes avec 5 % de marge. Le diagramme a,b conserve son échelle propre. La région verte à gauche de l’enveloppe sombre est sélectionnable ; le reste du rectangle ne l’est pas. Aucune limite Display-P3 n’est ajoutée.
+
+Chaque courbe porte sa propre teinte, un motif de trait distinct et une légende sélectionnable. Les couleurs de repère utilisent une paire commune fixe, L = 0,52 et C = min(0,14, CmaxCommon(0,52)), pour rester visibles même lorsque la palette candidate est achromatique. Cette annotation ne modifie pas les couleurs candidates. L’enveloppe commune est sombre, pointillée et bordée de blanc.
+
+À chaque L sélectionné, les huit limites exactes sont recalculées, sans interpolation du tracé. Toutes les teintes à moins de **10⁻⁹** du minimum sont indiquées comme limitantes, y compris les huit aux extrémités. L’affichage numérique utilise neuf décimales. L’allure parfois presque triangulaire de l’enveloppe découle du gamut réel : aucune contrainte triangulaire n’est appliquée.
 
 Les aperçus utilisent `oklch()` avec les flottants complets. Les valeurs sRGB affichées sont encodées sur `[0,1]` ; les hexadécimaux sont quantifiés à 8 bits, et ne remplacent pas la définition mathématique.
 

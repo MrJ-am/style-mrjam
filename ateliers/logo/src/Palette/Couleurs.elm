@@ -1,4 +1,4 @@
-module Palette.Couleurs exposing (Couleur, Parametres, Rgb, Role(..), angle, angleOr, chromaAffiche, cle, cmax, cmaxCommun, couleur, couleurs, css, dansGamut, decoder, depuisSrgb, encoder, frontiere, hex, initial, lineaire, nom, normaliser, roles, srgb, tetrade)
+module Palette.Couleurs exposing (Couleur, Frontiere, Limite, Parametres, Rgb, Role(..), angle, angleOr, chromaAffiche, chromaPlan, cle, cmax, cmaxCommun, couleur, couleurs, css, dansGamut, decoder, depuisSrgb, encoder, frontiere, frontieres, hex, initial, limiteCommune, limites, lineaire, nom, normaliser, roles, srgb, tetrade, toleranceLimites)
 
 {-| Source mathématique unique de la palette candidate.
 Matrices OKLab D65 : Björn Ottosson, <https://bottosson.github.io/posts/oklab/>
@@ -304,7 +304,35 @@ cmax l h =
 
 cmaxCommun : Float -> Float
 cmaxCommun l =
-    List.map (angle >> cmax l) roles |> List.minimum |> Maybe.withDefault 0
+    (limiteCommune l).c
+
+
+type alias Limite =
+    { role : Role, c : Float }
+
+
+limites : Float -> List Limite
+limites l =
+    List.map (\role -> { role = role, c = cmax l (angle role) }) roles
+
+
+toleranceLimites : Float
+toleranceLimites =
+    1.0e-9
+
+
+limiteCommune : Float -> { c : Float, roles : List Role }
+limiteCommune l =
+    let
+        valeurs =
+            limites l
+
+        minimum =
+            List.map .c valeurs |> List.minimum |> Maybe.withDefault 0
+    in
+    { c = minimum
+    , roles = List.filter (\v -> abs (v.c - minimum) <= toleranceLimites) valeurs |> List.map .role
+    }
 
 
 normaliser : Parametres -> Parametres
@@ -335,17 +363,58 @@ initial =
 {-| Échantillonnage destiné au tracé seulement ; la sélection est toujours
 projetée avec le calcul exact à sa propre clarté. Constantes calculées une fois.
 -}
-frontiere : List Parametres
-frontiere =
-    List.range 0 256
+type alias Frontiere =
+    { role : Role, points : List Parametres }
+
+
+
+-- Table commune aux neuf tracés, évaluée une fois ; aucune conversion lors du dessin.
+
+
+echantillons : List { l : Float, limites : List Limite }
+echantillons =
+    List.range 0 512
         |> List.map
             (\i ->
                 let
                     l =
-                        toFloat i / 256
+                        toFloat i / 512
                 in
-                { l = l, c = cmaxCommun l }
+                { l = l, limites = limites l }
             )
+
+
+frontieres : List Frontiere
+frontieres =
+    List.indexedMap
+        (\index role ->
+            { role = role
+            , points =
+                List.map
+                    (\ligne ->
+                        { l = ligne.l
+                        , c = List.drop index ligne.limites |> List.head |> Maybe.map .c |> Maybe.withDefault 0
+                        }
+                    )
+                    echantillons
+            }
+        )
+        roles
+
+
+frontiere : List Parametres
+frontiere =
+    List.map (\ligne -> { l = ligne.l, c = List.map .c ligne.limites |> List.minimum |> Maybe.withDefault 0 }) echantillons
+
+
+
+-- Le plan C,L contient toutes les limites individuelles ; le diagramme a,b
+-- garde son échelle propre pour ne pas réduire l’octogone déjà présenté.
+
+
+chromaPlan : Float
+chromaPlan =
+    1.05 * (List.concatMap (.points >> List.map .c) frontieres |> List.maximum |> Maybe.withDefault 0.1)
 
 
 chromaAffiche : Float
