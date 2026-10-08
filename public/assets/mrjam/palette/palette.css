@@ -1,0 +1,13 @@
+/* Généré depuis Palette.Couleurs : ne pas modifier les valeurs isolément. */
+:root {
+  --palette-l: 0.742201739040462;
+  --palette-c: 0.13255534432579458;
+  --palette-logo: oklch(var(--palette-l) var(--palette-c) 137.50776405003785);
+  --palette-ydris: oklch(var(--palette-l) var(--palette-c) 182.50776405003785);
+  --palette-mode-visio: oklch(var(--palette-l) var(--palette-c) 227.50776405003785);
+  --palette-zoe: oklch(var(--palette-l) var(--palette-c) 272.50776405003785);
+  --palette-mode-kino: oklch(var(--palette-l) var(--palette-c) 317.50776405003785);
+  --palette-licorne: oklch(var(--palette-l) var(--palette-c) 2.5077640500378493);
+  --palette-mode-audio: oklch(var(--palette-l) var(--palette-c) 47.50776405003785);
+  --palette-xiaoping: oklch(var(--palette-l) var(--palette-c) 92.50776405003785);
+}

@@ -16,6 +16,11 @@ for (const nom of ['Logo-factorise.svg', 'X-factorise.svg', 'Y-factorise.svg', '
     throw new Error(`Variante à régénérer : ${nom}`);
   }
 }
+for (const nom of ['Palette-Logo.svg', 'Palette-X.svg', 'Palette-Y.svg', 'Palette-Z.svg', 'Palette-Audio.svg', 'Palette-Visio.svg', 'Palette-Kino.svg', 'Licorne-factorisee.svg', 'palette.json', 'palette.css']) {
+  if (!readFileSync(`public/assets/mrjam/palette/${nom}`).equals(readFileSync(`ateliers/logo/dist/exports/${nom}`))) {
+    throw new Error(`Palette de référence à régénérer : ${nom}`);
+  }
+}
 const fichiers = {};
 function inventorier(repertoire) {
   for (const entree of readdirSync(repertoire, { withFileTypes: true })) {

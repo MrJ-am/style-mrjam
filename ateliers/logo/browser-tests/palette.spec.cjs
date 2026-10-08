@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const reference = JSON.parse(fs.readFileSync('dist/exports/palette.json'));
 const roles = page => page.locator('[data-role-palette]');
 const paire = page => roles(page).first().evaluate(e=>({l:Number(e.dataset.l),c:Number(e.dataset.c)}));
 const plan = page => page.getByRole('group',{name:'Plan L × C',exact:true});
@@ -11,7 +12,7 @@ const valeurs = async (page,l,c) => {
 
 test('palette : rôles, géométrie et véritables SVG paramétrés',async({page})=>{
   const erreurs=[];page.on('pageerror',e=>erreurs.push(e.message));
-  await page.goto('/palette.html');
+  await page.goto('/palette.html?L=0.7&C=0.1');
   await expect(roles(page)).toHaveCount(8);
   expect(await paire(page)).toEqual({l:0.7,c:0.1});
   await expect(page.locator('[data-tetrade]')).toHaveCount(2);
@@ -21,7 +22,7 @@ test('palette : rôles, géométrie et véritables SVG paramétrés',async({page
   expect(teintes['mode-audio']).toBeCloseTo(47.507764,6);
   expect(teintes['mode-visio']).toBeCloseTo(227.507764,6);
   expect(teintes['mode-kino']).toBeCloseTo(317.507764,6);
-  for(const [cle,n] of [['logo',4],['mode-audio',2],['mode-visio',2],['mode-kino',2],['xiaoping',7],['ydris',8],['zoe',5],['licorne',8]]){
+  for(const [cle,n] of [['logo',4],['mode-audio',2],['mode-visio',2],['mode-kino',2],['xiaoping',7],['ydris',8],['zoe',5],['licorne',19]]){
     const svg=page.locator(`[data-svg="palette-${cle}"]`);
     expect(await svg.locator('g[data-instance]').count()).toBe(n);
     await expect(svg.locator('[data-background]')).toHaveAttribute('fill',/^oklch\(/);
@@ -33,7 +34,7 @@ test('palette : rôles, géométrie et véritables SVG paramétrés',async({page
 });
 
 test('palette : souris continue, projection et relâchement hors du plan',async({page})=>{
-  await page.goto('/palette.html');
+  await page.goto('/palette.html?L=0.7&C=0.1');
   const b=await plan(page).boundingBox();
   await page.mouse.move(b.x+b.width*.2,b.y+b.height*.4);await page.mouse.down();
   const avant=await paire(page);
@@ -49,7 +50,7 @@ test('palette : souris continue, projection et relâchement hors du plan',async(
 });
 
 test('palette : clavier, saisies françaises, erreurs et URL exacte',async({page})=>{
-  await page.goto('/palette.html?autre=conserve');
+  await page.goto('/palette.html?autre=conserve&L=0.7&C=0.1');
   await plan(page).focus();await expect(plan(page)).toBeFocused();await page.keyboard.press('ArrowUp');
   await expect.poll(async()=> (await paire(page)).l).toBe(.701);
   await page.keyboard.press('Shift+ArrowLeft');
@@ -64,7 +65,8 @@ test('palette : clavier, saisies françaises, erreurs et URL exacte',async({page
   expect(new URL(page.url()).searchParams.get('autre')).toBe('conserve');
   const url=page.url();await page.reload();expect(await paire(page)).toEqual(attendue);
   await valeurs(page,'invalide','0.1');await expect(page.getByRole('status')).toContainText('Saisissez');expect(await paire(page)).toEqual(attendue);
-  await page.getByRole('button',{name:'État initial',exact:true}).click();expect(await paire(page)).toEqual({l:.7,c:.1});
+  await page.getByRole('button',{name:'Palette de référence',exact:true}).click();
+  expect((await paire(page)).l).toBeCloseTo(reference.L,12);expect((await paire(page)).c).toBeCloseTo(reference.C,12);
   await page.goto(url);expect(await paire(page)).toEqual(attendue);
   await valeurs(page,'1','0.2');expect(await paire(page)).toEqual({l:1,c:0});
   await valeurs(page,'0','0.2');expect(await paire(page)).toEqual({l:0,c:0});
@@ -105,7 +107,7 @@ test('palette : glissement tactile réel et absence de défilement du plan',asyn
 });
 
 test('palette : huit frontières fixes, enveloppe et contraintes actives',async({page})=>{
- await page.goto('/palette.html');
+ await page.goto('/palette.html?L=0.7&C=0.1');
  const courbes=page.locator('[data-frontiere-role]');
  await expect(courbes).toHaveCount(8);
  await expect(page.locator('[data-gamut-frontiere]')).toHaveCount(1);
@@ -136,7 +138,7 @@ test('palette : huit frontières fixes, enveloppe et contraintes actives',async(
 });
 
 test('licorne : contours du logo, similitudes, cadrage et export commun',async({page})=>{
- await page.goto('/palette.html');
+ await page.goto('/palette.html?L=0.7&C=0.1');
  const svg=page.locator('[data-svg="palette-licorne"]');
  const contours=async source=>source.locator('defs path').evaluateAll(es=>es.map(e=>e.getAttribute('d')));
  expect(await contours(svg)).toEqual(await contours(page.locator('[data-svg="palette-logo"]')));
@@ -152,42 +154,34 @@ test('licorne : contours du logo, similitudes, cadrage et export commun',async({
    }
    return {source:source.id,matrice:[m.a,m.b,m.c,m.d,m.e,m.f],orthogonal:m.a*m.c+m.b*m.d,ecartEchelles:m.a*m.a+m.b*m.b-m.c*m.c-m.d*m.d,rayon};
  }));
- expect(mesures).toHaveLength(8);
+ expect(mesures).toHaveLength(19);
  for(const mesure of mesures){
    expect(mesure.source).toMatch(/^palette-licorne-(auditif|visuel|kinesthesique)$/);
    expect(Math.abs(mesure.orthogonal)).toBeLessThan(1e-12);
    expect(Math.abs(mesure.ecartEchelles)).toBeLessThan(1e-12);
    expect(mesure.rayon).toBeLessThan(15);
  }
- await expect(svg.locator('[data-instance^="criniere-"]')).toHaveCount(3);
+ await expect(svg.locator('[data-instance^="criniere-"]')).toHaveCount(6);
  await expect(svg.locator('[data-instance="encolure"]')).toHaveCount(0);
- await expect(svg.locator('[data-instance^="corne-"]')).toHaveCount(3);
- await expect(svg.locator('[data-trou]')).toHaveCount(1);
+ await expect(svg.locator('[data-instance^="corne-"]')).toHaveCount(5);
+ await expect(svg.locator('[data-trou]')).toHaveCount(0);
  const contenu=await (await page.request.get('/exports/Licorne-factorisee.svg')).text();
  const exporte=await page.evaluate(contenu=>{
    const d=new DOMParser().parseFromString(contenu,'image/svg+xml');
    return {contours:[...d.querySelectorAll('defs path')].map(e=>e.getAttribute('d')),matrices:[...d.querySelectorAll('use[data-instance]')].map(e=>{const m=e.transform.baseVal.getItem(0).matrix;return [m.a,m.b,m.c,m.d,m.e,m.f]})};
  },contenu);
- expect(exporte.contours).toEqual(await contours(svg));expect(exporte.matrices).toHaveLength(8);
+ expect(exporte.contours).toEqual(await contours(svg));expect(exporte.matrices).toHaveLength(19);
  exporte.matrices.forEach((m,i)=>m.forEach((v,j)=>expect(v).toBeCloseTo(mesures[i].matrice[j],12)));
- const transparence=await page.evaluate(async contenu=>{
-   const d=new DOMParser().parseFromString(contenu,'image/svg+xml');
-   d.querySelector('svg > circle').remove();
-   const pixels=async()=>{
-     const im=new Image();const url=URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(d)],{type:'image/svg+xml'}));
-     await new Promise((res,rej)=>{im.onload=res;im.onerror=rej;im.src=url;});
-     const c=document.createElement('canvas');c.width=c.height=600;const ctx=c.getContext('2d');ctx.drawImage(im,0,0,600,600);URL.revokeObjectURL(url);
-     return [...d.querySelectorAll('[data-trou]')].map(e=>{const m=e.transform.baseVal.getItem(0).matrix;return ctx.getImageData(Math.round(m.e*20),Math.round(m.f*20),1,1).data[3]});
-   };
-   const avec=await pixels();d.querySelector('g[mask]').removeAttribute('mask');return {avec,sans:await pixels()};
- },contenu);
- expect(transparence.avec).toEqual([0]);
- for(const alpha of transparence.sans) expect(alpha).toBeGreaterThan(245);
+ await expect(svg.locator('linearGradient')).toHaveCount(1);
+ await expect(svg.locator('mask [data-instance]')).toHaveCount(19);
+ await expect(svg.locator('[data-degrade-global]')).toHaveCount(1);
+ await expect(svg.locator('linearGradient stop').first()).toHaveAttribute('stop-color','#ffffff');
+ await expect(svg.locator('linearGradient stop').last()).toHaveAttribute('stop-color',await svg.locator('[data-background]').getAttribute('fill'));
 
 });
 
 test('licorne : invisibilité, inspection au clavier et couleur synchronisée',async({page})=>{
- await page.goto('/palette.html');
+ await page.goto('/palette.html?L=0.7&C=0.1');
  const svg=page.locator('[data-svg="palette-licorne"]');
  const fond=svg.locator('[data-background]');
  const initial=await fond.getAttribute('fill');const url=page.url();
@@ -200,14 +194,60 @@ test('licorne : invisibilité, inspection au clavier et couleur synchronisée',a
  await expect(svg.locator('[data-instance]')).toHaveCount(0);
  expect(await fond.getAttribute('fill')).not.toBe(initial);
  await page.getByRole('button',{name:'Révéler la licorne',exact:true}).click();
- await expect(svg.locator('[data-instance]')).toHaveCount(8);
+ await expect(svg.locator('[data-instance]')).toHaveCount(19);
  const inspecter=page.getByRole('button',{name:'Voir les pièces',exact:true});
  await inspecter.focus();await page.keyboard.press('Space');
- await expect(svg.locator('[data-instance="oreille"] use')).toHaveAttribute('fill','#ffca91');
- await expect(svg.locator('[data-instance="tete"] use')).toHaveAttribute('fill','#9ed8fa');
+ await expect(svg.locator('[data-instance="museau"] use')).toHaveAttribute('fill','#ffca91');
+ await expect(svg.locator('[data-instance="machoire"] use')).toHaveAttribute('fill','#9ed8fa');
  await valeurs(page,'0.7','0.1');
- await expect(svg.locator('[data-instance="criniere-haute"] use')).toHaveAttribute('fill','#9ed8fa');
+ await expect(svg.locator('[data-instance="criniere-front"] use')).toHaveAttribute('fill','#9ed8fa');
  await page.getByRole('button',{name:'Voir la silhouette',exact:true}).click();
  expect(await svg.locator('[data-instance] use').evaluateAll(es=>es.every(e=>e.getAttribute('fill')==='#ffffff'))).toBe(true);
  await expect(fond).toHaveAttribute('fill',initial);
+});
+
+
+test('référence définitive : maximum, manifeste et téléchargements concordants',async({page})=>{
+ await page.goto('/palette.html');
+ expect((await paire(page)).l).toBeCloseTo(reference.L,12);
+ expect((await paire(page)).c).toBeCloseTo(reference.C,12);
+ await expect(page.locator('[data-limite-commune]')).toHaveAttribute('data-limitantes','ydris zoe');
+ const manifeste=await (await page.request.get('/exports/palette.json')).json();
+ expect(manifeste).toEqual(reference);
+ for(const lien of await page.locator('a[href^="exports/"]').evaluateAll(es=>es.map(e=>e.getAttribute('href')))){
+   expect((await page.request.get('/'+lien)).ok()).toBe(true);
+ }
+ await page.getByRole('link',{name:'Le sens de cette construction →',exact:true}).click();
+ await expect(page.locator('#palette')).toContainText('deux harmonies tétradiques');
+ await expect(page.getByRole('heading',{name:'Un quatre caché dans le trois.'})).toBeVisible();
+ await expect(page.getByRole('link',{name:'La Licorne rose invisible sur Wikipédia'})).toHaveAttribute('href','https://fr.wikipedia.org/wiki/Licorne_rose_invisible');
+ await expect(page.locator('[data-svg="philo-licorne"] [data-instance]')).toHaveCount(19);
+});
+
+test('licorne : le SVG garde le modèle approuvé et un seul champ de dégradé',async({page})=>{
+ await page.goto('/palette.html');
+ const exporte=await (await page.request.get('/exports/Licorne-factorisee.svg')).text();
+ const source=fs.readFileSync('references/licorne/modele-valide.svg','utf8');
+ const mesures=await page.evaluate(async({exporte,source})=>{
+   const parser=new DOMParser();
+   const officiel=parser.parseFromString(exporte,'image/svg+xml');
+   const valide=parser.parseFromString(source,'image/svg+xml');
+   const rose=officiel.querySelector('svg > circle').getAttribute('fill');
+   valide.querySelector('circle').setAttribute('fill',rose);
+   valide.querySelector('stop[offset="1"]').setAttribute('stop-color',rose);
+   const raster=async(d)=>{
+     // Même résolution intrinsèque : Firefox rastérise sinon le SVG sans taille en 300 × 150.
+     d.documentElement.setAttribute('width','640');d.documentElement.setAttribute('height','640');
+     const im=new Image();im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(d));await im.decode();
+     const canevas=document.createElement('canvas');canevas.width=canevas.height=640;
+     const contexte=canevas.getContext('2d');contexte.drawImage(im,0,0,640,640);return contexte.getImageData(0,0,640,640).data;
+   };
+   const a=await raster(officiel),b=await raster(valide);
+   let somme=0,grandsEcarts=0;
+   for(let i=0;i<a.length;i++){const ecart=Math.abs(a[i]-b[i]);somme+=ecart;if(ecart>10) grandsEcarts++;}
+   // La géométrie, le cadrage et la direction du dégradé doivent tous coïncider.
+   return {moyenne:somme/a.length,grandsEcarts:grandsEcarts/a.length};
+ },{exporte,source});
+ expect(mesures.moyenne).toBeLessThan(.15);
+ expect(mesures.grandsEcarts).toBeLessThan(.002);
 });

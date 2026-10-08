@@ -19,6 +19,7 @@ import Html
 import Html.Attributes as H
 import MrJam
 import MrJam.Disposition as Disposition
+import Shared.Licorne as Licorne
 import Shared.Ui as Ui
 import Time
 
@@ -795,6 +796,12 @@ geometryView model =
         , Ui.paragraph "Le disque représente la connaissance, l’aspect sémantique. Chaque pictogramme sensoriel réunit ce même disque et un contour. Le logo complet partage un seul disque entre les trois contours."
         , brickGallery model
         , referenceGallery model
+        , Ui.card [ width fill, spacing 16 ]
+            [ Ui.heading 2 "La Licorne rose invisible"
+            , Licorne.illustration "galerie-licorne" 280
+            , Ui.paragraph "Le modèle retenu garde le museau très long, sans poitrail, et s’éclaircit vers la corne. Dix-neuf occurrences réutilisent les trois contours du logo par transformations. Le rose est celui de la palette ÉcoLogo de référence."
+            , wrappedRow [ width fill, spacing 16 ] [ MrJam.lien "↓ Licorne — SVG factorisé" "exports/Licorne-factorisee.svg", MrJam.lien "Le sens de la Licorne" "philosophie.html#licorne", MrJam.lien "Les huit couleurs de référence" "palette.html#reference-palette" ]
+            ]
         , if model.width < 900 then
             column [ width fill, spacing 20 ] [ comparisonPanel model, mirrorPanel model ]
 
@@ -1112,7 +1119,7 @@ footer model =
         , Ui.divider
         , Ui.small "Logo, signature et déclinaisons : toute utilisation est strictement réservée. Leur présence publique ne vaut pas autorisation de réutilisation."
         , column [ width fill, spacing 12 ]
-            [ Ui.small "Écho · Atelier du logo · MrJ.am"
+            [ Ui.small "ÉcoLogo · Atelier du logo · MrJ.am"
             , MrJam.texteSecondaire "Contours préservés. Échelles et symétries explicites."
             ]
         ]

@@ -1,6 +1,6 @@
-module Palette.Couleurs exposing (Couleur, Frontiere, Limite, Parametres, Rgb, Role(..), angle, angleOr, chromaAffiche, chromaPlan, cle, cmax, cmaxCommun, couleur, couleurs, css, dansGamut, decoder, depuisSrgb, encoder, frontiere, frontieres, hex, initial, limiteCommune, limites, lineaire, nom, normaliser, roles, srgb, tetrade, toleranceLimites)
+module Palette.Couleurs exposing (Couleur, Frontiere, Limite, Parametres, Rgb, Role(..), angle, angleOr, chromaAffiche, chromaPlan, cle, cmax, cmaxCommun, couleur, couleurs, css, dansGamut, decoder, depuisSrgb, encoder, frontiere, frontieres, hex, initial, limiteCommune, limites, lineaire, nom, normaliser, reference, roles, srgb, tetrade, toleranceLimites)
 
-{-| Source mathématique unique de la palette candidate.
+{-| Source mathématique unique de la palette ÉcoLogo et de son exploration.
 Matrices OKLab D65 : Björn Ottosson, <https://bottosson.github.io/posts/oklab/>
 Transfert sRGB : IEC 61966-2-1 / CSS Color 4. Aucune correction RGB par canal.
 -}
@@ -343,21 +343,79 @@ normaliser p =
                 clamp 0 1 p.l
 
             else
-                0.7
+                reference.l
 
         c =
             if fini p.c then
                 p.c
 
             else
-                0.1
+                reference.c
     in
     { l = l, c = clamp 0 (cmaxCommun l) c }
 
 
 initial : Parametres
 initial =
-    normaliser { l = 0.7, c = 0.1 }
+    reference
+
+
+{-| Maximum du gamut commun aux huit teintes fixes. La table sert à repérer
+tous les sommets locaux ; chaque intervalle est ensuite raffiné par 64 recherches
+ternaires sur la véritable limite (pas sur la polyligne). La borne admissible
+est recalculée au L retenu. Cette constante est évaluée une seule fois.
+-}
+reference : Parametres
+reference =
+    let
+        intervalles points =
+            case points of
+                gauche :: milieu :: droite :: suite ->
+                    if milieu.c >= gauche.c && milieu.c >= droite.c then
+                        ( gauche.l, droite.l ) :: intervalles (milieu :: droite :: suite)
+
+                    else
+                        intervalles (milieu :: droite :: suite)
+
+                _ ->
+                    []
+
+        affiner n bas haut =
+            if n == 0 then
+                let
+                    l =
+                        (bas + haut) / 2
+                in
+                { l = l, c = cmaxCommun l }
+
+            else
+                let
+                    tiers =
+                        (haut - bas) / 3
+
+                    gauche =
+                        bas + tiers
+
+                    droite =
+                        haut - tiers
+                in
+                if cmaxCommun gauche < cmaxCommun droite then
+                    affiner (n - 1) gauche haut
+
+                else
+                    affiner (n - 1) bas droite
+    in
+    intervalles frontiere
+        |> List.map (\( bas, haut ) -> affiner 64 bas haut)
+        |> List.foldl
+            (\candidat meilleur ->
+                if candidat.c > meilleur.c then
+                    candidat
+
+                else
+                    meilleur
+            )
+            { l = 0, c = 0 }
 
 
 {-| Échantillonnage destiné au tracé seulement ; la sélection est toujours

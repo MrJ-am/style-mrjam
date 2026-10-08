@@ -1,4 +1,4 @@
-# Atelier du logo Écho : Xiaoping, Ydris et Zoé
+# Atelier ÉcoLogo : Xiaoping, Ydris, Zoé et la Licorne rose invisible
 
 Atelier Elm/ElmUI avec une chronologie Elm Animator : recomposition réversible du logo en X, Y ou Z, rotation centrifuge, comparaison des dessins, inspecteur des symétries et exports SVG. La [page de philosophie](https://mrj-am.github.io/style-mrjam/philosophie.html) relie les modalités sensorielles à la connaissance, explique les proportions et présente les trois tuteurs.
 
@@ -25,7 +25,7 @@ Paramètres d’ouverture : `?cible=Z&p=1`, `?vue=geometrie&cible=Y&miroir=0.5`,
 
 ## Explorer la palette OKLCH
 
-[Palette interactive](https://mrj-am.github.io/style-mrjam/palette.html?L=0.7&C=0.1) : un plan L × C, le gamut sRGB commun aux huit teintes et les sept dessins réels recolorés, accompagnés de la [proposition de Licorne rose invisible](docs/LICORNE.md). Les valeurs restent dans l’URL ; l’état initial L = 0,7, C = 0,1 est une proposition de départ. Voir [les formules, les rôles et les tests](docs/PALETTE.md).
+[Palette interactive](https://mrj-am.github.io/style-mrjam/palette.html) : la référence définitive est **L ≈ 0,742201739 ; C ≈ 0,132555344**, au maximum du chroma commun aux huit teintes sRGB. Ydris et Zoé imposent ensemble cette limite. Les sept dessins principaux et la [Licorne retenue](docs/LICORNE.md) utilisent le même moteur. L’exploration et les URL restent disponibles ; JSON, CSS et SVG donnent la palette de référence. Voir [les formules, le choix et les tests](docs/PALETTE.md). La philosophie explique ÉcoLogo, le « quatre caché dans le trois », les proportions et les analogies.
 
 ## Construction et vérification
 

@@ -1,5 +1,6 @@
-module Echo.Composition exposing (Cible(..), Instance, connaissance, description, donnees, fond, instances, licorne, logo, nom, pictogramme, prenom, reference, trousLicorne, x, y, z)
+module Echo.Composition exposing (Cible(..), Instance, connaissance, description, donnees, fond, instances, licorne, logo, nom, pictogramme, prenom, reference, x, y, z)
 
+import Echo.Licorne as Licorne
 import Echo.Primitives as Primitives exposing (Brick(..))
 import Echo.ReferenceData as Reference
 import Echo.Transform as Transform exposing (Chirality(..), Pose)
@@ -48,40 +49,15 @@ z =
     depuisDonnees Reference.ciblesZ
 
 
-{-| Huit contours : tête, oreille, trois mèches
-et trois pièces en homothétie pour la corne en spirale. Aucun tracé ajouté.
+{-| Dix-neuf occurrences des contours canoniques ; les placements proviennent
+du modèle validé, normalisé par une seule homothétie dans le disque de rayon 15.
 -}
 licorne : List Instance
 licorne =
-    let
-        placer id brick xPose yPose angle echelle face =
-            { id = id, brick = brick, pose = { x = xPose, y = yPose, angle = degrees angle, scale = echelle, chirality = face } }
-    in
-    [ placer "tete" Visuel 14.075 11.1 25 1.092 Direct
-    , placer "corne-pointe" Visuel 21.3445100917 6.5166525594 -52 0.322 Direct
-    , placer "corne-milieu" Visuel 19.6740772534 9.5642998704 -52 0.476 Direct
-    , placer "corne-base" Visuel 17.995 13.76 -52 0.672 Direct
-    , placer "oreille" Auditif 16.875 11.1 0 0.462 Direct
-    , placer "criniere-haute" Visuel 15.875 12.5 -5 1.0 Reflected
-    , placer "criniere-milieu" Visuel 13.375 16.0 -20 0.8125 Reflected
-    , placer "criniere-basse" Visuel 11.75 20.125 -40 0.625 Reflected
-    ]
+    depuisDonnees Licorne.placements
 
 
-{-| Un seul petit évidement pour l’œil. Le disque canonique
-sert de découpe et ne devient jamais une pièce de remplissage de la silhouette.
--}
-trousLicorne : List Instance
-trousLicorne =
-    let
-        placer id brick xPose yPose angle echelle face =
-            { id = id, brick = brick, pose = { x = xPose, y = yPose, angle = degrees angle, scale = echelle, chirality = face } }
-    in
-    [ placer "oeil" Connaissance 18.975 10.96 0 0.224 Direct
-    ]
-
-
-depuisDonnees : List Reference.Target -> List Instance
+depuisDonnees : List { a | id : String, brick : Brick, x : Float, y : Float, angle : Float, scale : Float, reflected : Bool } -> List Instance
 depuisDonnees cibles =
     List.map
         (\target ->

@@ -4,6 +4,7 @@ import Browser
 import Browser.Events
 import Echo.Animation as Animation
 import Echo.Composition as Composition
+import Echo.Licorne as Licorne
 import Echo.Primitives as Primitives
 import Echo.Render as Render
 import Element exposing (Element, column, el, fill, height, html, htmlAttribute, padding, paddingXY, px, row, spacing, text, width, wrappedRow)
@@ -495,7 +496,7 @@ carteCouleur m index role =
 
                                     else
                                         "Licorne invisible : seul le fond rose reste visible"
-                                , trous = Composition.trousLicorne
+                                , degrade = Just Licorne.degrade
                                 , diagnostic = m.licorneDiagnostic
                                 , hidden =
                                     if m.licorneVisible then
@@ -507,7 +508,7 @@ carteCouleur m index role =
                             (Animation.static css Composition.licorne)
                         )
                     )
-                , Ui.small "Proposition · La crinière suggère le profil, sans contour de cou. Huit contours du logo, une corne en spirale et un seul petit évidement pour l’œil."
+                , Ui.small "Modèle retenu · Museau très long, sans poitrail. Dix-neuf occurrences des trois contours du logo ; un dégradé continu se fond dans le rose de la crinière et s’éclaircit vers la corne."
                 , wrappedRow [ width fill, spacing 8 ]
                     [ Ui.button (not m.licorneVisible)
                         BasculerLicorne
@@ -527,11 +528,12 @@ carteCouleur m index role =
                         )
                     ]
                 , if m.licorneDiagnostic then
-                    Ui.small "Audio : oreille. Visio : tête, trois mèches et trois pièces de la corne. Le disque sert uniquement à évider l’œil."
+                    Ui.small "Audio : quatre segments de corne, œil et museau. Visio : une mèche, une oreille, pointe de corne et mâchoire. Kino : cinq mèches, une oreille, front, chanfrein et joue. Aucun disque ajouté à la silhouette."
 
                   else
                     Element.none
-                , MrJam.lien "↓ SVG de la proposition" "exports/Licorne-factorisee.svg"
+                , MrJam.lien "↓ SVG factorisé de référence" "exports/Licorne-factorisee.svg"
+                , MrJam.lien "Pourquoi une licorne invisible ?" "philosophie.html#licorne"
                 , Ui.small "Sommet géométrique. Non retenu parmi les sept couleurs principales."
                 ]
 
@@ -542,6 +544,27 @@ carteCouleur m index role =
 
                 Nothing ->
                     Element.none
+        , if role /= Licorne then
+            MrJam.lien "↓ SVG — palette de référence"
+                ("exports/Palette-"
+                    ++ (case role of
+                            Xiaoping ->
+                                "X"
+
+                            Ydris ->
+                                "Y"
+
+                            Zoe ->
+                                "Z"
+
+                            _ ->
+                                P.nom role
+                       )
+                    ++ ".svg"
+                )
+
+          else
+            Element.none
         , code css
         , Ui.small ("h = " ++ Ui.format 6 col.h ++ "°")
         , code ("sRGB = (" ++ String.fromFloat rgb.r ++ ", " ++ String.fromFloat rgb.g ++ ", " ++ String.fromFloat rgb.b ++ ")")
@@ -627,24 +650,30 @@ vue m =
                 , Police.letterSpacing -1.5
                 ]
                 [ text "Une palette, deux paramètres." ]
-            , MrJam.paragraphe "Choisissez une clarté L et un chroma C communs. Sept couleurs habillent les véritables dessins de l’atelier ; un huitième sommet, la Licorne rose invisible, complète la construction. Cette page explore une candidate : elle ne fixe pas la palette définitive."
+            , MrJam.paragraphe "La palette de référence d’ÉcoLogo retient le chroma commun le plus élevé possible en sRGB. Sept couleurs habillent les dessins ; la Licorne rose invisible complète le huitième sommet et participe à la même contrainte. Le plan reste disponible pour comparer d’autres paires L et C."
             , Ui.card [ width fill, padding 24, spacing 18 ]
                 [ duo (plan m) (geometrie p)
                 , duo (champ "palette-l" "L · clarté" m.saisieL SaisirL) (champ "palette-c" "C · chroma" m.saisieC SaisirC)
-                , wrappedRow [ spacing 12, width fill ] [ Ui.primary Appliquer "Appliquer L et C", Ui.button False Reinitialiser "État initial", MrJam.lien "Lien vers cette paire" ("palette.html?" ++ P.encoder p) ]
+                , wrappedRow [ spacing 12, width fill ] [ Ui.primary Appliquer "Appliquer L et C", Ui.button False Reinitialiser "Palette de référence", MrJam.lien "Lien vers cette paire" ("palette.html?" ++ P.encoder p) ]
                 , el [ width fill, htmlAttribute (H.attribute "role" "status") ] (Ui.small m.message)
                 , el [ width fill, htmlAttribute (H.id "valeurs-palette") ] (code ("Paire sélectionnée : L = " ++ String.fromFloat p.l ++ " ; C = " ++ String.fromFloat p.c))
                 , Ui.small "L’adresse suit chaque réglage : copiez-la pour retrouver exactement la même paire. Les codes hexadécimaux sont arrondis à 8 bits ; les aperçus utilisent les valeurs OKLCH complètes."
                 ]
-            , Ui.heading 2 "La candidate sur les dessins"
+            , Ui.card [ width fill, spacing 14, htmlAttribute (H.id "reference-palette") ]
+                [ Ui.heading 2 "La référence : le chroma commun maximal"
+                , code ("L = " ++ String.fromFloat P.reference.l ++ " ; C = " ++ String.fromFloat P.reference.c)
+                , Ui.paragraph ("Ce point maximise C sur l’enveloppe réelle des huit gamuts sRGB. À son sommet, les limites se rejoignent pour : " ++ String.join " et " (List.map P.nom (P.limiteCommune P.reference.l).roles) ++ ". Aucun triangle approché ni ajustement par couleur n’intervient dans ce choix.")
+                , wrappedRow [ width fill, spacing 16 ] [ MrJam.lien "↓ Palette JSON" "exports/palette.json", MrJam.lien "↓ Variables CSS" "exports/palette.css", MrJam.lien "Le sens de cette construction →" "philosophie.html#palette" ]
+                ]
+            , Ui.heading 2 "La palette sur les dessins"
             , Ui.paragraph "Les modalités conservent leurs associations : Audio orangé, Visio bleu, Kino mauve. Les personnages prennent les sommets prévus : Xiaoping jaune, Ydris vert, Zoé bleu. Tous partagent exactement le même L et le même C, y compris le sommet invisible."
             , rangees nombre (List.indexedMap (carteCouleur m) P.roles)
             , Ui.card [ width fill, padding 24, spacing 16 ]
-                [ Ui.heading 2 "Un repère : le logo actuel"
+                [ Ui.heading 2 "Un repère : le logo historique"
                 , duo (illustration "palette-logo-actuel" "Logo actuel · #64c29b" (Animation.static "#64c29b" Composition.logo))
                     (column [ width fill, spacing 12 ]
                         [ code ("#64c29b ≈ " ++ P.css actuel)
-                        , Ui.paragraph "Ce repère reste fixe. L’état initial de la candidate est L = 0,7 et C = 0,1 : un point de départ dans le domaine commun, à explorer. À forte clarté, les formes blanches deviennent moins contrastées ; ces aperçus permettent aussi de juger cet effet réel."
+                        , Ui.paragraph "Ce repère historique reste fixe. Les nouvelles couleurs sont définies par une paire commune choisie au maximum de chroma. À forte clarté, les formes blanches deviennent moins contrastées ; les aperçus permettent aussi de juger cet effet réel."
                         ]
                     )
                 ]
@@ -652,6 +681,6 @@ vue m =
             , MrJam.paragraphe "Pour chaque clarté, nous cherchons le chroma maximal sRGB de chacune des huit teintes, puis retenons le plus petit. Le curseur réduit le chroma commun si nécessaire : aucune composante RGB n’est tronquée pour sauver une couleur. La frontière dessinée est échantillonnée ; chaque sélection est vérifiée à sa propre clarté."
             , code ("φ = (1 + √5) / 2 ; angle d’or = 360 / φ² = " ++ String.fromFloat P.angleOr ++ "° ; h(n) = (angle d’or + 45n) modulo 360")
             , MrJam.lien "Définition et conversions OKLab — Björn Ottosson" "https://bottosson.github.io/posts/oklab/"
-            , Ui.small "Logo et déclinaisons : toute utilisation est strictement réservée. MrJ.am · Écho"
+            , Ui.small "Logo et déclinaisons : toute utilisation est strictement réservée. MrJ.am · ÉcoLogo"
             ]
         )

@@ -4,6 +4,7 @@ import json
 import hashlib
 import math
 import sys
+import subprocess
 import xml.etree.ElementTree as ET
 
 RACINE = Path(__file__).resolve().parents[1]
@@ -126,6 +127,51 @@ assert abs(point_z('bras-gauche', 3, 0) - point_z('diagonale', -1.5, 2.598076)) 
 assert abs(point_z('bras-droit', 3, 0) - point_z('diagonale', 2.598076, 1.5)) < 1e-6
 assert abs(point_z('pied', 2.598076, 1.5) - point_z('diagonale', -1.5, 19.568639)) < 1e-6
 print('Z : 5 placements définis ; dessin explicite et export concordants à 1e-12 ; pictogrammes complets.')
+
+# Licorne : vérifier la normalisation exacte du dessin approuvé, pas seulement son import.
+subprocess.run([sys.executable, str(RACINE/'scripts/importer-licorne.py'), '--check'], check=True)
+modele = ET.parse(RACINE/'references/licorne/modele-valide.svg').getroot()
+licorne = ET.parse(RACINE/'dist/exports/Licorne-factorisee.svg').getroot()
+x0, y0, largeur, hauteur = map(float, modele.attrib['viewBox'].split())
+k = 30 / largeur
+assert largeur == hauteur
+assert len(list(licorne.iter(NS+'path'))) == 3
+originaux = list(modele.iter(NS+'use'))
+copies = list(licorne.iter(NS+'use'))
+assert len(originaux) == len(copies) == 19
+identifiants = {'auditif': 'Auditif', 'visuel': 'Visuel', 'kinesthesique': 'Kinesthesique'}
+definitions = {n.attrib['id']: n for n in licorne.find(NS+'defs')}
+erreur = 0
+for original, copie in zip(originaux, copies):
+    nom = identifiants[copie.attrib['href'].removeprefix('#licorne-')]
+    definition = definitions[copie.attrib['href'][1:]]
+    assert definition.find(NS+'path').attrib['d'] == contours[nom]
+    ancienne = geometrie.transformation(original.attrib['transform'])
+    nouvelle = geometrie.transformation(copie.attrib['transform'])
+    geometrie.facteur_similitude(nouvelle)
+    for point in geometrie.echantillons([(arc, False) for arc in canoniques[nom].arcs], 129):
+        attendu = k * (geometrie.appliquer(ancienne, point) - complex(x0, y0))
+        obtenu = geometrie.appliquer(nouvelle, point - geometrie.ORIGINE)
+        erreur = max(erreur, abs(obtenu - attendu))
+        assert abs(obtenu-complex(15, 15)) < 15
+assert erreur < 1e-12, erreur
+masque = licorne.find('.//'+NS+'mask')
+assert len(list(masque.iter(NS+'use'))) == 19
+assert len(list(licorne.iter(NS+'linearGradient'))) == 1
+champ = licorne.find(NS+'rect')
+assert champ.attrib['mask'] == 'url(#licorne-silhouette)'
+gradient = licorne.find('.//'+NS+'linearGradient')
+reference_gradient = modele.find('.//'+NS+'linearGradient')
+assert gradient.attrib['gradientUnits'] == 'userSpaceOnUse'
+assert gradient.attrib['color-interpolation'] == 'sRGB'
+for coord in ['x1', 'y1', 'x2', 'y2']:
+    attendu = k*(float(reference_gradient.attrib[coord])-(x0 if coord.startswith('x') else y0))
+    assert abs(float(gradient.attrib[coord])-attendu) < 1e-12
+assert gradient[0].attrib['stop-color'] == '#ffffff'
+assert gradient[1].attrib['stop-color'] == licorne.find(NS+'circle').attrib['fill']
+resultats['Licorne'] = dict(occurrences=19, contours=3, erreur_max=erreur,
+    source_sha256=hashlib.sha256((RACINE/'references/licorne/modele-valide.svg').read_bytes()).hexdigest())
+print(f'Licorne : 19 occurrences de 3 contours ; dégradé global ; écart au modèle {erreur:.3g}.')
 
 # Le logo du kit correspond aux contours de Signature distribués par le dépôt.
 autorite = ET.parse(RACINE/'../../public/assets/mrjam/Echologo.svg').getroot()

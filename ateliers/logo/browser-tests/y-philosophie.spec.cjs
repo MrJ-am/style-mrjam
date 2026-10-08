@@ -84,7 +84,7 @@ for (const largeur of [320,375,768,1440]) {
     await expect(page.getByRole('heading',{name:'Du sensoriel au sens.'})).toBeVisible();
     await expect(page.getByRole('heading',{name:'Des proportions reproductibles.'})).toBeVisible();
     await expect.poll(() => page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(largeur);
-    expect(await page.getByRole('img').count()).toBe(8);
+    expect(await page.getByRole('img').count()).toBe(9);
     await page.screenshot({path:`verification/captures/${info.project.name}/philosophie-${largeur}.png`,fullPage:true});
     await page.getByRole('link',{name:'Explorer les briques dans l’atelier →',exact:true}).click();
     await expect(page.getByRole('heading',{name:'Les cinq placements de Zoé'})).toBeVisible();

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1280" height="1280" viewBox="368.6300923953552 -57.065044960421005 1171.746753271295 1171.746753271295" role="img" aria-labelledby="titre description">
+  <title id="titre">Licorne rose invisible — dégradé éclairci vers la corne</title>
+  <desc id="description">Composition sans poitrail, avec le museau très long. Le disque reste rose uni. Un seul dégradé diagonal continu traverse les formes de la licorne, du rose dans la crinière en bas à gauche vers le blanc au bout de la corne. Le champ de couleur est masqué par la silhouette entière, sans redémarrer dans chaque élément. Les contours, les placements et le cadrage sont identiques à la version précédente.</desc>
+  <defs>
+    <path id="forme-audio" d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407" />
+    <path id="forme-visio" d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3" />
+    <path id="forme-kino" d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563" />
+    <linearGradient id="degrade-licorne" gradientUnits="userSpaceOnUse" x1="1253.714301078503" y1="60.97874146309994" x2="469.17512961574687" y2="845.5179129258561" spreadMethod="pad" color-interpolation="sRGB">
+      <stop offset="0" stop-color="#ffffff" />
+      <stop offset="1" stop-color="#d28499" />
+    </linearGradient>
+    <mask id="silhouette-licorne" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="368.6300923953552" y="-57.065044960421005" width="1171.746753271295" height="1171.746753271295">
+      <g fill="#ffffff">
+        <g id="criniere">
+          <use id="piece-11" xlink:href="#forme-visio" transform="matrix(-16.20232654996031 -6.474175263863745 -6.474175263863745 16.20232654996031 1178.798576758555 414.50107029349374)" />
+          <use id="piece-13" xlink:href="#forme-kino" transform="matrix(-12.407260846741067 -11.173643568492354 -11.173643568492354 12.407260846741067 1125.2138532144916 497.9303050625569)" />
+          <use id="piece-14" xlink:href="#forme-kino" transform="matrix(-18.730445660296347 -2.1317416521290897 -2.1317416521290897 18.730445660296347 1090.8462409263025 370.52606248150016)" />
+          <use id="piece-20" xlink:href="#forme-kino" transform="matrix(12.336623349236527 10.085494429019953 10.085494429019953 -12.336623349236527 239.72233890542805 872.0071520370493)" />
+          <use id="piece-meche-basse-1" xlink:href="#forme-kino" transform="matrix(5.628565150502624 7.27604828752961 -7.27604828752961 5.628565150502624 730.5483290162128 718.1672742983342)" />
+          <use id="piece-meche-basse-2" xlink:href="#forme-kino" transform="matrix(3.73509326198459 5.856218033520492 -5.856218033520492 3.73509326198459 814.9292448522086 839.7115898718919)" />
+        </g>
+        <g id="oreilles">
+          <use id="piece-5" xlink:href="#forme-kino" transform="matrix(-9.634319724812208 -3.053915824406852 3.053915824406852 -9.634319724812208 998.9514321223654 528.030849021709)" />
+          <use id="piece-7" xlink:href="#forme-visio" transform="matrix(-1.3760236994399047 -8.617020751711973 8.617020751711973 -1.3760236994399047 914.5336781150785 483.3929369680219)" />
+        </g>
+        <g id="corne">
+          <use id="piece-8" xlink:href="#forme-audio" transform="matrix(19.168047995997508 -3.230727454813539 3.230727454813539 19.168047995997508 764.0584619089849 279.10254749434307)" />
+          <use id="piece-6" xlink:href="#forme-audio" transform="matrix(18.10793284127852 2.3723795878211638 2.3723795878211638 -18.10793284127852 833.0903140449399 386.136199704701)" />
+          <use id="piece-4" xlink:href="#forme-audio" transform="matrix(15.49224341386038 2.557784018000741 2.557784018000741 -15.49224341386038 912.6402006038176 306.4713138541934)" />
+          <use id="piece-2" xlink:href="#forme-audio" transform="matrix(12.522644504434785 4.464967083265138 4.464967083265138 -12.522644504434785 980.433728357157 208.6621333277556)" />
+          <use id="piece-1" xlink:href="#forme-visio" transform="matrix(4.95293820949824 -7.9756801350154625 7.9756801350154625 4.95293820949824 1056.982444382061 218.0908694944998)" />
+        </g>
+        <g id="oeil">
+          <use id="piece-16" xlink:href="#forme-audio" transform="matrix(-8.03664971516593 14.775230469101526 -14.775230469101526 -8.03664971516593 1181.957717977816 432.86789259813736)" />
+        </g>
+        <g id="visage-et-col">
+          <use id="piece-machoire" xlink:href="#forme-visio" transform="matrix(22.204883622919265 4.744939954833081 -4.744939954833081 22.204883622919265 611.1901991253784 487.1269099628)" />
+          <use id="piece-front" xlink:href="#forme-kino" transform="matrix(6.928101866973773 -5.965379333810039 5.965379333810039 6.928101866973773 849.8066536540747 446.9203165200047)" />
+          <use id="piece-chanfrein" xlink:href="#forme-kino" transform="matrix(17.490999023226234 -7.804937100498406 -7.804937100498408 -17.49099902322623 1121.9815772325358 1173.4206968492492)" />
+          <use id="piece-joue" xlink:href="#forme-kino" transform="matrix(-9.410577540385395 7.89140229279096 -7.891402292790959 -9.410577540385395 1192.767663935411 719.0472794084702)" />
+          <use id="piece-museau" xlink:href="#forme-audio" transform="matrix(-9.956567361910857 -15.337202487465976 -15.337202487465976 9.956567361910857 1464.4567930374026 978.7710996094752)" />
+        </g>
+      </g>
+    </mask>
+  </defs>
+  <circle id="fond" cx="954.5034690310026" cy="528.8083316752264" r="585.8733766356474" fill="#d28499" />
+  <rect id="champ-colore" x="368.6300923953552" y="-57.065044960421005" width="1171.746753271295" height="1171.746753271295" fill="url(#degrade-licorne)" mask="url(#silhouette-licorne)" />
+</svg>

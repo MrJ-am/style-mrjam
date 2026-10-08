@@ -15,6 +15,8 @@ import Html
 import Html.Attributes as A
 import MrJam
 import MrJam.Disposition as Disposition
+import Palette.Couleurs as Palette
+import Shared.Licorne as Licorne
 import Shared.Ui as Ui
 
 
@@ -46,12 +48,34 @@ illustration identifiant titre scene =
         (html (Render.view { options | box = "-3 -3 36 36", title = titre } scene))
 
 
+couleur : Palette.Role -> String
+couleur role =
+    Palette.css (Palette.couleur Palette.reference role)
+
+
 brique : Brick -> String -> String -> Element msg
 brique forme titre sens =
     Ui.card [ width fill, spacing 14 ]
         [ illustration ("sens-" ++ Primitives.key forme)
             titre
-            (Animation.static "#64c29b" (Composition.pictogramme forme))
+            (Animation.static
+                (couleur
+                    (case forme of
+                        Connaissance ->
+                            Palette.Logo
+
+                        Auditif ->
+                            Palette.Audio
+
+                        Visuel ->
+                            Palette.Visio
+
+                        Kinesthesique ->
+                            Palette.Kino
+                    )
+                )
+                (Composition.pictogramme forme)
+            )
         , Ui.heading 2 titre
         , MrJam.paragraphe sens
         ]
@@ -126,7 +150,7 @@ vue modele =
                 , MrJam.lien "Style MrJ.am" "https://github.com/MrJ-am/style-mrjam"
                 ]
             , column [ width fill, spacing 20, paddingXY 0 22 ]
-                [ Ui.label "Écho · Philosophie du logo"
+                [ Ui.label "ÉcoLogo · Philosophie du logo"
                 , Element.paragraph
                     [ Region.heading 1
                     , Police.family [ Police.typeface "Georgia", Police.serif ]
@@ -140,13 +164,14 @@ vue modele =
                     , Police.letterSpacing -1.5
                     ]
                     [ text "Du sensoriel au sens." ]
+                , MrJam.paragraphe "ÉcoLogo : l’étude des échos, des correspondances et des analogies. Apprendre, c’est aussi reconnaître une relation dans une situation nouvelle, rapprocher des concepts et examiner ce qui se répond. Le nom évoque le logos — la parole et le raisonnement — et la logique, au cœur des enseignements. Cette idée relie les formes, les personnages et les couleurs."
                 , MrJam.paragraphe "Le logo relie la manière de manipuler une information à ce qu’elle signifie. Audio, visio et kino portent les modalités sensorielles ; le disque central représente la connaissance, l’aspect sémantique de l’apprentissage."
                 ]
             , ensemble
-                [ visuel "Le logo" "philo-logo" (Animation.static "#64c29b" Composition.logo)
-                , visuel "X · Xiaoping" "philo-x" (Animation.static (Composition.fond Composition.X) Composition.x)
-                , visuel "Y · Ydris" "philo-y" (Animation.static (Composition.fond Composition.Y) Composition.y)
-                , visuel "Z · Zoé" "philo-z" (Animation.static (Composition.fond Composition.Z) Composition.z)
+                [ visuel "Le logo" "philo-logo" (Animation.static (couleur Palette.Logo) Composition.logo)
+                , visuel "X · Xiaoping" "philo-x" (Animation.static (couleur Palette.Xiaoping) Composition.x)
+                , visuel "Y · Ydris" "philo-y" (Animation.static (couleur Palette.Ydris) Composition.y)
+                , visuel "Z · Zoé" "philo-z" (Animation.static (couleur Palette.Zoe) Composition.z)
                 ]
             , chapitre "01 · Le sens des formes"
                 "Trois modalités, une connaissance."
@@ -171,7 +196,13 @@ vue modele =
                 [ Ui.label "Une géométrie commune"
                 , wrappedRow [ width fill, spacing 16 ] [ Ui.badge "Disque central · rayon 2", Ui.badge "Progression · 3 → 6 → 12", Ui.badge "Fibonacci · 2, 3, 5, 8, 13" ]
                 ]
-            , chapitre "03 · Les trois axes"
+            , chapitre "03 · Les correspondances"
+                "Un quatre caché dans le trois."
+                [ "Les trois branches du logo se répartissent régulièrement autour du centre. Leur orientation raconte pourtant autre chose : d’audio à visio, puis de visio à kino, on passe chaque fois d’un quart de tour. Trois positions font ainsi pressentir une quatrième. La répartition des branches et l’orientation de leurs formes sont deux lectures différentes du même dessin."
+                , "Cette présence d’un quatrième terme fait écho à la proportion : 2 est à 3 ce que 4 est à 6. Trois nombres suffisent à poser la question du quatrième, la quatrième proportionnelle. Dans une analogie, on cherche de même une correspondance entre deux relations : A est à B ce que C est à D."
+                , "C’est une manière de travailler les concepts : chercher ce qui joue le même rôle, transférer une relation, puis vérifier jusqu’où elle reste valable. Une ressemblance donne une piste ; le raisonnement et l’expérience permettent de l’examiner. Les deux groupes de couleurs reprennent ce motif : trois termes accompagnés d’un quatrième."
+                ]
+            , chapitre "04 · Les trois axes"
                 "Expérimenter — Apprendre — Conceptualiser"
                 [ "Xiaoping (X), Ydris (Y) et Zoé (Z) incarnent trois directions complémentaires de l’apprentissage. Iels accompagnent l’élève pour agir et observer, acquérir et stabiliser, relier, structurer et abstraire."
                 , "Ces trois axes ne sont pas trois étapes successives d’une méthode. L’apprentissage circule continuellement entre eux : une observation suscite une question, une connaissance donne envie d’essayer, une relation comprise éclaire ce que l’on observe."
@@ -189,7 +220,42 @@ vue modele =
                 , MrJam.paragraphe "Cette prise de hauteur ramène aussi à l’expérience : le principe du levier invite à essayer un autre point d’appui ; l’entraînement peut faire apparaître une nouvelle question. On revient ainsi d’un axe à l’autre selon ce que l’on cherche à comprendre. Audio, visio et kino peuvent intervenir dans chacune de ces directions."
                 , Ui.small "Les silhouettes X, Y et Z donnent un visage à ces trois directions. Elles sont composées des mêmes courbes que le logo ; l’atelier permet d’en explorer les placements et les transformations."
                 ]
-            , chapitre "04 · Le mouvement"
+            , column [ width fill, spacing 16, htmlAttribute (A.id "palette") ]
+                [ chapitre "05 · La palette"
+                    "Deux carrés, un octogone."
+                    [ "La palette est construite dans OKLab, un espace conçu pour rapprocher les distances numériques des différences de couleur perçues. Sa forme polaire OKLCH décrit chaque couleur par L, la clarté, C, le chroma — la distance à l’axe des gris — et h, l’angle de teinte. Les huit couleurs partagent exactement L et C ; seule leur teinte change."
+                    , "La couleur du logo part de l’angle d’or : 360° / φ², soit environ 137,507764°, où φ = (1 + √5) / 2. Le lien avec Fibonacci est précis : les rapports de deux termes consécutifs de la suite tendent vers φ. Ce choix chromatique fait ainsi écho aux nombres de Fibonacci déjà présents dans les rayons du dessin."
+                    , "On ajoute ensuite 45° à chaque sommet. Les huit teintes forment un octogone régulier dans le plan a,b d’OKLab. Une teinte sur deux forme un carré : ce sont deux harmonies tétradiques, décalées de 45°. Leurs sommets sont séparés de 90°, comme un quart de tour."
+                    , "La première tétrade réunit Audio orangé, Visio bleu et Kino mauve, avec le logo vert pour quatrième terme. La seconde réunit Xiaoping jaune, Ydris vert et Zoé bleu, avec la Licorne rose invisible pour quatrième terme. Sept couleurs composent l’identité principale ; la huitième complète la construction et participe pleinement au calcul du gamut."
+                    , "La paire de référence est choisie au maximum du chroma commun en sRGB. Pour chaque L, on calcule la limite de chacune des huit teintes, puis on prend la plus petite. On retient le point où cette enveloppe atteint son C le plus élevé. Ydris et Zoé imposent ensemble cette limite. L’allure presque triangulaire du domaine vient des véritables frontières : aucune approximation par un triangle n’entre dans le choix."
+                    ]
+                , wrappedRow [ width fill, spacing 16 ]
+                    [ Ui.badge ("L ≈ " ++ Ui.format 9 Palette.reference.l)
+                    , Ui.badge ("C ≈ " ++ Ui.format 9 Palette.reference.c)
+                    , Ui.badge "8 teintes · 7 couleurs principales"
+                    ]
+                , MrJam.lien "Voir la palette de référence et explorer ses frontières →" "palette.html"
+                , MrJam.lien "OKLab : définition par Björn Ottosson" "https://bottosson.github.io/posts/oklab/"
+                ]
+            , column [ width fill, spacing 16, htmlAttribute (A.id "licorne") ]
+                [ chapitre "06 · Le quatrième terme"
+                    "La Licorne rose invisible."
+                    [ "La Licorne rose invisible est une divinité fictive de religion parodique, popularisée dans les échanges sceptiques sur Internet au début des années 1990. Elle parodie certaines affirmations religieuses : dire qu’elle est rose tout en la déclarant invisible met en scène une propriété qu’on ne peut pas observer."
+                    , "Elle invite à distinguer une affirmation de ce qui permet de la vérifier. L’impossibilité de réfuter une existence ne suffit pas à la prouver. Ici, ce personnage prolonge le travail sur les analogies et la logique : que permet de conclure un raisonnement, et sur quoi s’appuie-t-il ?"
+                    ]
+                , ensemble
+                    [ Ui.card [ width fill, spacing 12 ]
+                        [ Licorne.illustration "philo-licorne" 280
+                        , MrJam.lien "↓ Licorne — SVG factorisé" "exports/Licorne-factorisee.svg"
+                        ]
+                    , column [ width fill, spacing 16 ]
+                        [ MrJam.paragraphe "Dans la palette, elle occupe le sommet rose à environ 2,507764°. Elle complète le carré des personnages sans devenir un quatrième tuteur. Son dessin laisse la crinière se fondre dans le disque rose ; un dégradé continu s’éclaircit vers la corne."
+                        , MrJam.paragraphe "La silhouette garde le museau très long et la corne en cinq éléments séparés. Dix-neuf occurrences réutilisent uniquement les trois contours Audio, Visio et Kino, par translations, rotations, réflexions et homothéties. Le SVG définit chaque contour une seule fois."
+                        , MrJam.lien "La Licorne rose invisible sur Wikipédia" "https://fr.wikipedia.org/wiki/Licorne_rose_invisible"
+                        ]
+                    ]
+                ]
+            , chapitre "07 · Le mouvement"
                 "Voir les relations se construire."
                 [ "L’animation permet de suivre un contour, de repérer ses copies et de comprendre un retournement. La rotation garde la connaissance au centre ; la recomposition montre les placements qui font apparaître chaque personnage."
                 , "Le mouvement reste à votre rythme : lancer, arrêter, revenir, observer une étape. L’immobilité fait aussi partie de l’exploration."
@@ -198,11 +264,11 @@ vue modele =
             , Ui.divider
             , column [ width fill, spacing 12 ]
                 [ Ui.heading 2 "Une construction, une histoire"
-                , MrJam.paragraphe "La construction géométrique du logo a été élaborée dans GeoGebra, puis transcrite en SVG et en TikZ. Le dépôt Signature conserve l’identité de référence. Cet atelier présente le logo, les dessins X et Y fournis, les pictogrammes complets et la reprise de l’ébauche retrouvée de Zoé pour l’axe Z."
+                , MrJam.paragraphe "La construction géométrique du logo a été élaborée dans GeoGebra, puis transcrite en SVG et en TikZ. Le dépôt Signature conserve l’identité de référence. Cet atelier conserve ces sources géométriques et présente leurs déclinaisons : Xiaoping, Ydris, Zoé, les pictogrammes complets et la Licorne rose invisible, avec la palette ÉcoLogo de référence."
                 , MrJam.lien "Consulter le logo de référence dans Signature" "https://github.com/MrJ-am/Signature/blob/17495b13cefa24473e37434b98336b27caec8cdf/artwork/Echologo.svg"
                 , MrJam.lien "Voir les sources et les mesures de l’atelier" "https://github.com/MrJ-am/style-mrjam/tree/main/ateliers/logo"
                 , Ui.small "Logo, signature et déclinaisons : toute utilisation est strictement réservée. Leur présence publique ne vaut pas autorisation de reproduction, de modification ou de redistribution. Les licences des dépendances ne s’étendent pas à ces éléments d’identité."
-                , Ui.small "MrJ.am · Écho"
+                , Ui.small "MrJ.am · ÉcoLogo"
                 ]
             ]
         )

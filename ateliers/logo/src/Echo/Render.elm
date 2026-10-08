@@ -1,4 +1,4 @@
-module Echo.Render exposing (Options, defaults, svgString, svgStringAvecTrous, view)
+module Echo.Render exposing (Degrade, Options, defaults, svgString, svgStringAvecDegrade, svgStringAvecTrous, view)
 
 import Echo.Animation as Animation exposing (Scene, Visual)
 import Echo.Composition exposing (Instance)
@@ -21,12 +21,17 @@ type alias Options =
     , reference : Maybe String
     , difference : Bool
     , trous : List Instance
+    , degrade : Maybe Degrade
     }
+
+
+type alias Degrade =
+    { x1 : Float, y1 : Float, x2 : Float, y2 : Float }
 
 
 defaults : String -> Options
 defaults prefix =
-    { prefix = prefix, box = "-9 -12 48 48", title = "Composition vectorielle du logo", diagnostic = False, axes = False, hidden = [], isolated = Nothing, reference = Nothing, difference = False, trous = [] }
+    { prefix = prefix, box = "-9 -12 48 48", title = "Composition vectorielle du logo", diagnostic = False, axes = False, hidden = [], isolated = Nothing, reference = Nothing, difference = False, trous = [], degrade = Nothing }
 
 
 definitions : String -> Svg msg
@@ -121,6 +126,27 @@ view options scene =
                 [ masque options.prefix options.trous
                 , Svg.g [ A.mask ("url(#" ++ options.prefix ++ "-trous)") ] pieces
                 ]
+
+        coloree =
+            case options.degrade of
+                Just d ->
+                    if options.diagnostic then
+                        silhouette
+
+                    else
+                        [ Svg.defs []
+                            [ Svg.linearGradient
+                                [ A.id (options.prefix ++ "-degrade"), A.gradientUnits "userSpaceOnUse", A.x1 (String.fromFloat d.x1), A.y1 (String.fromFloat d.y1), A.x2 (String.fromFloat d.x2), A.y2 (String.fromFloat d.y2), A.colorInterpolation "sRGB" ]
+                                [ Svg.stop [ A.offset "0", A.stopColor "#ffffff" ] []
+                                , Svg.stop [ A.offset "1", A.stopColor scene.background ] []
+                                ]
+                            , Svg.mask [ A.id (options.prefix ++ "-silhouette"), A.maskUnits "userSpaceOnUse", A.maskContentUnits "userSpaceOnUse", A.x "0", A.y "0", A.width "30", A.height "30" ] silhouette
+                            ]
+                        , Svg.rect [ A.x "0", A.y "0", A.width "30", A.height "30", A.fill ("url(#" ++ options.prefix ++ "-degrade)"), A.mask ("url(#" ++ options.prefix ++ "-silhouette)"), H.attribute "data-degrade-global" "true" ] []
+                        ]
+
+                Nothing ->
+                    silhouette
     in
     Svg.svg
         [ A.viewBox options.box
@@ -135,7 +161,7 @@ view options scene =
          , definitions options.prefix
          , Svg.circle [ A.cx "15", A.cy "15", A.r "15", A.fill scene.background, H.attribute "data-background" "true" ] []
          ]
-            ++ silhouette
+            ++ coloree
             ++ reference
             ++ axes
         )
@@ -181,6 +207,16 @@ svgString prefix box scene =
 
 svgStringAvecTrous : String -> String -> List Instance -> Scene -> String
 svgStringAvecTrous prefix box trous scene =
+    exporter prefix box trous Nothing scene
+
+
+svgStringAvecDegrade : String -> String -> Degrade -> Scene -> String
+svgStringAvecDegrade prefix box degrade scene =
+    exporter prefix box [] (Just degrade) scene
+
+
+exporter : String -> String -> List Instance -> Maybe Degrade -> Scene -> String
+exporter prefix box trous degrade scene =
     let
         def brick =
             let
@@ -223,12 +259,24 @@ svgStringAvecTrous prefix box trous scene =
                             ++ "\" fill=\"#ffffff\" stroke=\"none\"/>"
                     )
                 |> String.join "\n"
+
+        pieces =
+            String.join "\n" (List.filter (not << String.isEmpty) (List.map piece scene.pieces))
+
+        champ =
+            case degrade of
+                Nothing ->
+                    ""
+
+                Just d ->
+                    "\n    <linearGradient id=\"" ++ prefix ++ "-degrade\" gradientUnits=\"userSpaceOnUse\" color-interpolation=\"sRGB\" x1=\"" ++ String.fromFloat d.x1 ++ "\" y1=\"" ++ String.fromFloat d.y1 ++ "\" x2=\"" ++ String.fromFloat d.x2 ++ "\" y2=\"" ++ String.fromFloat d.y2 ++ "\"><stop offset=\"0\" stop-color=\"#ffffff\"/><stop offset=\"1\" stop-color=\"" ++ scene.background ++ "\"/></linearGradient>\n    <mask id=\"" ++ prefix ++ "-silhouette\" maskUnits=\"userSpaceOnUse\" maskContentUnits=\"userSpaceOnUse\" x=\"0\" y=\"0\" width=\"30\" height=\"30\">\n" ++ pieces ++ "\n    </mask>"
     in
     "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\""
         ++ box
         ++ "\">\n  <defs>\n"
         ++ String.join "\n" (List.map def Primitives.all)
         ++ masqueTexte
+        ++ champ
         ++ "\n  </defs>\n  <circle cx=\"15\" cy=\"15\" r=\"15\" fill=\""
         ++ scene.background
         ++ "\"/>\n"
@@ -238,7 +286,13 @@ svgStringAvecTrous prefix box trous scene =
             else
                 "  <g mask=\"url(#" ++ prefix ++ "-trous)\">\n"
            )
-        ++ String.join "\n" (List.filter (not << String.isEmpty) (List.map piece scene.pieces))
+        ++ (case degrade of
+                Nothing ->
+                    pieces
+
+                Just _ ->
+                    "  <rect x=\"0\" y=\"0\" width=\"30\" height=\"30\" fill=\"url(#" ++ prefix ++ "-degrade)\" mask=\"url(#" ++ prefix ++ "-silhouette)\"/>"
+           )
         ++ (if List.isEmpty trous then
                 ""
 

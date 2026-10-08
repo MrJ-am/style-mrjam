@@ -4,7 +4,7 @@ import Echo.Animation as Animation
 import Echo.Composition as Composition
 import Echo.Primitives as Primitives
 import Echo.Render as Render
-import Palette.Couleurs as Palette
+import Palette.Exports as Palette
 import Platform
 
 
@@ -23,7 +23,6 @@ main =
 exports : List { name : String, content : String }
 exports =
     { name = "Logo-factorise.svg", content = Render.svgString "logo" "0 0 30 30" (Animation.static "#64c29b" Composition.logo) }
-        :: { name = "Licorne-factorisee.svg", content = Render.svgStringAvecTrous "licorne" "0 0 30 30" Composition.trousLicorne (Animation.static (Palette.css (Palette.couleur Palette.initial Palette.Licorne)) Composition.licorne) }
         :: (List.map
                 (\cible ->
                     { name = Composition.nom cible ++ "-factorise.svg"
@@ -31,6 +30,7 @@ exports =
                     }
                 )
                 [ Composition.X, Composition.Y, Composition.Z ]
+                ++ Palette.exports
                 ++ List.map
                     (\forme ->
                         { name = Primitives.label forme ++ ".svg"

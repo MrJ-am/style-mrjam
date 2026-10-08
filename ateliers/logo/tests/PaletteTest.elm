@@ -175,7 +175,41 @@ suite =
                     , \_ -> Expect.equal P.initial (P.normaliser { l = 0 / 0, c = 1 / 0 })
                     ]
                     ()
-        , test "état initial exploratoire : 0,7 et 0,1 dans le domaine commun" <|
+        , test "la référence maximise le chroma commun, aux limites d’Ydris et de Zoé" <|
             \_ ->
-                Expect.equal { l = 0.7, c = 0.1 } P.initial
+                let
+                    p =
+                        P.reference
+
+                    ydris =
+                        P.lineaire (P.couleur p Ydris)
+
+                    zoe =
+                        P.lineaire (P.couleur p Zoe)
+                in
+                Expect.all
+                    [ \_ -> proche 0.742201739040462 p.l
+                    , \_ -> proche 0.13255534432579458 p.c
+                    , \_ -> Expect.equal [ Ydris, Zoe ] (P.limiteCommune p.l).roles
+                    , \_ -> proche 0 ydris.r
+                    , \_ -> proche 1 zoe.b
+                    , \_ -> Expect.equal True (List.all P.dansGamut (P.couleurs p))
+                    , \_ -> Expect.equal p P.initial
+                    , \_ -> Expect.equal p (P.decoder (P.encoder p))
+                    , \_ -> Expect.equal p (P.normaliser p)
+                    ]
+                    ()
+        , test "aucune des 4097 clartés de contrôle ne dépasse le maximum affiné" <|
+            \_ ->
+                List.range 0 4096
+                    |> List.all (\i -> P.cmaxCommun (toFloat i / 4096) <= P.reference.c + 1.0e-12)
+                    |> Expect.equal True
+        , test "le sommet n’est pas un point arrondi de la table ; ses deux voisins sont moins chromatiques" <|
+            \_ ->
+                Expect.all
+                    [ \_ -> Expect.equal True (List.all (\p -> p.c < P.reference.c) P.frontiere)
+                    , \_ -> Expect.equal True (List.all (\delta -> P.cmaxCommun (P.reference.l + delta) < P.reference.c) [ -0.000001, 0.000001 ])
+                    , \_ -> Expect.equal True (List.any (not << P.dansGamut) (P.couleurs { l = P.reference.l, c = P.reference.c + 1.0e-9 }))
+                    ]
+                    ()
         ]
