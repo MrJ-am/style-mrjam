@@ -12,7 +12,7 @@ import Test exposing (Test, describe, fuzz, test)
 suite : Test
 suite =
     describe "Connaissance, pictogrammes complets et Zoé"
-        [ test "audio, visio et kino incluent chacun la connaissance à la même origine" <|
+        [ test "les pictogrammes incluent leur centre ; Visio agrandit uniformément les deux contours" <|
             \_ ->
                 List.map
                     (\forme ->
@@ -20,7 +20,20 @@ suite =
                     )
                     [ Auditif, Visuel, Kinesthesique ]
                     |> Expect.equal
-                        (List.map (\forme -> [ ( Connaissance, Transform.canonical ), ( forme, Transform.canonical ) ]) [ Auditif, Visuel, Kinesthesique ])
+                        (List.map
+                            (\forme ->
+                                let
+                                    pose =
+                                        if forme == Visuel then
+                                            { x = 7.4117752, y = 16.8481456, angle = 0, scale = 1.6, chirality = Transform.Direct }
+
+                                        else
+                                            Transform.canonical
+                                in
+                                [ ( Connaissance, pose ), ( forme, pose ) ]
+                            )
+                            [ Auditif, Visuel, Kinesthesique ]
+                        )
         , test "le fond fixe de Z reste celui du logo lorsque le fondu est désactivé" <|
             \_ ->
                 let

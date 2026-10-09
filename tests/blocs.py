@@ -1,5 +1,6 @@
 """Géométrie générique, emboîtement, focus et petits écrans sans données métier."""
 from pathlib import Path
+import os
 import subprocess
 import tempfile
 from playwright.sync_api import sync_playwright, expect
@@ -9,7 +10,7 @@ with tempfile.TemporaryDirectory() as temporaire:
     bundle = Path(temporaire) / 'blocs.js'
     subprocess.run(['node_modules/.bin/elm', 'make', 'exemples/Blocs.elm', '--output='+str(bundle)],cwd=racine,check=True)
     with sync_playwright() as p:
-        navigateur = p.chromium.launch()
+        navigateur = p.chromium.launch(**({'executable_path':os.environ['CHROMIUM']} if 'CHROMIUM' in os.environ else {}))
         page = navigateur.new_page()
         for largeur in [320,390,768,1280]:
             page.set_viewport_size({'width':largeur,'height':900})

@@ -6,7 +6,6 @@ Les dialogues utilisent le pont local `dialogues.js` pour le focus et inert.
 -}
 
 import Element as UI exposing (Element)
-import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
 import Html exposing (Html)
@@ -21,8 +20,8 @@ import MrJam.Theme as Theme exposing (couleurs)
 cadre : List (UI.Attribute message) -> Element message -> Html message
 cadre attributs contenu =
     UI.layoutWith { options = [ Theme.focus ] }
-        (Theme.ecran ++ [ Fond.color couleurs.papier, Police.color couleurs.encre, Police.size 16, Police.family [ Police.typeface "Inter", Police.typeface "Segoe UI", Police.sansSerif ] ] ++ attributs)
-        contenu
+        (Theme.ecran ++ [ Theme.fond couleurs.papier, Theme.police couleurs.encre, Police.size 16, Police.family [ Police.typeface "Inter", Police.typeface "Segoe UI", Police.sansSerif ] ] ++ attributs)
+        (UI.column [ UI.width UI.fill ] [ UI.html Theme.styles, contenu ])
 
 
 fragment : Element message -> Html message
@@ -44,7 +43,7 @@ panneau attributs =
 
 etiquette : String -> Element message
 etiquette libelle =
-    UI.el [ UI.paddingXY 10 5, Bordure.rounded 8, Fond.color couleurs.doux, Police.color couleurs.accent, Police.size 13 ] (UI.text libelle)
+    UI.el [ UI.paddingXY 10 5, Bordure.rounded 8, Theme.fond couleurs.doux, Theme.police couleurs.accent, Police.size 13 ] (UI.text libelle)
 
 
 boutonIdentifie : String -> String -> Maybe message -> Element message
@@ -68,8 +67,8 @@ progression libelle valeur =
         pourcentage =
             Basics.clamp 0 100 valeur
     in
-    UI.el [ UI.width UI.fill, UI.height (UI.px 3), Fond.color couleurs.doux, UI.htmlAttribute (A.attribute "role" "progressbar"), UI.htmlAttribute (A.attribute "aria-label" libelle), UI.htmlAttribute (A.attribute "aria-valuenow" (String.fromFloat pourcentage)), UI.htmlAttribute (A.attribute "aria-valuemin" "0"), UI.htmlAttribute (A.attribute "aria-valuemax" "100") ]
-        (UI.el [ UI.height UI.fill, UI.htmlAttribute (A.style "width" (String.fromFloat pourcentage ++ "%")), Fond.color couleurs.accent ] UI.none)
+    UI.el [ UI.width UI.fill, UI.height (UI.px 3), Theme.fond couleurs.doux, UI.htmlAttribute (A.attribute "role" "progressbar"), UI.htmlAttribute (A.attribute "aria-label" libelle), UI.htmlAttribute (A.attribute "aria-valuenow" (String.fromFloat pourcentage)), UI.htmlAttribute (A.attribute "aria-valuemin" "0"), UI.htmlAttribute (A.attribute "aria-valuemax" "100") ]
+        (UI.el [ UI.height UI.fill, UI.htmlAttribute (A.style "width" (String.fromFloat pourcentage ++ "%")), Theme.fond couleurs.accent ] UI.none)
 
 
 histogramme : String -> List ( String, Float ) -> Element message
@@ -83,7 +82,7 @@ histogramme libelle donnees =
 
     else
         UI.el [ UI.width UI.fill, UI.scrollbarX, UI.htmlAttribute (A.style "flex-basis" "auto"), UI.htmlAttribute (A.tabindex 0), UI.htmlAttribute (A.attribute "role" "img"), UI.htmlAttribute (A.attribute "aria-label" (libelle ++ ". " ++ String.join "; " (List.map (\( x, n ) -> x ++ " : " ++ String.fromFloat n) donnees))) ]
-            (UI.row [ UI.spacing 8, UI.alignBottom ] (List.map (\( x, n ) -> UI.column [ UI.width (UI.px 44), UI.alignBottom, UI.spacing 6, Police.size 12 ] [ UI.text (String.fromFloat n), UI.el [ UI.width (UI.px 30), UI.height (UI.px (Basics.max 1 (round (120 * n / maximum)))), Fond.color couleurs.accent, Bordure.rounded 4 ] UI.none, UI.text x ]) donnees))
+            (UI.row [ UI.spacing 8, UI.alignBottom ] (List.map (\( x, n ) -> UI.column [ UI.width (UI.px 44), UI.alignBottom, UI.spacing 6, Police.size 12 ] [ UI.text (String.fromFloat n), UI.el [ UI.width (UI.px 30), UI.height (UI.px (Basics.max 1 (round (120 * n / maximum)))), Theme.fond couleurs.accent, Bordure.rounded 4 ] UI.none, UI.text x ]) donnees))
 
 
 dialogue : String -> String -> String -> message -> List (Element message) -> Element message
@@ -98,7 +97,7 @@ dialogue repere titre fermeture fermer contenu =
         , UI.width UI.fill
         , UI.height UI.fill
         , UI.padding 16
-        , Fond.color (UI.rgba255 23 59 53 0.3)
+        , UI.htmlAttribute (A.style "background-color" "color-mix(in oklab, var(--mrjam-encre) 30%, transparent)")
         ]
         (panneau
             [ UI.width

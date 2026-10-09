@@ -5,14 +5,13 @@ italique. Le HTML, les liens et les images restent du texte, sans HTML injecté.
 -}
 
 import Element exposing (Element, el, fill, htmlAttribute, padding, paragraph, spacing, text, width)
-import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Region as Region
 import Html.Attributes as A
 import MrJam
 import MrJam.Donnees as Donnees
-import MrJam.Theme exposing (couleurs)
+import MrJam.Theme as Theme exposing (couleurs)
 
 
 markdown : String -> Element message
@@ -28,7 +27,7 @@ blocs code morceaux =
 
         morceau :: suite ->
             (if code then
-                [ el [ width fill, padding 14, Fond.color couleurs.doux, Police.family [ Police.monospace ] ]
+                [ el [ width fill, padding 14, Theme.fond couleurs.doux, Police.family [ Police.monospace ] ]
                     (Donnees.lecture (String.join "\n" (List.drop 1 (String.split "\n" morceau))))
                 ]
 
@@ -58,7 +57,7 @@ bloc contenu =
             (List.map (\ligne -> paragraph [ width fill, htmlAttribute (A.attribute "role" "listitem") ] (text "• " :: enLigne (String.dropLeft 2 ligne))) lignes)
 
     else if String.startsWith "> " contenu then
-        el [ width fill, padding 14, Bordure.widthEach { left = 3, right = 0, top = 0, bottom = 0 }, Bordure.color couleurs.accent ]
+        el [ width fill, padding 14, Bordure.widthEach { left = 3, right = 0, top = 0, bottom = 0 }, Theme.bordure couleurs.accent ]
             (prose
                 (String.join "\n"
                     (List.map

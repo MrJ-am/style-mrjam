@@ -1,16 +1,16 @@
 /* Les compositions restent ElmUI. Seuls les petits écrans et la souris tactile
    nécessitent ces ajustements communs. Aucun texte ni donnée de produit ici. */
 .mrjam-marque { white-space: nowrap; user-select: text; }
-.mrjam-marque > * { color: #000; font-synthesis: none; }
+.mrjam-marque > * { color: oklch(0 0 0); font-synthesis: none; }
 /* Le glyphe Echo est agrandi, mais sa boîte de texte ElmUI ne doit pas
    doubler l'interligne de toute la marque. */
 .mrjam-marque-point > .t { line-height: 0 !important; }
 .mrjam-vitrine-titre { line-height: 1.06 !important; letter-spacing: -2.2px !important; }
 .mrjam-vitrine-titre-secondaire { line-height: 1.13 !important; letter-spacing: -1px !important; }
 .mrjam-vitrine-hero-image { aspect-ratio: 1; object-fit: cover; }
-.mrjam-vitrine-details { width: 100%; border-top: 1px solid #d4e6e0; padding: 20px 0; color: #193d38; }
+.mrjam-vitrine-details { width: 100%; border-top: 1px solid var(--mrjam-ligne); padding: 20px 0; color: var(--mrjam-encre); }
 .mrjam-vitrine-details summary { cursor: pointer; white-space: normal; overflow-wrap: anywhere; font-size: 18px; font-weight: 600; padding: 6px 0; }
-.mrjam-vitrine-details summary:focus-visible { outline: 3px solid #087f71; outline-offset: 5px; }
+.mrjam-vitrine-details summary:focus-visible { outline: 3px solid var(--mrjam-accent); outline-offset: 5px; }
 @media(max-width: 600px) {
   .mrjam-vitrine-titre { font-size: 40px !important; letter-spacing: -1.3px !important; }
   .mrjam-vitrine-titre-secondaire { font-size: 30px !important; }

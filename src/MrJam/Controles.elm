@@ -5,12 +5,11 @@ exposés par MrJam, Documents et Disposition, sans attributs décoratifs.
 -}
 
 import Element as UI exposing (Attribute, Element)
-import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Input as Saisie
 import Html.Attributes as A
-import MrJam.Theme exposing (couleurs)
+import MrJam.Theme as Theme exposing (couleurs)
 
 
 type Intention
@@ -64,13 +63,13 @@ actionAvecContenu intention attributs contenu message =
         bord =
             case intention of
                 Secondaire ->
-                    couleurs.ligne
+                    couleurs.controle
 
                 Selection True ->
                     couleurs.accent
 
                 Selection False ->
-                    couleurs.ligne
+                    couleurs.controle
 
                 _ ->
                     fond
@@ -100,12 +99,12 @@ actionAvecContenu intention attributs contenu message =
          , UI.htmlAttribute (A.style "max-width" "100%")
          , UI.htmlAttribute (A.style "flex-basis" "auto")
          , Police.size 14
-         , Police.color encre
-         , Fond.color fond
+         , Theme.police encre
+         , Theme.fond fond
          , Bordure.rounded 5
          , Bordure.width 1
-         , Bordure.color bord
-         , UI.mouseOver [ Fond.color survol ]
+         , Theme.bordure bord
+         , Theme.survol survol
          , UI.htmlAttribute
             (A.attribute "aria-disabled"
                 (if message == Nothing then

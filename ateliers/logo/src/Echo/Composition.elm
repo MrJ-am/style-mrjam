@@ -28,6 +28,18 @@ pictogramme forme =
     if forme == Connaissance then
         [ connaissance ]
 
+    else if forme == Visuel then
+        -- Union des contours : [11.8,25.285281] × [4.689818…,11].
+        -- Homothétie uniforme ×1.6, centrage du cadre en (15,15).
+        -- Les arcs et leurs proportions restent ceux du logo de référence.
+        let
+            pose =
+                { x = 7.4117752, y = 16.8481456, angle = 0, scale = 1.6, chirality = Direct }
+        in
+        [ { connaissance | pose = pose }
+        , { id = Primitives.key forme ++ "-0", brick = forme, pose = pose }
+        ]
+
     else
         [ connaissance, { id = Primitives.key forme ++ "-0", brick = forme, pose = Transform.canonical } ]
 

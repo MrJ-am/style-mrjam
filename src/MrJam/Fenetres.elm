@@ -1,4 +1,4 @@
-module MrJam.Fenetres exposing (avecModale, modale)
+module MrJam.Fenetres exposing (avecModale, avecModalePour, modale)
 
 {-| Dialogue natif : le navigateur rend le fond inerte et retient le focus.
 Le compagnon fenetres.js ouvre le dialogue et restitue le focus à sa fermeture.
@@ -50,5 +50,10 @@ Le div ne porte aucune présentation de contrôle.
 -}
 avecModale : Maybe (Html message) -> Html message -> Html message
 avecModale dialogue contenu =
-    Html.div [ A.style "font-family" "Inter, Aptos, Segoe UI, sans-serif" ]
+    avecModalePour "MrJ.am" dialogue contenu
+
+
+avecModalePour : String -> Maybe (Html message) -> Html message -> Html message
+avecModalePour marque dialogue contenu =
+    Html.div (A.style "font-family" "Inter, Aptos, Segoe UI, sans-serif" :: Theme.identiteHtml marque)
         [ contenu, Maybe.withDefault (Html.text "") dialogue ]
