@@ -29,37 +29,35 @@ Paramètres d’ouverture : `?cible=Z&p=1`, `?vue=geometrie&cible=Y&miroir=0.5`,
 
 ## Construction et vérification
 
-Depuis ce dossier, avec Node.js 24, Python 3 et les navigateurs Playwright :
+L’orchestration et les versions d’outils sont celles de
+[vps-infrastructure](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/DEVELOPPEMENT.md).
+Les commandes locales centrales construisent une fois le candidat Style,
+contrôlent elm-review sur l’atelier et le socle exact, puis exécutent les tests.
+La CI/CD centrale promeut ce candidat qualifié : aucun workflow, déclencheur
+au push ou publication Pages autonome dans ce dépôt.
 
 ```sh
-npm ci
-python3 -m pip install -r requirements-verification.txt
-npx playwright install --with-deps chromium firefox
-python3 scripts/analyser-y.py
-python3 scripts/analyser-z.py
-python3 scripts/construire-z.py
-python3 scripts/generate-data.py
-npx elm-format src/Echo/ReferenceData.elm --yes
-npm run build
-npm run format:check
-npm test -- --seed 20261007
-npm run test:reference
-npm run test:geometry
-npm run test:browser
-npm run test:raster
-npm run dev
+# Dans vps-infrastructure, après adoption des révisions exactes :
+python3 scripts/assemblage.py tester --suite style
+python3 scripts/assemblage.py tester --suite style-logo
 ```
 
-`dist/` contient trois pages autonomes (`index.html`, `philosophie.html`, `palette.html`), une copie téléchargeable `atelier-logo.html` et `exports/`. Les pages emploient des liens relatifs et fonctionnent sous le préfixe GitHub Pages `/style-mrjam/`. Les références SVG et les licences des dépendances sont embarquées ; aucune fonte réservée ni requête tierce n’est nécessaire à l’atelier.
-
-Depuis la racine, `npm run compiler:pages` assemble les trois pages et leurs exports dans `.pages/`. Le workflow `pages.yml` exécute les contrôles avant de publier l’artefact sur GitHub Pages. Les vérifications d’une pull request ne publient pas le site.
+`dist/` contient trois pages autonomes (`index.html`, `philosophie.html`,
+`palette.html`), une copie téléchargeable `atelier-logo.html` et `exports/`.
+Les liens relatifs fonctionnent sous `/style-mrjam/` ; références SVG et licences
+sont embarquées, sans fonte réservée ni requête tierce. Le socle porte elm-ui,
+le lecteur elm-animator, les curseurs et la préférence de mouvement.
+Les adaptateurs SVG dessinent des résultats géométriques neutres ; leurs
+courbes/matrices restent calculées par les modules scientifiques existants.
+Aucun CSS d’interface injecté. Anciennes instructions dans
+[l’historique](https://github.com/MrJ-am/style-mrjam/blob/c9663ce7e53dc9cbd61b7f980d651bdae31357df/ateliers/logo/README.md).
 
 ## Organisation
 
 - `src/Echo/Primitives.elm` : les quatre définitions canoniques ; trois contours et un disque.
 - `Composition.elm`, `Transform.elm` : occurrences, poses et matrices.
-- `Animation.elm`, `Player.elm` : scène pure et chronologie suspendable.
-- `Render.elm`, `Exporter.elm` : même géométrie pour la scène et les SVG exportés.
+- `Animation.elm`, `MrJam.Transitions` : scène pure et chronologie partagée suspendable.
+- `Render.elm`, `Exporter.elm` : mêmes calculs pour la scène et les SVG exportés ; affichage spécialisé par `MrJam.Dessin`.
 - `src/Shared/Ui.elm` : adaptation aux composants existants `MrJam` et `MrJam.Disposition`. Le curseur natif évite les annonces `aria-live` à chaque frame.
 - `scripts/analyser-y.py`, `analyser-z.py`, `construire-z.py`, `generate-data.py` : reconnaissance des sources, reprise de Z et génération des données Elm.
 - `references/` : originaux et outils de mesure, dont l’ébauche Z intacte et son recadrage ; `donnees/` : poses et rapports ; `dessins/Z.svg` : reprise de Zoé. Voir [les retouches et leur provenance](docs/Z.md).

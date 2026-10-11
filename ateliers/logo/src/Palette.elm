@@ -7,19 +7,17 @@ import Echo.Composition as Composition
 import Echo.Licorne as Licorne
 import Echo.Primitives as Primitives
 import Echo.Render as Render
-import Element exposing (Element, column, el, fill, height, html, htmlAttribute, padding, paddingXY, px, row, spacing, text, width, wrappedRow)
+import Element exposing (Element, column, el, fill, height, padding, paddingXY, px, row, spacing, text, width, wrappedRow)
 import Element.Font as Police
 import Element.Region as Region
 import Html
-import Html.Attributes as H
-import Html.Events as Events
-import Json.Decode as D
 import MrJam
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Adaptateurs.Texte as Texte
+import MrJam.Diagrammes as Diagrammes
 import MrJam.Disposition as Disposition
 import Palette.Couleurs as P exposing (Role(..))
 import Shared.Ui as Ui
-import Svg
-import Svg.Attributes as A
 
 
 port selectionPlan : ({ x : Float, y : Float } -> msg) -> Sub msg
@@ -151,37 +149,6 @@ update message m =
                     ( { m | message = "Saisissez deux nombres ; le point et la virgule sont acceptés." }, Cmd.none )
 
 
-clavier : D.Decoder ( Message, Bool )
-clavier =
-    D.map2 Tuple.pair (D.field "key" D.string) (D.field "shiftKey" D.bool)
-        |> D.andThen
-            (\( touche, rapide ) ->
-                let
-                    pas =
-                        if rapide then
-                            0.01
-
-                        else
-                            0.001
-                in
-                case touche of
-                    "ArrowUp" ->
-                        D.succeed ( Clavier pas 0, True )
-
-                    "ArrowDown" ->
-                        D.succeed ( Clavier -pas 0, True )
-
-                    "ArrowRight" ->
-                        D.succeed ( Clavier 0 pas, True )
-
-                    "ArrowLeft" ->
-                        D.succeed ( Clavier 0 -pas, True )
-
-                    _ ->
-                        D.fail "Touche laissée au navigateur"
-            )
-
-
 point : P.Parametres -> String
 point p =
     String.fromFloat (400 * p.c / P.chromaPlan) ++ "," ++ String.fromFloat (300 * (1 - p.l))
@@ -233,90 +200,38 @@ plan m =
         limite =
             P.limiteCommune p.l
 
-        courbe trace =
-            Svg.path
-                [ A.d trace.d
-                , A.fill "none"
-                , A.stroke trace.couleur
-                , A.strokeWidth
-                    (if m.frontiereSelectionnee == Just trace.role then
-                        "4"
-
-                     else
-                        "2"
-                    )
-                , A.strokeDasharray trace.tirets
-                , A.opacity
-                    (if m.frontiereSelectionnee == Nothing || m.frontiereSelectionnee == Just trace.role then
-                        "1"
-
-                     else
-                        "0.25"
-                    )
-                , H.attribute "vector-effect" "non-scaling-stroke"
-                , H.attribute "data-frontiere-role" (P.cle trace.role)
-                , H.attribute "data-h" (String.fromFloat (P.angle trace.role))
-                ]
-                [ Svg.title [] [ Svg.text ("Limite sRGB · " ++ P.nom trace.role) ] ]
+        traceNeutre trace =
+            { cle = P.cle trace.role
+            , nom = P.nom trace.role
+            , teinte = P.angle trace.role
+            , chemin = trace.d
+            , couleur = trace.couleur
+            , tirets = trace.tirets
+            }
 
         legende trace =
             column [ width fill, spacing 5 ]
-                [ html
-                    (Svg.svg [ A.viewBox "0 0 100 6", A.width "100%", A.height "6", H.attribute "aria-hidden" "true" ]
-                        [ Svg.line [ A.x1 "0", A.x2 "100", A.y1 "3", A.y2 "3", A.stroke trace.couleur, A.strokeWidth "2", A.strokeDasharray trace.tirets ] [] ]
-                    )
+                [ Diagrammes.legende (traceNeutre trace)
                 , Ui.button (m.frontiereSelectionnee == Just trace.role) (Inspecter trace.role) (P.nom trace.role)
                 ]
     in
     column [ width fill, spacing 14 ]
         [ Ui.heading 2 "Choisir L et C"
         , Ui.small "L ↑ · clarté : 0 en bas, 1 en haut"
-        , el [ width fill, height (px 300), htmlAttribute (H.style "margin" "8px 0") ]
-            (html
-                (Svg.svg
-                    [ A.viewBox "0 0 400 300"
-                    , A.preserveAspectRatio "none"
-                    , A.width "100%"
-                    , A.height "100%"
-                    , H.attribute "data-palette-plan" "true"
-                    , H.attribute "role" "group"
-                    , H.attribute "tabindex" "0"
-                    , H.attribute "aria-label" "Plan L × C"
-                    , H.attribute "aria-describedby" "aide-plan valeurs-palette"
-                    , H.attribute "aria-roledescription" "sélecteur à deux axes"
-                    , H.style "touch-action" "none"
-                    , H.style "cursor" "crosshair"
-                    , H.style "overflow" "visible"
-                    , Events.preventDefaultOn "keydown" clavier
-                    ]
-                    ([ Svg.title [] [ Svg.text "Huit frontières sRGB et leur enveloppe commune" ]
-                     , Svg.rect [ A.width "400", A.height "300", A.fill "#f1eeeb", A.stroke "#b9c8c3", A.strokeWidth "1" ] []
-                     , Svg.path [ A.d regionValide, A.fill "#d6e9df", H.attribute "data-gamut-region" "true" ] []
-                     , Svg.g [ A.stroke "#193d38", A.strokeOpacity "0.18", A.strokeWidth "1", H.style "pointer-events" "none" ]
-                        (List.range 1 3 |> List.map (\i -> Svg.line [ A.x1 "0", A.x2 "400", A.y1 (String.fromInt (i * 75)), A.y2 (String.fromInt (i * 75)) ] []))
-                     ]
-                        ++ List.map courbe
-                            (List.sortBy
-                                (\trace ->
-                                    if m.frontiereSelectionnee == Just trace.role then
-                                        1
-
-                                    else
-                                        0
-                                )
-                                traces
-                            )
-                        ++ [ Svg.path [ A.d traceCommun, A.fill "none", A.stroke "white", A.strokeWidth "5", H.attribute "vector-effect" "non-scaling-stroke", H.attribute "aria-hidden" "true" ] []
-                           , Svg.path [ A.d traceCommun, A.fill "none", A.stroke "#193d38", A.strokeWidth "2.5", A.strokeDasharray "3 2", H.attribute "vector-effect" "non-scaling-stroke", H.attribute "data-gamut-frontiere" "true" ] []
-                           , Svg.line [ A.x1 "0", A.x2 "400", A.y1 (String.fromFloat (300 * (1 - p.l))), A.y2 (String.fromFloat (300 * (1 - p.l))), A.stroke "#193d38", A.strokeOpacity "0.35", A.strokeDasharray "3 4" ] []
-                           , Svg.circle [ A.cx (String.fromFloat (400 * p.c / P.chromaPlan)), A.cy (String.fromFloat (300 * (1 - p.l))), A.r "7", A.fill "#193d38", A.stroke "white", A.strokeWidth "3", H.attribute "data-palette-curseur" "true" ] []
-                           ]
-                    )
-                )
+        , el [ width fill, height (px 300) ]
+            (Diagrammes.plan
+                { zone = regionValide
+                , limite = traceCommun
+                , courbes = List.map traceNeutre traces
+                , selection = Maybe.map P.cle m.frontiereSelectionnee
+                , x = 400 * p.c / P.chromaPlan
+                , y = 300 * (1 - p.l)
+                }
+                Clavier
             )
         , Ui.small ("C → · chroma : 0 à " ++ Ui.format 4 P.chromaPlan)
-        , el [ width fill, htmlAttribute (H.id "aide-plan") ] (Ui.paragraph "Huit courbes colorées : les limites sRGB individuelles. La ligne sombre bordée de blanc est leur enveloppe commune ; seule la zone verte à sa gauche est sélectionnable. Déplacez le point à la souris ou au toucher. Au clavier : flèches, pas de 0,001 ; Maj + flèches, pas de 0,01. Au-delà de l’enveloppe, le point revient sur la limite commune.")
-        , el [ width fill, htmlAttribute (H.attribute "data-limite-commune" (String.fromFloat limite.c)), htmlAttribute (H.attribute "data-limitantes" (String.join " " (List.map P.cle limite.roles))) ]
+        , el [ width fill, Accessibilite.identifiant "aide-plan" ] (Ui.paragraph "Huit courbes colorées : les limites sRGB individuelles. La ligne sombre bordée de blanc est leur enveloppe commune ; seule la zone verte à sa gauche est sélectionnable. Déplacez le point à la souris ou au toucher. Au clavier : flèches, pas de 0,001 ; Maj + flèches, pas de 0,01. Au-delà de l’enveloppe, le point revient sur la limite commune.")
+        , el ([ width fill ] ++ Diagrammes.limite limite.c (List.map P.cle limite.roles))
             (Ui.paragraph ("À cette clarté, C maximal commun = " ++ Ui.format 9 limite.c ++ " — limité par " ++ String.join ", " (List.map P.nom limite.roles)))
         , Ui.small "Sélectionnez un nom pour mettre sa courbe en évidence ; sélectionnez-le à nouveau pour tout rétablir. Les couleurs de repère restent fixes, même à C = 0. Les motifs de trait permettent aussi de distinguer les teintes proches."
         , rangees
@@ -343,74 +258,33 @@ geometrie p =
             in
             String.fromFloat x ++ "," ++ String.fromFloat y
 
-        carre numero =
-            Svg.polygon
-                [ A.points (List.filter (\role -> P.tetrade role == numero) P.roles |> List.map coord |> String.join " ")
-                , A.fill "none"
-                , A.stroke
-                    (if numero == 1 then
-                        "#193d38"
+        sommets =
+            List.map
+                (\role ->
+                    let
+                        ( x, y ) =
+                            position (122 * p.c / P.chromaAffiche) role
 
-                     else
-                        "#8a5277"
-                    )
-                , A.strokeWidth "2"
-                , A.strokeDasharray
-                    (if numero == 1 then
-                        "none"
+                        ( lx, ly ) =
+                            position 143 role
+                    in
+                    { cle = P.cle role
+                    , x = x
+                    , y = y
+                    , lx = lx
+                    , ly = ly
+                    , couleur = P.css (P.couleur p role)
+                    , pointille = role == Licorne
+                    }
+                )
+                P.roles
 
-                     else
-                        "5 4"
-                    )
-                , H.attribute "data-tetrade" (String.fromInt numero)
-                ]
-                []
-
-        sommet index role =
-            let
-                ( x, y ) =
-                    position (122 * p.c / P.chromaAffiche) role
-
-                ( lx, ly ) =
-                    position 143 role
-            in
-            Svg.g []
-                [ Svg.circle
-                    [ A.cx (String.fromFloat x)
-                    , A.cy (String.fromFloat y)
-                    , A.r "5"
-                    , A.fill (P.css (P.couleur p role))
-                    , A.stroke "#193d38"
-                    , A.strokeDasharray
-                        (if role == Licorne then
-                            "2 2"
-
-                         else
-                            "none"
-                        )
-                    , H.attribute "data-sommet" (P.cle role)
-                    ]
-                    []
-                , Svg.text_ [ A.x (String.fromFloat lx), A.y (String.fromFloat ly), A.textAnchor "middle", A.dominantBaseline "middle", A.fontSize "12", A.fill "#193d38" ] [ Svg.text (String.fromInt (index + 1)) ]
-                ]
+        points numero =
+            List.filter (\role -> P.tetrade role == numero) P.roles |> List.map coord |> String.join " "
     in
     column [ width fill, spacing 14 ]
         [ Ui.heading 2 "Deux carrés, un octogone"
-        , el [ width fill, height (px 300) ]
-            (html
-                (Svg.svg [ A.viewBox "0 0 320 320", A.width "100%", A.height "100%", H.attribute "role" "img", H.attribute "aria-label" "Plan OKLab a,b : deux carrés décalés de 45 degrés" ]
-                    ([ Svg.line [ A.x1 "12", A.y1 "160", A.x2 "308", A.y2 "160", A.stroke "#b9c8c3" ] []
-                     , Svg.line [ A.x1 "160", A.y1 "12", A.x2 "160", A.y2 "308", A.stroke "#b9c8c3" ] []
-                     , Svg.text_ [ A.x "304", A.y "180", A.fontSize "12" ] [ Svg.text "a" ]
-                     , Svg.text_ [ A.x "169", A.y "15", A.fontSize "12" ] [ Svg.text "b" ]
-                     , Svg.circle [ A.cx "160", A.cy "160", A.r "2", A.fill "#193d38" ] []
-                     , carre 1
-                     , carre 2
-                     ]
-                        ++ List.indexedMap sommet P.roles
-                    )
-                )
-            )
+        , el [ width fill, height (px 300) ] (Diagrammes.geometrie { premier = points 1, second = points 2, sommets = sommets })
         , Ui.small "Trait plein : logo et modalités. Pointillés : personnages et Licorne. Les numéros suivent les huit teintes ci-dessous."
         , Ui.paragraph "L’angle d’or fixe le logo. Chaque sommet suivant ajoute 45°. Les deux tétrades sont séparées de 45° ; chaque carré avance par pas de 90°. Le rayon est le chroma C, sur une échelle fixe. À C = 0, tous les sommets coïncident au centre achromatique."
         ]
@@ -450,12 +324,12 @@ illustration identifiant titre rendu =
         options =
             Render.defaults identifiant
     in
-    el [ width fill, height (px 155) ] (html (Render.view { options | box = "-2 -2 34 34", title = titre } rendu))
+    el [ width fill, height (px 155) ] (Render.view { options | box = "-2 -2 34 34", title = titre } rendu)
 
 
 code : String -> Element msg
 code contenu =
-    el [ width fill, Police.size 12, Police.family [ Police.monospace ], htmlAttribute (H.style "overflow-wrap" "anywhere"), htmlAttribute (H.style "word-break" "break-word") ] (Element.paragraph [ width fill ] [ text contenu ])
+    el [ width fill, Police.size 12, Police.family [ Police.monospace ] ] (Element.paragraph ([ width fill ] ++ Texte.litteral) [ Texte.texte contenu ])
 
 
 carteCouleur : Modele -> Int -> Role -> Element Message
@@ -476,7 +350,7 @@ carteCouleur m index role =
         prefixe =
             "palette-" ++ P.cle role
     in
-    Ui.card [ width fill, spacing 12, htmlAttribute (H.attribute "data-role-palette" (P.cle role)), htmlAttribute (H.attribute "data-l" (String.fromFloat p.l)), htmlAttribute (H.attribute "data-c" (String.fromFloat p.c)), htmlAttribute (H.attribute "data-h" (String.fromFloat col.h)) ]
+    Ui.card ([ width fill, spacing 12 ] ++ Diagrammes.carte (P.cle role) p.l p.c col.h)
         [ Ui.label (String.fromInt (index + 1) ++ " · Tétrade " ++ String.fromInt (P.tetrade role))
         , Ui.heading 3 (P.nom role)
         , if role == Licorne then
@@ -486,27 +360,25 @@ carteCouleur m index role =
             in
             column [ width fill, spacing 12 ]
                 [ el [ width fill, height (px 155) ]
-                    (html
-                        (Render.view
-                            { options
-                                | box = "-2 -2 34 34"
-                                , title =
-                                    if m.licorneVisible then
-                                        "Licorne : tête, corne en spirale et crinière"
+                    (Render.view
+                        { options
+                            | box = "-2 -2 34 34"
+                            , title =
+                                if m.licorneVisible then
+                                    "Licorne : tête, corne en spirale et crinière"
 
-                                    else
-                                        "Licorne invisible : seul le fond rose reste visible"
-                                , degrade = Just Licorne.degrade
-                                , diagnostic = m.licorneDiagnostic
-                                , hidden =
-                                    if m.licorneVisible then
-                                        []
+                                else
+                                    "Licorne invisible : seul le fond rose reste visible"
+                            , degrade = Just Licorne.degrade
+                            , diagnostic = m.licorneDiagnostic
+                            , hidden =
+                                if m.licorneVisible then
+                                    []
 
-                                    else
-                                        List.map .id Composition.licorne
-                            }
-                            (Animation.static css Composition.licorne)
-                        )
+                                else
+                                    List.map .id Composition.licorne
+                        }
+                        (Animation.static css Composition.licorne)
                     )
                 , Ui.small "Modèle retenu · Museau très long, sans poitrail. Dix-neuf occurrences des trois contours du logo ; un dégradé continu se fond dans le rose de la crinière et s’éclaircit vers la corne."
                 , wrappedRow [ width fill, spacing 8 ]
@@ -633,7 +505,7 @@ vue m =
                 28
             , spacing 28
             ]
-            [ wrappedRow [ width fill, spacing 24, Region.navigation, htmlAttribute (H.attribute "aria-label" "Pages de l’atelier") ]
+            [ wrappedRow [ width fill, spacing 24, Region.navigation, Region.description "Pages de l’atelier" ]
                 [ MrJam.lien "Atelier du logo" "./", MrJam.lien "Philosophie du logo" "philosophie.html", MrJam.lienActif True "Palette OKLCH" "palette.html" ]
             , Ui.label "Mister Jam · Couleurs"
             , Element.paragraph
@@ -655,11 +527,11 @@ vue m =
                 [ duo (plan m) (geometrie p)
                 , duo (champ "palette-l" "L · clarté" m.saisieL SaisirL) (champ "palette-c" "C · chroma" m.saisieC SaisirC)
                 , wrappedRow [ spacing 12, width fill ] [ Ui.primary Appliquer "Appliquer L et C", Ui.button False Reinitialiser "Palette de référence", MrJam.lien "Lien vers cette paire" ("palette.html?" ++ P.encoder p) ]
-                , el [ width fill, htmlAttribute (H.attribute "role" "status") ] (Ui.small m.message)
-                , el [ width fill, htmlAttribute (H.id "valeurs-palette") ] (code ("Paire sélectionnée : L = " ++ String.fromFloat p.l ++ " ; C = " ++ String.fromFloat p.c))
+                , el [ width fill, Accessibilite.etat ] (Ui.small m.message)
+                , el [ width fill, Accessibilite.identifiant "valeurs-palette" ] (code ("Paire sélectionnée : L = " ++ String.fromFloat p.l ++ " ; C = " ++ String.fromFloat p.c))
                 , Ui.small "L’adresse suit chaque réglage : copiez-la pour retrouver exactement la même paire. Les codes hexadécimaux sont arrondis à 8 bits ; les aperçus utilisent les valeurs OKLCH complètes."
                 ]
-            , Ui.card [ width fill, spacing 14, htmlAttribute (H.id "reference-palette") ]
+            , Ui.card [ width fill, spacing 14, Accessibilite.identifiant "reference-palette" ]
                 [ Ui.heading 2 "La référence : le chroma commun maximal"
                 , code ("L = " ++ String.fromFloat P.reference.l ++ " ; C = " ++ String.fromFloat P.reference.c)
                 , Ui.paragraph ("Ce point maximise C sur l’enveloppe réelle des huit gamuts sRGB. À son sommet, les limites se rejoignent pour : " ++ String.join " et " (List.map P.nom (P.limiteCommune P.reference.l).roles) ++ ". Aucun triangle approché ni ajustement par couleur n’intervient dans ce choix.")

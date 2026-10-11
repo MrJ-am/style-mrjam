@@ -1,166 +1,140 @@
-module MrJam.Theme exposing (bordure, champ, couleurs, disposition, ecran, focus, fond, identite, identiteHtml, panneau, police, styles, survol, survolPolice)
+module MrJam.Theme exposing (Contexte, Palette, bordure, champ, champPour, commune, couleurs, disposition, ecran, focus, focusPour, fond, palette, panneau, panneauPour, police, pour, survol, survolPolice)
 
-{-| Réglages internes. Les applications utilisent les composants de `MrJam`,
-pas cette palette pour reconstruire leur propre version d'un bouton.
+{-| Réglages internes. Les applications composent les composants communs avec
+un contexte de marque explicite, créé par MrJam.Contexte. Aucune cascade CSS,
+aucune variable globale modifiable et aucune connexion avec un état métier.
 -}
 
 import Element exposing (Attribute, Color, Option, fill, minimum, padding, shrink, spacing, width)
+import Element.Background as Fond
 import Element.Border as Bordure
-import Html exposing (Html)
-import Html.Attributes as Attributs
+import Element.Font as Police
 import MrJam.OKLab as OKLab
+
+
+type Contexte
+    = Contexte Float
+
+
+type alias Palette =
+    { encre : Color
+    , discret : Color
+    , accent : Color
+    , accentSurvol : Color
+    , ligne : Color
+    , controle : Color
+    , papier : Color
+    , surface : Color
+    , doux : Color
+    , danger : Color
+    , dangerSurvol : Color
+    }
+
+
+commune : Contexte
+commune =
+    Contexte 137.50776405003785
+
+
+pour : String -> Contexte
+pour marque =
+    Contexte
+        (case marque of
+            "Vision" ->
+                227.50776405003785
+
+            "Xiaoping" ->
+                92.50776405003785
+
+            "Ydris" ->
+                182.50776405003785
+
+            "Zoé" ->
+                272.50776405003785
+
+            _ ->
+                137.50776405003785
+        )
+
+
+{-| Rôles OKLCH historiques inchangés ; seule leur transmission devient explicite.
+La conversion sRGB existante raccorde les couleurs à l'API publique elm-ui.
+-}
+palette : Contexte -> Palette
+palette (Contexte teinte) =
+    let
+        rendu l c h =
+            let
+                rgb =
+                    OKLab.srgb { l = l, c = c, h = h }
+            in
+            Element.rgb rgb.r rgb.g rgb.b
+    in
+    { encre = rendu 0.25 0.035 teinte
+    , discret = rendu 0.45 0.025 teinte
+    , accent = rendu 0.46 0.08 teinte
+    , accentSurvol = rendu 0.39 0.07 teinte
+    , ligne = rendu 0.88 0.016 teinte
+    , controle = rendu 0.65 0.022 teinte
+    , papier = rendu 0.98 0.004 teinte
+    , surface = rendu 1 0 0
+    , doux = rendu 0.95 0.012 teinte
+    , danger = rendu 0.46 0.12 28
+    , dangerSurvol = rendu 0.39 0.1 28
+    }
+
+
+couleurs : Palette
+couleurs =
+    palette commune
 
 
 ecran : List (Attribute message)
 ecran =
-    [ width fill
-    , Element.htmlAttribute (Attributs.class "mrjam-ecran")
-    , Element.htmlAttribute (Attributs.style "min-width" "0")
-    , Element.htmlAttribute (Attributs.style "min-height" "100dvh")
-    , Element.htmlAttribute (Attributs.style "height" "auto")
-    , Element.htmlAttribute (Attributs.style "max-width" "100%")
-    ]
-
-
-couleurs : { encre : Color, discret : Color, accent : Color, accentSurvol : Color, ligne : Color, controle : Color, papier : Color, surface : Color, doux : Color, danger : Color, dangerSurvol : Color }
-couleurs =
-    { encre = rendu "encre"
-    , discret = rendu "discret"
-    , accent = rendu "accent"
-    , accentSurvol = rendu "accentSurvol"
-    , ligne = rendu "ligne"
-    , controle = rendu "controle"
-    , papier = rendu "papier"
-    , surface = rendu "surface"
-    , doux = rendu "doux"
-    , danger = rendu "danger"
-    , dangerSurvol = rendu "dangerSurvol"
-    }
-
-
-{-| Tous les composants héritent des mêmes rôles. La marque fixe la teinte ;
-les arrière-plans abaissent le chroma et les actions assombrissent la clarté.
--}
-palette : Float -> List ( String, OKLab.Couleur )
-palette h =
-    [ ( "encre", { l = 0.25, c = 0.035, h = h } )
-    , ( "discret", { l = 0.45, c = 0.025, h = h } )
-    , ( "accent", { l = 0.46, c = 0.08, h = h } )
-    , ( "accentSurvol", { l = 0.39, c = 0.07, h = h } )
-    , ( "ligne", { l = 0.88, c = 0.016, h = h } )
-    , ( "controle", { l = 0.65, c = 0.022, h = h } )
-    , ( "papier", { l = 0.98, c = 0.004, h = h } )
-    , ( "surface", { l = 1, c = 0, h = h } )
-    , ( "doux", { l = 0.95, c = 0.012, h = h } )
-    , ( "danger", { l = 0.46, c = 0.12, h = 28 } )
-    , ( "dangerSurvol", { l = 0.39, c = 0.1, h = 28 } )
-    ]
-
-
-rendu : String -> Color
-rendu nom =
-    palette 137.50776405003785
-        |> List.filter (Tuple.first >> (==) nom)
-        |> List.head
-        |> Maybe.map (Tuple.second >> OKLab.srgb >> (\rgb -> Element.rgb rgb.r rgb.g rgb.b))
-        |> Maybe.withDefault (Element.rgb 0 0 0)
-
-
-nomCouleur : Color -> String
-nomCouleur col =
-    palette 137.50776405003785
-        |> List.filter (\( nom, _ ) -> rendu nom == col)
-        |> List.head
-        |> Maybe.map Tuple.first
-        |> Maybe.withDefault "encre"
-
-
-variable : Color -> String
-variable col =
-    "var(--mrjam-" ++ nomCouleur col ++ ")"
+    -- layout fournit déjà width/min-height100% et height:auto.
+    [ width fill ]
 
 
 fond : Color -> Attribute message
-fond col =
-    Element.htmlAttribute (Attributs.style "background-color" (variable col))
+fond =
+    Fond.color
 
 
 police : Color -> Attribute message
-police col =
-    Element.htmlAttribute (Attributs.style "color" (variable col))
+police =
+    Police.color
 
 
 bordure : Color -> Attribute message
-bordure col =
-    Element.htmlAttribute (Attributs.style "border-color" (variable col))
+bordure =
+    Bordure.color
 
 
 survol : Color -> Attribute message
 survol col =
-    Element.htmlAttribute (Attributs.class ("mrjam-survol-" ++ nomCouleur col))
+    Element.mouseOver [ Fond.color col ]
 
 
 survolPolice : Color -> Attribute message
 survolPolice col =
-    Element.htmlAttribute (Attributs.class ("mrjam-survol-texte-" ++ nomCouleur col))
-
-
-identite : String -> List (Attribute message)
-identite marque =
-    List.map Element.htmlAttribute (identiteHtml marque)
-
-
-identiteHtml : String -> List (Html.Attribute message)
-identiteHtml marque =
-    [ Attributs.class
-        (case marque of
-            "Vision" ->
-                "mrjam-identite-vision"
-
-            "Xiaoping" ->
-                "mrjam-identite-xiaoping"
-
-            "Ydris" ->
-                "mrjam-identite-ydris"
-
-            "Zoé" ->
-                "mrjam-identite-zoe"
-
-            _ ->
-                "mrjam-identite-commune"
-        )
-    ]
-
-
-variables : Float -> String
-variables h =
-    String.join ";" (List.map (\( nom, col ) -> "--mrjam-" ++ nom ++ ":" ++ OKLab.css col) (palette h))
-
-
-styles : Html message
-styles =
-    Html.node "style"
-        []
-        [ Html.text
-            (":root{"
-                ++ variables 137.50776405003785
-                ++ "}"
-                ++ String.concat
-                    (List.map (\( marque, teinte ) -> ".mrjam-identite-" ++ marque ++ "{" ++ variables teinte ++ "}")
-                        [ ( "commune", 137.50776405003785 ), ( "vision", 227.50776405003785 ), ( "xiaoping", 92.50776405003785 ), ( "ydris", 182.50776405003785 ), ( "zoe", 272.50776405003785 ) ]
-                    )
-                ++ String.concat (List.map (\( nom, _ ) -> ".mrjam-survol-" ++ nom ++ ":hover{background-color:var(--mrjam-" ++ nom ++ ")!important}.mrjam-survol-texte-" ++ nom ++ ":hover{color:var(--mrjam-" ++ nom ++ ")!important}") (palette 137.50776405003785))
-                ++ "button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--mrjam-accent);outline-offset:2px}"
-            )
-        ]
+    Element.mouseOver [ Police.color col ]
 
 
 focus : Option
 focus =
+    focusPour commune
+
+
+focusPour : Contexte -> Option
+focusPour contexte =
+    let
+        accent =
+            (palette contexte).accent
+    in
     Element.focusStyle
-        { borderColor = Just couleurs.accent
+        { borderColor = Just accent
         , backgroundColor = Nothing
-        , shadow = Nothing
+        , shadow = Just { color = accent, offset = ( 0, 0 ), blur = 0, size = 3 }
         }
 
 
@@ -171,23 +145,36 @@ disposition =
 
 panneau : List (Attribute message)
 panneau =
+    panneauPour commune
+
+
+panneauPour : Contexte -> List (Attribute message)
+panneauPour contexte =
+    let
+        col =
+            palette contexte
+    in
     disposition
-        ++ [ padding 16
-           , fond couleurs.surface
-           , bordure couleurs.ligne
-           , Bordure.width 1
-           , Bordure.rounded 6
-           ]
+        ++ [ padding 16, fond col.surface, bordure col.ligne, Bordure.width 1, Bordure.rounded 6 ]
 
 
 champ : List (Attribute message)
 champ =
+    champPour commune
+
+
+champPour : Contexte -> List (Attribute message)
+champPour contexte =
+    let
+        col =
+            palette contexte
+    in
     [ width fill
     , Element.height (minimum 36 shrink)
     , Element.paddingXY 10 7
-    , fond couleurs.surface
-    , police couleurs.encre
-    , bordure couleurs.controle
+    , fond col.surface
+    , police col.encre
+    , bordure col.controle
     , Bordure.width 1
     , Bordure.rounded 5
     ]

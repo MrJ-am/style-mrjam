@@ -23,15 +23,15 @@ copyFileSync('donnees/geometrie-Z-original.json', 'dist/exports/geometrie-Z-orig
 const template = readFileSync('web/index.html', 'utf8');
 const script = readFileSync('dist/elm.js', 'utf8').replaceAll('</script', '<\\/script');
 const boot = readFileSync('web/boot.js', 'utf8');
-const style = readFileSync('web/style.css', 'utf8');
+const animations = readFileSync('../../public/assets/mrjam/animations.js', 'utf8');
 const licenses = JSON.stringify(JSON.parse(readFileSync('docs/third-party-licenses.json', 'utf8'))).replaceAll('<', '\\u003c');
-const html = template.replace('/* STYLES */', () => style).replace('/* ELM */', () => script).replace('/* BOOT */', () => boot).replace('/* LICENSES */', () => licenses);
+const html = template.replace('/* ANIMATIONS */', () => animations).replace('/* ELM */', () => script).replace('/* BOOT */', () => boot).replace('/* LICENSES */', () => licenses);
 writeFileSync('dist/index.html', html);
 writeFileSync('dist/atelier-logo.html', html);
 writeFileSync('dist/atelier-logo-x.html', html); // Nom historique de la première livraison.
-const philosophie = html.replace('<title>ÉcoLogo — Atelier du mouvement</title>', '<title>ÉcoLogo — Philosophie du logo · MrJ.am</title>').replace('Atelier vectoriel interactif : rotation centrifuge du logo et recomposition en Xiaoping (X), Ydris (Y) et Zoé (Z).', 'ÉcoLogo : correspondances, analogies, palette OKLCH et Licorne rose invisible ; expérimenter, apprendre et conceptualiser.').replace(/<script>\(\(\) => \{[\s\S]*?<\/script>/, '<script>Elm.Philosophie.init({node:document.getElementById("app"),flags:{width:innerWidth}});</script>');
+const philosophie = html.replace('<title>ÉcoLogo — Atelier du mouvement</title>', '<title>ÉcoLogo — Philosophie du logo · MrJ.am</title>').replace('Atelier vectoriel interactif : rotation centrifuge du logo et recomposition en Xiaoping (X), Ydris (Y) et Zoé (Z).', 'ÉcoLogo : correspondances, analogies, palette OKLCH et Licorne rose invisible ; expérimenter, apprendre et conceptualiser.').replace(boot, () => 'Elm.Philosophie.init({node:document.getElementById("app"),flags:{width:innerWidth}});');
 writeFileSync('dist/philosophie.html', philosophie);
-const palette = template.replace('/* STYLES */', () => style).replace('/* ELM */', () => script).replace('/* BOOT */', () => readFileSync('web/palette.js', 'utf8')).replace('/* LICENSES */', () => licenses).replace('<title>ÉcoLogo — Atelier du mouvement</title>', '<title>Palette OKLCH — Mister Jam</title>').replace(/<meta name="description"[^>]*>/, '<meta name="description" content="Explorer la palette OKLCH Mister Jam : deux paramètres communs, huit sommets et sept couleurs principales dans le gamut sRGB.">');
+const palette = template.replace('/* ANIMATIONS */', () => animations).replace('/* ELM */', () => script).replace('/* BOOT */', () => readFileSync('web/palette.js', 'utf8')).replace('/* LICENSES */', () => licenses).replace('<title>ÉcoLogo — Atelier du mouvement</title>', '<title>Palette OKLCH — Mister Jam</title>').replace(/<meta name="description"[^>]*>/, '<meta name="description" content="Explorer la palette OKLCH Mister Jam : deux paramètres communs, huit sommets et sept couleurs principales dans le gamut sRGB.">');
 writeFileSync('dist/palette.html', palette);
 writeFileSync('dist/.nojekyll', '');
 console.log('Atelier et philosophie : dist/ ; exports : dist/exports/');

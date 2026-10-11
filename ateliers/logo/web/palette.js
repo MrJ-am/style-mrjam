@@ -8,9 +8,9 @@
     if (url.href !== location.href) history.replaceState(null, '', url);
   });
   addEventListener('popstate', () => app.ports.navigationQuery.send(location.search));
-  let actif = null, attente = null, frame = null;
+  let actif = null, attente = null, programme = false;
   const envoyer = () => {
-    frame = null;
+    programme = false;
     if (!actif || !attente) return;
     const rect = actif.element.getBoundingClientRect();
     app.ports.selectionPlan.send({x: (attente.clientX - rect.left) / rect.width, y: (attente.clientY - rect.top) / rect.height});
@@ -19,7 +19,6 @@
   const terminer = event => {
     if (!actif || event.pointerId !== actif.id) return;
     if (event.type === 'pointerup') attente = event;
-    if (frame !== null) cancelAnimationFrame(frame);
     envoyer();
     if (actif.element.hasPointerCapture(actif.id)) actif.element.releasePointerCapture(actif.id);
     actif = attente = null;
@@ -37,7 +36,8 @@
   document.addEventListener('pointermove', event => {
     if (!actif || event.pointerId !== actif.id) return;
     attente = event;
-    if (frame === null) frame = requestAnimationFrame(envoyer);
+    // Regrouper les entrées présentes ; aucune horloge ni animation JavaScript.
+    if (!programme) { programme = true; queueMicrotask(envoyer); }
   });
   for (const nom of ['pointerup', 'pointercancel', 'lostpointercapture']) document.addEventListener(nom, terminer);
 })();

@@ -1,4 +1,4 @@
-module MrJam.Vitrine exposing (benefices, capture, chapitre, conclusion, details, etapes, hero, illustration, introduction, navigation, partie, phrase, texte)
+module MrJam.Vitrine exposing (Interface, benefices, capture, chapitre, conclusion, details, etapes, hero, illustration, introduction, navigation, partie, phrase, pour, texte)
 
 {-| Compositions de présentation et de découverte. Les textes, images et liens
 appartiennent au produit. Les espacements, le rythme et les tailles sont communs.
@@ -8,16 +8,43 @@ import Element as UI exposing (Element)
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Region as Region
-import Html
-import Html.Attributes as A
 import MrJam
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Adaptateurs.Complement as Complement
+import MrJam.Adaptateurs.Typographie as Typographie
 import MrJam.Pictogrammes as Pictogrammes exposing (Icone)
-import MrJam.Theme as Theme exposing (couleurs)
+import MrJam.Theme as Theme
 
 
-classe : String -> UI.Attribute message
-classe nom =
-    UI.htmlAttribute (A.class ("mrjam-vitrine-" ++ nom))
+type alias Interface message =
+    { navigation : String -> String -> Element message
+    , hero : { repere : String, titre : String, texte : String, image : String, description : String } -> List (Element message) -> Element message
+    , introduction : String -> String -> String -> Element message
+    , benefices : List { icone : Icone, titre : String, texte : String } -> Element message
+    , partie : String -> String -> List (Element message) -> Element message
+    , illustration : { image : String, description : String, legende : String } -> Element message
+    , etapes : List { titre : String, texte : String } -> Element message
+    , details : String -> List (Element message) -> Element message
+    , conclusion : String -> String -> List (Element message) -> Element message
+    , capture : { image : String, description : String, legende : String } -> Element message
+    }
+
+
+{-| Marque et largeur explicites ; les anciennes fonctions gardent le contexte commun.
+-}
+pour : Theme.Contexte -> Int -> Interface message
+pour contexte largeur =
+    { navigation = navigationPour contexte
+    , hero = heroPour contexte largeur
+    , introduction = introductionPour contexte largeur
+    , benefices = beneficesPour contexte
+    , partie = partiePour contexte largeur
+    , illustration = illustrationPour contexte
+    , etapes = etapesPour contexte
+    , details = detailsPour contexte
+    , conclusion = conclusionPour contexte largeur
+    , capture = capturePour contexte
+    }
 
 
 texte : String -> Element message
@@ -27,57 +54,129 @@ texte contenu =
 
 phrase : String -> Element message
 phrase contenu =
-    UI.paragraph [ UI.width UI.fill, Police.size 24, Police.semiBold, classe "phrase" ] [ UI.text contenu ]
+    UI.paragraph [ UI.width UI.fill, Police.size 24, Police.semiBold ] [ UI.text contenu ]
 
 
 navigation : String -> String -> Element message
-navigation libelle url =
+navigation =
+    navigationPour Theme.commune
+
+
+navigationPour : Theme.Contexte -> String -> String -> Element message
+navigationPour contexte libelle url =
     UI.link
         [ UI.paddingXY 20 13
         , Bordure.rounded 8
-        , Theme.fond couleurs.accent
-        , Theme.police couleurs.surface
+        , Theme.fond (Theme.palette contexte).accent
+        , Theme.police (Theme.palette contexte).surface
         , Police.semiBold
-        , Theme.survol couleurs.accentSurvol
+        , Theme.survol (Theme.palette contexte).accentSurvol
         ]
         { url = url, label = UI.row [ UI.spacing 12 ] [ UI.text libelle, Pictogrammes.vue Pictogrammes.Fleche ] }
 
 
 hero : { repere : String, titre : String, texte : String, image : String, description : String } -> List (Element message) -> Element message
-hero contenu actions =
-    UI.wrappedRow [ UI.width UI.fill, UI.spacing 40, UI.paddingXY 0 32, classe "hero" ]
+hero =
+    heroPour Theme.commune 1024
+
+
+heroPour : Theme.Contexte -> Int -> { repere : String, titre : String, texte : String, image : String, description : String } -> List (Element message) -> Element message
+heroPour contexte largeur contenu actions =
+    UI.wrappedRow
+        [ UI.width UI.fill
+        , UI.spacing
+            (if largeur <= 600 then
+                24
+
+             else
+                40
+            )
+        , UI.paddingXY 0
+            (if largeur <= 600 then
+                16
+
+             else
+                32
+            )
+        ]
         [ UI.column [ UI.width (UI.minimum 260 UI.fill), UI.spacing 26, UI.centerY ]
-            [ etiquette contenu.repere
-            , UI.paragraph [ UI.width UI.fill, Region.heading 1, Police.size 58, Police.bold, classe "titre" ] [ UI.text contenu.titre ]
+            [ etiquette contexte contenu.repere
+            , UI.paragraph
+                ([ UI.width UI.fill
+                 , Region.heading 1
+                 , Police.size
+                    (if largeur <= 600 then
+                        40
+
+                     else
+                        58
+                    )
+                 , Police.bold
+                 , Police.letterSpacing
+                    (if largeur <= 600 then
+                        -1.3
+
+                     else
+                        -2.2
+                    )
+                 ]
+                    ++ Typographie.titreVitrine
+                )
+                [ UI.text contenu.titre ]
             , texte contenu.texte
             , UI.wrappedRow [ UI.spacing 14, UI.width UI.fill ] actions
             ]
-        , UI.image [ UI.width (UI.minimum 260 (UI.maximum 560 UI.fill)), Bordure.rounded 28, classe "hero-image" ]
+        , UI.image [ UI.width (UI.minimum 260 (UI.maximum 560 UI.fill)), Bordure.rounded 28 ]
             { src = contenu.image, description = contenu.description }
         ]
 
 
-etiquette : String -> Element message
-etiquette contenu =
-    UI.paragraph [ Police.size 12, Police.letterSpacing 1.5, Police.bold, Theme.police couleurs.accent ] [ UI.text contenu ]
+etiquette : Theme.Contexte -> String -> Element message
+etiquette contexte contenu =
+    UI.paragraph [ Police.size 12, Police.letterSpacing 1.5, Police.bold, Theme.police (Theme.palette contexte).accent ] [ UI.text contenu ]
 
 
 introduction : String -> String -> String -> Element message
-introduction repere titre description =
+introduction =
+    introductionPour Theme.commune 1024
+
+
+introductionPour : Theme.Contexte -> Int -> String -> String -> String -> Element message
+introductionPour contexte largeur repere titre description =
     UI.column [ UI.width (UI.maximum 760 UI.fill), UI.spacing 16, UI.paddingXY 0 28 ]
-        [ etiquette repere
-        , UI.paragraph [ UI.width UI.fill, Region.heading 1, Police.size 42, Police.bold, classe "titre-secondaire" ] [ UI.text titre ]
+        [ etiquette contexte repere
+        , UI.paragraph
+            ([ UI.width UI.fill
+             , Region.heading 1
+             , Police.size
+                (if largeur <= 600 then
+                    30
+
+                 else
+                    42
+                )
+             , Police.bold
+             , Police.letterSpacing -1
+             ]
+                ++ Typographie.titreSecondaireVitrine
+            )
+            [ UI.text titre ]
         , texte description
         ]
 
 
 benefices : List { icone : Icone, titre : String, texte : String } -> Element message
-benefices contenus =
+benefices =
+    beneficesPour Theme.commune
+
+
+beneficesPour : Theme.Contexte -> List { icone : Icone, titre : String, texte : String } -> Element message
+beneficesPour contexte contenus =
     UI.wrappedRow [ UI.width UI.fill, UI.spacing 24, UI.paddingXY 0 24 ]
         (List.map
             (\contenu ->
                 UI.column [ UI.width (UI.minimum 240 UI.fill), UI.spacing 14, UI.paddingXY 0 10 ]
-                    [ UI.el [ Theme.police couleurs.accent ] (Pictogrammes.vue contenu.icone)
+                    [ UI.el [ Theme.police (Theme.palette contexte).accent ] (Pictogrammes.vue contenu.icone)
                     , UI.paragraph [ Region.heading 2, Police.size 20, Police.bold ] [ UI.text contenu.titre ]
                     , texte contenu.texte
                     ]
@@ -87,31 +186,71 @@ benefices contenus =
 
 
 partie : String -> String -> List (Element message) -> Element message
-partie repere titre contenu =
-    UI.column [ UI.width UI.fill, UI.spacing 24, UI.paddingXY 0 36, classe "partie" ]
-        ([ etiquette repere
-         , UI.paragraph [ UI.width (UI.maximum 780 UI.fill), Region.heading 2, Police.size 36, Police.bold, classe "titre-secondaire" ] [ UI.text titre ]
+partie =
+    partiePour Theme.commune 1024
+
+
+partiePour : Theme.Contexte -> Int -> String -> String -> List (Element message) -> Element message
+partiePour contexte largeur repere titre contenu =
+    UI.column
+        [ UI.width UI.fill
+        , UI.spacing 24
+        , UI.paddingXY 0
+            (if largeur <= 600 then
+                24
+
+             else
+                36
+            )
+        ]
+        ([ etiquette contexte repere
+         , UI.paragraph
+            ([ UI.width (UI.maximum 780 UI.fill)
+             , Region.heading 2
+             , Police.size
+                (if largeur <= 600 then
+                    30
+
+                 else
+                    36
+                )
+             , Police.bold
+             , Police.letterSpacing -1
+             ]
+                ++ Typographie.titreSecondaireVitrine
+            )
+            [ UI.text titre ]
          ]
             ++ contenu
         )
 
 
 illustration : { image : String, description : String, legende : String } -> Element message
-illustration contenu =
+illustration =
+    illustrationPour Theme.commune
+
+
+illustrationPour : Theme.Contexte -> { image : String, description : String, legende : String } -> Element message
+illustrationPour contexte contenu =
     UI.column [ UI.width UI.fill, UI.spacing 12 ]
-        [ UI.image [ UI.width UI.fill, Bordure.rounded 12, Bordure.width 1, Theme.bordure couleurs.ligne, classe "capture" ]
+        [ UI.image [ UI.width UI.fill, Bordure.rounded 12, Bordure.width 1, Theme.bordure (Theme.palette contexte).ligne ]
             { src = contenu.image, description = contenu.description }
-        , MrJam.texteSecondaire contenu.legende
+        , (MrJam.pour contexte).texteSecondaire contenu.legende
         ]
 
 
 etapes : List { titre : String, texte : String } -> Element message
-etapes contenus =
+etapes =
+    etapesPour Theme.commune
+
+
+etapesPour : Theme.Contexte -> List { titre : String, texte : String } -> Element message
+etapesPour contexte contenus =
     UI.wrappedRow [ UI.width UI.fill, UI.spacing 28 ]
         (List.indexedMap
             (\numero contenu ->
                 UI.column [ UI.width (UI.minimum 240 UI.fill), UI.spacing 12 ]
-                    [ UI.el [ Theme.police couleurs.accent, Police.size 32, Police.bold ] (UI.text ("0" ++ String.fromInt (numero + 1)))
+                    [ UI.el [ Theme.police (Theme.palette contexte).accent, Police.size 32, Police.bold ] (UI.text ("0" ++ String.fromInt (numero + 1)))
                     , UI.paragraph [ Region.heading 3, Police.size 22, Police.bold ] [ UI.text contenu.titre ]
                     , texte contenu.texte
                     ]
@@ -122,30 +261,62 @@ etapes contenus =
 
 chapitre : String -> String -> List (Element message) -> Element message
 chapitre identifiant titre contenu =
-    UI.column [ UI.width (UI.maximum 900 UI.fill), UI.spacing 20, UI.paddingXY 0 24, UI.htmlAttribute (A.id identifiant) ]
-        ([ UI.paragraph [ Region.heading 2, Police.size 30, Police.bold, UI.width UI.fill, UI.htmlAttribute (A.tabindex -1) ] [ UI.text titre ] ] ++ contenu)
+    UI.column [ UI.width (UI.maximum 900 UI.fill), UI.spacing 20, UI.paddingXY 0 24, Accessibilite.identifiant identifiant ]
+        ([ UI.paragraph [ Region.heading 2, Police.size 30, Police.bold, UI.width UI.fill, Accessibilite.tabulation -1 ] [ UI.text titre ] ] ++ contenu)
 
 
 {-| Complément consultable au clavier. Le contenu reste disponible dans le DOM,
 sans chargement d'une autre version du texte et sans animation imposée.
 -}
 details : String -> List (Element message) -> Element message
-details titre contenu =
-    UI.el [ UI.width UI.fill ] <|
-        UI.html <|
-            Html.details [ A.class "mrjam-vitrine-details" ]
-                [ Html.summary [] [ Html.text titre ]
+details =
+    detailsPour Theme.commune
 
-                -- Une racine imbriquée ne doit pas remplacer les styles de la page.
-                , UI.layoutWith { options = [ UI.noStaticStyleSheet ] }
-                    []
-                    (UI.column [ UI.width UI.fill, UI.spacing 18, UI.paddingXY 0 20, Police.family [ Police.typeface "Inter", Police.sansSerif ], Police.size 16, Theme.police couleurs.encre ] contenu)
-                ]
+
+detailsPour : Theme.Contexte -> String -> List (Element message) -> Element message
+detailsPour contexte titre contenu =
+    let
+        couleurs =
+            Theme.palette contexte
+
+        racine attributs element =
+            UI.layoutWith { options = [ UI.noStaticStyleSheet, Theme.focusPour contexte ] }
+                ([ UI.width UI.fill, Police.family [ Police.typeface "Inter", Police.sansSerif ], Theme.police couleurs.encre ] ++ attributs)
+                element
+    in
+    UI.el
+        [ UI.width UI.fill
+        , Bordure.widthEach { top = 1, bottom = 0, left = 0, right = 0 }
+        , Theme.bordure couleurs.ligne
+        , UI.paddingXY 0 20
+        , UI.focused [ Bordure.shadow { offset = ( 0, 0 ), size = 3, blur = 0, color = couleurs.accent } ]
+        ]
+        (Complement.natif
+            (racine [ Police.size 18, Police.semiBold, UI.paddingXY 0 6, UI.pointer ] (UI.paragraph [ UI.width UI.fill ] [ UI.text titre ]))
+            (racine [ Police.size 16, Police.regular, UI.paddingXY 0 20 ] (UI.column [ UI.width UI.fill, UI.spacing 18 ] contenu))
+        )
 
 
 conclusion : String -> String -> List (Element message) -> Element message
-conclusion titre description actions =
-    UI.column [ UI.width UI.fill, UI.spacing 22, UI.padding 32, Theme.fond couleurs.papier, Bordure.rounded 20, classe "conclusion" ]
+conclusion =
+    conclusionPour Theme.commune 1024
+
+
+conclusionPour : Theme.Contexte -> Int -> String -> String -> List (Element message) -> Element message
+conclusionPour contexte largeur titre description actions =
+    UI.column
+        [ UI.width UI.fill
+        , UI.spacing 22
+        , UI.padding
+            (if largeur <= 600 then
+                24
+
+             else
+                32
+            )
+        , Theme.fond (Theme.palette contexte).papier
+        , Bordure.rounded 20
+        ]
         [ UI.paragraph [ UI.width UI.fill, Region.heading 2, Police.size 32, Police.bold ] [ UI.text titre ]
         , texte description
         , UI.wrappedRow [ UI.width UI.fill, UI.spacing 18 ] actions
@@ -156,14 +327,19 @@ conclusion titre description actions =
 la vue. Le lien reste une navigation ordinaire, sans dialogue ou script caché.
 -}
 capture : { image : String, description : String, legende : String } -> Element message
-capture contenu =
+capture =
+    capturePour Theme.commune
+
+
+capturePour : Theme.Contexte -> { image : String, description : String, legende : String } -> Element message
+capturePour contexte contenu =
     UI.column [ UI.width UI.fill, UI.spacing 10 ]
-        [ UI.link [ UI.width UI.fill, UI.htmlAttribute (A.title "Agrandir la capture") ]
+        [ UI.link [ UI.width UI.fill, Accessibilite.infoBulle "Agrandir la capture" ]
             { url = contenu.image
-            , label = UI.image [ UI.width UI.fill, Bordure.rounded 12, Bordure.width 1, Theme.bordure couleurs.ligne ] { src = contenu.image, description = contenu.description }
+            , label = UI.image [ UI.width UI.fill, Bordure.rounded 12, Bordure.width 1, Theme.bordure (Theme.palette contexte).ligne ] { src = contenu.image, description = contenu.description }
             }
         , UI.wrappedRow [ UI.width UI.fill, UI.spacing 12 ]
-            [ MrJam.texteSecondaire contenu.legende
-            , Pictogrammes.lien Pictogrammes.Loupe "Agrandir la capture" contenu.image
+            [ (MrJam.pour contexte).texteSecondaire contenu.legende
+            , (Pictogrammes.pour contexte).lien Pictogrammes.Loupe "Agrandir la capture" contenu.image
             ]
         ]

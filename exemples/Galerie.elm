@@ -3,8 +3,8 @@ module Galerie exposing (main)
 import Browser
 import Element as UI
 import Html exposing (Html)
-import Html.Attributes as Attributs
 import MrJam exposing (..)
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Disposition as Disposition
 import MrJam.Donnees as Donnees
 import MrJam.Fenetres as Fenetres
@@ -92,8 +92,14 @@ actualiser message modele =
 
 vue : Modele -> Html Message
 vue modele =
-    Html.div []
-        [ page "Style MrJ.am"
+    Fenetres.avecModale
+        (if modele.modale then
+            Just (Fenetres.modale "dialogue-controle" "Confirmer" FermerModale [ champ "Valeur du dialogue" modele.titre ModifierTitre, bouton "Fermer le dialogue" FermerModale ])
+
+         else
+            Nothing
+        )
+        (page "Style MrJ.am"
             [ avis Information "Galerie de contrôle. Les interfaces existantes ne sont pas encore migrées."
             , section "Actions"
                 [ actions [ bouton "Enregistrer" Enregistrer, boutonSecondaire "Annuler" Annuler, boutonDestructif "Archiver" Archiver ]
@@ -119,9 +125,9 @@ vue modele =
                     modele.reponse
                     ModifierReponse
                     Enregistrer
-                , UI.el [ UI.htmlAttribute (Attributs.id "description-reponse") ] (texteSecondaire "Au plus 500 caractères ; les espaces sont conservés.")
+                , UI.el [ Accessibilite.identifiant "description-reponse" ] (texteSecondaire "Au plus 500 caractères ; les espaces sont conservés.")
                 , choixRiches "Choix à contenu riche"
-                    [ ( "distincts", UI.paragraph [ UI.width UI.fill ] [ UI.text "Choisir ", UI.html (Html.em [] [ Html.text "deux témoins distincts" ]) ] )
+                    [ ( "distincts", UI.paragraph [ UI.width UI.fill ] [ UI.text "Choisir ", emphase "deux témoins distincts" ] )
                     , ( "identiques", paragraphe "Choisir un même témoin pour les deux valeurs, avec un libellé suffisamment long pour tester les petits écrans." )
                     ]
                     modele.choixRiche
@@ -129,7 +135,7 @@ vue modele =
                 , selecteur "Leçon" [ ( "une", "1 · Première leçon" ), ( "deux", "2 · Deuxième leçon" ) ] modele.lecon ChoisirLecon
                 , boutonDevoiler "aide-controle" "Afficher l’aide" modele.aideOuverte DevoilerAide
                 , if modele.aideOuverte then
-                    UI.el [ UI.htmlAttribute (Attributs.id "aide-controle") ] (paragraphe "Chaque témoin possède son nom.")
+                    UI.el [ Accessibilite.identifiant "aide-controle" ] (paragraphe "Chaque témoin possède son nom.")
 
                   else
                     UI.none
@@ -170,12 +176,7 @@ vue modele =
                 , lien "Revenir aux actions" "#"
                 ]
             ]
-        , if modele.modale then
-            Fenetres.modale "dialogue-controle" "Confirmer" FermerModale [ champ "Valeur du dialogue" modele.titre ModifierTitre, bouton "Fermer le dialogue" FermerModale ]
-
-          else
-            Html.text ""
-        ]
+        )
 
 
 main : Program () Modele Message

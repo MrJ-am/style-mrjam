@@ -1,15 +1,20 @@
-module MrJam.Blocs exposing (Etat(..), cavite, commande, emboitable, espace, logement, objectif, onglet, outil, poignee, proposition, styles)
+module MrJam.Blocs exposing (Etat(..), Format(..), cavite, commande, emboitable, emboitableAvec, espace, logement, logementImbrique, objectif, onglet, outil, poignee, proposition, propositionNiveau)
 
-{-| Pièces d'un atelier graphique : constructions à encoches et objets verts
-emboîtables. Les bandes et épines forment un contour continu ; le fond des
-cavités reste ouvert sur le canevas. Aucune règle métier ne dépend du dessin.
+{-| Constructions à encoches, cavités ouvertes et propositions emboîtées.
+Disposition, palette et contrôles en elm-ui ; seuls les contours non rectangulaires
+absents de son API passent par l'adaptateur Constructions. Aucune injection CSS.
+La profondeur et le format sont explicites : aucune cascade entre pièces voisines.
 -}
 
 import Element as UI exposing (Attribute, Element)
+import Element.Background as Fond
+import Element.Border as Bordure
+import Element.Font as Police
 import Element.Input as Entree
 import Element.Region as Region
-import Html
-import Html.Attributes as A
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Adaptateurs.Constructions as Formes
+import MrJam.OKLab as OKLab
 
 
 type Etat
@@ -20,169 +25,403 @@ type Etat
     | Incorrect
 
 
-classe : String -> Attribute msg
-classe =
-    A.class >> UI.htmlAttribute
+type Format
+    = Normal
+    | Miniature
+
+
+couleur : Float -> Float -> Float -> UI.Color
+couleur l c h =
+    let
+        rgb =
+            OKLab.srgb { l = l, c = c, h = h }
+    in
+    UI.rgb rgb.r rgb.g rgb.b
+
+
+jaune : UI.Color
+jaune =
+    couleur 0.86490792 0.16195309 87.81475507
 
 
 commande : List (Attribute msg) -> Element msg -> msg -> Element msg
 commande attributs contenu message =
-    Entree.button (classe "mrjam-bloc-commande" :: attributs) { onPress = Just message, label = contenu }
+    Entree.button
+        ([ UI.width UI.shrink
+         , UI.height (UI.minimum 28 UI.shrink)
+         , UI.paddingXY 4 2
+         , Bordure.rounded 4
+         , UI.mouseOver [ Fond.color (UI.rgba 1 1 1 0.188235) ]
+         ]
+            ++ attributs
+        )
+        { onPress = Just message, label = contenu }
 
 
 outil : String -> String -> msg -> Element msg
 outil nom dessin =
-    commande [ classe "mrjam-atelier-outil", Region.description nom, UI.htmlAttribute (A.title nom) ] (UI.text dessin)
+    commande
+        [ Region.description nom
+        , Accessibilite.infoBulle nom
+        , UI.width (UI.minimum 34 UI.shrink)
+        , UI.height (UI.minimum 34 UI.shrink)
+        , Bordure.width 1
+        , Bordure.rounded 6
+        , Bordure.color (couleur 0.89341231 0.01396946 174.12521093)
+        , Fond.color (UI.rgb 1 1 1)
+        , Police.size 20
+        , UI.paddingXY 7 3
+        , UI.mouseOver [ Fond.color (couleur 0.95052939 0.01034397 174.26731464) ]
+        ]
+        (UI.text dessin)
 
 
 poignee : String -> msg -> Element msg
 poignee nom =
-    commande [ classe "mrjam-bloc-poignee", UI.htmlAttribute (A.title "Glisser ou sélectionner, puis placer") ] (UI.text nom)
+    commande
+        [ Accessibilite.infoBulle "Glisser ou sélectionner, puis placer"
+        , Police.semiBold
+        , UI.height (UI.minimum 30 UI.shrink)
+        , UI.paddingXY 0 2
+        ]
+        (UI.paragraph [ UI.width UI.fill ] [ UI.text nom ])
 
 
 onglet : Bool -> String -> String -> msg -> Element msg
 onglet actif famille nom =
     commande
-        [ classe ("mrjam-atelier-onglet " ++ famille)
-        , UI.htmlAttribute
-            (A.attribute "aria-pressed"
-                (if actif then
-                    "true"
+        ([ Accessibilite.pressee actif
+         , UI.height (UI.minimum 38 UI.shrink)
+         , UI.paddingXY 8 7
+         , Bordure.rounded 6
+         , Police.size 12
+         , Police.semiBold
+         , UI.mouseOver [ Fond.color (UI.rgba 1 1 1 0.721569) ]
+         ]
+            ++ (if actif then
+                    [ Fond.color (UI.rgb 1 1 1), Bordure.shadow { offset = ( 0, 1 ), blur = 4, size = 0, color = UI.rgba 0.12 0.25 0.24 0.12549 } ]
 
-                 else
-                    "false"
-                )
-            )
-        ]
-        (UI.text nom)
+                else
+                    []
+               )
+        )
+        (UI.row [ UI.spacing 5 ]
+            [ UI.el
+                [ UI.width (UI.px 9)
+                , UI.height (UI.px 9)
+                , Bordure.rounded 5
+                , Fond.color
+                    (case famille of
+                        "regles" ->
+                            couleur 0.77955609 0.15708441 84.14249701
+
+                        "propositions" ->
+                            couleur 0.64713852 0.15612522 144.42735754
+
+                        _ ->
+                            couleur 0.66487089 0.03013693 170.70240566
+                    )
+                ]
+                UI.none
+            , UI.paragraph [ UI.width UI.fill ] [ UI.text nom ]
+            ]
+        )
 
 
 emboitable : Etat -> List (Attribute msg) -> Element msg -> List (Element msg) -> Element msg -> Element msg
-emboitable etat attributs entete cavites pied =
+emboitable =
+    emboitableAvec Normal
+
+
+emboitableAvec : Format -> Etat -> List (Attribute msg) -> Element msg -> List (Element msg) -> Element msg -> Element msg
+emboitableAvec format etat attributs entete cavites pied =
     let
-        nom =
-            case etat of
-                Selectionne ->
-                    "selectionne"
+        compacte =
+            format == Miniature
 
-                Incorrect ->
-                    "incorrect"
+        minimum =
+            if compacte then
+                116
 
-                Verifie ->
-                    "verifie"
+            else
+                148
 
-                ACompleter ->
-                    "incomplet"
-
-                Neutre ->
-                    "neutre"
-
-        caviteOuverte index contenu =
+        branche index contenu =
             (if index == 0 then
                 []
 
              else
-                [ UI.el [ classe "mrjam-bloc-traverse" ] UI.none ]
+                [ UI.el [ Formes.repere Formes.Traverse, UI.width UI.fill, UI.height (UI.px 10), Fond.color jaune ] UI.none ]
             )
-                ++ [ UI.row [ classe "mrjam-bloc-branche" ]
-                        [ UI.el [ classe "mrjam-bloc-epine" ] UI.none
-                        , UI.el [ classe "mrjam-cavite" ] contenu
+                ++ [ UI.row [ UI.width UI.fill, UI.spacing 0 ]
+                        [ UI.el [ Formes.repere Formes.Epine, UI.width (UI.px 12), UI.height UI.fill, Fond.color jaune ] UI.none
+                        , UI.el [ Formes.repere Formes.Cavite, UI.width (UI.minimum 0 UI.fill), UI.paddingEach { top = 7, bottom = 7, left = 9, right = 0 } ] contenu
                         ]
                    ]
+
+        contour =
+            case etat of
+                Selectionne ->
+                    Formes.selectionne
+
+                Incorrect ->
+                    Formes.incorrect
+
+                _ ->
+                    Formes.neutre
     in
-    UI.column (classe ("mrjam-bloc " ++ nom) :: attributs)
-        ([ UI.el [ classe "mrjam-bloc-entete" ] entete ]
-            ++ (List.indexedMap caviteOuverte cavites |> List.concat)
-            ++ [ UI.el [ classe "mrjam-bloc-pied" ] pied ]
+    UI.column
+        ([ Formes.repere Formes.Bloc
+         , contour
+         , UI.width (UI.minimum minimum UI.shrink)
+         , UI.spacing 0
+         , Police.size
+            (if compacte then
+                12
+
+             else
+                13
+            )
+         , Police.color (couleur 0.34078969 0.05929159 87.79306492)
+         ]
+            ++ attributs
+        )
+        ([ UI.el
+            ([ Formes.repere Formes.Entete
+             , UI.width UI.fill
+             , UI.height
+                (UI.minimum
+                    (if compacte then
+                        38
+
+                     else
+                        48
+                    )
+                    UI.shrink
+                )
+             , UI.paddingEach
+                { top =
+                    if compacte then
+                        10
+
+                    else
+                        12
+                , bottom =
+                    if compacte then
+                        5
+
+                    else
+                        7
+                , left =
+                    if compacte then
+                        8
+
+                    else
+                        10
+                , right =
+                    if compacte then
+                        8
+
+                    else
+                        10
+                }
+             , Fond.color jaune
+             , Bordure.roundEach { topLeft = 5, topRight = 5, bottomLeft = 0, bottomRight = 0 }
+             ]
+                ++ Formes.encocheEntete
+            )
+            entete
+         ]
+            ++ List.concat (List.indexedMap branche cavites)
+            ++ [ UI.el
+                    ([ Formes.repere Formes.Pied
+                     , UI.width UI.fill
+                     , UI.height
+                        (UI.minimum
+                            (if compacte then
+                                18
+
+                             else
+                                22
+                            )
+                            UI.shrink
+                        )
+                     , UI.paddingEach
+                        { top =
+                            if compacte then
+                                4
+
+                            else
+                                5
+                        , bottom =
+                            if compacte then
+                                8
+
+                            else
+                                10
+                        , left =
+                            if compacte then
+                                8
+
+                            else
+                                10
+                        , right =
+                            if compacte then
+                                8
+
+                            else
+                                10
+                        }
+                     , Fond.color jaune
+                     , Bordure.roundEach { topLeft = 0, topRight = 0, bottomLeft = 5, bottomRight = 5 }
+                     ]
+                        ++ Formes.encochePied
+                    )
+                    pied
+               ]
         )
 
 
 cavite : List (Attribute msg) -> Element msg -> Element msg
 cavite attributs contenu =
-    UI.el (classe "mrjam-emplacement" :: attributs) contenu
+    UI.el
+        ([ Formes.repere Formes.Emplacement
+         , UI.width (UI.minimum 126 UI.fill)
+         , UI.height (UI.minimum 48 UI.shrink)
+         , UI.paddingXY 7 3
+         , Bordure.width 1
+         , Bordure.dashed
+         , Bordure.rounded 5
+         , Bordure.color (couleur 0.84208244 0.01728958 168.41214448)
+         , Fond.color (UI.rgba 1 1 1 0.564706)
+         , Police.color (couleur 0.63025462 0.03738496 175.41817258)
+         ]
+            ++ attributs
+        )
+        contenu
 
 
 proposition : List (Attribute msg) -> Element msg -> Element msg
-proposition attributs contenu =
-    UI.el (classe "mrjam-proposition" :: attributs) contenu
+proposition =
+    propositionNiveau 0
+
+
+propositionNiveau : Int -> List (Attribute msg) -> Element msg -> Element msg
+propositionNiveau niveau attributs contenu =
+    UI.el
+        ([ Formes.repere Formes.Objet
+         , UI.width UI.shrink
+         , UI.height (UI.minimum 30 UI.shrink)
+         , UI.paddingXY 12 3
+         , Police.semiBold
+         , Police.color (couleur 0.32033187 0.07658181 147.05165907)
+         , Fond.color
+            (case clamp 0 2 niveau of
+                0 ->
+                    couleur 0.69625331 0.1635566 142.66498337
+
+                1 ->
+                    couleur 0.79627472 0.14419378 142.84664037
+
+                _ ->
+                    couleur 0.8627799 0.09821111 142.98792553
+            )
+         ]
+            ++ Formes.objet
+            ++ attributs
+        )
+        contenu
 
 
 logement : List (Attribute msg) -> Element msg -> Element msg
-logement attributs contenu =
-    UI.el (classe "mrjam-logement" :: attributs) contenu
+logement =
+    logementPour False
+
+
+logementImbrique : List (Attribute msg) -> Element msg -> Element msg
+logementImbrique =
+    logementPour True
+
+
+logementPour : Bool -> List (Attribute msg) -> Element msg -> Element msg
+logementPour imbrique attributs contenu =
+    UI.el
+        ([ Formes.repere Formes.Logement
+         , UI.width (UI.minimum 34 UI.shrink)
+         , UI.height (UI.minimum 28 UI.shrink)
+         , UI.paddingXY 8 2
+         , Bordure.width 1
+         , Bordure.dashed
+         , Bordure.rounded 16
+         , Bordure.color
+            (if imbrique then
+                couleur 0.457297 0.11020435 146.30140343
+
+             else
+                couleur 0.47740079 0.10053223 143.08118201
+            )
+         , Fond.color
+            (if imbrique then
+                couleur 0.53588404 0.13191884 146.27997504
+
+             else
+                couleur 0.94976137 0.02936145 132.59366667
+            )
+         , Police.color
+            (if imbrique then
+                UI.rgb 1 1 1
+
+             else
+                couleur 0.44135608 0.08189646 141.05325377
+            )
+         , Police.center
+         ]
+            ++ attributs
+        )
+        contenu
 
 
 objectif : Element msg -> Element msg
 objectif =
-    UI.el [ classe "mrjam-bloc-objectif" ]
+    UI.el [ UI.width UI.shrink, UI.paddingXY 0 4 ]
 
 
-{-| La palette reste à gauche, le canevas occupe la droite. Les commandes et
-la barre d'état restent hors du défilement du dessin.
+{-| Dimensions réelles du navigateur ; l'atelier possède ses deux défilements,
+sans faire déborder la page. Les commandes et le statut restent toujours présents.
 -}
-espace : Element msg -> Element msg -> Element msg -> Element msg -> Element msg
-espace commandes palette canevas statut =
-    UI.column [ classe "mrjam-atelier", UI.width UI.fill ]
-        [ styles
-        , UI.el [ classe "mrjam-atelier-commandes" ] commandes
-        , UI.row [ classe "mrjam-atelier-corps" ]
-            [ UI.el [ classe "mrjam-atelier-palette" ] palette
-            , UI.el [ classe "mrjam-atelier-travail" ] canevas
-            ]
-        , UI.el [ classe "mrjam-atelier-statut" ] statut
+espace : { largeur : Int, hauteur : Int } -> Element msg -> Element msg -> Element msg -> Element msg -> Element msg
+espace dimensions commandes palette canevas statut =
+    let
+        largeurPalette =
+            if dimensions.largeur <= 480 then
+                140
+
+            else if dimensions.largeur <= 900 then
+                184
+
+            else
+                258
+    in
+    UI.column
+        [ Formes.repere Formes.Atelier
+        , UI.width UI.fill
+        , UI.height (UI.px (max 340 dimensions.hauteur))
+        , UI.clip
+        , Police.size
+            (if dimensions.largeur <= 900 then
+                13
+
+             else
+                14
+            )
+        , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
+        , Fond.color (couleur 0.98386999 0.00251617 228.78342335)
+        , Police.color (couleur 0.33176209 0.04255047 183.46459586)
         ]
-
-
-styles : Element msg
-styles =
-    UI.html (Html.node "style" [] [ Html.text presentation ])
-
-
-presentation : String
-presentation =
-    """
-.mrjam-atelier{--palette:258px;width:100%!important;height:100dvh!important;min-height:340px!important;display:flex!important;flex-direction:column!important;background:oklch(0.98386999 0.00251617 228.78342335);color:oklch(0.33176209 0.04255047 183.46459586);font:14px/1.35 Inter,Aptos,"Segoe UI",sans-serif;overflow:hidden}
-.mrjam-atelier-commandes{flex:0 0 auto!important;width:100%!important;background:oklch(0.99999999 0.00000004 89.87556310);border-bottom:1px solid oklch(0.89443874 0.01249561 177.98573901);padding:8px 14px!important;z-index:5}
-.mrjam-atelier-corps{display:grid!important;grid-template-columns:var(--palette) minmax(0,1fr);width:100%!important;min-height:0!important;flex:1 1 0!important;align-items:stretch!important;overflow:hidden}
-.mrjam-atelier-palette{display:block!important;width:auto!important;min-width:0!important;min-height:0!important;overflow:auto!important;overscroll-behavior:contain;background:oklch(0.96384120 0.00444983 179.73377469);border-right:1px solid oklch(0.87427756 0.01503221 175.66661719);padding:12px 10px!important}
-.mrjam-atelier-travail{display:flex!important;flex-direction:column!important;width:auto!important;min-width:0!important;min-height:0!important;overflow:hidden;position:relative}
-.mrjam-atelier-statut{flex:0 0 auto!important;width:100%!important;border-top:1px solid oklch(0.89443874 0.01249561 177.98573901);background:oklch(0.99999999 0.00000004 89.87556310);padding:6px 12px!important;font-size:12px;min-height:32px!important}
-.mrjam-atelier .mrjam-outils{width:100%!important;min-width:0!important;padding:12px!important;background:oklch(0.99999999 0.00000004 89.87556310);border:1px solid oklch(0.89443874 0.01249561 177.98573901);border-radius:8px}
-.mrjam-atelier .mrjam-projet{width:100%!important;padding:8px 14px!important;background:oklch(0.99999999 0.00000004 89.87556310);border-bottom:1px solid oklch(0.91623284 0.01195729 170.24612387);flex:0 0 auto!important;min-height:52px!important}
-.mrjam-atelier .mrjam-canevas{display:block!important;width:100%!important;min-width:0!important;min-height:0!important;flex:1 1 0!important;overflow:auto!important;overscroll-behavior:contain;background-color:oklch(0.99059126 0.00170347 247.83877920);background-image:radial-gradient(oklch(0.87120217 0.01504476 175.66435382) 1px,transparent 1px);background-size:20px 20px;padding:28px 32px 100px!important;scroll-padding:26px}
-.mrjam-atelier .mrjam-canevas-contenu{flex:0 0 auto!important;width:max-content!important;min-width:100%!important;min-height:100%!important;align-items:flex-start!important;transform-origin:top left}
-.mrjam-atelier .mrjam-atelier-outil{min-width:34px!important;min-height:34px!important;border:1px solid oklch(0.89341231 0.01396946 174.12521093);border-radius:6px;background:oklch(1 0 0)!important;border:1px solid oklch(0.89341231 0.01396946 174.12521093)!important;font-size:20px;padding:3px 7px!important;text-align:center}
-.mrjam-atelier .mrjam-atelier-outil:hover{background:oklch(0.95052939 0.01034397 174.26731464)}
-.mrjam-atelier-onglet.mrjam-bloc-commande{min-height:38px!important;padding:7px 8px!important;border-radius:6px;font-size:12px;font-weight:600;white-space:normal!important;max-width:100%;text-align:left}
-.mrjam-atelier-onglet::before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:oklch(0.66487089 0.03013693 170.70240566)}
-.mrjam-atelier-onglet.regles::before{background:oklch(0.77955609 0.15708441 84.14249701)}.mrjam-atelier-onglet.propositions::before{background:oklch(0.64713852 0.15612522 144.42735754)}
-.mrjam-atelier-onglet[aria-pressed=true]{background:oklch(0.99999999 0.00000004 89.87556310);box-shadow:0 1px 4px oklch(0.33424728 0.04464933 181.71014210 / 0.125490)}.mrjam-atelier-onglet:hover{background:oklch(0.99999999 0.00000004 89.87556310 / 0.721569)}
-.mrjam-bloc{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;width:max-content!important;min-width:148px!important;max-width:none!important;background:transparent!important;color:oklch(0.34078969 0.05929159 87.79306492);font-size:13px;line-height:1.25;position:relative;filter:drop-shadow(0 1px 0 oklch(0.69802785 0.14003027 82.64614801));padding:0!important;margin:0!important;isolation:isolate}
-.mrjam-bloc.selectionne{filter:drop-shadow(0 0 2px oklch(0.52094715 0.13971434 251.30770236)) drop-shadow(0 0 2px oklch(0.52094715 0.13971434 251.30770236))}.mrjam-bloc.incorrect{filter:drop-shadow(0 0 2px oklch(0.50049969 0.17361526 28.26574628))}
-.mrjam-bloc-entete,.mrjam-bloc-pied,.mrjam-bloc-traverse,.mrjam-bloc-epine{background:oklch(0.86490792 0.16195309 87.81475507)!important}
-.mrjam-bloc-entete{flex:0 0 auto!important;width:100%!important;min-width:148px!important;min-height:48px!important;padding:12px 10px 7px!important;border-radius:5px 5px 0 0;clip-path:polygon(0 0,15px 0,21px 5px,38px 5px,44px 0,100% 0,100% 100%,0 100%)}
-.mrjam-bloc-pied{flex:0 0 auto!important;width:100%!important;min-height:22px!important;padding:5px 10px 10px!important;border-radius:0 0 5px 5px;clip-path:polygon(0 0,100% 0,100% calc(100% - 5px),44px calc(100% - 5px),38px 100%,21px 100%,15px calc(100% - 5px),0 calc(100% - 5px))}
-.mrjam-bloc-traverse{width:100%!important;height:10px!important;min-height:10px!important}
-.mrjam-bloc-branche{width:100%!important;display:flex!important;align-items:stretch!important;gap:0!important;flex:0 0 auto!important}
-.mrjam-bloc-epine{width:12px!important;min-width:12px!important;align-self:stretch!important;flex:0 0 12px!important}
-.mrjam-cavite{width:max-content!important;min-width:calc(100% - 12px)!important;padding:7px 0 7px 9px!important;flex:1 0 auto!important;align-self:stretch!important;background:transparent!important}
-.mrjam-bloc-commande{width:max-content!important;flex:0 0 auto!important;border:0!important;background:transparent;color:inherit;font:inherit;min-height:28px!important;min-width:20px!important;padding:2px 4px!important;border-radius:4px;white-space:nowrap;cursor:pointer}
-.mrjam-bloc-commande:focus-visible{outline:2px solid oklch(0.47031050 0.12651013 252.34372959)!important;outline-offset:1px!important}.mrjam-bloc-commande:hover{background:oklch(0.99999999 0.00000004 89.87556310 / 0.188235)}
-.mrjam-bloc-poignee{font-weight:650;padding:2px 0!important;cursor:grab;min-height:30px!important;white-space:normal!important;text-align:left}
-.mrjam-proposition{width:max-content!important;max-width:none!important;flex:0 0 auto!important;min-height:30px!important;display:inline-flex!important;align-items:center!important;padding:3px 12px!important;background:oklch(0.69625331 0.16355660 142.66498337)!important;color:oklch(0.32033187 0.07658181 147.05165907)!important;clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,10px 100%,0 50%);font-weight:650;white-space:nowrap;filter:drop-shadow(0 1px 0 oklch(0.55163012 0.13717295 144.68276832))}
-.mrjam-proposition .mrjam-proposition{background:oklch(0.79627472 0.14419378 142.84664037)!important;margin:1px!important;filter:none}.mrjam-proposition .mrjam-proposition .mrjam-proposition{background:oklch(0.86277990 0.09821111 142.98792553)!important}
-.mrjam-logement{width:max-content!important;flex:0 0 auto!important;min-width:34px!important;min-height:28px!important;padding:2px 8px!important;border:1px dashed oklch(0.47740079 0.10053223 143.08118201);border-radius:16px;background:oklch(0.94976137 0.02936145 132.59366667);color:oklch(0.44135608 0.08189646 141.05325377);text-align:center}
-.mrjam-proposition .mrjam-logement{background:oklch(0.53588404 0.13191884 146.27997504);color:oklch(0.99999999 0.00000004 89.87556310);border-color:oklch(0.45729700 0.11020435 146.30140343)}
-.mrjam-bloc-objectif{width:max-content!important;max-width:100%;display:flex!important;align-items:center;padding:4px 0!important}
-.mrjam-emplacement{width:100%!important;min-width:126px!important;min-height:38px!important;border:1px dashed oklch(0.84208244 0.01728958 168.41214448);border-radius:5px;background:oklch(0.99999999 0.00000004 89.87556310 / 0.564706);color:oklch(0.63025462 0.03738496 175.41817258);padding:3px 7px!important;display:flex!important;align-items:center!important}
-.mrjam-emplacement.interstice{height:14px!important;min-height:14px!important;padding:0 8px!important;border:0!important;background:transparent!important;opacity:.6}
-.mrjam-emplacement.interstice .mrjam-bloc-commande{font-size:10px;min-height:14px!important;padding:0!important}.mrjam-emplacement.interstice:hover,.en-deplacement .mrjam-atelier .mrjam-emplacement.interstice{background:oklch(0.91199148 0.01789852 170.05205867)!important;opacity:1}
-.mrjam-emplacement.depart{min-width:235px!important;min-height:86px!important;background:oklch(0.99999999 0.00000004 89.87556310 / 0.600000);box-shadow:0 0 0 5px oklch(0.99999999 0.00000004 89.87556310 / 0.250980);padding:18px!important}
-.mrjam-atelier .mrjam-palette-blocs{width:max-content!important;min-width:100%!important;align-items:flex-start!important;gap:18px!important}
-.mrjam-atelier-palette .mrjam-bloc{min-width:140px!important;max-width:100%!important;font-size:12px}.mrjam-atelier-palette .mrjam-bloc-entete{min-height:38px!important;padding:10px 8px 5px!important}.mrjam-atelier-palette .mrjam-cavite{padding:4px 0 4px 8px!important;min-height:26px!important}.mrjam-atelier-palette .mrjam-bloc-pied{min-height:18px!important;padding:4px 8px 8px!important}
-.mrjam-atelier .mrjam-legende{flex:0 0 auto!important;font-size:12px;color:oklch(0.60317656 0.02879184 168.66928022);white-space:normal}.mrjam-atelier .mrjam-detail{font-size:11px;color:oklch(0.53732660 0.04338211 146.07719634);max-width:240px;white-space:normal}
-@media(max-width:900px){.mrjam-atelier{--palette:184px;font-size:13px}.mrjam-atelier-commandes{padding:6px 8px!important}.mrjam-atelier .mrjam-canevas{padding:18px 20px 90px!important}.mrjam-atelier-palette{padding:8px 7px!important}.mrjam-atelier .mrjam-projet{padding:6px 8px!important}.mrjam-atelier-statut{font-size:11px;padding:5px 8px!important}}
-@media(max-width:480px){.mrjam-atelier{--palette:140px}.mrjam-atelier-onglet.mrjam-bloc-commande{font-size:11px;padding:6px 4px!important;min-height:36px!important}.mrjam-atelier-palette .mrjam-bloc{min-width:116px!important;font-size:11px}.mrjam-atelier-palette .mrjam-bloc-entete{min-width:116px!important;padding-left:6px!important;padding-right:6px!important}.mrjam-atelier-palette .mrjam-proposition{font-size:11px;padding:2px 9px!important;min-height:25px!important}.mrjam-atelier-palette .mrjam-outils{padding:6px!important}.mrjam-atelier-palette .mrjam-bloc-poignee{max-width:111px!important;white-space:normal!important}.mrjam-atelier .mrjam-canevas{padding:14px 16px 90px!important}.mrjam-atelier .mrjam-legende{flex:0 0 auto!important;font-size:11px}}
-@media(max-height:550px){.mrjam-atelier-statut [role=status]{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)}.mrjam-atelier-commandes img{width:32px!important;height:32px!important}}
-@media(prefers-reduced-motion:reduce){.mrjam-atelier *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
-"""
+        [ UI.el [ UI.width UI.fill, UI.paddingXY 14 8, Fond.color (UI.rgb 1 1 1), Bordure.widthEach { bottom = 1, top = 0, left = 0, right = 0 }, Bordure.color (couleur 0.89443874 0.01249561 177.98573901) ] commandes
+        , UI.row [ UI.width UI.fill, UI.height (UI.minimum 0 UI.fill), UI.clip ]
+            [ UI.el [ Formes.repere Formes.Palette, UI.width (UI.px largeurPalette), UI.height (UI.minimum 0 UI.fill), UI.scrollbars, UI.paddingXY 10 12, Fond.color (couleur 0.9638412 0.00444983 179.73377469), Bordure.widthEach { right = 1, bottom = 0, top = 0, left = 0 }, Bordure.color (couleur 0.87427756 0.01503221 175.66661719) ] palette
+            , UI.el [ UI.width (UI.minimum 0 UI.fill), UI.height (UI.minimum 0 UI.fill), UI.clip ] canevas
+            ]
+        , UI.el [ UI.width UI.fill, UI.height (UI.minimum 32 UI.shrink), UI.paddingXY 12 6, Police.size 12, Fond.color (UI.rgb 1 1 1), Bordure.widthEach { top = 1, bottom = 0, left = 0, right = 0 }, Bordure.color (couleur 0.89443874 0.01249561 177.98573901) ] statut
+        ]

@@ -2,11 +2,12 @@
 
 `MrJam.OKLab` définit les conversions et la sérialisation. `MrJam.Theme` est
 l'unique palette des composants : coordonnées OKLCH (forme cylindrique
-d'OKLab), rôles sémantiques et variables CSS héritées par la page et ses modales.
+d'OKLab) et rôles sémantiques, rendus par les attributs elm-ui.
 Les applications emploient les composants français ; elles ne redéfinissent
-pas la couleur des boutons. Les classes de marque déclarent les variables :
-Elm 0.19 n'applique pas correctement une propriété CSS personnalisée avec son
-ancienne affectation de style en ligne.
+pas la couleur des boutons. `MrJam.Contexte` est immuable ; passer le même
+contexte aux façades `pour` et à `Fenetres.modalePour`. Les fonctions historiques
+gardent la palette commune. Aucune classe, variable globale ou cascade ne transmet
+la palette d'une page à ses modales ou d'une carte à la voisine.
 
 Vision adopte la teinte 227,507764°, tirée du repère canonique de l'atelier de
 palette. Les fonds conservent cette teinte avec chroma faible ; les actions
@@ -31,6 +32,6 @@ Le logo original Echologo et les fontes Signature demeurent identiques et
 d'utilisation réservée. Les autres capteurs ne sont pas déplacés.
 
 Les tests de géométrie vérifient contours et cadrage ; les parcours navigateur
-vérifient l'héritage des variables, les contrôles, le focus, les formats étroits
+vérifient les palettes explicites isolées, les contrôles, le focus, les formats étroits
 et les modales. Les contrastes doivent être mesurés sur les couleurs réellement
 rendues, après conversion et bornage au gamut, avant publication.

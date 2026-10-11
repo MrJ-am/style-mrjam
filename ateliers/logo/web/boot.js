@@ -17,16 +17,17 @@
       strategy: params.get('strategie') || ''
     }
   });
-  motion.addEventListener('change', event => app.ports.reducedMotionChanged.send(event.matches));
-  app.ports.download.subscribe(({ name, mime, content }) => {
+  MrJamAnimations.relier(app.ports.reducedMotionChanged, {initiale: false});
+  function telecharger({ name, mime, content }) {
     const url = URL.createObjectURL(new Blob([content], { type: mime }));
     const link = document.createElement('a');
     link.href = url;
     link.download = name;
     link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-  });
-  app.ports.chooseSettings.subscribe(() => {
+  }
+  app.ports.download.subscribe(telecharger);
+  function choisirReglages() {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = '.json,application/json';
@@ -41,5 +42,6 @@
       catch { app.ports.receivedSettings.send('invalid'); }
     });
     input.click();
-  });
+  }
+  app.ports.chooseSettings.subscribe(choisirReglages);
 })();

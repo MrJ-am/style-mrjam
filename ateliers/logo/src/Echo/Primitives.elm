@@ -1,10 +1,12 @@
-module Echo.Primitives exposing (Brick(..), Shape(..), all, color, key, label, origin, radii, shape)
+module Echo.Primitives exposing (Brick(..), Shape(..), all, color, key, label, origin, radii, shape, teinte)
 
 {-| Les quatre contours canoniques. Les commandes d'arc restent intactes.
 Le décalage (-13.8, -9) est un changement de repère, jamais une déformation.
 Les rayons 3, 6, 12 suivent une progression de raison 2 ; 2, 3, 5, 8, 13
 appartiennent à la suite de Fibonacci. Le disque de fond n'est pas une brique.
 -}
+
+import Element
 
 
 type Brick
@@ -107,3 +109,21 @@ radii brick =
 
         Kinesthesique ->
             "Rayons 3 · 12 · 13"
+
+
+{-| Couleurs diagnostiques originales, sans CSS applicatif.
+-}
+teinte : Brick -> Element.Color
+teinte brick =
+    case brick of
+        Connaissance ->
+            Element.rgb255 255 255 255
+
+        Auditif ->
+            Element.rgb255 255 202 145
+
+        Visuel ->
+            Element.rgb255 158 216 250
+
+        Kinesthesique ->
+            Element.rgb255 232 184 237

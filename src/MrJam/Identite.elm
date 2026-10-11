@@ -1,4 +1,4 @@
-module MrJam.Identite exposing (logo, logoPour, marque, piedDePage, signature)
+module MrJam.Identite exposing (logo, logoPour, marque, piedDePage, piedDePagePour, signature)
 
 {-| Les ressources sont copiées à la compilation depuis une révision précise
 de Signature. Ne pas redessiner le logo ni remplacer la signature par une image.
@@ -7,8 +7,9 @@ Toute utilisation de ces signes d'identité est strictement réservée.
 
 import Element exposing (Element, el, fill, height, image, paddingXY, px, text, width, wrappedRow)
 import Element.Font as Police
-import Html.Attributes as Attributs
-import MrJam.Theme as Theme exposing (couleurs)
+import MrJam.Adaptateurs.Texte as Texte
+import MrJam.Adaptateurs.Typographie as Typographie
+import MrJam.Theme as Theme
 
 
 logo : Element message
@@ -31,13 +32,13 @@ signature : Element message
 signature =
     -- La métrique exacte de Signature est fractionnaire ; spacing est entier.
     Element.paragraph
-        [ width Element.shrink
-        , Element.spacing 0
-        , Element.htmlAttribute (Attributs.class "mrjam")
-        , Element.htmlAttribute (Attributs.style "line-height" "1.183")
-        , Police.family [ Police.typeface "MrJamSignature", Police.serif ]
-        , Police.size 28
-        ]
+        ([ width Element.shrink
+         , Element.spacing 0
+         , Police.family [ Police.typeface "MrJamSignature", Police.serif ]
+         , Police.size 28
+         ]
+            ++ Typographie.signature
+        )
         [ text "MrJ.am" ]
 
 
@@ -50,21 +51,23 @@ marque nom =
     -- Une même ligne partage la baseline : centrer deux boîtes indépendantes
     -- décale les lettres, car Parisienne et Signature ont des métriques différentes.
     Element.paragraph
-        [ width Element.shrink
-        , Element.spacing 0
-        , Element.htmlAttribute (Attributs.class "mrjam-marque")
-        , paddingXY 0 3
-        , Police.family [ Police.typeface "MrJamEcriture", Police.serif ]
-        , Police.size 28
-        , Element.htmlAttribute (Attributs.style "line-height" "1.183")
-        ]
+        ([ width Element.shrink
+         , Element.spacing 0
+         , paddingXY 0 3
+         , Police.family [ Police.typeface "MrJamEcriture", Police.serif ]
+         , Police.size 28
+         , Police.color (Element.rgb 0 0 0)
+         ]
+            ++ Typographie.marque
+        )
         [ text nom
         , pointMarque
         , el
-            [ Element.htmlAttribute (Attributs.class "mrjam")
-            , Police.family [ Police.typeface "MrJamSignature", Police.serif ]
-            , Police.size 28
-            ]
+            ([ Police.family [ Police.typeface "MrJamSignature", Police.serif ]
+             , Police.size 28
+             ]
+                ++ Typographie.signatureEnLigne
+            )
             (text "MrJ.am")
         ]
 
@@ -76,16 +79,24 @@ double, le décalage vaut donc -.005 em. Le caractère copié reste un point U+0
 pointMarque : Element message
 pointMarque =
     el
-        [ Element.htmlAttribute (Attributs.class "echo-point mrjam-marque-point")
-        , Element.htmlAttribute (Attributs.style "line-height" "0")
-        , Element.htmlAttribute (Attributs.style "vertical-align" "-0.005em")
-        , Police.family [ Police.typeface "EchoPoint", Police.serif ]
-        , Police.size 56
-        ]
-        (text ".")
+        ([ Police.family [ Police.typeface "EchoPoint", Police.serif ]
+         , Police.size 56
+         ]
+            ++ Typographie.point
+        )
+        (Texte.texte ".")
 
 
 piedDePage : Element message
 piedDePage =
+    piedDePagePour Theme.commune
+
+
+piedDePagePour : Theme.Contexte -> Element message
+piedDePagePour contexte =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
     wrappedRow [ width fill, Element.centerX, Element.spacing 8, paddingXY 0 12, Police.size 14, Theme.police couleurs.discret ]
         [ el [] (text "Une application de"), signature ]

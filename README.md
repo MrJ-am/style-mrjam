@@ -4,6 +4,15 @@ Bibliothèque de composants **ElmUI**, avec une API française, destinée aux ap
 
 > **Logo et signature : toute utilisation est strictement réservée.** La présence publique du logo, de la signature MrJ.am, de leurs fichiers et de leurs déclinaisons ne vaut aucune autorisation de reproduction, de modification, d’intégration, de redistribution ou d’exploitation. Toute utilisation exige l’autorisation préalable expresse de leur titulaire. Les éventuelles licences du code et les licences des dépendances ne s’étendent pas à ces éléments d’identité.
 
+## Chantier actuel
+
+Le socle utilise des contextes de marque explicites, elm-ui et elm-animator.
+Les anciennes publications ci-dessous sont des preuves historiques ; elles ne
+qualifient pas le portage actuel. Les règles, sources verrouillées et commandes
+bloquantes sont centralisées dans [VPS Infrastructure](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/FRONTENDS.md).
+Aucune promotion tant que les applications, l'atelier et leurs ressources ne
+passent pas ces contrôles et les parcours affectés.
+
 ## État de cette publication
 
 Le noyau et les compléments disposent d’une galerie et de tests d’interaction. **Vision utilise la révision `c7b4d6e00cd0014a0a05e5a4e77627357498faa9` en production depuis le 21 septembre 2026 à 22:32 UTC**, sur [vision.mrj.am](https://vision.mrj.am/). Les tableaux, valeurs spécialisées, lecteur Markdown et dialogues sont intégrés et vérifiés. Cette publication de Vision ne prouve pas la migration des autres applications ni l’installation de l’orchestrateur collectif. Consulter les exécutions de vérification de chaque révision et les preuves propres à chaque déploiement.

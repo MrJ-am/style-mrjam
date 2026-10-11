@@ -1,4 +1,4 @@
-module MrJam.Pictogrammes exposing (Icone(..), action, lien, vue)
+module MrJam.Pictogrammes exposing (Icone(..), Interface, action, lien, pour, vue)
 
 {-| Pictogrammes communs. Le dessin est décoratif ; chaque commande conserve
 un nom accessible et une infobulle. Une commande utilise le moteur des boutons.
@@ -6,11 +6,21 @@ un nom accessible et une infobulle. Une commande utilise le moteur des boutons.
 
 import Element as UI exposing (Element)
 import Element.Region as Region
-import Html.Attributes as A
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Adaptateurs.Pictogramme as Dessin
 import MrJam.Controles as Controles exposing (Intention(..))
-import MrJam.Theme as Theme exposing (couleurs)
-import Svg
-import Svg.Attributes as S
+import MrJam.Theme as Theme
+
+
+type alias Interface message =
+    { action : Icone -> String -> message -> Element message
+    , lien : Icone -> String -> String -> Element message
+    }
+
+
+pour : Theme.Contexte -> Interface message
+pour contexte =
+    { action = actionPour contexte, lien = lienPour contexte }
 
 
 type Icone
@@ -37,33 +47,45 @@ type Icone
 
 vue : Icone -> Element message
 vue icone =
-    UI.el [ UI.width (UI.px 22), UI.height (UI.px 22) ] <|
-        UI.html <|
-            Svg.svg
-                [ S.viewBox "0 0 24 24", S.width "22", S.height "22", S.fill "none", S.stroke "currentColor", S.strokeWidth "1.7", S.strokeLinecap "round", S.strokeLinejoin "round", A.attribute "aria-hidden" "true", A.attribute "focusable" "false" ]
-                (List.map (\trace -> Svg.path [ S.d trace ] []) (traces icone))
+    UI.el [ UI.width (UI.px 22), UI.height (UI.px 22) ] (Dessin.traits (traces icone))
 
 
 {-| Une commande compacte avec un nom compréhensible sans le pictogramme.
 -}
 action : Icone -> String -> message -> Element message
-action icone libelle message =
-    Controles.actionAvecContenu Icone
+action =
+    actionPour Theme.commune
+
+
+actionPour : Theme.Contexte -> Icone -> String -> message -> Element message
+actionPour contexte icone libelle message =
+    Controles.actionAvecContenuPour contexte
+        Icone
         [ Region.description libelle
-        , UI.htmlAttribute (A.title libelle)
-        , UI.htmlAttribute (A.class "mrjam-picto-action")
+        , Accessibilite.infoBulle libelle
+        , UI.width (UI.px 44)
+        , UI.height (UI.px 44)
         ]
         (vue icone)
         (Just message)
 
 
 lien : Icone -> String -> String -> Element message
-lien icone libelle url =
+lien =
+    lienPour Theme.commune
+
+
+lienPour : Theme.Contexte -> Icone -> String -> String -> Element message
+lienPour contexte icone libelle url =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
     UI.link
         [ UI.width (UI.px 44)
         , UI.height (UI.px 44)
         , Region.description libelle
-        , UI.htmlAttribute (A.title libelle)
+        , Accessibilite.infoBulle libelle
         , Theme.police couleurs.encre
         , Theme.survolPolice couleurs.accent
         ]

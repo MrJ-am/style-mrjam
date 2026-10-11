@@ -27,7 +27,8 @@
       (fermes.at(-1)?.retour?.isConnected && actif.contains(fermes.at(-1).retour) ? fermes.at(-1).retour : actif).focus({ preventScroll: true });
     } else if (fermes.at(-1)?.retour?.isConnected) fermes.at(-1).retour.focus({ preventScroll: true });
   }
-  new MutationObserver(() => { if (!programme) { programme = true; requestAnimationFrame(actualiser); } }).observe(document.body, { childList: true, subtree: true });
+  // Grouper les mutations de ce tour sans créer d'horloge de présentation.
+  new MutationObserver(() => { if (!programme) { programme = true; queueMicrotask(actualiser); } }).observe(document.body, { childList: true, subtree: true });
   document.addEventListener('keydown', evenement => {
     if (!actif) return;
     if (evenement.key === 'Escape') {

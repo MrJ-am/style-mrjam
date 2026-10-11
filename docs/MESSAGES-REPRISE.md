@@ -1,5 +1,10 @@
 # Reprise des projets après publication du noyau
 
+> Document historique de la préparation précédente, conservé sans réécriture.
+> Ses consignes de branches, Actions, messages et publication collective sont
+> remplacées par AGENTS.md et le contrat central de vps-infrastructure.
+> Ce texte n'est plus un protocole actif de reprise.
+
 Ces consignes permettent de poursuivre la migration. Elles n’annoncent ni un portage terminé ni un redéploiement. La bibliothèque est désormais publiée dans `MrJ-am/style-mrjam` ; elle ne reste pas à créer.
 
 Dans chaque projet, lire `docs/STYLE-MRJAM.md` et `AGENTS.md` sur la branche `migration/style-mrjam`. Le message de reprise transmis au projet doit fournir une révision complète de la bibliothèque dont la vérification GitHub Actions a réussi. La lecture des directives peut suivre une branche ; la compilation des applications doit toujours utiliser une révision exacte.

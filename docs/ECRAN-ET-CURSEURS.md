@@ -1,6 +1,6 @@
 # Écran, fenêtres et curseurs
 
-`page` et `Disposition.cadre` occupent au minimum la hauteur visible (`100dvh`)
+`page` et `Disposition.cadre` occupent au minimum la hauteur visible
 et la largeur disponible, sans largeur minimale implicite. Un contenu long garde
 son défilement. Les fenêtres occupent la hauteur visible et leur contenu défile
 à l'intérieur ; une disposition ElmUI imbriquée ne reprend pas `100vh`.
@@ -8,11 +8,17 @@ son défilement. Les fenêtres occupent la hauteur visible et leur contenu défi
 Une navigation contextuelle doit utiliser `Disposition.dialogue` ou `Fenetres`,
 pas un panneau `below` qui peut dépasser le bord de l'écran.
 
-`public/assets/mrjam/curseurs.css` contient l'apparence des contrôles géométriques
-`axis-slider` et `grade-slider`. Le consommateur l'importe depuis sa copie figée.
-Les positions des billes ne sont pas animées par CSS pendant une saisie ; leur
-géométrie et leur valeur appartiennent au composant interactif du consommateur.
-La scène 3D et la répartition de place restent propres à chaque application.
+`MrJam.Curseurs.continu` conserve clavier et tactile avec une saisie native,
+une piste et une poignée elm-ui. Il ne crée ni horloge d'animation ni annonce
+automatique à chaque frame. Son contexte de marque est explicite.
+
+La feuille CSS historique `axis-slider`/`grade-slider` est retirée du nouveau
+socle ; les consommateurs anciens conservent leur révision verrouillée.
+Les contrôles géométriques Matheval restent à porter en composants partagés
+elm-ui et adaptateurs spécialisés bornés, en préservant billes, gestes, valeurs
+et scène 3D. Matheval ne doit pas adopter ce socle avant cette qualification.
+Référence pour le portage :
+[source historique](https://github.com/MrJ-am/style-mrjam/blob/c9663ce7e53dc9cbd61b7f980d651bdae31357df/public/assets/mrjam/curseurs.css).
 
 Contrôles : galerie HTTP à 320, 390, 768 et 1440 px, redimensionnement d'un
 dialogue ouvert en portrait court et paysage. Matheval complète ces contrôles

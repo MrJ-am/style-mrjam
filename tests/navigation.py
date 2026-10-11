@@ -7,6 +7,8 @@ import base64
 import re
 import os
 import threading
+import argparse
+import hashlib
 from playwright.sync_api import expect, sync_playwright
 from controles import verifier_controles
 
@@ -16,7 +18,7 @@ class ServeurSilencieux(SimpleHTTPRequestHandler):
         pass
 
 
-def verifier():
+def verifier(javascript):
     racine = Path(__file__).resolve().parents[1]
     serveur = ThreadingHTTPServer(("127.0.0.1", 0), partial(ServeurSilencieux, directory=str(racine / "public")))
     fil = threading.Thread(target=serveur.serve_forever, daemon=True)
@@ -31,13 +33,14 @@ def verifier():
                 page.set_default_timeout(3000)
                 erreurs = []
                 page.on("pageerror", lambda erreur: erreurs.append(str(erreur)))
+                page.route("**/galerie.js", lambda route: route.fulfill(content_type="application/javascript", body=javascript.read_bytes()))
                 if os.environ.get("HORS_LIGNE") == "1":
                     # Même JavaScript compilé, chargé en mémoire sans accès réseau.
-                    javascript = (racine / "public/galerie.js").read_text()
+                    code = javascript.read_text()
                     css = (racine / "public/assets/mrjam/signature.css").read_text()
                     css = re.sub(r"@font-face\{[^}]+\}", "", css)
                     page.set_content('<html lang="fr"><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>' + css + '</style></head><body><div id="application"></div></body></html>')
-                    page.add_script_tag(content=javascript)
+                    page.add_script_tag(content=code)
                     page.evaluate("Elm.Galerie.init({node:document.getElementById('application')})")
                     page.add_script_tag(content=(racine / "public/assets/mrjam/fenetres.js").read_text())
                     logo = base64.b64encode((racine / "public/assets/mrjam/Echologo.svg").read_bytes()).decode()
@@ -159,8 +162,10 @@ def verifier():
         serveur.shutdown()
         serveur.server_close()
     (racine / "tests" / "resultats.json").write_text(json.dumps(resultats, ensure_ascii=False, indent=2) + "\n")
-    print(json.dumps(resultats, ensure_ascii=False))
+    print(json.dumps({"javascript_sha256": hashlib.sha256(javascript.read_bytes()).hexdigest(), "parcours": resultats}, ensure_ascii=False))
 
 
 if __name__ == "__main__":
-    verifier()
+    args = argparse.ArgumentParser()
+    args.add_argument("--javascript", type=Path, default=Path(__file__).resolve().parents[1] / "public/galerie.js")
+    verifier(args.parse_args().javascript)

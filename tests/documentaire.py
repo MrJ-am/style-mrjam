@@ -4,6 +4,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import threading
 import os
+import argparse
 from playwright.sync_api import sync_playwright, expect
 
 RACINE = Path(__file__).resolve().parents[1]
@@ -17,7 +18,7 @@ def verifier_largeur(page):
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
 
 
-def verifier():
+def verifier(javascript):
     serveur=ThreadingHTTPServer(('127.0.0.1',0),partial(Silencieux,directory=str(RACINE/'public')))
     threading.Thread(target=serveur.serve_forever,daemon=True).start()
     try:
@@ -25,6 +26,7 @@ def verifier():
             navigateur=pw.chromium.launch(**({'executable_path':os.environ['CHROMIUM']} if 'CHROMIUM' in os.environ else {}))
             for largeur in [320,390,768,1440]:
                 page=navigateur.new_page(viewport=dict(width=largeur,height=900))
+                page.route("**/galerie.js",lambda route:route.fulfill(content_type="application/javascript",body=javascript.read_bytes()))
                 # Même bundle optimisé ; le bootstrap reste un squelette technique.
                 page.goto(f'http://127.0.0.1:{serveur.server_port}/?vue=bibliotheque',wait_until='networkidle')
                 expect(page.get_by_role('heading',name='Bibliothèque',exact=True)).to_be_visible()
@@ -42,11 +44,11 @@ def verifier():
                 verifier_largeur(page)
                 declencheur=page.get_by_role('button',name='Nouveau document',exact=True)
                 assert 32<=declencheur.bounding_box()['height']<=38
-                police=page.locator('.mrjam-ecran').evaluate('e=>getComputedStyle(e).fontFamily')
+                police=page.get_by_role('main').evaluate('e=>getComputedStyle(e).fontFamily')
                 declencheur.focus();declencheur.press('Enter')
                 dialogue=page.get_by_role('dialog',name='Confirmer',exact=True)
                 expect(dialogue).to_be_visible()
-                assert page.locator('.mrjam-ecran').evaluate('e=>getComputedStyle(e).fontFamily')==police
+                assert page.get_by_role('main').evaluate('e=>getComputedStyle(e).fontFamily')==police
                 verifier_largeur(page)
                 dialogue.press('Escape');expect(dialogue).to_have_count(0);expect(declencheur).to_be_focused()
                 page.screenshot(path=str(RACINE/'tests'/f'galerie-documentaire-{largeur}.png'),full_page=True)
@@ -56,4 +58,7 @@ def verifier():
     print('Composants documentaires : 4 formats, densité, clavier, titres longs, état vide et dialogue vérifiés.')
 
 
-if __name__=='__main__':verifier()
+if __name__=='__main__':
+    args=argparse.ArgumentParser()
+    args.add_argument('--javascript',type=Path,default=RACINE/'public/galerie.js')
+    verifier(args.parse_args().javascript)

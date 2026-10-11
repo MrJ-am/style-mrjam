@@ -1,4 +1,4 @@
-module MrJam.Controles exposing (Intention(..), action, actionAvecContenu, icone)
+module MrJam.Controles exposing (Intention(..), action, actionAvecContenu, actionAvecContenuPour, actionPour, icone, iconePour)
 
 {-| Moteur interne des actions. Les applications utilisent les noms sémantiques
 exposés par MrJam, Documents et Disposition, sans attributs décoratifs.
@@ -9,8 +9,9 @@ import Element.Border as Bordure
 import Element.Font as Police
 import Element.Input as Saisie
 import Element.Region as Region
-import Html.Attributes as A
-import MrJam.Theme as Theme exposing (couleurs)
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Adaptateurs.Saisie as Native
+import MrJam.Theme as Theme exposing (Contexte)
 
 
 type Intention
@@ -23,10 +24,16 @@ type Intention
 
 
 action : Intention -> List (Attribute message) -> String -> Maybe message -> Element message
-action intention attributs libelle message =
-    actionAvecContenu intention
+action =
+    actionPour Theme.commune
+
+
+actionPour : Contexte -> Intention -> List (Attribute message) -> String -> Maybe message -> Element message
+actionPour contexte intention attributs libelle message =
+    actionAvecContenuPour contexte
+        intention
         attributs
-        (UI.paragraph [ UI.htmlAttribute (A.style "width" "max-content"), UI.htmlAttribute (A.style "max-width" "100%"), Police.center ] [ UI.text libelle ])
+        (UI.paragraph ([ UI.width UI.shrink, Police.center ] ++ Native.intrinseque) [ UI.text libelle ])
         message
 
 
@@ -34,8 +41,16 @@ action intention attributs libelle message =
 fournis par le composant sémantique qui l'appelle.
 -}
 actionAvecContenu : Intention -> List (Attribute message) -> Element message -> Maybe message -> Element message
-actionAvecContenu intention attributs contenu message =
+actionAvecContenu =
+    actionAvecContenuPour Theme.commune
+
+
+actionAvecContenuPour : Contexte -> Intention -> List (Attribute message) -> Element message -> Maybe message -> Element message
+actionAvecContenuPour contexte intention attributs contenu message =
     let
+        couleurs =
+            Theme.palette contexte
+
         ( fond, encre, survol ) =
             if message == Nothing then
                 ( if intention == Discrete then
@@ -78,16 +93,7 @@ actionAvecContenu intention attributs contenu message =
         selection =
             case intention of
                 Selection actif ->
-                    [ UI.htmlAttribute
-                        (A.attribute "aria-pressed"
-                            (if actif then
-                                "true"
-
-                             else
-                                "false"
-                            )
-                        )
-                    ]
+                    [ Accessibilite.pressee actif ]
 
                 _ ->
                     []
@@ -96,9 +102,6 @@ actionAvecContenu intention attributs contenu message =
         ([ UI.height (UI.minimum 34 UI.shrink)
          , UI.width (UI.minimum 34 UI.shrink)
          , UI.paddingXY 10 6
-         , UI.htmlAttribute (A.style "width" "max-content")
-         , UI.htmlAttribute (A.style "max-width" "100%")
-         , UI.htmlAttribute (A.style "flex-basis" "auto")
          , Police.size 14
          , Theme.police encre
          , Theme.fond fond
@@ -106,25 +109,23 @@ actionAvecContenu intention attributs contenu message =
          , Bordure.width 1
          , Theme.bordure bord
          , Theme.survol survol
-         , UI.htmlAttribute
-            (A.attribute "aria-disabled"
-                (if message == Nothing then
-                    "true"
-
-                 else
-                    "false"
-                )
-            )
+         , Accessibilite.desactive (message == Nothing)
          ]
+            ++ (if intention == Icone then
+                    []
+
+                else
+                    Native.intrinseque
+               )
             ++ (if message == Nothing then
-                    [ UI.htmlAttribute (A.tabindex -1) ]
+                    [ Accessibilite.tabulation -1 ]
 
                 else
                     []
                )
             ++ (case intention of
                     Icone ->
-                        [ UI.width (UI.px 34), UI.height (UI.px 34), UI.htmlAttribute (A.style "width" "34px"), UI.padding 0, Police.size 20 ]
+                        [ UI.width (UI.px 34), UI.height (UI.px 34), UI.padding 0, Police.size 20 ]
 
                     Discrete ->
                         [ Bordure.width 0, UI.paddingXY 6 4 ]
@@ -143,10 +144,16 @@ actionAvecContenu intention attributs contenu message =
 {-| Une icône visible, un nom accessible et un titre au survol.
 -}
 icone : String -> String -> message -> Element message
-icone libelle symbole message =
-    action Icone
+icone =
+    iconePour Theme.commune
+
+
+iconePour : Contexte -> String -> String -> message -> Element message
+iconePour contexte libelle symbole message =
+    actionPour contexte
+        Icone
         [ Region.description libelle
-        , UI.htmlAttribute (A.title libelle)
+        , Accessibilite.infoBulle libelle
         ]
         symbole
         (Just message)

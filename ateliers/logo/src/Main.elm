@@ -9,14 +9,14 @@ import Echo.ReferenceData as Reference
 import Echo.Render as Render
 import Echo.Settings as Settings
 import Echo.Transform as Transform exposing (Chirality(..))
-import Element exposing (Element, alignRight, centerY, column, el, fill, height, html, htmlAttribute, none, padding, paddingEach, paddingXY, px, row, spacing, text, width, wrappedRow)
+import Element exposing (Element, alignRight, centerY, column, el, fill, height, none, padding, paddingEach, paddingXY, px, row, spacing, text, width, wrappedRow)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 import Element.Region as Region
 import Html
-import Html.Attributes as H
 import MrJam
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Disposition as Disposition
 import MrJam.Transitions as Player exposing (Cycle(..))
 import Shared.Licorne as Licorne
@@ -414,7 +414,6 @@ view model =
         , Font.color Ui.ink
         , Font.size 14
         , Font.family [ Font.typeface "Inter", Font.typeface "Segoe UI", Font.sansSerif ]
-        , htmlAttribute (H.class "app-root")
         ]
         (column
             [ width (Element.maximum 1260 fill)
@@ -488,7 +487,7 @@ intro model =
 
 navigation : Element msg
 navigation =
-    wrappedRow [ width fill, spacing 24, Region.navigation, htmlAttribute (H.attribute "aria-label" "Pages de l’atelier") ]
+    wrappedRow [ width fill, spacing 24, Region.navigation, Region.description "Pages de l’atelier" ]
         [ MrJam.lienActif True "Atelier du logo" "./"
         , MrJam.lien "Philosophie du logo" "philosophie.html"
         , MrJam.lien "Palette OKLCH" "palette.html"
@@ -568,21 +567,13 @@ stage model =
             column [ spacing 6 ] [ el [ Font.size 10, Font.color (Element.rgb255 162 189 189), Font.letterSpacing 1 ] (text name), el [ Font.size 15, Font.color Ui.white, Font.family [ Font.monospace ] ] (text value) ]
     in
     column
-        [ width fill
-        , spacing 0
-        , Background.color (Element.rgb255 20 43 49)
-        , Border.rounded 18
-        , htmlAttribute (H.attribute "data-progress" (String.fromFloat model.player.progress))
-        , htmlAttribute
-            (H.attribute "data-running"
-                (if model.player.running then
-                    "true"
-
-                 else
-                    "false"
-                )
-            )
-        ]
+        ([ width fill
+         , spacing 0
+         , Background.color (Element.rgb255 20 43 49)
+         , Border.rounded 18
+         ]
+            ++ Ui.suivi model.player.progress model.player.running
+        )
         [ row [ width fill, paddingXY 22 20 ]
             [ el [ Font.size 10, Font.letterSpacing 1.6, Font.color (Element.rgb255 171 200 193) ]
                 (text
@@ -603,24 +594,21 @@ stage model =
                     )
                 )
             ]
-        , el [ width fill ]
-            (html
-                (Html.div [ H.class "scene-svg" ]
-                    [ Render.view
-                        { options
-                            | box = sceneBox model.tab
-                            , diagnostic = model.diagnostic
-                            , axes = model.axes
-                            , title =
-                                if model.tab == Spin then
-                                    "Rotation centrifuge du logo"
+        , Ui.scene "grille-scene-principale"
+            model.width
+            (Render.view
+                { options
+                    | box = sceneBox model.tab
+                    , diagnostic = model.diagnostic
+                    , axes = model.axes
+                    , title =
+                        if model.tab == Spin then
+                            "Rotation centrifuge du logo"
 
-                                else
-                                    "Recomposition du logo en personnage " ++ Composition.nom model.cible
-                        }
-                        (currentScene model)
-                    ]
-                )
+                        else
+                            "Recomposition du logo en personnage " ++ Composition.nom model.cible
+                }
+                (currentScene model)
             )
         , row [ width fill, paddingXY 24 22, Element.spaceEvenly ]
             (if model.tab == Spin then
@@ -778,7 +766,7 @@ anatomy model =
                        )
             )
         , if model.diagnostic then
-            wrappedRow [ spacing 8 ] (List.map (\b -> row [ spacing 5 ] [ el [ width (px 8), height (px 8), Border.rounded 8, htmlAttribute (H.style "background" (Primitives.color b)), Border.width 1, Border.color Ui.muted ] none, Ui.small (Primitives.label b) ]) Primitives.all)
+            wrappedRow [ spacing 8 ] (List.map (\b -> row [ spacing 5 ] [ el [ width (px 8), height (px 8), Border.rounded 8, Background.color (Primitives.teinte b), Border.width 1, Border.color Ui.muted ] none, Ui.small (Primitives.label b) ]) Primitives.all)
 
           else
             none
@@ -817,7 +805,7 @@ brickGallery model =
                     Render.defaults ("brick-" ++ Primitives.key brick)
             in
             Ui.card [ padding 16, spacing 10 ]
-                [ el [ width fill, height (px 120), Background.color (Element.rgb255 36 65 68), Border.rounded 10 ] (html (Render.view { options | box = "-3 -4 36 36", title = Primitives.label brick } (Animation.static "none" (Composition.pictogramme brick))))
+                [ el [ width fill, height (px 120), Background.color (Element.rgb255 36 65 68), Border.rounded 10 ] (Render.view { options | box = "-3 -4 36 36", title = Primitives.label brick } (Animation.static "none" (Composition.pictogramme brick)))
                 , el [ Font.semiBold ] (text (Primitives.label brick))
                 , Ui.small
                     (if brick == Primitives.Connaissance then
@@ -857,7 +845,7 @@ referenceGallery model =
                 options =
                     Render.defaults prefix
             in
-            Ui.card [ padding 16, spacing 14 ] [ Ui.label title, el [ width (px 140), height (px 140), Element.centerX ] (html (Render.view { options | box = "0 0 30 30", title = title } scene)), Ui.small "Primitives communes · <use>" ]
+            Ui.card [ padding 16, spacing 14 ] [ Ui.label title, el [ width (px 140), height (px 140), Element.centerX ] (Render.view { options | box = "0 0 30 30", title = title } scene), Ui.small "Primitives communes · <use>" ]
 
         logoPair =
             [ sourceCard "Logo original" Reference.logoSource, rebuilt "Logo reconstruit" "ref-logo" (Animation.static "#64c29b" Composition.logo) ]
@@ -904,30 +892,28 @@ comparisonPanel model =
         [ Ui.heading 2 "Comparer la cible"
         , wrappedRow [ spacing 6 ] [ Ui.button (model.comparison == 0) (Comparison 0) "Factorisation", Ui.button (model.comparison == 1) (Comparison 1) "Superposition", Ui.button (model.comparison == 2) (Comparison 2) "Écart visuel" ]
         , el [ width fill, height (px 310), Background.color (Element.rgb255 20 43 49), Border.rounded 12 ]
-            (html
-                (Render.view
-                    { options
-                        | box = "-3 -3 36 36"
-                        , title = "Comparaison de " ++ Composition.nom model.cible ++ " factorisé et de sa référence"
-                        , diagnostic = model.diagnostic
-                        , axes = model.axes
-                        , hidden = model.hidden
-                        , isolated =
-                            if model.isolate then
-                                Just model.selected
+            (Render.view
+                { options
+                    | box = "-3 -3 36 36"
+                    , title = "Comparaison de " ++ Composition.nom model.cible ++ " factorisé et de sa référence"
+                    , diagnostic = model.diagnostic
+                    , axes = model.axes
+                    , hidden = model.hidden
+                    , isolated =
+                        if model.isolate then
+                            Just model.selected
 
-                            else
-                                Nothing
-                        , reference =
-                            if model.comparison == 0 then
-                                Nothing
+                        else
+                            Nothing
+                    , reference =
+                        if model.comparison == 0 then
+                            Nothing
 
-                            else
-                                Just (Composition.reference model.cible)
-                        , difference = model.comparison == 2
-                    }
-                    (Animation.static (Composition.fond model.cible) (Composition.instances model.cible))
-                )
+                        else
+                            Just (Composition.reference model.cible)
+                    , difference = model.comparison == 2
+                }
+                (Animation.static (Composition.fond model.cible) (Composition.instances model.cible))
             )
         , Ui.small
             (if model.cible == Composition.Z && model.comparison /= 0 then
@@ -985,7 +971,7 @@ mirrorPanel model =
         [ Ui.heading 2 "Le retournement, de près"
         , Ui.small (Primitives.label source.brick ++ " · " ++ source.id)
         , el [ width fill, height (px 225), Background.color (Element.rgb255 20 43 49), Border.rounded 12 ]
-            (html (Render.view { options | axes = True, title = "Inspection locale du retournement autour de l’axe vertical O", box = "-9 -12 48 48" } { pieces = [ visual ], background = "none", strategy = model.settings.strategy }))
+            (Render.view { options | axes = True, title = "Inspection locale du retournement autour de l’axe vertical O", box = "-9 -12 48 48" } { pieces = [ visual ], background = "none", strategy = model.settings.strategy })
         , Ui.slider "Progression locale du miroir" " %" 0 100 0.1 (100 * model.mirror) (\value -> Mirror (value / 100))
         , wrappedRow [ spacing 5 ] (List.map (\p -> Ui.button (model.mirror == p) (Mirror p) (Ui.format 0 (p * 180) ++ "°")) [ 0, 0.25, 0.5, 0.75, 1 ])
         , strategyControls model.settings.strategy
@@ -1070,7 +1056,7 @@ correspondence model =
                 none
 
             Just target ->
-                column [ width fill, spacing 10, htmlAttribute (H.attribute "data-selected" target.id) ]
+                column [ width fill, spacing 10, Ui.selection target.id ]
                     [ wrappedRow [ spacing 8 ] [ Ui.badge target.id, Ui.badge target.path, Ui.badge (Primitives.label target.brick) ]
                     , Ui.paragraph
                         ("Translation ("
@@ -1111,7 +1097,7 @@ correspondence model =
 footer : Model -> Element Msg
 footer model =
     column [ width fill, spacing 18, paddingEach { top = 8, left = 0, right = 0, bottom = 12 } ]
-        [ el [ width fill, htmlAttribute (H.attribute "role" "status"), htmlAttribute (H.attribute "aria-live" "polite") ] (Ui.small model.notice)
+        [ el [ width fill, Accessibilite.etat, Region.announce ] (Ui.small model.notice)
         , Ui.divider
         , Ui.small "Logo, signature et déclinaisons : toute utilisation est strictement réservée. Leur présence publique ne vaut pas autorisation de réutilisation."
         , column [ width fill, spacing 12 ]

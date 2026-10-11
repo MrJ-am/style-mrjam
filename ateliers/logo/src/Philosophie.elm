@@ -6,14 +6,14 @@ import Echo.Animation as Animation
 import Echo.Composition as Composition
 import Echo.Primitives as Primitives exposing (Brick(..))
 import Echo.Render as Render
-import Element exposing (Element, column, el, fill, height, html, htmlAttribute, padding, paddingXY, px, row, spacing, text, width, wrappedRow)
+import Element exposing (Element, column, el, fill, height, padding, paddingXY, px, row, spacing, text, width, wrappedRow)
 import Element.Background as Fond
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Region as Region
 import Html
-import Html.Attributes as A
 import MrJam
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Disposition as Disposition
 import Palette.Couleurs as Palette
 import Shared.Licorne as Licorne
@@ -45,7 +45,7 @@ illustration identifiant titre scene =
             Render.defaults identifiant
     in
     el [ width fill, height (px 175) ]
-        (html (Render.view { options | box = "-3 -3 36 36", title = titre } scene))
+        (Render.view { options | box = "-3 -3 36 36", title = titre } scene)
 
 
 couleur : Palette.Role -> String
@@ -143,7 +143,7 @@ vue modele =
                 28
             , spacing 30
             ]
-            [ wrappedRow [ width fill, spacing 24, Region.navigation, htmlAttribute (A.attribute "aria-label" "Pages de l’atelier") ]
+            [ wrappedRow [ width fill, spacing 24, Region.navigation, Region.description "Pages de l’atelier" ]
                 [ MrJam.lien "Atelier du logo" "./"
                 , MrJam.lienActif True "Philosophie du logo" "philosophie.html"
                 , MrJam.lien "Palette OKLCH" "palette.html"
@@ -220,7 +220,7 @@ vue modele =
                 , MrJam.paragraphe "Cette prise de hauteur ramène aussi à l’expérience : le principe du levier invite à essayer un autre point d’appui ; l’entraînement peut faire apparaître une nouvelle question. On revient ainsi d’un axe à l’autre selon ce que l’on cherche à comprendre. Audio, visio et kino peuvent intervenir dans chacune de ces directions."
                 , Ui.small "Les silhouettes X, Y et Z donnent un visage à ces trois directions. Elles sont composées des mêmes courbes que le logo ; l’atelier permet d’en explorer les placements et les transformations."
                 ]
-            , column [ width fill, spacing 16, htmlAttribute (A.id "palette") ]
+            , column [ width fill, spacing 16, Accessibilite.identifiant "palette" ]
                 [ chapitre "05 · La palette"
                     "Deux carrés, un octogone."
                     [ "La palette est construite dans OKLab, un espace conçu pour rapprocher les distances numériques des différences de couleur perçues. Sa forme polaire OKLCH décrit chaque couleur par L, la clarté, C, le chroma — la distance à l’axe des gris — et h, l’angle de teinte. Les huit couleurs partagent exactement L et C ; seule leur teinte change."
@@ -237,7 +237,7 @@ vue modele =
                 , MrJam.lien "Voir la palette de référence et explorer ses frontières →" "palette.html"
                 , MrJam.lien "OKLab : définition par Björn Ottosson" "https://bottosson.github.io/posts/oklab/"
                 ]
-            , column [ width fill, spacing 16, htmlAttribute (A.id "licorne") ]
+            , column [ width fill, spacing 16, Accessibilite.identifiant "licorne" ]
                 [ chapitre "06 · Le quatrième terme"
                     "La Licorne rose invisible."
                     [ "La Licorne rose invisible est une divinité fictive de religion parodique, popularisée dans les échanges sceptiques sur Internet au début des années 1990. Elle parodie certaines affirmations religieuses : dire qu’elle est rose tout en la déclarant invisible met en scène une propriété qu’on ne peut pas observer."

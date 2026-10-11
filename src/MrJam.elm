@@ -1,5 +1,6 @@
 module MrJam exposing
     ( ChampIdentifie
+    , Interface
     , Niveau(..)
     , actions
     , avis
@@ -16,6 +17,7 @@ module MrJam exposing
     , champIdentifieSoumis
     , choix
     , choixRiches
+    , emphase
     , identifiant
     , lien
     , lienActif
@@ -26,6 +28,7 @@ module MrJam exposing
     , page
     , paragraphe
     , pile
+    , pour
     , recherche
     , section
     , selecteur
@@ -46,19 +49,85 @@ La galerie est une application de contrôle, pas un paquet publié sur le regist
 
 -}
 
-import Element exposing (Attribute, Element, centerX, el, fill, height, htmlAttribute, maximum, minimum, padding, paddingXY, paragraph, px, shrink, spacing, text, width)
+import Element exposing (Attribute, Element, centerX, el, fill, height, maximum, minimum, padding, paddingXY, paragraph, px, shrink, spacing, text, width)
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Input as Saisie
 import Element.Region as Region
 import Html exposing (Html)
-import Html.Attributes as Attributs
-import Html.Events as Evenements
-import Json.Decode as Decode
 import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Adaptateurs.Saisie as Native
+import MrJam.Adaptateurs.Selection as Selection
+import MrJam.Adaptateurs.Texte as Texte
 import MrJam.Controles as Controles exposing (Intention(..))
 import MrJam.Identite as Identite
-import MrJam.Theme as Theme exposing (couleurs)
+import MrJam.Theme as Theme exposing (Contexte)
+
+
+{-| Les composants d’une vue partagent cette intention de marque. Les variantes
+sans contexte utilisent explicitement la marque commune ; pas de cascade implicite.
+-}
+type alias Interface valeur message =
+    { bouton : String -> message -> Element message
+    , boutonSecondaire : String -> message -> Element message
+    , boutonDestructif : String -> message -> Element message
+    , boutonDevoiler : String -> String -> Bool -> message -> Element message
+    , boutonInactif : String -> Element message
+    , boutonEnCours : String -> Element message
+    , selecteur : String -> List ( String, String ) -> String -> (String -> message) -> Element message
+    , champ : String -> String -> (String -> message) -> Element message
+    , champIdentifie : ChampIdentifie -> String -> (String -> message) -> Element message
+    , champIdentifieSoumis : ChampIdentifie -> String -> (String -> message) -> message -> Element message
+    , recherche : String -> String -> (String -> message) -> Element message
+    , motDePasse : String -> String -> (String -> message) -> Element message
+    , identifiant : String -> String -> (String -> message) -> Element message
+    , nouveauMotDePasse : String -> String -> (String -> message) -> Element message
+    , zoneTexte : String -> String -> (String -> message) -> Element message
+    , caseACocher : String -> Bool -> (Bool -> message) -> Element message
+    , choix : String -> List ( valeur, String ) -> Maybe valeur -> (valeur -> message) -> Element message
+    , choixRiches : String -> List ( valeur, Element message ) -> Maybe valeur -> (valeur -> message) -> Element message
+    , lien : String -> String -> Element message
+    , lienActif : Bool -> String -> String -> Element message
+    , lienExterne : String -> String -> Element message
+    , carte : List (Element message) -> Element message
+    , section : String -> List (Element message) -> Element message
+    , texteSecondaire : String -> Element message
+    , separateur : Element message
+    , avis : Niveau -> String -> Element message
+    , page : String -> List (Element message) -> Html message
+    }
+
+
+pour : Contexte -> Interface valeur message
+pour contexte =
+    { bouton = boutonPour contexte
+    , boutonSecondaire = boutonSecondairePour contexte
+    , boutonDestructif = boutonDestructifPour contexte
+    , boutonDevoiler = boutonDevoilerPour contexte
+    , boutonInactif = boutonInactifPour contexte
+    , boutonEnCours = boutonEnCoursPour contexte
+    , selecteur = selecteurPour contexte
+    , champ = champPour contexte
+    , champIdentifie = champIdentifiePour contexte
+    , champIdentifieSoumis = champIdentifieSoumisPour contexte
+    , recherche = recherchePour contexte
+    , motDePasse = motDePassePour contexte
+    , identifiant = identifiantPour contexte
+    , nouveauMotDePasse = nouveauMotDePassePour contexte
+    , zoneTexte = zoneTextePour contexte
+    , caseACocher = caseACocherPour contexte
+    , choix = choixPour contexte
+    , choixRiches = choixRichesPour contexte
+    , lien = lienPour contexte
+    , lienActif = lienActifPour contexte
+    , lienExterne = lienExternePour contexte
+    , carte = cartePour contexte
+    , section = sectionPour contexte
+    , texteSecondaire = texteSecondairePour contexte
+    , separateur = separateurPour contexte
+    , avis = avisPour contexte
+    , page = pagePour contexte
+    }
 
 
 {-| Raccorder un composant applicatif à ses messages parents.
@@ -69,47 +138,80 @@ mapper =
 
 
 bouton : String -> message -> Element message
-bouton libelle message =
-    Controles.action Principale [] libelle (Just message)
+bouton =
+    boutonPour Theme.commune
+
+
+boutonPour : Contexte -> String -> message -> Element message
+boutonPour contexte libelle message =
+    Controles.actionPour contexte Principale [] libelle (Just message)
 
 
 boutonSecondaire : String -> message -> Element message
-boutonSecondaire libelle message =
-    Controles.action Secondaire [] libelle (Just message)
+boutonSecondaire =
+    boutonSecondairePour Theme.commune
+
+
+boutonSecondairePour : Contexte -> String -> message -> Element message
+boutonSecondairePour contexte libelle message =
+    Controles.actionPour contexte Secondaire [] libelle (Just message)
 
 
 {-| Action de dévoilement : identifiant du contenu, libellé et état, sans décoration locale.
 Le contenu et sa présence dans le DOM restent gérés par l'application.
 -}
 boutonDevoiler : String -> String -> Bool -> message -> Element message
-boutonDevoiler cible libelle ouvert message =
-    Controles.action Secondaire
+boutonDevoiler =
+    boutonDevoilerPour Theme.commune
+
+
+boutonDevoilerPour : Contexte -> String -> String -> Bool -> message -> Element message
+boutonDevoilerPour contexte cible libelle ouvert message =
+    Controles.actionPour contexte
+        Secondaire
         [ Accessibilite.controle cible, Accessibilite.depliement ouvert ]
         libelle
         (Just message)
 
 
 boutonDestructif : String -> message -> Element message
-boutonDestructif libelle message =
-    Controles.action Destructive [] libelle (Just message)
+boutonDestructif =
+    boutonDestructifPour Theme.commune
+
+
+boutonDestructifPour : Contexte -> String -> message -> Element message
+boutonDestructifPour contexte libelle message =
+    Controles.actionPour contexte Destructive [] libelle (Just message)
 
 
 boutonInactif : String -> Element message
-boutonInactif libelle =
-    Controles.action Secondaire
-        [ htmlAttribute (Attributs.attribute "aria-disabled" "true")
-        , htmlAttribute (Attributs.tabindex -1)
+boutonInactif =
+    boutonInactifPour Theme.commune
+
+
+boutonInactifPour : Contexte -> String -> Element message
+boutonInactifPour contexte libelle =
+    Controles.actionPour contexte
+        Secondaire
+        [ Accessibilite.inactif
+        , Accessibilite.tabulation -1
         ]
         libelle
         Nothing
 
 
 boutonEnCours : String -> Element message
-boutonEnCours libelle =
-    Controles.action Secondaire
-        [ htmlAttribute (Attributs.attribute "aria-disabled" "true")
-        , htmlAttribute (Attributs.attribute "aria-busy" "true")
-        , htmlAttribute (Attributs.tabindex -1)
+boutonEnCours =
+    boutonEnCoursPour Theme.commune
+
+
+boutonEnCoursPour : Contexte -> String -> Element message
+boutonEnCoursPour contexte libelle =
+    Controles.actionPour contexte
+        Secondaire
+        [ Accessibilite.inactif
+        , Accessibilite.occupe
+        , Accessibilite.tabulation -1
         ]
         libelle
         Nothing
@@ -122,7 +224,12 @@ actions =
 
 champ : String -> String -> (String -> message) -> Element message
 champ =
-    saisie Saisie.text
+    champPour Theme.commune
+
+
+champPour : Contexte -> String -> String -> (String -> message) -> Element message
+champPour contexte =
+    saisie contexte Saisie.text
 
 
 {-| Contrats sémantiques d'un champ auquel un pont navigateur doit pouvoir rendre
@@ -140,30 +247,33 @@ type alias ChampIdentifie =
 
 champIdentifie : ChampIdentifie -> String -> (String -> message) -> Element message
 champIdentifie =
-    champIdentifieAvec []
+    champIdentifiePour Theme.commune
+
+
+champIdentifiePour : Contexte -> ChampIdentifie -> String -> (String -> message) -> Element message
+champIdentifiePour contexte =
+    champIdentifieAvec contexte []
 
 
 {-| Variante sémantique pour une réponse courte : Entrée émet le message de
 validation sans imposer de formulaire HTML dans l'application.
 -}
 champIdentifieSoumis : ChampIdentifie -> String -> (String -> message) -> message -> Element message
-champIdentifieSoumis contrat valeur modifier soumettre =
-    champIdentifieAvec [ htmlAttribute (Evenements.preventDefaultOn "keydown" (entree soumettre)) ] contrat valeur modifier
+champIdentifieSoumis =
+    champIdentifieSoumisPour Theme.commune
 
 
-champIdentifieAvec : List (Attribute message) -> ChampIdentifie -> String -> (String -> message) -> Element message
-champIdentifieAvec attributs contrat valeur modifier =
+champIdentifieSoumisPour : Contexte -> ChampIdentifie -> String -> (String -> message) -> message -> Element message
+champIdentifieSoumisPour contexte contrat valeur modifier soumettre =
+    champIdentifieAvec contexte [ Native.soumettre soumettre ] contrat valeur modifier
+
+
+champIdentifieAvec : Contexte -> List (Attribute message) -> ChampIdentifie -> String -> (String -> message) -> Element message
+champIdentifieAvec contexte attributs contrat valeur modifier =
     Saisie.text
-        (Theme.champ
+        (Theme.champPour contexte
             ++ attributs
-            ++ [ htmlAttribute (Attributs.id contrat.identifiant)
-               , htmlAttribute (Attributs.spellcheck False)
-               , htmlAttribute (Attributs.autocomplete False)
-               , htmlAttribute (Attributs.attribute "autocapitalize" "off")
-               ]
-            ++ (contrat.exemple |> Maybe.map (\exemple -> [ htmlAttribute (Attributs.placeholder exemple) ]) |> Maybe.withDefault [])
-            ++ (contrat.aide |> Maybe.map (\repereAide -> [ htmlAttribute (Attributs.attribute "aria-describedby" repereAide) ]) |> Maybe.withDefault [])
-            ++ (contrat.limite |> Maybe.map (\limite -> [ htmlAttribute (Attributs.maxlength (Basics.max 0 limite)) ]) |> Maybe.withDefault [])
+            ++ Native.identifie contrat
         )
         { onChange = modifier
         , text = valeur
@@ -172,27 +282,19 @@ champIdentifieAvec attributs contrat valeur modifier =
         }
 
 
-entree : message -> Decode.Decoder ( message, Bool )
-entree message =
-    Decode.field "key" Decode.string
-        |> Decode.andThen
-            (\touche ->
-                if touche == "Enter" then
-                    Decode.succeed ( message, True )
-
-                else
-                    Decode.fail "touche ignorée"
-            )
-
-
 recherche : String -> String -> (String -> message) -> Element message
 recherche =
-    saisie Saisie.search
+    recherchePour Theme.commune
 
 
-saisie : (List (Attribute message) -> { onChange : String -> message, text : String, placeholder : Maybe (Saisie.Placeholder message), label : Saisie.Label message } -> Element message) -> String -> String -> (String -> message) -> Element message
-saisie construire libelle valeur modifier =
-    construire Theme.champ
+recherchePour : Contexte -> String -> String -> (String -> message) -> Element message
+recherchePour contexte =
+    saisie contexte Saisie.search
+
+
+saisie : Contexte -> (List (Attribute message) -> { onChange : String -> message, text : String, placeholder : Maybe (Saisie.Placeholder message), label : Saisie.Label message } -> Element message) -> String -> String -> (String -> message) -> Element message
+saisie contexte construire libelle valeur modifier =
+    construire (Theme.champPour contexte)
         { onChange = modifier
         , text = valeur
         , placeholder = Nothing
@@ -201,8 +303,13 @@ saisie construire libelle valeur modifier =
 
 
 motDePasse : String -> String -> (String -> message) -> Element message
-motDePasse libelle valeur modifier =
-    Saisie.currentPassword Theme.champ
+motDePasse =
+    motDePassePour Theme.commune
+
+
+motDePassePour : Contexte -> String -> String -> (String -> message) -> Element message
+motDePassePour contexte libelle valeur modifier =
+    Saisie.currentPassword (Theme.champPour contexte)
         { onChange = modifier, text = valeur, placeholder = Nothing, label = etiquette libelle, show = False }
 
 
@@ -210,21 +317,36 @@ motDePasse libelle valeur modifier =
 -}
 identifiant : String -> String -> (String -> message) -> Element message
 identifiant =
-    saisie Saisie.username
+    identifiantPour Theme.commune
+
+
+identifiantPour : Contexte -> String -> String -> (String -> message) -> Element message
+identifiantPour contexte =
+    saisie contexte Saisie.username
 
 
 {-| Pour la création ou le remplacement du mot de passe, jamais la connexion.
 La confirmation et les contraintes de sécurité restent dans l’application.
 -}
 nouveauMotDePasse : String -> String -> (String -> message) -> Element message
-nouveauMotDePasse libelle valeur modifier =
-    Saisie.newPassword Theme.champ
+nouveauMotDePasse =
+    nouveauMotDePassePour Theme.commune
+
+
+nouveauMotDePassePour : Contexte -> String -> String -> (String -> message) -> Element message
+nouveauMotDePassePour contexte libelle valeur modifier =
+    Saisie.newPassword (Theme.champPour contexte)
         { onChange = modifier, text = valeur, placeholder = Nothing, label = etiquette libelle, show = False }
 
 
 zoneTexte : String -> String -> (String -> message) -> Element message
-zoneTexte libelle valeur modifier =
-    Saisie.multiline (Theme.champ ++ [ height (minimum 120 shrink), Region.description libelle ])
+zoneTexte =
+    zoneTextePour Theme.commune
+
+
+zoneTextePour : Contexte -> String -> String -> (String -> message) -> Element message
+zoneTextePour contexte libelle valeur modifier =
+    Saisie.multiline (Theme.champPour contexte ++ [ height (minimum 120 shrink), Region.description libelle ])
         { onChange = modifier, text = valeur, placeholder = Nothing, label = etiquette libelle, spellcheck = False }
 
 
@@ -234,18 +356,28 @@ etiquette libelle =
 
 
 caseACocher : String -> Bool -> (Bool -> message) -> Element message
-caseACocher libelle valeur modifier =
+caseACocher =
+    caseACocherPour Theme.commune
+
+
+caseACocherPour : Contexte -> String -> Bool -> (Bool -> message) -> Element message
+caseACocherPour contexte libelle valeur modifier =
     Saisie.checkbox [ width fill, height (minimum 44 shrink), spacing 10 ]
         { onChange = modifier
-        , icon = coche
+        , icon = coche contexte
         , checked = valeur
         , label = Saisie.labelRight [ width fill ] (paragraphe libelle)
         }
 
 
 choix : String -> List ( valeur, String ) -> Maybe valeur -> (valeur -> message) -> Element message
-choix libelle possibilites valeur modifier =
-    choixRiches libelle (List.map (\( cle, nom ) -> ( cle, paragraphe nom )) possibilites) valeur modifier
+choix =
+    choixPour Theme.commune
+
+
+choixPour : Contexte -> String -> List ( valeur, String ) -> Maybe valeur -> (valeur -> message) -> Element message
+choixPour contexte libelle possibilites valeur modifier =
+    choixRichesPour contexte libelle (List.map (\( cle, nom ) -> ( cle, paragraphe nom )) possibilites) valeur modifier
 
 
 {-| Le libellé peut inclure du texte structuré ou un rendu spécialisé tel que
@@ -253,50 +385,42 @@ KaTeX. Il ne doit pas contenir d'autre contrôle interactif. La bibliothèque
 n'interprète pas le contenu et ne connaît aucune règle de correction.
 -}
 choixRiches : String -> List ( valeur, Element message ) -> Maybe valeur -> (valeur -> message) -> Element message
-choixRiches libelle possibilites valeur modifier =
-    Saisie.radio [ spacing 8, width fill, Region.description libelle ]
+choixRiches =
+    choixRichesPour Theme.commune
+
+
+choixRichesPour : Contexte -> String -> List ( valeur, Element message ) -> Maybe valeur -> (valeur -> message) -> Element message
+choixRichesPour contexte libelle possibilites valeur modifier =
+    Saisie.radio [ spacing 8, width fill, Accessibilite.nomGroupe libelle ]
         { onChange = modifier
-        , options = List.map (\( cle, contenu ) -> Saisie.optionWith cle (optionRiche contenu)) possibilites
+        , options = List.map (\( cle, contenu ) -> Saisie.optionWith cle (optionRiche contexte contenu)) possibilites
         , selected = valeur
         , label = etiquette libelle
         }
 
 
-{-| Sélection compacte commune. ElmUI n'expose pas de contrôle select natif ;
-l'îlot HTML est encapsulé ici, avec sa présentation et son contrat clavier,
-plutôt que dupliqué dans les applications.
+{-| Sélection compacte : le cadre et le libellé utilisent elm-ui ; le contrôle
+natif borné fournit le clavier et la sémantique absents de son API publique.
 -}
 selecteur : String -> List ( String, String ) -> String -> (String -> message) -> Element message
-selecteur libelle possibilites valeur modifier =
-    Element.html <|
-        Html.label
-            [ Attributs.style "display" "grid"
-            , Attributs.style "gap" "6px"
-            , Attributs.style "width" "100%"
-            , Attributs.style "color" "var(--mrjam-encre)"
-            , Attributs.style "font" "inherit"
-            ]
-            [ Html.span [ Attributs.style "font-size" "14px", Attributs.style "font-weight" "600" ] [ Html.text libelle ]
-            , Html.select
-                [ Attributs.value valeur
-                , Attributs.attribute "aria-label" libelle
-                , Evenements.onInput modifier
-                , Attributs.style "box-sizing" "border-box"
-                , Attributs.style "width" "100%"
-                , Attributs.style "min-height" "36px"
-                , Attributs.style "padding" "6px 8px"
-                , Attributs.style "border" "1px solid var(--mrjam-controle)"
-                , Attributs.style "border-radius" "5px"
-                , Attributs.style "background" "var(--mrjam-surface)"
-                , Attributs.style "color" "var(--mrjam-encre)"
-                , Attributs.style "font" "inherit"
-                ]
-                (List.map (\( cle, nom ) -> Html.option [ Attributs.value cle, Attributs.selected (cle == valeur) ] [ Html.text nom ]) possibilites)
-            ]
+selecteur =
+    selecteurPour Theme.commune
 
 
-coche : Bool -> Element message
-coche valeur =
+selecteurPour : Contexte -> String -> List ( String, String ) -> String -> (String -> message) -> Element message
+selecteurPour contexte libelle possibilites valeur modifier =
+    Element.column [ width fill, spacing 6 ]
+        [ el [ Police.size 14, Police.semiBold ] (text libelle)
+        , el (Theme.champPour contexte) (Selection.native libelle possibilites valeur modifier)
+        ]
+
+
+coche : Contexte -> Bool -> Element message
+coche contexte valeur =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
     el
         [ width (px 20)
         , height (px 20)
@@ -312,7 +436,7 @@ coche valeur =
             )
         , Theme.police couleurs.surface
         , Police.size 16
-        , htmlAttribute (Attributs.attribute "aria-hidden" "true")
+        , Accessibilite.masque
         ]
         (el [ Element.centerX, Element.centerY ]
             (text
@@ -328,13 +452,17 @@ coche valeur =
 
 option : String -> Saisie.OptionState -> Element message
 option libelle etat =
-    optionRiche (paragraphe libelle) etat
+    optionRiche Theme.commune (paragraphe libelle) etat
 
 
-optionRiche : Element message -> Saisie.OptionState -> Element message
-optionRiche contenu etat =
+optionRiche : Contexte -> Element message -> Saisie.OptionState -> Element message
+optionRiche contexte contenu etat =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
     Element.row [ width fill, height (minimum 44 shrink), spacing 10 ]
-        [ el [ width (px 20), height (px 20), Bordure.rounded 10, Bordure.width 1, Theme.bordure couleurs.accent, htmlAttribute (Attributs.attribute "aria-hidden" "true") ]
+        [ el [ width (px 20), height (px 20), Bordure.rounded 10, Bordure.width 1, Theme.bordure couleurs.accent, Accessibilite.masque ]
             (if etat == Saisie.Selected then
                 el [ width (px 10), height (px 10), Bordure.rounded 5, Theme.fond couleurs.accent, Element.centerX, Element.centerY ] Element.none
 
@@ -346,15 +474,25 @@ optionRiche contenu etat =
 
 
 lien : String -> String -> Element message
-lien libelle adresse =
-    navigationLien [] libelle adresse
+lien =
+    lienPour Theme.commune
+
+
+lienPour : Contexte -> String -> String -> Element message
+lienPour contexte libelle adresse =
+    navigationLien contexte [] libelle adresse
 
 
 lienActif : Bool -> String -> String -> Element message
-lienActif actif libelle adresse =
-    navigationLien
+lienActif =
+    lienActifPour Theme.commune
+
+
+lienActifPour : Contexte -> Bool -> String -> String -> Element message
+lienActifPour contexte actif libelle adresse =
+    navigationLien contexte
         (if actif then
-            [ htmlAttribute (Attributs.attribute "aria-current" "page"), Police.semiBold ]
+            [ Accessibilite.pageCourante, Police.semiBold ]
 
          else
             []
@@ -364,7 +502,16 @@ lienActif actif libelle adresse =
 
 
 lienExterne : String -> String -> Element message
-lienExterne libelle adresse =
+lienExterne =
+    lienExternePour Theme.commune
+
+
+lienExternePour : Contexte -> String -> String -> Element message
+lienExternePour contexte libelle adresse =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
     Element.newTabLink
         [ Region.description (libelle ++ " — nouvel onglet")
         , Theme.police couleurs.accent
@@ -375,8 +522,12 @@ lienExterne libelle adresse =
         { url = adresse, label = paragraphe libelle }
 
 
-navigationLien : List (Attribute message) -> String -> String -> Element message
-navigationLien attributs libelle adresse =
+navigationLien : Contexte -> List (Attribute message) -> String -> String -> Element message
+navigationLien contexte attributs libelle adresse =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
     Element.link
         (attributs ++ [ Theme.police couleurs.accent, Police.underline, paddingXY 0 10, height (minimum 44 shrink) ])
         { url = adresse, label = paragraphe libelle }
@@ -389,7 +540,12 @@ pile =
 
 carte : List (Element message) -> Element message
 carte =
-    Element.column Theme.panneau
+    cartePour Theme.commune
+
+
+cartePour : Contexte -> List (Element message) -> Element message
+cartePour contexte =
+    Element.column (Theme.panneauPour contexte)
 
 
 sousTitre : String -> Element message
@@ -398,8 +554,20 @@ sousTitre libelle =
 
 
 section : String -> List (Element message) -> Element message
-section libelle contenu =
-    carte (sousTitre libelle :: contenu)
+section =
+    sectionPour Theme.commune
+
+
+sectionPour : Contexte -> String -> List (Element message) -> Element message
+sectionPour contexte libelle contenu =
+    cartePour contexte (sousTitre libelle :: contenu)
+
+
+{-| Emphase sémantique ; la présentation reste Font.italic du socle.
+-}
+emphase : String -> Element message
+emphase contenu =
+    el [ Police.italic ] (Texte.emphase contenu)
 
 
 paragraphe : String -> Element message
@@ -408,12 +576,30 @@ paragraphe contenu =
 
 
 texteSecondaire : String -> Element message
-texteSecondaire contenu =
+texteSecondaire =
+    texteSecondairePour Theme.commune
+
+
+texteSecondairePour : Contexte -> String -> Element message
+texteSecondairePour contexte contenu =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
     paragraph [ width fill, Police.size 14, Theme.police couleurs.discret, spacing 5 ] [ text contenu ]
 
 
 separateur : Element message
 separateur =
+    separateurPour Theme.commune
+
+
+separateurPour : Contexte -> Element message
+separateurPour contexte =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
     el [ width fill, height (px 1), Theme.fond couleurs.ligne ] Element.none
 
 
@@ -425,8 +611,16 @@ type Niveau
 
 
 avis : Niveau -> String -> Element message
-avis niveau contenu =
+avis =
+    avisPour Theme.commune
+
+
+avisPour : Contexte -> Niveau -> String -> Element message
+avisPour contexte niveau contenu =
     let
+        couleurs =
+            Theme.palette contexte
+
         ( prefixe, couleur ) =
             case niveau of
                 Information ->
@@ -447,10 +641,18 @@ avis niveau contenu =
 
 
 page : String -> List (Element message) -> Html message
-page titre contenu =
-    Element.layoutWith { options = [ Theme.focus ] }
+page =
+    pagePour Theme.commune
+
+
+pagePour : Contexte -> String -> List (Element message) -> Html message
+pagePour contexte titre contenu =
+    let
+        couleurs =
+            Theme.palette contexte
+    in
+    Element.layoutWith { options = [ Theme.focusPour contexte ] }
         (Theme.ecran
-            ++ Theme.identite titre
             ++ [ width fill
                , Theme.fond couleurs.papier
                , Theme.police couleurs.encre
@@ -460,9 +662,9 @@ page titre contenu =
         )
         (Element.column
             [ width (maximum 1120 fill), centerX, spacing 24, padding 16 ]
-            [ Element.wrappedRow [ width fill, spacing 16, htmlAttribute (Attributs.attribute "role" "banner") ]
-                [ Element.html Theme.styles, Identite.logo, paragraph [ Region.heading 1, Police.size 32, Police.bold ] [ text titre ] ]
+            [ Element.wrappedRow [ width fill, spacing 16, Accessibilite.banniere ]
+                [ Identite.logo, paragraph [ Region.heading 1, Police.size 32, Police.bold ] [ text titre ] ]
             , Element.column [ width fill, spacing 20, Region.mainContent ] contenu
-            , Identite.piedDePage
+            , Identite.piedDePagePour contexte
             ]
         )

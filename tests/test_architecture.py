@@ -9,7 +9,7 @@ class Architecture(unittest.TestCase):
     def test_un_seul_moteur_de_tableau(self):
         source = (RACINE / 'src/MrJam/Donnees.elm').read_text()
         self.assertNotIn('role "table"', source)
-        self.assertIn('Tableaux.tableau', source)
+        self.assertIn('(Tableaux.pour contexte).tableau', source)
 
     def test_un_seul_moteur_de_bouton(self):
         moteurs = [p.name for p in (RACINE / "src").rglob("*.elm") if "Saisie.button" in p.read_text()]
