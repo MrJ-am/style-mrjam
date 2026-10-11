@@ -8,6 +8,7 @@ Les dialogues utilisent le pont local `dialogues.js` pour le focus et inert.
 import Element as UI exposing (Element)
 import Element.Border as Bordure
 import Element.Font as Police
+import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes as A
 import MrJam
@@ -67,7 +68,7 @@ progression libelle valeur =
         pourcentage =
             Basics.clamp 0 100 valeur
     in
-    UI.el [ UI.width UI.fill, UI.height (UI.px 3), Theme.fond couleurs.doux, UI.htmlAttribute (A.attribute "role" "progressbar"), UI.htmlAttribute (A.attribute "aria-label" libelle), UI.htmlAttribute (A.attribute "aria-valuenow" (String.fromFloat pourcentage)), UI.htmlAttribute (A.attribute "aria-valuemin" "0"), UI.htmlAttribute (A.attribute "aria-valuemax" "100") ]
+    UI.el [ UI.width UI.fill, UI.height (UI.px 3), Theme.fond couleurs.doux, UI.htmlAttribute (A.attribute "role" "progressbar"), Region.description libelle, UI.htmlAttribute (A.attribute "aria-valuenow" (String.fromFloat pourcentage)), UI.htmlAttribute (A.attribute "aria-valuemin" "0"), UI.htmlAttribute (A.attribute "aria-valuemax" "100") ]
         (UI.el [ UI.height UI.fill, UI.htmlAttribute (A.style "width" (String.fromFloat pourcentage ++ "%")), Theme.fond couleurs.accent ] UI.none)
 
 
@@ -81,7 +82,7 @@ histogramme libelle donnees =
         MrJam.texteSecondaire "Aucune évaluation pour cette sélection."
 
     else
-        UI.el [ UI.width UI.fill, UI.scrollbarX, UI.htmlAttribute (A.style "flex-basis" "auto"), UI.htmlAttribute (A.tabindex 0), UI.htmlAttribute (A.attribute "role" "img"), UI.htmlAttribute (A.attribute "aria-label" (libelle ++ ". " ++ String.join "; " (List.map (\( x, n ) -> x ++ " : " ++ String.fromFloat n) donnees))) ]
+        UI.el [ UI.width UI.fill, UI.scrollbarX, UI.htmlAttribute (A.style "flex-basis" "auto"), UI.htmlAttribute (A.tabindex 0), UI.htmlAttribute (A.attribute "role" "img"), Region.description (libelle ++ ". " ++ String.join "; " (List.map (\( x, n ) -> x ++ " : " ++ String.fromFloat n) donnees)) ]
             (UI.row [ UI.spacing 8, UI.alignBottom ] (List.map (\( x, n ) -> UI.column [ UI.width (UI.px 44), UI.alignBottom, UI.spacing 6, Police.size 12 ] [ UI.text (String.fromFloat n), UI.el [ UI.width (UI.px 30), UI.height (UI.px (Basics.max 1 (round (120 * n / maximum)))), Theme.fond couleurs.accent, Bordure.rounded 4 ] UI.none, UI.text x ]) donnees))
 
 
@@ -119,7 +120,7 @@ dialogue repere titre fermeture fermer contenu =
             , UI.htmlAttribute (A.class repere)
             , UI.htmlAttribute (A.attribute "role" "dialog")
             , UI.htmlAttribute (A.attribute "aria-modal" "true")
-            , UI.htmlAttribute (A.attribute "aria-label" titre)
+            , Region.description titre
             , UI.htmlAttribute (A.attribute "data-mrjam-dialogue" "")
             , UI.htmlAttribute (A.tabindex -1)
             ]
@@ -129,20 +130,18 @@ dialogue repere titre fermeture fermer contenu =
 
 boutonIcone : String -> String -> message -> Element message
 boutonIcone description symbole message =
-    Controles.action Icone [ UI.htmlAttribute (A.attribute "aria-label" description) ] symbole (Just message)
+    Controles.action Icone [ Region.description description ] symbole (Just message)
 
 
 boutonMenu : String -> Bool -> message -> Element message
 boutonMenu cible ouvert message =
     Controles.action Icone
-        [ UI.htmlAttribute
-            (A.attribute "aria-label"
-                (if ouvert then
-                    "Fermer le menu"
+        [ Region.description
+            (if ouvert then
+                "Fermer le menu"
 
-                 else
-                    "Ouvrir le menu"
-                )
+             else
+                "Ouvrir le menu"
             )
         , UI.htmlAttribute (A.attribute "aria-controls" cible)
         , UI.htmlAttribute

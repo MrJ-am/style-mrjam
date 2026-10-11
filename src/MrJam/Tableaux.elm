@@ -8,6 +8,7 @@ import Element as UI exposing (Element)
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Input as Saisie
+import Element.Region as Region
 import Html.Attributes as A
 import MrJam
 import MrJam.Controles as Controles
@@ -101,13 +102,13 @@ tableau libelle colonnes donnees =
                 , UI.scrollbarX
                 , UI.htmlAttribute (A.style "flex-basis" "auto")
                 , role "region"
-                , UI.htmlAttribute (A.attribute "aria-label" (libelle ++ " — défilement horizontal"))
+                , Region.description (libelle ++ " — défilement horizontal")
                 , UI.htmlAttribute (A.tabindex 0)
                 ]
                 (UI.column
                     [ UI.width (UI.minimum (List.sum (List.map largeur colonnes)) UI.fill)
                     , role "table"
-                    , UI.htmlAttribute (A.attribute "aria-label" libelle)
+                    , Region.description libelle
                     , Police.size 14
                     ]
                     (rangee [ Theme.police couleurs.discret, Police.size 13 ]
@@ -136,7 +137,7 @@ tableauAvecOutils libelle commandesTable colonnes donnees =
     UI.column [ UI.width UI.fill, UI.spacing 6 ]
         [ UI.el
             [ role "region"
-            , UI.htmlAttribute (A.attribute "aria-label" ("Outils du tableau " ++ libelle))
+            , Region.description ("Outils du tableau " ++ libelle)
             , UI.width UI.fill
             ]
             (UI.wrappedRow [ UI.spacing 4, UI.alignRight ] commandesTable)
@@ -156,7 +157,7 @@ outil =
 celluleEditable : String -> String -> (String -> message) -> Element message
 celluleEditable libelle valeur modifier =
     Saisie.text
-        (Theme.champ ++ [ UI.width UI.fill, UI.htmlAttribute (A.attribute "aria-label" libelle) ])
+        (Theme.champ ++ [ UI.width UI.fill, Region.description libelle ])
         { onChange = modifier
         , text = valeur
         , placeholder = Nothing

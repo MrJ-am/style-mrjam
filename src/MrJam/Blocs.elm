@@ -7,6 +7,7 @@ cavités reste ouvert sur le canevas. Aucune règle métier ne dépend du dessin
 
 import Element as UI exposing (Attribute, Element)
 import Element.Input as Entree
+import Element.Region as Region
 import Html
 import Html.Attributes as A
 
@@ -31,7 +32,7 @@ commande attributs contenu message =
 
 outil : String -> String -> msg -> Element msg
 outil nom dessin =
-    commande [ classe "mrjam-atelier-outil", UI.htmlAttribute (A.attribute "aria-label" nom), UI.htmlAttribute (A.title nom) ] (UI.text dessin)
+    commande [ classe "mrjam-atelier-outil", Region.description nom, UI.htmlAttribute (A.title nom) ] (UI.text dessin)
 
 
 poignee : String -> msg -> Element msg

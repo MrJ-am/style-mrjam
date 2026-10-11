@@ -5,6 +5,7 @@ un nom accessible et une infobulle. Une commande utilise le moteur des boutons.
 -}
 
 import Element as UI exposing (Element)
+import Element.Region as Region
 import Html.Attributes as A
 import MrJam.Controles as Controles exposing (Intention(..))
 import MrJam.Theme as Theme exposing (couleurs)
@@ -48,7 +49,7 @@ vue icone =
 action : Icone -> String -> message -> Element message
 action icone libelle message =
     Controles.actionAvecContenu Icone
-        [ UI.htmlAttribute (A.attribute "aria-label" libelle)
+        [ Region.description libelle
         , UI.htmlAttribute (A.title libelle)
         , UI.htmlAttribute (A.class "mrjam-picto-action")
         ]
@@ -61,7 +62,7 @@ lien icone libelle url =
     UI.link
         [ UI.width (UI.px 44)
         , UI.height (UI.px 44)
-        , UI.htmlAttribute (A.attribute "aria-label" libelle)
+        , Region.description libelle
         , UI.htmlAttribute (A.title libelle)
         , Theme.police couleurs.encre
         , Theme.survolPolice couleurs.accent

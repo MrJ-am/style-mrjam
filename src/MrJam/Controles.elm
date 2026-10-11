@@ -8,6 +8,7 @@ import Element as UI exposing (Attribute, Element)
 import Element.Border as Bordure
 import Element.Font as Police
 import Element.Input as Saisie
+import Element.Region as Region
 import Html.Attributes as A
 import MrJam.Theme as Theme exposing (couleurs)
 
@@ -144,7 +145,7 @@ actionAvecContenu intention attributs contenu message =
 icone : String -> String -> message -> Element message
 icone libelle symbole message =
     action Icone
-        [ UI.htmlAttribute (A.attribute "aria-label" libelle)
+        [ Region.description libelle
         , UI.htmlAttribute (A.title libelle)
         ]
         symbole

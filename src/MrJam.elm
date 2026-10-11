@@ -233,7 +233,7 @@ nouveauMotDePasse libelle valeur modifier =
 
 zoneTexte : String -> String -> (String -> message) -> Element message
 zoneTexte libelle valeur modifier =
-    Saisie.multiline (Theme.champ ++ [ height (minimum 120 shrink), htmlAttribute (Attributs.attribute "aria-label" libelle) ])
+    Saisie.multiline (Theme.champ ++ [ height (minimum 120 shrink), Region.description libelle ])
         { onChange = modifier, text = valeur, placeholder = Nothing, label = etiquette libelle, spellcheck = False }
 
 
@@ -263,7 +263,7 @@ n'interprète pas le contenu et ne connaît aucune règle de correction.
 -}
 choixRiches : String -> List ( valeur, Element message ) -> Maybe valeur -> (valeur -> message) -> Element message
 choixRiches libelle possibilites valeur modifier =
-    Saisie.radio [ spacing 8, width fill, htmlAttribute (Attributs.attribute "aria-label" libelle) ]
+    Saisie.radio [ spacing 8, width fill, Region.description libelle ]
         { onChange = modifier
         , options = List.map (\( cle, contenu ) -> Saisie.optionWith cle (optionRiche contenu)) possibilites
         , selected = valeur
@@ -374,13 +374,14 @@ lienActif actif libelle adresse =
 
 lienExterne : String -> String -> Element message
 lienExterne libelle adresse =
-    navigationLien
-        [ htmlAttribute (Attributs.target "_blank")
-        , htmlAttribute (Attributs.rel "noopener noreferrer")
-        , htmlAttribute (Attributs.attribute "aria-label" (libelle ++ " — nouvel onglet"))
+    Element.newTabLink
+        [ Region.description (libelle ++ " — nouvel onglet")
+        , Theme.police couleurs.accent
+        , Police.underline
+        , paddingXY 0 10
+        , height (minimum 44 shrink)
         ]
-        libelle
-        adresse
+        { url = adresse, label = paragraphe libelle }
 
 
 navigationLien : List (Attribute message) -> String -> String -> Element message

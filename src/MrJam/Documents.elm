@@ -28,7 +28,7 @@ action libelle message =
 -}
 actionSur : String -> String -> message -> Element message
 actionSur libelle cible message =
-    Controles.action Discrete [ UI.htmlAttribute (A.attribute "aria-label" (libelle ++ " : " ++ cible)) ] libelle (Just message)
+    Controles.action Discrete [ Region.description (libelle ++ " : " ++ cible) ] libelle (Just message)
 
 
 actions : List (Element message) -> Element message
@@ -127,7 +127,7 @@ menu ouvert basculer contenu =
             )
         ]
         [ Controles.action Icone
-            [ UI.htmlAttribute (A.attribute "aria-label" "Ouvrir le menu")
+            [ Region.description "Ouvrir le menu"
             , UI.htmlAttribute (A.attribute "aria-controls" "menu-application")
             , UI.htmlAttribute
                 (A.attribute "aria-expanded"
@@ -187,7 +187,7 @@ cadre marque titre navigation dialogue contenu =
                     ]
                     ((if marque then
                         [ Identite.logoPour titre
-                        , UI.link [ UI.htmlAttribute (A.attribute "aria-label" (titre ++ ".MrJ.am — accueil")) ]
+                        , UI.link [ Region.description (titre ++ ".MrJ.am — accueil") ]
                             { url = "./", label = Identite.marque titre }
                         ]
 
