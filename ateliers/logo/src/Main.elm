@@ -4,7 +4,6 @@ import Browser
 import Browser.Events
 import Echo.Animation as Animation exposing (Settings, Strategy(..))
 import Echo.Composition as Composition
-import Echo.Player as Player exposing (Cycle(..))
 import Echo.Primitives as Primitives
 import Echo.ReferenceData as Reference
 import Echo.Render as Render
@@ -19,6 +18,7 @@ import Html
 import Html.Attributes as H
 import MrJam
 import MrJam.Disposition as Disposition
+import MrJam.Transitions as Player exposing (Cycle(..))
 import Shared.Licorne as Licorne
 import Shared.Ui as Ui
 import Time
@@ -167,11 +167,7 @@ init flags =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ if model.player.running then
-            Browser.Events.onAnimationFrame Tick
-
-          else
-            Sub.none
+        [ Player.abonnementLecteur model.reduced Tick model.player
         , Browser.Events.onResize Resize
         , Browser.Events.onVisibilityChange Visibility
         , receivedSettings ReceiveSettings

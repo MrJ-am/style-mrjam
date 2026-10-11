@@ -39,3 +39,12 @@ publication Pages ne justifie ni workflow satellite ni réactivation d’un anci
 traitement suspendu. La commande centrale sélectionne les consommateurs affectés,
 construit une fois leurs ressources puis promeut cet artefact. Le retour conserve
 les données actuelles, sans restauration SQL pour annuler du code.
+
+Le socle `MrJam.Transitions` porte la chronologie elm-animator2.0.0 et le lecteur
+commun auparavant interne à l’atelier logo. Les applications gardent leurs états
+et géométrie ; elles appellent `initialiser`, `aller`, `mettreAJour`, `reduire`,
+`nombre` et `abonnement`. La cible métier est immédiate, les valeurs visuelles
+passent dans les attributs elm-ui ; aucun renderer HTML/CSS local. Réduction des
+animations et repos arrêtent les frames. Le lecteur artistique existant utilise
+`abonnementLecteur` ; ses calculs de pause/reprise/inversion/boucles sont conservés.
+La migration des autres vues et le passage des contrôles centraux restent requis.

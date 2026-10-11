@@ -1,14 +1,17 @@
-module Echo.Player exposing (Cycle(..), Player, advance, init, pause, seek, start, tick)
+module MrJam.Transitions exposing (Cycle(..), Player, Transition, abonnement, abonnementLecteur, actif, advance, aller, arrive, courant, init, initialiser, mettreAJour, nombre, pause, reduire, seek, start, tick)
 
-{-| Adaptateur pour Elm Animator 2.0.0.
+{-| Politique commune de transitions et lecteur Elm Animator 2.0.0.
+Le lecteur existant est déplacé ici sans changer ses calculs ; géométrie et
+intentions restent dans les applications. Leurs subscriptions passent par ce socle.
 La timeline interpole une progression linéaire. Une horloge virtuelle suspendue
 permet pause et reprise sans dépendre d'une API de pause inexistante.
 -}
 
 import Animator
 import Animator.Timeline as Timeline
-import Animator.Transition as Transition
+import Animator.Transition as Courbe
 import Animator.Value as Value
+import Browser.Events
 import Time
 
 
@@ -130,7 +133,7 @@ advance milliseconds player =
                 -- puis une recherche numérique de tolérance 0.0005.
                 -- Avec 1/3 et 2/3, x(t)=y(t)=t : même interpolation linéaire,
                 -- sans erreur de recherche lors des reprises et inversions.
-                Value.float timeline (\value -> Value.to value |> Value.withTransition (Transition.bezier (1 / 3) (1 / 3) (2 / 3) (2 / 3)))
+                Value.float timeline (\value -> Value.to value |> Value.withTransition (Courbe.bezier (1 / 3) (1 / 3) (2 / 3) (2 / 3)))
 
             target =
                 if player.direction < 0 then
@@ -168,3 +171,106 @@ advance milliseconds player =
                     seek target next
                         |> start (player.duration / 1000) (player.dwell / 1000) PingPong -player.direction
                         |> advance (elapsed - player.travel - player.dwell)
+
+
+{-| État purement visuel. La cible est disponible immédiatement, indépendamment
+de la fin du mouvement ; aucune écriture métier n'attend la chronologie.
+Les états visuels sont des valeurs (identifiants, variantes), sans fonctions.
+-}
+type alias Transition etat =
+    { chronologie : Timeline.Timeline etat, cible : etat, reduite : Bool, enMouvement : Bool }
+
+
+initialiser : etat -> Transition etat
+initialiser etat =
+    { chronologie = Timeline.init etat, cible = etat, reduite = False, enMouvement = False }
+
+
+aller : Float -> etat -> Transition etat -> Transition etat
+aller millisecondes cible etat =
+    if cible == etat.cible && millisecondes > 0 then
+        etat
+
+    else
+        { etat
+            | cible = cible
+            , enMouvement = not etat.reduite && millisecondes > 0
+            , chronologie =
+                if etat.reduite || millisecondes <= 0 then
+                    Timeline.init cible
+
+                else
+                    Timeline.to (Animator.ms (clamp 0 600 millisecondes)) cible etat.chronologie
+        }
+
+
+reduire : Bool -> Transition etat -> Transition etat
+reduire preference etat =
+    { etat
+        | reduite = preference
+        , enMouvement = etat.enMouvement && not preference
+        , chronologie =
+            if preference then
+                Timeline.init etat.cible
+
+            else
+                etat.chronologie
+    }
+
+
+mettreAJour : Time.Posix -> Transition etat -> Transition etat
+mettreAJour maintenant etat =
+    if not (actif etat) then
+        etat
+
+    else
+        let
+            chronologie =
+                Timeline.update maintenant etat.chronologie
+        in
+        { etat | chronologie = chronologie, enMouvement = Timeline.isRunning chronologie }
+
+
+courant : Transition etat -> etat
+courant etat =
+    etat.cible
+
+
+arrive : Transition etat -> etat
+arrive etat =
+    Timeline.arrived etat.chronologie
+
+
+{-| Une valeur numérique pour les attributs elm-ui (alpha, déplacements, etc.).
+Aucun Html/CSS ni renderer Animator.node/Inline dans le code applicatif.
+-}
+nombre : (etat -> Float) -> Transition etat -> Float
+nombre valeur etat =
+    if not (actif etat) then
+        valeur etat.cible
+
+    else
+        Value.float etat.chronologie (valeur >> Value.to)
+
+
+actif : Transition etat -> Bool
+actif etat =
+    not etat.reduite && etat.enMouvement
+
+
+abonnement : (Time.Posix -> message) -> Transition etat -> Sub message
+abonnement message etat =
+    if actif etat then
+        Browser.Events.onAnimationFrame message
+
+    else
+        Sub.none
+
+
+abonnementLecteur : Bool -> (Time.Posix -> message) -> Player -> Sub message
+abonnementLecteur reduite message lecteur =
+    if lecteur.running && not reduite then
+        Browser.Events.onAnimationFrame message
+
+    else
+        Sub.none

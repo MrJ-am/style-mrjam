@@ -2,7 +2,6 @@ module AnimationTest exposing (suite)
 
 import Echo.Animation as Animation exposing (Strategy(..))
 import Echo.Composition as Composition
-import Echo.Player as Player exposing (Cycle(..))
 import Echo.Primitives as Primitives exposing (Brick(..))
 import Echo.ReferenceData as Reference
 import Echo.Render as Render
@@ -10,6 +9,7 @@ import Echo.Settings as Settings
 import Echo.Transform as Transform exposing (Chirality(..))
 import Expect
 import Fuzz
+import MrJam.Transitions as Player exposing (Cycle(..))
 import Test exposing (Test, describe, fuzz, test)
 import Time
 
