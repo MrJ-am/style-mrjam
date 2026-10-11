@@ -26,6 +26,7 @@ module MrJam exposing
     , motDePasse
     , nouveauMotDePasse
     , page
+    , pageAccessible
     , paragraphe
     , pile
     , pour
@@ -55,6 +56,7 @@ import Element.Font as Police
 import Element.Input as Saisie
 import Element.Region as Region
 import Html exposing (Html)
+import MrJam.Accessibilite as Semantique
 import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Adaptateurs.Saisie as Native
 import MrJam.Adaptateurs.Selection as Selection
@@ -645,14 +647,25 @@ page =
     pagePour Theme.commune
 
 
+pageAccessible : String -> String -> List (Element message) -> Html message
+pageAccessible cible =
+    pageAvecPour Theme.commune [ Semantique.evitement cible ]
+
+
 pagePour : Contexte -> String -> List (Element message) -> Html message
-pagePour contexte titre contenu =
+pagePour contexte =
+    pageAvecPour contexte []
+
+
+pageAvecPour : Contexte -> List (Attribute message) -> String -> List (Element message) -> Html message
+pageAvecPour contexte attributs titre contenu =
     let
         couleurs =
             Theme.palette contexte
     in
     Element.layoutWith { options = [ Theme.focusPour contexte ] }
-        (Theme.ecran
+        (attributs
+            ++ Theme.ecran
             ++ [ width fill
                , Theme.fond couleurs.papier
                , Theme.police couleurs.encre

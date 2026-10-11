@@ -48,3 +48,20 @@ passent dans les attributs elm-ui ; aucun renderer HTML/CSS local. Réduction de
 animations et repos arrêtent les frames. Le lecteur artistique existant utilise
 `abonnementLecteur` ; ses calculs de pause/reprise/inversion/boucles sont conservés.
 La migration des autres vues et le passage des contrôles centraux restent requis.
+
+`MrJam.Mathematiques.ligne/texte/formule` compose du texte et le raccord TeX
+sans HTML interprété. Charger `assets/mrjam/mathematiques.js` après le KaTeX
+existant : ce pont commun conserve `trust=false`, MathML et le repli textuel.
+`MrJam.Documents.repereFocusable/navigation` et `MrJam.Accessibilite` donnent
+les sémantiques nécessaires ; `MrJam.pageAccessible cible titre contenu` porte
+le lien d’évitement révélé par le focus elm-ui, testé au clavier.
+
+`MrJam.Videos` reçoit la `Source` du cours et conserve un `Modele` par instance.
+Raccorder `mettreAJour` et `Cmd.map` dans update ; appeler `quitter` lorsque la
+vue quitte le lecteur, pour invalider ses promesses sans perdre ses positions.
+Charger `assets/mrjam/videos.js` et le SDK Vimeo local déjà présent. Seul
+l’iframe apparaît au clic ; commandes, messages et affiche sont en elm-ui.
+L’adaptateur natif borne la surface16/9 et les attributs de l’iframe. Le pont
+n’écrit aucun style et ne crée aucun DOM ordinaire. Ses tests isolés exercent
+KaTeX0.18.7 réel et un SDK simulé ; ils ne prouvent pas la disponibilité de Vimeo.
+Ces capacités n’ajoutent aucun backend ni service.

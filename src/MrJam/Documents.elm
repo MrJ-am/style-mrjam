@@ -1,4 +1,4 @@
-module MrJam.Documents exposing (Interface, action, actionSur, actions, document, entete, espace, espaceMarque, filtres, lien, menu, onglet, pagination, pour, repere, restituerFocusMenu, section)
+module MrJam.Documents exposing (Interface, action, actionSur, actions, document, entete, espace, espaceMarque, filtres, lien, menu, navigation, onglet, pagination, pour, repere, repereFocusable, restituerFocusMenu, section)
 
 {-| Présentation documentaire : données denses, actions discrètes, document sans
 carte imbriquée. Aucun état ni règle métier ne réside dans ces composants.
@@ -137,6 +137,16 @@ repere identifiant =
     UI.el [ UI.width UI.fill, Accessibilite.identifiant identifiant ]
 
 
+repereFocusable : String -> Element message -> Element message
+repereFocusable identifiant =
+    UI.el [ UI.width UI.fill, Accessibilite.identifiant identifiant, Accessibilite.tabulation -1 ]
+
+
+navigation : String -> List (Element message) -> Element message
+navigation libelle contenu =
+    UI.el [ UI.width UI.fill, Region.navigation, Region.description libelle ] (actions contenu)
+
+
 pagination : { debut : Int, total : Int, taille : Int, precedent : message, suivant : message } -> Element message
 pagination =
     paginationPour Theme.commune
@@ -197,20 +207,20 @@ restituerFocusMenu =
 
 
 espace : String -> List (Element message) -> Maybe (Html message) -> List (Element message) -> Html message
-espace titre navigation dialogue contenu =
-    cadre False titre navigation dialogue contenu
+espace titre liensNavigation dialogue contenu =
+    cadre False titre liensNavigation dialogue contenu
 
 
 {-| Cadre avec une marque liée à l'accueil et sans signature de bas de page.
 Cette variante est explicite : les consommateurs de `espace` gardent leur cadre.
 -}
 espaceMarque : String -> List (Element message) -> Maybe (Html message) -> List (Element message) -> Html message
-espaceMarque titre navigation dialogue contenu =
-    cadre True titre navigation dialogue contenu
+espaceMarque titre liensNavigation dialogue contenu =
+    cadre True titre liensNavigation dialogue contenu
 
 
 cadre : Bool -> String -> List (Element message) -> Maybe (Html message) -> List (Element message) -> Html message
-cadre marque titre navigation dialogue contenu =
+cadre marque titre liensNavigation dialogue contenu =
     let
         contexte =
             Theme.pour titre
@@ -250,10 +260,10 @@ cadre marque titre navigation dialogue contenu =
                      )
                         ++ [ if marque then
                                 UI.el [ UI.width (UI.minimum 200 UI.fill) ]
-                                    (UI.wrappedRow [ UI.spacing 12, UI.alignRight, Region.navigation ] navigation)
+                                    (UI.wrappedRow [ UI.spacing 12, UI.alignRight, Region.navigation ] liensNavigation)
 
                              else
-                                UI.wrappedRow [ UI.spacing 12, UI.width (UI.minimum 200 UI.fill), Region.navigation ] navigation
+                                UI.wrappedRow [ UI.spacing 12, UI.width (UI.minimum 200 UI.fill), Region.navigation ] liensNavigation
                            ]
                     )
                 , UI.column [ UI.width (UI.maximum 1280 UI.fill), UI.centerX, UI.padding 24, UI.spacing 20, Region.mainContent, Accessibilite.identifiant "contenu-principal" ] contenu
