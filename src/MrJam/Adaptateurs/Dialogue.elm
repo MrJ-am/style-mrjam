@@ -1,4 +1,4 @@
-module MrJam.Adaptateurs.Dialogue exposing (assembler, integrer, natif)
+module MrJam.Adaptateurs.Dialogue exposing (assembler, integrer, natif, natifLecture)
 
 {-| Nœud dialog et racines sœurs absents de l'API publique elm-ui1.1.8.
 Le cadre, les couleurs, le rayon, les dimensions et la typographie sont rendus
@@ -15,16 +15,37 @@ import Json.Decode as Decode
 
 natif : String -> String -> message -> Html message -> Html message
 natif identifiant titre fermer contenu =
-    Html.node "dialog"
-        [ Attributs.id identifiant
-        , Attributs.attribute "data-mrjam-modale" ""
-        , Attributs.attribute "aria-label" titre
-        , Attributs.style "border" "0"
-        , Attributs.style "padding" "0"
-        , Attributs.style "background" "transparent"
-        , Evenements.preventDefaultOn "cancel" (Decode.succeed ( fermer, True ))
-        ]
-        [ contenu ]
+    natifAvec [] identifiant titre fermer contenu
+
+
+{-| La marge du porteur dialog n'est pas réglable par elm-ui, qui construit son
+contenu. Valeur unique bornée ; aucune propriété CSS configurable.
+-}
+natifLecture : Int -> String -> String -> message -> Html message -> Html message
+natifLecture hauteur identifiant titre fermer contenu =
+    natifAvec [ margeLecture hauteur ] identifiant titre fermer contenu
+
+
+margeLecture : Int -> Html.Attribute message
+margeLecture hauteur =
+    Attributs.style "margin-top" (String.fromInt (Basics.clamp 12 800 hauteur) ++ "px")
+
+
+natifAvec : List (Html.Attribute message) -> String -> String -> message -> Html message -> Html message
+natifAvec marge identifiant titre fermer contenu =
+    Html.node "dialog" (attributsBase identifiant titre fermer ++ marge) [ contenu ]
+
+
+attributsBase : String -> String -> message -> List (Html.Attribute message)
+attributsBase identifiant titre fermer =
+    [ Attributs.id identifiant
+    , Attributs.attribute "data-mrjam-modale" ""
+    , Attributs.attribute "aria-label" titre
+    , Attributs.style "border" "0"
+    , Attributs.style "padding" "0"
+    , Attributs.style "background" "transparent"
+    , Evenements.preventDefaultOn "cancel" (Decode.succeed ( fermer, True ))
+    ]
 
 
 assembler : Html message -> Maybe (Html message) -> Html message

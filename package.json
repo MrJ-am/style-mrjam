@@ -4,7 +4,7 @@
   "private": true,
   "description": "Composants ElmUI partagés et API française pour les interfaces MrJ.am.",
   "scripts": {
-    "compiler": "elm make exemples/Galerie.elm exemples/Bibliotheque.elm exemples/Contextes.elm exemples/Blocs.elm exemples/Medias.elm exemples/Scientifique.elm --optimize --output=public/galerie.js",
+    "compiler": "elm make exemples/Galerie.elm exemples/Bibliotheque.elm exemples/Contextes.elm exemples/Blocs.elm exemples/Medias.elm exemples/Scientifique.elm exemples/Lecture.elm --optimize --output=public/galerie.js",
     "verifier": "elm-format src exemples --validate && python3 scripts/verifier-identite.py && npm run compiler && python3 -m unittest discover -s tests -p test_architecture.py",
     "compiler:pages": "npm run compiler && npm --prefix ateliers/logo run build && npm --prefix ateliers/logo run test:geometry && node scripts/construire-pages.mjs"
   },

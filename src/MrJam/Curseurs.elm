@@ -1,4 +1,4 @@
-module MrJam.Curseurs exposing (continu, format)
+module MrJam.Curseurs exposing (continu, format, note)
 
 {-| Curseur animé sans annonces à chaque frame. Commande native immédiate,
 piste et poignée elm-ui ; aucune seconde horloge ni lecture automatique.
@@ -11,6 +11,7 @@ import Element.Font as Police
 import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Adaptateurs.Curseur as Native
 import MrJam.Contexte exposing (Contexte)
+import MrJam.Manipulation as Manipulation
 import MrJam.Theme as Theme
 
 
@@ -90,3 +91,83 @@ format chiffres valeur =
             toFloat (10 ^ chiffres)
     in
     String.fromFloat (toFloat (round (valeur * facteur)) / facteur) |> String.replace "." ","
+
+
+{-| Note facultative sur trois. L'aperçu de geste est distinct de la réponse :
+un déplacement annulé ou vertical ne crée ni note ni interaction scientifique.
+Le clavier natif et la validation de geste écrivent immédiatement la réponse.
+-}
+note : Contexte -> Maybe Float -> Maybe Float -> (Float -> message) -> (Maybe Float -> message) -> Element message
+note contexte reponse apercu changer previsualiser =
+    let
+        couleurs =
+            Theme.palette contexte
+
+        valeur =
+            clamp 0 3 (Maybe.withDefault (Maybe.withDefault 1.5 reponse) apercu)
+
+        lecture =
+            case reponse of
+                Nothing ->
+                    "Non noté"
+
+                Just n ->
+                    format 2 n ++ " sur 3"
+
+        curseur =
+            round (valeur / 3 * 10000)
+
+        vide n =
+            UI.el [ UI.width (UI.fillPortion (max 1 n)) ] UI.none
+
+        sphere =
+            UI.el
+                [ UI.width (UI.px 32)
+                , UI.height (UI.px 32)
+                , UI.centerY
+                , Bordure.rounded 32
+                , Bordure.width 2
+                , Bordure.color couleurs.accent
+                , Theme.fond couleurs.surface
+                , Manipulation.test "grade-knob"
+                ]
+                (UI.el [ UI.centerX, UI.centerY, Police.size 12, Police.bold ]
+                    (UI.text
+                        (if reponse == Nothing && apercu == Nothing then
+                            "?"
+
+                         else
+                            format 2 valeur
+                        )
+                    )
+                )
+    in
+    UI.row [ UI.width UI.fill, UI.spacing 8 ]
+        [ UI.text "0"
+        , UI.el
+            [ UI.width UI.fill
+            , UI.height (UI.px 44)
+            , Native.noteRelative
+            , Manipulation.test "grade-slider"
+            , UI.focused [ Bordure.glow couleurs.accent 3 ]
+            , UI.inFront
+                (UI.el [ UI.width UI.fill, UI.height (UI.px 44) ]
+                    (Native.note valeur lecture changer previsualiser)
+                )
+            ]
+            (UI.el
+                [ UI.width UI.fill
+                , UI.height (UI.px 4)
+                , UI.centerY
+                , Theme.fond couleurs.ligne
+                , Bordure.rounded 4
+                , Manipulation.test "grade-rail"
+                , UI.inFront
+                    (UI.row [ UI.width UI.fill, UI.height (UI.px 44), UI.centerY ]
+                        [ vide curseur, sphere, vide (10000 - curseur) ]
+                    )
+                ]
+                UI.none
+            )
+        , UI.text "3"
+        ]
