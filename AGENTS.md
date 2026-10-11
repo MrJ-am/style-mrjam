@@ -1,29 +1,45 @@
-# Règles du style MrJ.am
+# Bibliothèque de style MrJ.am
 
-## Assemblage central
+L’assemblage, les commandes locales et toute la CI/CD appartiennent à
+[MrJ-am/vps-infrastructure](https://github.com/MrJ-am/vps-infrastructure).
+Lire le [contrat central](https://github.com/MrJ-am/vps-infrastructure/blob/main/coordination/CONTRATS.org),
+le [manifeste](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/manifest.json)
+et les [commandes de développement](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/DEVELOPPEMENT.md).
+Interfaces Elm : elm-ui pour la présentation et elm-animator pour les transitions,
+mutualisés ici ; les applications portent intentions et état métier. Pas de Html/Html.Styled/elm-css, CSS/HTML applicatif ou
+animation ad hoc. Adaptateurs techniques étroits, documentés/testés ; Element.html
+et htmlAttribute bornés. elm-review central obligatoire, sans suppressions/exclusions
+générales ; tests des règles et parcours Continuous UI (interruptions/inversions,
+focus/clavier/reduced-motion, rafraîchissement arrêté). Lire le
+[contrat frontend](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/FRONTENDS.md).
 
-La mission du 11 octobre 2026 remplace la coordination par messages et les
-publications autonomes. Source centrale : [contrat v2](https://github.com/MrJ-am/vps-infrastructure/blob/main/coordination/CONTRATS.org),
-[manifeste](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/manifest.json)
-et [reprise](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/REPRISE.md).
-Ce dépôt conserve sources, contrats et tests ; toutes les exécutions CI/CD et
-publications sont orchestrées dans vps-infrastructure à une révision exacte.
-Aucun acquittement ni validation entre conversations. Les bibliothèques métier
-ASDF ne démarrent aucun service/connexion/migration au chargement ; le serveur
-commun possède le cycle de vie. Les projets statiques restent statiques.
-Préserver données, secrets, contrats, écritures concurrentes et retour arrière.
-Publier les commits de composants avant leur référencement central ; aucune
-modification de licence ou visibilité, aucun PR, aucun push forcé.
+Ce dépôt conserve ses sources, contrats et tests ; publier son commit avant
+référencement central. Aucun workflow satellite, publication autonome, échange
+obligatoire entre conversations ou acquittement. L’intégration centrale et les
+tests pertinents valident un changement.
 
+Préserver les modifications concurrentes, les données et les secrets. Commits
+français, push sans force ; aucune PR ni modification de visibilité ou licence.
+Une compilation ou un test local ne prouve pas une publication : citer les
+révisions et les contrôles de la version réellement servie. Les anciennes règles
+sont conservées dans `coordination/historique/AGENTS-avant-composants-20261011.md`.
 
-- Lire README.md, docs/INTEGRATION.md et docs/DEPLOIEMENT.md. Lire l’état de chaque consommateur : Vision est publié depuis le 21 septembre 2026 ; cela ne prouve ni la migration des autres sites ni l’activation de l’orchestrateur collectif.
-- Écrire les noms, commentaires, tests et explications en français, sauf identifiants imposés par les outils, les bibliothèques et les contrats externes.
-- Garder les appels compacts : `bouton "Valider" Valider`. La présentation usuelle doit être entièrement définie ici. Les variantes correspondent à des intentions distinctes, jamais à une suite d’options décoratives répétées dans les applications.
-- Mutualiser ce qui est réellement commun ; ne pas importer les données, secrets, autorisations ou règles métier des applications dans cette bibliothèque publique.
-- Préserver la palette existante et le logo original. Le logo et la signature sont d’utilisation strictement réservée ; aucune licence de code ne doit les englober.
-- Signature est la source d’autorité. Utiliser une révision complète, vérifier les empreintes et conserver le texte sélectionnable `MrJ.am`.
-- Ne pas redessiner le logo, transformer la signature en image ou distribuer les polices dans les archives de préparation.
-- Compiler une référence avant un renommage de code existant. Renommer un seul symbole de façon cohérente, compiler tous ses consommateurs, puis tester les contrats non couverts par le typage avant le symbole suivant. Ne pas faire de remplacement textuel aveugle dans les chaînes, données ou API.
-- Tester le clavier, les libellés accessibles, les états de contrôle, la taille tactile et les petits écrans. Les modales exigent gestion et restitution du focus, Échap et vérification du fond inerte avant publication.
-- La compilation seule ne valide ni l’authentification, ni les données, ni un déploiement.
-- Publier une version de style en reconstruisant tous les projets concernés, valider tous les artefacts avant activation et conserver les versions applicatives précédentes pour retour arrière. Ne pas toucher aux bases ni à NixOS pendant le portage d’interface.
+Bibliothèque ElmUI et composants communs : aucun métier, backend, secret,
+permission ou donnée personnelle. Lire `README.md`, `docs/INTEGRATION.md` et
+`docs/DEPLOIEMENT.md` pour les usages ; les règles de publication sont centrales.
+Les consommateurs verrouillent une révision exacte. Une adoption qualifie et
+reconstruit uniquement les consommateurs affectés dans l’atelier central avant
+activation ; aucune validation collective entre agents ni chaîne autonome.
+
+Garder les appels compacts, par exemple `bouton "Valider" Valider`. Les variantes
+expriment une intention ; éviter des réglages décoratifs répétés chez les
+consommateurs. Préserver palette et logo original, texte sélectionnable `MrJ.am`.
+Signature est la source d’autorité à révision complète/empreintes vérifiées.
+Logo, signature et polices réservés ne sont pas couverts par la licence de code ;
+ne pas les redistribuer dans les archives publiques de préparation.
+
+Tester les parcours affectés : clavier, libellés accessibles, états, tactile et
+petits écrans ; modales avec focus restitué, Échap et fond inerte. Garder le code
+compact et français sous notre contrôle. Renommer un symbole avec ses usages et
+contrats, sans remplacement aveugle des chaînes/API. Ne modifier aucune base
+métier pour une évolution de présentation ; le retour conserve les données.

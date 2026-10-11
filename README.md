@@ -26,7 +26,7 @@ L’atelier propose la recomposition réversible, la rotation centrifuge et l’
 
 La **palette ÉcoLogo** est fixée au maximum du chroma commun aux huit teintes sRGB : L ≈ 0,742201739, C ≈ 0,132555344. Les [exports de référence](public/assets/mrjam/palette/) fournissent les SVG factorisés, le manifeste JSON et les variables CSS. La Licorne rose invisible retenue réutilise 19 occurrences des trois contours ; son dégradé s’éclaircit vers la corne. La page de philosophie expose les correspondances, les deux tétrades et le « quatre caché dans le trois ».
 
-La publication GitHub Pages dispose de son workflow et de ses validations. Les composants consommés par les applications restent aux révisions explicitement épinglées ; l’ajout de cet atelier n’entraîne pas leur redéploiement.
+La construction et la publication des ateliers appartiennent désormais à l’infrastructure ; aucun workflow satellite. Les adresses publiques existantes restent à préserver. Les composants consommés par les applications restent aux révisions explicitement épinglées ; l’ajout de cet atelier n’entraîne pas leur redéploiement.
 
 ## Utiliser les composants
 
@@ -51,16 +51,12 @@ Les composants couvrent les boutons, liens, champs, recherches, mots de passe, z
 
 ## Vérifier la bibliothèque
 
-Prérequis : Node.js 22, Python 3, Elm 0.19.1 fourni par les dépendances de développement.
-
-```sh
-npm ci
-npm run verifier
-python3 -m pip install -r tests/requirements.txt
-python3 -m playwright install chromium
-python3 tests/navigation.py
-python3 tests/documentaire.py
-```
+Utiliser les [commandes locales centrales](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/DEVELOPPEMENT.md),
+les versions verrouillées et [elm-review obligatoire](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/FRONTENDS.md).
+Le socle commun utilise elm-ui et elm-animator ; les tests de transitions/focus
+et reduced-motion complètent les règles statiques. Aucun test au push ou
+workflow de bibliothèque. Les scripts ci-dessous sont des détails appelés par
+l’orchestrateur central, pas un circuit de publication séparé.
 
 `npm run compiler` produit `public/galerie.js`. La galerie se sert depuis `public/`. Les tests vérifient clic, Entrée, Espace, champs libellés, saisie multiligne, états inactifs, cases, choix, taille tactile et absence de débordement à quatre largeurs.
 
