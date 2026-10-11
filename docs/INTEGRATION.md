@@ -14,6 +14,14 @@ injecté ni moteur d’animation local. Bootstrap minimal et adaptateurs techniq
 contrôle et tests. Element.html/htmlAttribute sont réservés à ces adaptateurs.
 Les références de type nécessaires au navigateur restent autorisées.
 
+`Adaptateurs.Tableau.defilement` corrige la hauteur intrinsèque du tableau
+commun placé dans une colonne : elm-ui1.1.8 impose flex-basis:0px et Firefox
+réduit alors son conteneur défilant à hauteur nulle. L'API elm-ui ne permet
+pas de modifier cette propriété. Le raccord autorise seulement la constante
+flex-basis:auto dans Tableaux, sans dimension ou style fourni par l'application.
+Les règles AST refusent les variantes ; Contextes vérifie les lignes et actions
+dans une section aux trois largeurs, et Matheval qualifie son administration.
+
 elm-review central bloque la qualification des sources assemblées, y compris le
 style à sa révision verrouillée. Les règles résolvent les symboles (alias/exposing),
 vérifient frontières et échappatoires ; tests positifs/négatifs et fixture rejetée.

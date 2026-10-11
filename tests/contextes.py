@@ -93,6 +93,15 @@ def verifier(javascript, signature):
                 bordure = tableau.get_by_role('row').first.evaluate('e => getComputedStyle(e).borderBottomColor')
                 rgb = page.evaluate('() => {const c=document.createElement("canvas").getContext("2d");c.fillStyle="oklch(0.88 0.016 227.50776405003785)";c.fillRect(0,0,1,1);return [...c.getImageData(0,0,1,1).data].slice(0,3)}')
                 assert bordure == f'rgb({rgb[0]}, {rgb[1]}, {rgb[2]})', bordure
+                cadre = page.locator('#tableau-encadre')
+                encadre = cadre.get_by_role('table', name='Actions encadrées', exact=True)
+                expect(encadre.get_by_role('row')).to_have_count(4)
+                for choix in ('premier', 'deuxième', 'troisième'):
+                    encadre.get_by_role('button', name='Choisir ' + choix, exact=True).click()
+                    expect(page.get_by_role('textbox', name='Champ Vision', exact=True)).to_have_value(choix)
+                boite, lignes = cadre.bounding_box(), encadre.bounding_box()
+                assert lignes['y'] >= boite['y'] and lignes['y'] + lignes['height'] <= boite['y'] + boite['height'], (boite, lignes)
+                page.get_by_role('textbox', name='Champ Vision', exact=True).fill('réponse conservée')
                 courte = page.get_by_role('textbox', name='Réponse courte', exact=True)
                 expect(courte).to_have_attribute('id', 'reponse-courte')
                 expect(courte).to_have_attribute('aria-describedby', 'aide-reponse')
@@ -186,9 +195,21 @@ def verifier(javascript, signature):
                 assert int(stabilise) > 0
                 page.wait_for_timeout(120)
                 assert frames.inner_text() == stabilise, 'abonnement RAF resté actif au repos'
-                basculer.dispatch_event('click')
+                # Observer dès le clic : un aller-retour du pilote puis une
+                # assertion de texte peut dépasser cette phase transitoire.
+                # Aucun changement de durée ni de seuil du produit.
+                hauteur_intermediaire = basculer.evaluate('''bouton => new Promise((resolve, reject) => {
+                  const debut=performance.now(), aide=document.getElementById('aide-animee');
+                  function observer(){
+                    const hauteur=aide.getBoundingClientRect().height;
+                    if(hauteur>20 && hauteur<64)return resolve(hauteur);
+                    if(performance.now()-debut>2000)return reject(new Error('Phase de fermeture non observée'));
+                    requestAnimationFrame(observer);
+                  }
+                  requestAnimationFrame(observer); bouton.click();
+                })''')
+                assert 20 < hauteur_intermediaire < 64
                 expect(page.locator('#etat-aide')).to_have_text('Aide fermée')
-                page.wait_for_function('() => {let h=document.getElementById("aide-animee").getBoundingClientRect().height;return h>20 && h<64}')
                 page.emulate_media(reduced_motion='reduce')
                 try:
                     expect(page.locator('#preference-animation')).to_have_text('Animations réduites')
@@ -288,7 +309,7 @@ def verifier(javascript, signature):
                     expect(declencheur).to_be_focused()
                 assert not erreurs, erreurs
                 assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), largeur
-                resultats.append({'largeur': largeur, 'couleurs': couleurs, 'tableau_contexte_et_roles': True, 'selecteur_clavier': True, 'polymorphisme_choix': True,
+                resultats.append({'largeur': largeur, 'couleurs': couleurs, 'tableau_contexte_et_roles': True, 'tableau_encadre_lignes_et_actions': True, 'selecteur_clavier': True, 'polymorphisme_choix': True,
                                   'focus_apres_deplacement': True, 'modale_focus_inert_echap_reouverture': True, 'fermetures_exactes': 2,
                                   'saisie_identifiee_soumission_unique': True, 'zero_distinct_du_vide': True, 'dates_natives': True,
                                   'menu_echap': True, 'texte_litteral_replie': True, 'pictogramme_original': True,

@@ -192,6 +192,13 @@ vue modele =
             , tableaux.tableau "Tableau Vision"
                 [ Tableaux.colonne "Réponse" (\valeur -> tableaux.celluleEditable "Réponse dans le tableau" valeur Champ) ]
                 [ modele.valeur ]
+            , Element.el [ Accessibilite.identifiant "tableau-encadre" ]
+                (vision.section "Tableau encadré"
+                    [ tableaux.tableau "Actions encadrées"
+                        [ Tableaux.colonne "Action" (\valeur -> vision.boutonSecondaire ("Choisir " ++ valeur) (Champ valeur)) ]
+                        [ "premier", "deuxième", "troisième" ]
+                    ]
+                )
             , vision.champIdentifieSoumis
                 { identifiant = "reponse-courte", libelle = "Réponse courte", aide = Just "aide-reponse", exemple = Just "Exemple", limite = Just 5 }
                 modele.courte

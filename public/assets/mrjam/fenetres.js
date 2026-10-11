@@ -41,7 +41,9 @@
   // Firefox peut retirer le focus après la notification des mutations, lorsque
   // le contrôle d'aide disparaît. Vérifier à la fin de cet événement natif ;
   // aucun polling et aucun déplacement entre deux contrôles encore valides.
-  document.addEventListener('focusout', () => queueMicrotask(restituer));
+  document.addEventListener('focusout', evenement => {
+    if (evenement.relatedTarget === null) queueMicrotask(restituer);
+  });
   new MutationObserver(synchroniser).observe(document.body, {childList: true, subtree: true});
   synchroniser();
 })();

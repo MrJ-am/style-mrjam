@@ -11,6 +11,7 @@ import Element.Input as Saisie
 import Element.Region as Region
 import MrJam
 import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Adaptateurs.Tableau as Native
 import MrJam.Controles as Controles
 import MrJam.Theme as Theme
 
@@ -120,6 +121,7 @@ tableauPour contexte libelle colonnes donnees =
             [ UI.el
                 [ UI.width UI.fill
                 , UI.scrollbarX
+                , Native.defilement
                 , Accessibilite.region
                 , Region.description (libelle ++ " — défilement horizontal")
                 , Accessibilite.tabulation 0
