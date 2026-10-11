@@ -687,7 +687,7 @@ pageAvecPour contexte attributs titre contenu =
                , Theme.fond couleurs.papier
                , Theme.police couleurs.encre
                , Police.size 16
-               , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
+               , Theme.typographie
                ]
         )
         (Element.column

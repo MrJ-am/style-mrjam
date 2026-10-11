@@ -61,7 +61,7 @@ cadrePour contexte attributs contenu =
             Theme.palette contexte
     in
     UI.layoutWith { options = [ Theme.focusPour contexte ] }
-        (Theme.ecran ++ [ Theme.fond couleurs.papier, Theme.police couleurs.encre, Police.size 16, Police.family [ Police.typeface "Inter", Police.typeface "Segoe UI", Police.sansSerif ] ] ++ attributs)
+        (Theme.ecran ++ [ Theme.fond couleurs.papier, Theme.police couleurs.encre, Police.size 16, Theme.typographie ] ++ attributs)
         contenu
 
 
@@ -73,7 +73,7 @@ fragment =
 fragmentPour : Theme.Contexte -> Element message -> Html message
 fragmentPour contexte =
     UI.layoutWith { options = [ UI.noStaticStyleSheet, Theme.focusPour contexte ] }
-        [ UI.width UI.fill, UI.height UI.shrink, Police.size 16, Theme.police (Theme.palette contexte).encre, Police.family [ Police.typeface "Inter", Police.typeface "Segoe UI", Police.sansSerif ] ]
+        [ UI.width UI.fill, UI.height UI.shrink, Police.size 16, Theme.police (Theme.palette contexte).encre, Theme.typographie ]
 
 
 bandeau : String -> List (Element message) -> Element message

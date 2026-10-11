@@ -264,6 +264,11 @@ def verifier(javascript, signature):
                 fermer = dialogue.get_by_role('button', name='Fermer', exact=True)
                 assert fermer.evaluate('e => getComputedStyle(e).backgroundColor') == couleurs['Vision']
                 champ = dialogue.get_by_role('textbox', name='Champ du dialogue', exact=True)
+                police_page = page.get_by_role('main').evaluate('e => getComputedStyle(e).fontFamily')
+                # Mesurer les contrôles réellement peints par ElmUI, plutôt que
+                # la police sans texte du conteneur dialog natif.
+                assert champ.evaluate('e => getComputedStyle(e).fontFamily') == police_page
+                assert fermer.evaluate('e => getComputedStyle(e).fontFamily') == police_page
                 champ.fill('réponse dans la modale')
                 champ.focus()
                 page.get_by_role('textbox', name='Champ Vision', exact=True, include_hidden=True).evaluate('e => e.focus()')

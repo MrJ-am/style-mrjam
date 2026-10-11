@@ -29,7 +29,7 @@ modalePour contexte identifiant titre fermer contenu =
         Element.layoutWith { options = [ Element.noStaticStyleSheet, Theme.focusPour contexte ] }
             [ Element.width (Element.maximum 680 Element.fill)
             , Element.height Element.shrink
-            , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
+            , Theme.typographie
             , Police.size 16
             ]
             (composants.section titre contenu)
@@ -59,7 +59,7 @@ confirmationPour contexte identifiant titre fermeture fermer contenu =
                 )
             , Element.height (Element.maximum 760 Element.shrink)
             , Element.scrollbarY
-            , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
+            , Theme.typographie
             , Police.size 16
             ]
             (composants.carte

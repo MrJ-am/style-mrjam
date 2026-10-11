@@ -1,4 +1,4 @@
-module MrJam.Theme exposing (Contexte, Palette, bordure, champ, champPour, commune, couleurs, disposition, ecran, focus, focusPour, fond, palette, panneau, panneauPour, police, pour, survol, survolPolice)
+module MrJam.Theme exposing (Contexte, Palette, bordure, champ, champPour, commune, couleurs, disposition, ecran, focus, focusPour, fond, palette, panneau, panneauPour, police, pour, survol, survolPolice, typographie)
 
 {-| Réglages internes. Les applications composent les composants communs avec
 un contexte de marque explicite, créé par MrJam.Contexte. Aucune cascade CSS,
@@ -87,6 +87,14 @@ palette (Contexte teinte) =
 couleurs : Palette
 couleurs =
     palette commune
+
+
+{-| Même liste historique dans toutes les racines ElmUI, y compris le contenu
+des dialogues natifs. Les polices d'identité restent leurs composants dédiés.
+-}
+typographie : Attribute message
+typographie =
+    Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
 
 
 ecran : List (Attribute message)

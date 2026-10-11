@@ -52,7 +52,7 @@ vue contexte ecran reference transition lecteur =
             UI.layoutWith { options = [ UI.noStaticStyleSheet, Theme.focusPour contexte ] }
                 [ UI.width (UI.px (min 940 (max 200 (ecran.largeur - 24))))
                 , UI.height (UI.px (max 0 (ecran.hauteur - debut - 12)))
-                , Police.family [ Police.typeface "Inter", Police.typeface "Segoe UI", Police.sansSerif ]
+                , Theme.typographie
                 , Police.size 16
                 ]
                 (UI.column (Theme.panneauPour contexte ++ [ UI.height UI.fill ])

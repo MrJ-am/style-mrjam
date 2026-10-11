@@ -234,7 +234,7 @@ cadre marque titre liensNavigation dialogue contenu =
                 ++ [ Theme.fond couleurs.surface
                    , Theme.police couleurs.encre
                    , Police.size 15
-                   , Police.family [ Police.typeface "Inter", Police.typeface "Aptos", Police.typeface "Segoe UI", Police.sansSerif ]
+                   , Theme.typographie
                    ]
             )
             (UI.column [ UI.width UI.fill, UI.spacing 0 ]
