@@ -218,7 +218,7 @@ test('géométrie : comparaison, sélection, isolation et identifiants uniques',
   await setChecked(page, 'Masquer cette occurrence', false);
   await setChecked(page, 'Isoler la sélection', false);
   await page.getByRole('button', { name: 'Écart visuel', exact: true }).click(); await settle(page);
-  await expect(page.locator('[data-svg="comparison"] image')).toHaveAttribute('style', /mix-blend-mode:difference/);
+  await expect(page.locator('[data-svg="comparison"] image')).toHaveCSS('mix-blend-mode', 'difference');
   await capture(page, info, '09-ecart-x', page.locator('[data-svg="comparison"]'));
 });
 
