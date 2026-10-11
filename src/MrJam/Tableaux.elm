@@ -11,6 +11,7 @@ import Element.Input as Saisie
 import Element.Region as Region
 import Html.Attributes as A
 import MrJam
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Controles as Controles
 import MrJam.Theme as Theme exposing (couleurs)
 
@@ -103,7 +104,7 @@ tableau libelle colonnes donnees =
                 , UI.htmlAttribute (A.style "flex-basis" "auto")
                 , role "region"
                 , Region.description (libelle ++ " — défilement horizontal")
-                , UI.htmlAttribute (A.tabindex 0)
+                , Accessibilite.tabulation 0
                 ]
                 (UI.column
                     [ UI.width (UI.minimum (List.sum (List.map largeur colonnes)) UI.fill)

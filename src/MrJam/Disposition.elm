@@ -12,6 +12,7 @@ import Element.Region as Region
 import Html exposing (Html)
 import Html.Attributes as A
 import MrJam
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Controles as Controles exposing (Intention(..))
 import MrJam.Donnees as Donnees
 import MrJam.Identite as Identite
@@ -49,7 +50,7 @@ etiquette libelle =
 
 boutonIdentifie : String -> String -> Maybe message -> Element message
 boutonIdentifie identifiant libelle message =
-    Controles.action Principale [ UI.htmlAttribute (A.id identifiant) ] libelle message
+    Controles.action Principale [ Accessibilite.identifiant identifiant ] libelle message
 
 
 boutonSelection : Bool -> String -> message -> Element message
@@ -82,7 +83,7 @@ histogramme libelle donnees =
         MrJam.texteSecondaire "Aucune évaluation pour cette sélection."
 
     else
-        UI.el [ UI.width UI.fill, UI.scrollbarX, UI.htmlAttribute (A.style "flex-basis" "auto"), UI.htmlAttribute (A.tabindex 0), UI.htmlAttribute (A.attribute "role" "img"), Region.description (libelle ++ ". " ++ String.join "; " (List.map (\( x, n ) -> x ++ " : " ++ String.fromFloat n) donnees)) ]
+        UI.el [ UI.width UI.fill, UI.scrollbarX, UI.htmlAttribute (A.style "flex-basis" "auto"), Accessibilite.tabulation 0, UI.htmlAttribute (A.attribute "role" "img"), Region.description (libelle ++ ". " ++ String.join "; " (List.map (\( x, n ) -> x ++ " : " ++ String.fromFloat n) donnees)) ]
             (UI.row [ UI.spacing 8, UI.alignBottom ] (List.map (\( x, n ) -> UI.column [ UI.width (UI.px 44), UI.alignBottom, UI.spacing 6, Police.size 12 ] [ UI.text (String.fromFloat n), UI.el [ UI.width (UI.px 30), UI.height (UI.px (Basics.max 1 (round (120 * n / maximum)))), Theme.fond couleurs.accent, Bordure.rounded 4 ] UI.none, UI.text x ]) donnees))
 
 
@@ -116,13 +117,13 @@ dialogue repere titre fermeture fermer contenu =
             , UI.centerY
             , UI.scrollbarY
             , UI.htmlAttribute (A.style "max-height" "100%")
-            , UI.htmlAttribute (A.id repere)
+            , Accessibilite.identifiant repere
             , UI.htmlAttribute (A.class repere)
             , UI.htmlAttribute (A.attribute "role" "dialog")
             , UI.htmlAttribute (A.attribute "aria-modal" "true")
             , Region.description titre
             , UI.htmlAttribute (A.attribute "data-mrjam-dialogue" "")
-            , UI.htmlAttribute (A.tabindex -1)
+            , Accessibilite.tabulation -1
             ]
             (UI.wrappedRow [ UI.width UI.fill, UI.spacing 12 ] [ MrJam.sousTitre titre, UI.el [ UI.alignRight, UI.htmlAttribute (A.attribute "data-mrjam-fermer" "") ] (MrJam.boutonSecondaire fermeture fermer) ] :: contenu)
         )
@@ -143,16 +144,8 @@ boutonMenu cible ouvert message =
              else
                 "Ouvrir le menu"
             )
-        , UI.htmlAttribute (A.attribute "aria-controls" cible)
-        , UI.htmlAttribute
-            (A.attribute "aria-expanded"
-                (if ouvert then
-                    "true"
-
-                 else
-                    "false"
-                )
-            )
+        , Accessibilite.controle cible
+        , Accessibilite.depliement ouvert
         ]
         "☰"
         (Just message)

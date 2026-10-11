@@ -55,6 +55,7 @@ import Html exposing (Html)
 import Html.Attributes as Attributs
 import Html.Events as Evenements
 import Json.Decode as Decode
+import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Controles as Controles exposing (Intention(..))
 import MrJam.Identite as Identite
 import MrJam.Theme as Theme exposing (couleurs)
@@ -83,17 +84,7 @@ Le contenu et sa présence dans le DOM restent gérés par l'application.
 boutonDevoiler : String -> String -> Bool -> message -> Element message
 boutonDevoiler cible libelle ouvert message =
     Controles.action Secondaire
-        [ htmlAttribute (Attributs.attribute "aria-controls" cible)
-        , htmlAttribute
-            (Attributs.attribute "aria-expanded"
-                (if ouvert then
-                    "true"
-
-                 else
-                    "false"
-                )
-            )
-        ]
+        [ Accessibilite.controle cible, Accessibilite.depliement ouvert ]
         libelle
         (Just message)
 
