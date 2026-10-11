@@ -21,7 +21,8 @@ import Task
 
 
 type alias Lecteur message =
-    { titre : String
+    { identifiant : String
+    , titre : String
     , fermer : message
     , actions : List (Element message)
     , contenu : Element message
@@ -33,7 +34,7 @@ vue : Contexte -> Dimensions -> Float -> T.Transition Bool -> Lecteur message ->
 vue contexte ecran reference transition lecteur =
     let
         debut =
-            round (min (toFloat ecran.hauteur * 0.32) (max 12 (reference + 14)))
+            ceiling (min (toFloat ecran.hauteur * 0.32) (max 12 (reference + 14)))
 
         progression =
             T.nombre
@@ -47,7 +48,7 @@ vue contexte ecran reference transition lecteur =
                 transition
     in
     Dialogue.integrer <|
-        Dialogue.natifLecture debut "reading-card" lecteur.titre lecteur.fermer <|
+        Dialogue.natifLecture debut lecteur.identifiant "reading-card" lecteur.titre lecteur.fermer <|
             UI.layoutWith { options = [ UI.noStaticStyleSheet, Theme.focusPour contexte ] }
                 [ UI.width (UI.px (min 940 (max 200 (ecran.largeur - 24))))
                 , UI.height (UI.px (max 0 (ecran.hauteur - debut - 12)))

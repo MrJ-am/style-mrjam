@@ -1,4 +1,4 @@
-module MrJam.Accessibilite exposing (cellule, controle, decritPar, depliement, desactive, enteteColonne, etat, evitement, identifiant, infoBulle, masque, occupe, pressee, progression, rangee, restituerFocus, tableau, tabulation)
+module MrJam.Accessibilite exposing (cellule, compagnon, controle, decritPar, depliement, desactive, enteteColonne, etat, evitement, identifiant, infoBulle, masque, occupe, pressee, progression, rangee, restituerFocus, tableau, tabulation)
 
 {-| Sémantique publique des compositions applicatives. Chaque capacité est
 bornée par l'adaptateur commun : aucun nom d'attribut, classe ou style libre.
@@ -99,3 +99,7 @@ occupe =
 
 progression =
     Native.progression
+
+
+compagnon =
+    Native.compagnon

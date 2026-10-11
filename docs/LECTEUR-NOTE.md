@@ -23,8 +23,10 @@ consommateur conserve l'idempotence de ses opérations et événements métier.
 Le pont manipule uniquement la saisie native, la capture de pointeur, le focus
 et les événements d'aperçu/changement. Aucun nœud, style, HTML, animation ou
 rafraîchissement de présentation n'est produit par JavaScript. L'adaptateur
-Curseur.note a trois constantes : width100%, height44px, opacity0. Le proxy
-natif invisible couvre la surface elm-ui et conserve l'accès clavier. Label,
+Curseur.note a quatre constantes : width100%, height44px, opacity0 et pointer-events:none. Le proxy
+natif invisible conserve l’accès clavier ; les pointeurs ciblent la surface elm-ui,
+avec touch-action:none fixe. Cela évite qu’un input natif écrive avant un
+pointercancel (observé sur Chromium tactile). Label,
 barème, aide et noms d'événements sont fixes et contrôlés par l'AST central.
 
 Le porteur natif dialog ne peut recevoir une marge depuis son contenu elm-ui.
@@ -39,3 +41,11 @@ Firefox est une option explicite vers un binaire existant, sans installation
 ou fallback. lecture.py vérifie quatre formats, mouvement normal/réduit,
 défilement, changement de texte, focus et arrêt des frames. L'orchestrateur
 central exécute ces tests ; les parcours réels des consommateurs restent requis.
+
+Le lecteur reçoit aussi l’identifiant stable de la production affichée, exposé
+par le seul attribut `production-id`. Ce repère ne fournit aucune autorisation.
+Les tests des consommateurs peuvent ainsi vérifier le rattachement au contenu.
+
+La marge est arrondie au plafond pour ne pas recouvrir le bord fractionnaire de
+l’énoncé. fenetres.js restitue aussi le focus après disparition d’une aide, via
+une vérification en fin de focusout ; aucun rafraîchissement permanent.

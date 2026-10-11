@@ -21,9 +21,9 @@ natif identifiant titre fermer contenu =
 {-| La marge du porteur dialog n'est pas réglable par elm-ui, qui construit son
 contenu. Valeur unique bornée ; aucune propriété CSS configurable.
 -}
-natifLecture : Int -> String -> String -> message -> Html message -> Html message
-natifLecture hauteur identifiant titre fermer contenu =
-    natifAvec [ margeLecture hauteur ] identifiant titre fermer contenu
+natifLecture : Int -> String -> String -> String -> message -> Html message -> Html message
+natifLecture hauteur production identifiant titre fermer contenu =
+    natifAvec [ margeLecture hauteur, Attributs.attribute "production-id" production ] identifiant titre fermer contenu
 
 
 margeLecture : Int -> Html.Attribute message

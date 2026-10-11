@@ -89,7 +89,8 @@ vue m =
                 m.ecran
                 100
                 m.transition
-                { titre = "Rédaction de contrôle"
+                { identifiant = "lecture-" ++ String.fromInt m.texte
+                , titre = "Rédaction de contrôle"
                 , fermer = Fermer
                 , actions = [ composants.boutonSecondaire "Autre texte" AutreTexte, composants.boutonSecondaire "Fermer la rédaction" Fermer ]
                 , contenu = Math.document (String.join "\n" (List.repeat 60 ("  Étape " ++ String.fromInt m.texte ++ " avec $x^2$ et sa conséquence.")))

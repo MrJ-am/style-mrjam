@@ -1,4 +1,4 @@
-module MrJam.Controles exposing (Intention(..), action, actionAvecContenu, actionAvecContenuPour, actionPour, icone, iconePour)
+module MrJam.Controles exposing (Intention(..), action, actionAvecContenu, actionAvecContenuPour, actionPour, icone, iconePour, surface)
 
 {-| Moteur interne des actions. Les applications utilisent les noms sémantiques
 exposés par MrJam, Documents et Disposition, sans attributs décoratifs.
@@ -98,7 +98,7 @@ actionAvecContenuPour contexte intention attributs contenu message =
                 _ ->
                     []
     in
-    Saisie.button
+    surface
         ([ UI.height (UI.minimum 34 UI.shrink)
          , UI.width (UI.minimum 34 UI.shrink)
          , UI.paddingXY 10 6
@@ -139,6 +139,15 @@ actionAvecContenuPour contexte intention attributs contenu message =
         { onPress = message
         , label = contenu
         }
+
+
+{-| Entrée commune des surfaces spécialisées du socle (billes et poignées).
+Le composant appelant possède leur forme, ce moteur conserve l'action elm-ui.
+Les applications utilisent les façades sémantiques, jamais cette entrée interne.
+-}
+surface : List (Attribute message) -> { onPress : Maybe message, label : Element message } -> Element message
+surface =
+    Saisie.button
 
 
 {-| Une icône visible, un nom accessible et un titre au survol.

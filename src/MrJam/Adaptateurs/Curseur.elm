@@ -50,6 +50,7 @@ note valeur lecture changer apercu =
             , A.style "width" "100%"
             , A.style "height" "44px"
             , A.style "opacity" "0"
+            , A.style "pointer-events" "none"
             , Evenements.onInput (String.toFloat >> Maybe.withDefault valeur >> changer)
             , Evenements.on "change" (D.map changer (D.at [ "target", "value" ] D.string |> D.andThen flottant))
             , Evenements.on "mrjam-note-apercu" (D.map apercu (D.field "detail" (D.nullable D.float)))
@@ -67,6 +68,8 @@ flottant texte =
             D.fail "Valeur de note non numérique"
 
 
-noteRelative : Element.Attribute message
+noteRelative : List (Element.Attribute message)
 noteRelative =
-    Element.htmlAttribute (A.attribute "data-mrjam-note-relative" "")
+    [ Element.htmlAttribute (A.attribute "data-mrjam-note-relative" "")
+    , Element.htmlAttribute (A.style "touch-action" "none")
+    ]

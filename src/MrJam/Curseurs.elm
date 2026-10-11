@@ -145,16 +145,17 @@ note contexte reponse apercu changer previsualiser =
     UI.row [ UI.width UI.fill, UI.spacing 8 ]
         [ UI.text "0"
         , UI.el
-            [ UI.width UI.fill
-            , UI.height (UI.px 44)
-            , Native.noteRelative
-            , Manipulation.test "grade-slider"
-            , UI.focused [ Bordure.glow couleurs.accent 3 ]
-            , UI.inFront
+            ([ UI.width UI.fill
+             , UI.height (UI.px 44)
+             , Manipulation.test "grade-slider"
+             , UI.focused [ Bordure.glow couleurs.accent 3 ]
+             , UI.inFront
                 (UI.el [ UI.width UI.fill, UI.height (UI.px 44) ]
                     (Native.note valeur lecture changer previsualiser)
                 )
-            ]
+             ]
+                ++ Native.noteRelative
+            )
             (UI.el
                 [ UI.width UI.fill
                 , UI.height (UI.px 4)

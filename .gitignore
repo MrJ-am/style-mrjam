@@ -14,3 +14,5 @@ ateliers/logo/test-results/
 ateliers/logo/verification/captures/
 ateliers/logo/verification/rasters/
 ateliers/logo/verification/browser-results.json
+
+.cache/geometrie.js
