@@ -1,4 +1,4 @@
-module MrJam.Adaptateurs.Saisie exposing (date, dateHeure, echap, identifie, intrinseque, nombre, soumettre)
+module MrJam.Adaptateurs.Saisie exposing (date, dateHeure, echap, identifie, intrinseque, nombre, soumettre, soumettreChamps)
 
 {-| Capacités natives absentes d'Element.Input1.1.8 : types date/nombre,
 contrat de reprise de focus, validation clavier et dimensions intrinsèques.
@@ -57,6 +57,25 @@ identifie contrat =
 soumettre : message -> Attribute message
 soumettre message =
     htmlAttribute (Evenements.preventDefaultOn "keydown" (touche "Enter" True message))
+
+
+{-| Soumission d'un groupe de champs : Entrée sur un bouton conserve son action.
+-}
+soumettreChamps : message -> Attribute message
+soumettreChamps message =
+    htmlAttribute
+        (Evenements.preventDefaultOn "keydown"
+            (Decode.at [ "target", "tagName" ] Decode.string
+                |> Decode.andThen
+                    (\nom ->
+                        if nom == "INPUT" then
+                            touche "Enter" True message
+
+                        else
+                            Decode.fail "Hors champ de saisie"
+                    )
+            )
+        )
 
 
 echap : Bool -> message -> Attribute message

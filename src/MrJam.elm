@@ -35,6 +35,7 @@ module MrJam exposing
     , section
     , selecteur
     , separateur
+    , soumissionDansChamps
     , sousTitre
     , texteSecondaire
     , zoneTexte
@@ -65,6 +66,13 @@ import MrJam.Adaptateurs.Texte as Texte
 import MrJam.Controles as Controles exposing (Intention(..))
 import MrJam.Identite as Identite
 import MrJam.Theme as Theme exposing (Contexte)
+
+
+{-| Formulaire sans détourner Entrée sur ses commandes de navigation.
+-}
+soumissionDansChamps : message -> Element message -> Element message
+soumissionDansChamps message contenu =
+    el [ width fill, Native.soumettreChamps message ] contenu
 
 
 {-| Les composants d’une vue partagent cette intention de marque. Les variantes
