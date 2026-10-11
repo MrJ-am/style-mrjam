@@ -1,0 +1,18 @@
+{
+  "revision_avant": "508f964812ec3316248646ccf0e92492653f82f0",
+  "raison": "Mission du propriétaire du 11 octobre 2026 : aucune CI/CD satellite ni relais. Recettes exactes archivées, fonctions utiles transférées avant retrait.",
+  "workflows": [
+    {
+      "chemin_original": ".github/workflows/pages.yml",
+      "archive": "coordination/archive/workflows-20261011/pages.yml.archive",
+      "sha256": "da55741babe4b7cf28b8446a2aca166eb6cb270fb417ca110290a7cc3e81c6bf",
+      "fonction_centrale": "style-logo : analyse, génération, Elm, geometry/browser/raster ; publication Pages satellite retirée"
+    },
+    {
+      "chemin_original": ".github/workflows/verification.yml",
+      "archive": "coordination/archive/workflows-20261011/verification.yml.archive",
+      "sha256": "d67537fd48c521465569c459dd14c0c5d460f9bfb5ab9f75bb56dbc3a78b994d",
+      "fonction_centrale": "style : architecture, galerie et interactions centrales"
+    }
+  ]
+}
