@@ -56,7 +56,8 @@ existant : ce pont commun conserve `trust=false`, MathML et le repli textuel.
 les sémantiques nécessaires ; `MrJam.pageAccessible cible titre contenu` porte
 le lien d’évitement révélé par le focus elm-ui, testé au clavier.
 
-`MrJam.Videos` reçoit la `Source` du cours et conserve un `Modele` par instance.
+`MrJam.Videos` reçoit la `Source` du cours et conserve un `Modele` par lecteur logique. Les repères DOM actuels
+supposent un seul lecteur affiché à la fois dans la page.
 Raccorder `mettreAJour` et `Cmd.map` dans update ; appeler `quitter` lorsque la
 vue quitte le lecteur, pour invalider ses promesses sans perdre ses positions.
 Charger `assets/mrjam/videos.js` et le SDK Vimeo local déjà présent. Seul
@@ -65,3 +66,11 @@ L’adaptateur natif borne la surface16/9 et les attributs de l’iframe. Le pon
 n’écrit aucun style et ne crée aucun DOM ordinaire. Ses tests isolés exercent
 KaTeX0.18.7 réel et un SDK simulé ; ils ne prouvent pas la disponibilité de Vimeo.
 Ces capacités n’ajoutent aucun backend ni service.
+
+`MrJam.Manipulation` mutualise le rendu des prises et du fantôme elm-ui. Le
+`Geste` est transitoire, jamais sérialisé avec le document métier. Un aperçu
+réutilise les mêmes constructeurs de pièces, retire IDs/cibles et reste inerte.
+Les fonctions de marqueurs nomment leurs capacités ; aucun nom d'attribut/CSS
+libre. `Transitions.abonnementGeste` s'abonne seulement pendant la prise et
+transmet le delta au pont navigateur pour le défilement. `zoom` borne50–150%.
+Les gestes métier, preuves et historiques restent dans le consommateur.

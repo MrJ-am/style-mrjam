@@ -14,6 +14,7 @@ import Element.Input as Entree
 import Element.Region as Region
 import MrJam.Adaptateurs.Accessibilite as Accessibilite
 import MrJam.Adaptateurs.Constructions as Formes
+import MrJam.Adaptateurs.Manipulation as Gestes
 import MrJam.OKLab as OKLab
 
 
@@ -151,10 +152,10 @@ emboitableAvec format etat attributs entete cavites pied =
                 []
 
              else
-                [ UI.el [ Formes.repere Formes.Traverse, UI.width UI.fill, UI.height (UI.px 10), Fond.color jaune ] UI.none ]
+                [ UI.el (Gestes.prise ++ [ Formes.repere Formes.Traverse, UI.width UI.fill, UI.height (UI.px 10), Fond.color jaune ]) UI.none ]
             )
                 ++ [ UI.row [ UI.width UI.fill, UI.spacing 0 ]
-                        [ UI.el [ Formes.repere Formes.Epine, UI.width (UI.px 12), UI.height UI.fill, Fond.color jaune ] UI.none
+                        [ UI.el (Gestes.prise ++ [ Formes.repere Formes.Epine, UI.width (UI.px 12), UI.height UI.fill, Fond.color jaune ]) UI.none
                         , UI.el [ Formes.repere Formes.Cavite, UI.width (UI.minimum 0 UI.fill), UI.paddingEach { top = 7, bottom = 7, left = 9, right = 0 } ] contenu
                         ]
                    ]
@@ -228,6 +229,7 @@ emboitableAvec format etat attributs entete cavites pied =
              , Fond.color jaune
              , Bordure.roundEach { topLeft = 5, topRight = 5, bottomLeft = 0, bottomRight = 0 }
              ]
+                ++ Gestes.prise
                 ++ Formes.encocheEntete
             )
             entete
@@ -275,6 +277,7 @@ emboitableAvec format etat attributs entete cavites pied =
                      , Fond.color jaune
                      , Bordure.roundEach { topLeft = 0, topRight = 0, bottomLeft = 5, bottomRight = 5 }
                      ]
+                        ++ Gestes.prise
                         ++ Formes.encochePied
                     )
                     pied
@@ -327,6 +330,7 @@ propositionNiveau niveau attributs contenu =
                     couleur 0.8627799 0.09821111 142.98792553
             )
          ]
+            ++ Gestes.prise
             ++ Formes.objet
             ++ attributs
         )
@@ -418,7 +422,20 @@ espace dimensions commandes palette canevas statut =
         , Fond.color (couleur 0.98386999 0.00251617 228.78342335)
         , Police.color (couleur 0.33176209 0.04255047 183.46459586)
         ]
-        [ UI.el [ UI.width UI.fill, UI.paddingXY 14 8, Fond.color (UI.rgb 1 1 1), Bordure.widthEach { bottom = 1, top = 0, left = 0, right = 0 }, Bordure.color (couleur 0.89443874 0.01249561 177.98573901) ] commandes
+        [ UI.el
+            [ UI.width UI.fill
+            , UI.paddingXY 14
+                (if dimensions.hauteur < 500 then
+                    4
+
+                 else
+                    8
+                )
+            , Fond.color (UI.rgb 1 1 1)
+            , Bordure.widthEach { bottom = 1, top = 0, left = 0, right = 0 }
+            , Bordure.color (couleur 0.89443874 0.01249561 177.98573901)
+            ]
+            commandes
         , UI.row [ UI.width UI.fill, UI.height (UI.minimum 0 UI.fill), UI.clip ]
             [ UI.el [ Formes.repere Formes.Palette, UI.width (UI.px largeurPalette), UI.height (UI.minimum 0 UI.fill), UI.scrollbars, UI.paddingXY 10 12, Fond.color (couleur 0.9638412 0.00444983 179.73377469), Bordure.widthEach { right = 1, bottom = 0, top = 0, left = 0 }, Bordure.color (couleur 0.87427756 0.01503221 175.66661719) ] palette
             , UI.el [ UI.width (UI.minimum 0 UI.fill), UI.height (UI.minimum 0 UI.fill), UI.clip ] canevas

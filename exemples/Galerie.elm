@@ -4,7 +4,7 @@ import Browser
 import Element as UI
 import Html exposing (Html)
 import MrJam exposing (..)
-import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Accessibilite as Accessibilite
 import MrJam.Disposition as Disposition
 import MrJam.Donnees as Donnees
 import MrJam.Fenetres as Fenetres

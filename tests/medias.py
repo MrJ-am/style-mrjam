@@ -91,6 +91,7 @@ def verifier(javascript, katex):
                         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), largeur
                         assert bouton.bounding_box()['height'] >= 44
                         bouton.focus()
+                        nombre = page.evaluate('lecteurs.length')
                         bouton.press('Enter')
                         iframe = page.locator('iframe')
                         expect(iframe).to_have_count(1)
@@ -100,6 +101,7 @@ def verifier(javascript, katex):
                         cadre = iframe.bounding_box()
                         assert abs(cadre['width'] / cadre['height'] - 16 / 9) < .02, cadre
                         expect(page.get_by_text('Ouverture de la vidéo…', exact=True)).to_have_count(0)
+                        assert page.evaluate('lecteurs.length') == nombre + 1, 'Le passage prêt ne recrée pas le SDK'
                         page.evaluate("lecteurs.at(-1).evenements.timeupdate({seconds:125})")
                         page.get_by_role('button', name='Arrêter la vidéo', exact=True).click()
                         expect(iframe).to_have_count(0)

@@ -93,35 +93,39 @@ mettreAJour : Message -> Modele -> ( Modele, Cmd Message )
 mettreAJour message (Modele modele) =
     case message of
         Activer source depuisDebut ->
-            let
-                position =
-                    if depuisDebut then
-                        0
+            if modele.phase /= Affiche then
+                ( Modele modele, Cmd.none )
 
-                    else
-                        Dict.get (cle source) modele.positions |> Maybe.withDefault (toFloat source.debut)
-
-                phase =
-                    adresse source position |> Maybe.map (Ouverture source) |> Maybe.withDefault (Echec source)
-            in
-            ( Modele
-                { modele
-                    | generation = modele.generation + 1
-                    , phase = phase
-                    , positions =
+            else
+                let
+                    position =
                         if depuisDebut then
-                            Dict.remove (cle source) modele.positions
+                            0
 
                         else
-                            modele.positions
-                }
-            , case phase of
-                Echec _ ->
-                    focus "video-externe-secours"
+                            Dict.get (cle source) modele.positions |> Maybe.withDefault (toFloat source.debut)
 
-                _ ->
-                    Cmd.none
-            )
+                    phase =
+                        adresse source position |> Maybe.map (Ouverture source) |> Maybe.withDefault (Echec source)
+                in
+                ( Modele
+                    { modele
+                        | generation = modele.generation + 1
+                        , phase = phase
+                        , positions =
+                            if depuisDebut then
+                                Dict.remove (cle source) modele.positions
+
+                            else
+                                modele.positions
+                    }
+                , case phase of
+                    Echec _ ->
+                        focus "video-externe-secours"
+
+                    _ ->
+                        Cmd.none
+                )
 
         Arreter ->
             ( quitter (Modele modele), focus "video-activer" )
@@ -189,12 +193,19 @@ vue source (Modele modele) =
 
         lecture active url charge =
             surface
-                [ if charge then
-                    UI.el [ A.etat, A.occupe ] (MrJam.texteSecondaire "Ouverture de la vidéo…")
+                [ UI.el
+                    [ UI.width UI.fill
+                    , UI.inFront
+                        (UI.el [ UI.width UI.fill ]
+                            (if charge then
+                                UI.el [ UI.width UI.fill, UI.padding 16, A.etat, A.occupe, Fond.color (UI.rgb 1 1 1) ] (MrJam.texteSecondaire "Ouverture de la vidéo…")
 
-                  else
-                    UI.none
-                , UI.el [ UI.width UI.fill ] (Native.lecteur { url = url, titre = active.titre, generation = modele.generation } (Evenement active modele.generation))
+                             else
+                                UI.none
+                            )
+                        )
+                    ]
+                    (Native.lecteur { url = url, titre = active.titre, generation = modele.generation } (Evenement active modele.generation))
                 , MrJam.boutonSecondaire "Arrêter la vidéo" Arreter
                 ]
 

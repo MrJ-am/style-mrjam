@@ -1,4 +1,4 @@
-module MrJam.Transitions exposing (Cycle(..), Player, Transition, abonnement, abonnementLecteur, actif, advance, aller, arrive, courant, init, initialiser, mettreAJour, nombre, pause, reduire, seek, start, tick)
+module MrJam.Transitions exposing (Cycle(..), Player, Transition, abonnement, abonnementGeste, abonnementLecteur, actif, advance, aller, arrive, courant, init, initialiser, mettreAJour, nombre, pause, reduire, seek, start, tick)
 
 {-| Politique commune de transitions et lecteur Elm Animator 2.0.0.
 Le lecteur existant est déplacé ici sans changer ses calculs ; géométrie et
@@ -271,6 +271,18 @@ abonnementLecteur : Bool -> (Time.Posix -> message) -> Player -> Sub message
 abonnementLecteur reduite message lecteur =
     if lecteur.running && not reduite then
         Browser.Events.onAnimationFrame message
+
+    else
+        Sub.none
+
+
+{-| Défilement piloté par un geste actif, pas une animation décorative.
+Le delta évite de faire dépendre la vitesse de la fréquence de l'écran.
+-}
+abonnementGeste : Bool -> (Float -> message) -> Sub message
+abonnementGeste actifGeste message =
+    if actifGeste then
+        Browser.Events.onAnimationFrameDelta message
 
     else
         Sub.none

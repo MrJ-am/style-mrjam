@@ -1,4 +1,4 @@
-module MrJam.Accessibilite exposing (controle, decritPar, depliement, etat, evitement, identifiant, infoBulle, masque, tabulation)
+module MrJam.Accessibilite exposing (cellule, controle, decritPar, depliement, desactive, enteteColonne, etat, evitement, identifiant, infoBulle, masque, occupe, pressee, progression, rangee, restituerFocus, tableau, tabulation)
 
 {-| Sémantique publique des compositions applicatives. Chaque capacité est
 bornée par l'adaptateur commun : aucun nom d'attribut, classe ou style libre.
@@ -63,3 +63,39 @@ evitement cible =
                 { url = "#" ++ cible, label = UI.text "Aller au contenu" }
             )
         )
+
+
+restituerFocus =
+    Native.restituerFocus
+
+
+tableau =
+    Native.tableau
+
+
+rangee =
+    Native.rangee
+
+
+enteteColonne =
+    Native.enteteColonne
+
+
+cellule =
+    Native.cellule
+
+
+pressee =
+    Native.pressee
+
+
+desactive =
+    Native.desactive
+
+
+occupe =
+    Native.occupe
+
+
+progression =
+    Native.progression

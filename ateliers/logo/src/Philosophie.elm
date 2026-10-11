@@ -13,7 +13,7 @@ import Element.Font as Police
 import Element.Region as Region
 import Html
 import MrJam
-import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Accessibilite as Accessibilite
 import MrJam.Disposition as Disposition
 import Palette.Couleurs as Palette
 import Shared.Licorne as Licorne

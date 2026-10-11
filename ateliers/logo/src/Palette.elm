@@ -12,8 +12,7 @@ import Element.Font as Police
 import Element.Region as Region
 import Html
 import MrJam
-import MrJam.Adaptateurs.Accessibilite as Accessibilite
-import MrJam.Adaptateurs.Texte as Texte
+import MrJam.Accessibilite as Accessibilite
 import MrJam.Diagrammes as Diagrammes
 import MrJam.Disposition as Disposition
 import Palette.Couleurs as P exposing (Role(..))
@@ -329,7 +328,7 @@ illustration identifiant titre rendu =
 
 code : String -> Element msg
 code contenu =
-    el [ width fill, Police.size 12, Police.family [ Police.monospace ] ] (Element.paragraph ([ width fill ] ++ Texte.litteral) [ Texte.texte contenu ])
+    el [ width fill, Police.size 12, Police.family [ Police.monospace ] ] (MrJam.litteral contenu)
 
 
 carteCouleur : Modele -> Int -> Role -> Element Message

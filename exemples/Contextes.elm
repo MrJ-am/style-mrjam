@@ -6,7 +6,7 @@ import Element
 import Element.Keyed as Keyed
 import Html exposing (Html)
 import MrJam
-import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Accessibilite as Accessibilite
 import MrJam.Animations as Animations
 import MrJam.Contexte as Contexte
 import MrJam.Disposition as Disposition

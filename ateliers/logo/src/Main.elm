@@ -16,7 +16,7 @@ import Element.Font as Font
 import Element.Region as Region
 import Html
 import MrJam
-import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Accessibilite as Accessibilite
 import MrJam.Disposition as Disposition
 import MrJam.Transitions as Player exposing (Cycle(..))
 import Shared.Licorne as Licorne

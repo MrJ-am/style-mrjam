@@ -22,6 +22,7 @@ module MrJam exposing
     , lien
     , lienActif
     , lienExterne
+    , litteral
     , mapper
     , motDePasse
     , nouveauMotDePasse
@@ -570,6 +571,14 @@ sectionPour contexte libelle contenu =
 emphase : String -> Element message
 emphase contenu =
     el [ Police.italic ] (Texte.emphase contenu)
+
+
+{-| Texte littéral : espaces/retours conservés, texte long replié, aucune
+interprétation HTML. Police et taille héritées de la composition appelante.
+-}
+litteral : String -> Element message
+litteral contenu =
+    paragraph ([ width fill ] ++ Texte.litteral) [ Texte.texte contenu ]
 
 
 paragraphe : String -> Element message

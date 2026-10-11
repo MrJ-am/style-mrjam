@@ -3,7 +3,7 @@ module AccessibiliteTest exposing (suite)
 import Element
 import Expect
 import Html.Attributes as Attributs
-import MrJam.Adaptateurs.Accessibilite as Accessibilite
+import MrJam.Accessibilite as Accessibilite
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector as Selector
