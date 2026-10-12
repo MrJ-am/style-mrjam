@@ -30,6 +30,9 @@ def verifier(javascript, signature):
         try:
             for largeur in (320, 768, 1440):
                 page = navigateur.new_page(viewport={'width': largeur, 'height': 1000})
+                # Installer avant Elm, qui mémorise requestAnimationFrame au
+                # chargement ; pause ciblée seulement pour l'inversion.
+                page.clock.install()
                 erreurs = []
                 page.on('pageerror', lambda erreur: erreurs.append(str(erreur)))
                 page.set_content('<!doctype html><html lang="fr"><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><div id="application"></div></body></html>')
@@ -176,13 +179,22 @@ def verifier(javascript, signature):
                 page.wait_for_timeout(120)
                 assert frames.inner_text() == frames_repos == '0'
                 basculer.focus()
+                # Geler uniquement ce passage : les RPC du pilote peuvent
+                # dépasser les 400ms du produit. L'horloge du navigateur fait
+                # avancer le vrai code Elm et ses frames, sans élargir les
+                # seuils ni modifier la durée de la transition.
+                page.clock.pause_at(page.evaluate('Date.now()'))
                 basculer.press('Space')
+                page.clock.run_for(160)
                 expect(page.locator('#etat-aide')).to_have_text('Aide ouverte')
-                page.wait_for_function('() => {let h=document.getElementById("aide-animee").getBoundingClientRect().height;return h>32 && h<80}')
+                hauteur_ouverture = aide.bounding_box()['height']
+                assert 32 < hauteur_ouverture < 80, {'hauteur': hauteur_ouverture, 'frames': frames.inner_text()}
                 basculer.dispatch_event('click')
+                page.clock.run_for(16)
                 expect(page.locator('#etat-aide')).to_have_text('Aide fermée')
                 assert 0 < aide.bounding_box()['height'] < 96, 'inversion sans saut à la destination'
                 expect(basculer).to_be_focused()
+                page.clock.resume()
                 page.wait_for_function('document.getElementById("aide-animee").getBoundingClientRect().height===0')
                 for _ in range(5):
                     basculer.dispatch_event('click')
