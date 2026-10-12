@@ -1,5 +1,6 @@
 """Lecteur commun : document défilant, commandes disponibles, focus et repos."""
 import argparse
+import os
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -27,7 +28,7 @@ def verifier(javascript):
         threading.Thread(target=serveur.serve_forever, daemon=True).start()
         try:
             with sync_playwright() as pilote:
-                navigateur = pilote.chromium.launch()
+                navigateur = pilote.chromium.launch(**({"executable_path": os.environ["CHROMIUM"]} if os.environ.get("CHROMIUM") else {}))
                 try:
                     for largeur, hauteur in ((320, 568), (390, 844), (1363, 936), (844, 390)):
                         for reduite in (False, True):

@@ -1,5 +1,6 @@
 """Notation facultative : saisie relative, zéro/absence, annulation et clavier."""
 import argparse
+import os
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -27,7 +28,7 @@ def verifier(javascript, firefox=None):
         try:
             with sync_playwright() as pilote:
                 for moteur in ('chromium', 'firefox') if firefox else ('chromium',):
-                    navigateur = getattr(pilote, moteur).launch(**({'executable_path': str(firefox)} if moteur == 'firefox' else {}))
+                    navigateur = getattr(pilote, moteur).launch(**({'executable_path': str(firefox)} if moteur == 'firefox' else ({'executable_path': os.environ['CHROMIUM']} if os.environ.get('CHROMIUM') else {})))
                     try:
                         for largeur in (320, 390, 1363):
                             page = navigateur.new_page(viewport={'width': largeur, 'height': 1000})
