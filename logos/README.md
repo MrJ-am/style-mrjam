@@ -43,6 +43,18 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Chemins 11 — explorer les trajets OKLCH vers le blanc
+
+[Six dessins, explications et SVG](essais/chemins-11/README.md) ·
+[Comparaison](essais/chemins-11/comparaison.png) ·
+[Graphique des chemins et du gamut](essais/chemins-11/chemins-oklch.png)
+
+Même silhouette et même teinte : comparaison du trajet direct, d’une baisse
+précoce du chroma, d’un fondu retardé et de trois couleurs d’arrivée.
+Le trajet linéaire vers le rose pâle est admissible ; celui vers le blanc
+sort légèrement du sRGB. Un chemin courbe permet d’atteindre le blanc
+sans clipping ni changement de teinte.
+
 ### Couleurs 10 — fondu vers un rose pâle, sans disparition
 
 [SVG factorisé](essais/Licorne-rose-10.svg) ·
