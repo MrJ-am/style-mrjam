@@ -1,0 +1,468 @@
+{
+  "depart": {
+    "L": 0.6915316393559333,
+    "C": 0.1686868573164192,
+    "h": 9.870301470439369,
+    "rgb": [
+      0.9411764750927288,
+      0.4078431303393587,
+      0.5176469846153582
+    ],
+    "linear": [
+      0.8713671286551161,
+      0.13843161006836927,
+      0.2307399767616315
+    ],
+    "gamut": true
+  },
+  "limitesLpourCfixe": [
+    {
+      "C": 0.1686868573164192,
+      "Lmax": 0.7335055179324137
+    },
+    {
+      "C": 0.05576125618779773,
+      "Lmax": 0.8956967480069598
+    },
+    {
+      "C": 0.025,
+      "Lmax": 0.9508255102383933
+    },
+    {
+      "C": 0,
+      "Lmax": 1
+    }
+  ],
+  "echantillonsParChemin": 1001,
+  "stopsParSvg": 501,
+  "validation": {
+    "lineaire-pale": {
+      "dansGamut": true,
+      "nombreHorsGamut": 0,
+      "rgbLineaireMaximum": [
+        0.9634508936641712,
+        0.591504309006508,
+        0.6321483785493551
+      ],
+      "rgbLineaireMinimum": [
+        0.8713671286551161,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": null,
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0.05576125618779773,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9837589680579694,
+          0.7926858295412796,
+          0.8164859464768011
+        ],
+        "linear": [
+          0.9634508936641712,
+          0.591504309006508,
+          0.6321483785493551
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 5.975611580632261e-08
+    },
+    "fondu-retarde": {
+      "dansGamut": true,
+      "nombreHorsGamut": 0,
+      "rgbLineaireMaximum": [
+        0.9634508936641712,
+        0.591504309006508,
+        0.6321483785493551
+      ],
+      "rgbLineaireMinimum": [
+        0.8713671286551161,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": null,
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0.05576125618779773,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9837589680579694,
+          0.7926858295412796,
+          0.8164859464768011
+        ],
+        "linear": [
+          0.9634508936641712,
+          0.591504309006508,
+          0.6321483785493551
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 2.1894163051464916e-07
+    },
+    "chroma-tot": {
+      "dansGamut": true,
+      "nombreHorsGamut": 0,
+      "rgbLineaireMaximum": [
+        0.9634508936641712,
+        0.591504309006508,
+        0.6321483785493551
+      ],
+      "rgbLineaireMinimum": [
+        0.819319626377929,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": null,
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0.05576125618779773,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9837589680579694,
+          0.7926858295412796,
+          0.8164859464768011
+        ],
+        "linear": [
+          0.9634508936641712,
+          0.591504309006508,
+          0.6321483785493551
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 2.6177446319203437e-07
+    },
+    "chroma-tard": {
+      "dansGamut": false,
+      "nombreHorsGamut": 655,
+      "rgbLineaireMaximum": [
+        1.0672515424169444,
+        0.591504309006508,
+        0.6321483785493551
+      ],
+      "rgbLineaireMinimum": [
+        0.8713671286551161,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": [
+        0.273,
+        0.927
+      ],
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0.05576125618779773,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9837589680579694,
+          0.7926858295412796,
+          0.8164859464768011
+        ],
+        "linear": [
+          0.9634508936641712,
+          0.591504309006508,
+          0.6321483785493551
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 1.5433347977924074e-07
+    },
+    "courbe-pale": {
+      "dansGamut": true,
+      "nombreHorsGamut": 0,
+      "rgbLineaireMaximum": [
+        0.9634508936641712,
+        0.591504309006508,
+        0.6321483785493551
+      ],
+      "rgbLineaireMinimum": [
+        0.8713671286551161,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": null,
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0.05576125618779773,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9837589680579694,
+          0.7926858295412796,
+          0.8164859464768011
+        ],
+        "linear": [
+          0.9634508936641712,
+          0.591504309006508,
+          0.6321483785493551
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 8.698491526004795e-08
+    },
+    "gris-clair": {
+      "dansGamut": true,
+      "nombreHorsGamut": 0,
+      "rgbLineaireMaximum": [
+        0.8713671286551161,
+        0.689585935292875,
+        0.6895859352928748
+      ],
+      "rgbLineaireMinimum": [
+        0.689585935292875,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": null,
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.8486445304530947,
+          0.8486445304530947,
+          0.8486445304530946
+        ],
+        "linear": [
+          0.689585935292875,
+          0.689585935292875,
+          0.6895859352928748
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 1.1460929652862141e-07
+    },
+    "lineaire-blanc": {
+      "dansGamut": false,
+      "nombreHorsGamut": 414,
+      "rgbLineaireMaximum": [
+        1.0112303469777302,
+        1.0,
+        1.0
+      ],
+      "rgbLineaireMinimum": [
+        0.8713671286551161,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": [
+        0.586,
+        0.999
+      ],
+      "arrivee": {
+        "L": 1,
+        "C": 0,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9999999999999999,
+          0.9999999999999999,
+          0.9999999999999999
+        ],
+        "linear": [
+          1,
+          1,
+          1
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 1.3742657077156446e-07
+    },
+    "courbe-blanc": {
+      "dansGamut": true,
+      "nombreHorsGamut": 0,
+      "rgbLineaireMaximum": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "rgbLineaireMinimum": [
+        0.8713671286551161,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": null,
+      "arrivee": {
+        "L": 1,
+        "C": 0,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9999999999999999,
+          0.9999999999999999,
+          0.9999999999999999
+        ],
+        "linear": [
+          1,
+          1,
+          1
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 2.758723159351303e-07
+    },
+    "courbe-tres-pale": {
+      "dansGamut": true,
+      "nombreHorsGamut": 0,
+      "rgbLineaireMaximum": [
+        0.967808072352468,
+        0.7813669414825168,
+        0.8010640736095167
+      ],
+      "rgbLineaireMinimum": [
+        0.8713671286551161,
+        0.13843161006836927,
+        0.2307399767616315
+      ],
+      "intervalleTobserveHorsGamut": null,
+      "arrivee": {
+        "L": 0.94,
+        "C": 0.025,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9857137911494315,
+          0.8969381309947831,
+          0.906864321671605
+        ],
+        "linear": [
+          0.967808072352468,
+          0.7813669414825168,
+          0.8010640736095167
+        ],
+        "gamut": true
+      },
+      "erreurApproximationMilieuxOKLabMax": 1.8269859699573014e-07
+    }
+  },
+  "variantes": [
+    {
+      "lettre": "A",
+      "nom": "lineaire-pale",
+      "titre": "Rose pâle, trajet direct",
+      "description": "L et C varient linéairement",
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0.05576125618779773,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9837589680579694,
+          0.7926858295412796,
+          0.8164859464768011
+        ],
+        "linear": [
+          0.9634508936641712,
+          0.591504309006508,
+          0.6321483785493551
+        ],
+        "gamut": true
+      }
+    },
+    {
+      "lettre": "B",
+      "nom": "chroma-tot",
+      "titre": "Chroma réduit plus tôt",
+      "description": "Même arrivée, trajet courbe",
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0.05576125618779773,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9837589680579694,
+          0.7926858295412796,
+          0.8164859464768011
+        ],
+        "linear": [
+          0.9634508936641712,
+          0.591504309006508,
+          0.6321483785493551
+        ],
+        "gamut": true
+      }
+    },
+    {
+      "lettre": "C",
+      "nom": "fondu-retarde",
+      "titre": "Fondu plus tardif",
+      "description": "Même trajet que A, parcouru autrement",
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0.05576125618779773,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9837589680579694,
+          0.7926858295412796,
+          0.8164859464768011
+        ],
+        "linear": [
+          0.9634508936641712,
+          0.591504309006508,
+          0.6321483785493551
+        ],
+        "gamut": true
+      }
+    },
+    {
+      "lettre": "D",
+      "nom": "gris-clair",
+      "titre": "Chroma final nul",
+      "description": "L final identique : arrivée grise",
+      "arrivee": {
+        "L": 0.8834787981302322,
+        "C": 0,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.8486445304530947,
+          0.8486445304530947,
+          0.8486445304530946
+        ],
+        "linear": [
+          0.689585935292875,
+          0.689585935292875,
+          0.6895859352928748
+        ],
+        "gamut": true
+      }
+    },
+    {
+      "lettre": "E",
+      "nom": "courbe-tres-pale",
+      "titre": "Rose très pâle",
+      "description": "L = 0,940 ; C = 0,025",
+      "arrivee": {
+        "L": 0.94,
+        "C": 0.025,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9857137911494315,
+          0.8969381309947831,
+          0.906864321671605
+        ],
+        "linear": [
+          0.967808072352468,
+          0.7813669414825168,
+          0.8010640736095167
+        ],
+        "gamut": true
+      }
+    },
+    {
+      "lettre": "F",
+      "nom": "courbe-blanc",
+      "titre": "Jusqu’au blanc",
+      "description": "L = 1 ; C = 0 · témoin d’effacement",
+      "arrivee": {
+        "L": 1,
+        "C": 0,
+        "h": 9.870301470439369,
+        "rgb": [
+          0.9999999999999999,
+          0.9999999999999999,
+          0.9999999999999999
+        ],
+        "linear": [
+          1,
+          1,
+          1
+        ],
+        "gamut": true
+      }
+    }
+  ]
+}

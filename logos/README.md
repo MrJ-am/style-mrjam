@@ -43,6 +43,90 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Chemins 11 — explorer les trajets OKLCH vers le blanc
+
+[Six dessins, explications et SVG](essais/chemins-11/README.md) ·
+[Comparaison](essais/chemins-11/comparaison.png) ·
+[Graphique des chemins et du gamut](essais/chemins-11/chemins-oklch.png)
+
+Même silhouette et même teinte : comparaison du trajet direct, d’une baisse
+précoce du chroma, d’un fondu retardé et de trois couleurs d’arrivée.
+Le trajet linéaire vers le rose pâle est admissible ; celui vers le blanc
+sort légèrement du sRGB. Un chemin courbe permet d’atteindre le blanc
+sans clipping ni changement de teinte.
+
+### Couleurs 10 — fondu vers un rose pâle, sans disparition
+
+[SVG factorisé](essais/Licorne-rose-10.svg) ·
+[Aperçu](essais/Licorne-rose-10.png)
+
+Le dégradé oblique reprend le trajet rose vers blanc de l’essai 07, mais
+s’arrête à environ 65 % du mélange sRGB : `#f06884` vers `#facad4`.
+La clarté augmente et le chroma diminue ; la fin du drapé conserve une couleur
+rose pâle. La silhouette factorisée, les transformations et le cadrage restent
+strictement identiques. Le dégradé sRGB est entièrement représentable, sans
+clipping. Masque inchangé et aperçu Chromium vérifiés.
+
+### Couleurs 09 — comparer clarté et chroma
+
+[Les trois dessins et SVG](essais/couleurs-09/README.md) ·
+[Planche comparative](essais/couleurs-09/comparaison.png)
+
+Trois dégradés obliques sur la forme approuvée : augmenter L à C constant,
+diminuer C à L constant, puis combiner les deux variations. Même teinte et
+mêmes amplitudes pour isoler les effets, sans sortir du gamut sRGB.
+
+### Couleurs 08 — dégradé oblique, drapé visible
+
+[SVG factorisé](essais/Licorne-rose-08.svg) ·
+[Aperçu](essais/Licorne-rose-08.png)
+
+La licorne reste rose sur fond blanc, avec uniquement le dégradé oblique retenu,
+du haut à droite vers le bas à gauche. Il relie le rose `#f06884` à un rose plus
+sourd `#c08094`, sans aller au blanc : la fin du drapé reste visible.
+L’absence du reste du corps peut suggérer l’invisibilité de la licorne.
+La silhouette factorisée approuvée de l’étude 06 est strictement inchangée ;
+seule la couleur finale du dégradé de l’essai 07 a été remplacée.
+
+### Couleurs 07 — forme approuvée, écusson et fondus
+
+[Planche comparative](essais/couleurs-07/comparaison.png) ·
+[Les cinq SVG et leurs aperçus](essais/couleurs-07/README.md)
+
+La forme de l’étude 06 est conservée exactement, sans modification des contours,
+des transformations ni des placements. Trois présentations sont comparées dans
+deux colonnes : haut vers bas et haut à droite vers bas à gauche. La version
+blanche unie est identique dans les deux colonnes. Le rose reste `#f06884`.
+
+### Étude 06 — espaces et raccords
+
+- [Licorne fractale 06 — SVG factorisé](essais/Licorne-fractale-06.svg)
+- [Aperçu](essais/Licorne-fractale-06.png)
+- [Comparaison des études 05 et 06](essais/Licorne-fractale-06-comparaison.png)
+- [Détails avant et après : crinière, corne, museau](essais/Licorne-fractale-06-details.png)
+
+Cinq départs de drapés sont légèrement réduits autour de leur pointe finale,
+qui reste fixe. Un espace d’environ quatre pixels à la taille native sépare
+désormais chaque drapé du grand contour voisin. Le couple de Visio, sa
+répétition sur vingt étages et les autres mèches restent identiques à l’étude 05.
+
+À la base de la corne, les quatre anciennes pièces de raccord sont remplacées
+par le Visio suivant dans l’alternance régulière : la pièce `piece-6` est
+réutilisée au rapport `1 / 0,65` autour de `(486, 20)`. L’extension s’arrête après
+cet élément pour laisser un espace avec l’oreille ; les treize couples déjà
+présents vers la pointe sont conservés exactement.
+
+Le petit Audio inférieur du museau est réduit à 88 % autour de `(780, 493)`,
+puis déplacé de trois pixels à gauche et huit vers le bas. Ses extrémités
+ne se chevauchent plus avec les deux formes voisines ; l’ouverture blanche
+est dégagée. Le contour Audio lui-même est inchangé.
+
+Le SVG réutilise les trois contours canoniques et les mêmes motifs factorisés,
+pour 406 occurrences développées. Vérifications : XML et références,
+similitudes sans étirement, contours et placements non concernés identiques,
+pointes fixes, espacements mesurés sur les contours échantillonnés, cadrage
+et rendu à taille native et à 300 pixels de large. Aucun JPEG incorporé.
+
 ### Étude 05 — le même drapé jusqu’à la pointe
 
 - [Licorne fractale 05 — SVG factorisé](essais/Licorne-fractale-05.svg)

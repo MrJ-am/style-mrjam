@@ -1,0 +1,133 @@
+{
+  "nombreSvg": 6,
+  "formesEtTransformationsInchangees": true,
+  "teinteDesTrajectoiresConstante": true,
+  "LNonDecroissantCNonCroissant": true,
+  "pointsParTrajectoire": 1001,
+  "stopsParSvg": 501,
+  "erreurMilieuInterpolationOKLabMax": 2.758723159351303e-07,
+  "extremaPolynomiaux": {
+    "lineaire-pale": {
+      "valide": true,
+      "extremaCanauxLineaires": [
+        {
+          "min": 0.8713671286551161,
+          "max": 0.9634508936641718,
+          "erreurReconstruction": 2.220446049250313e-15
+        },
+        {
+          "min": 0.13843161006836982,
+          "max": 0.5915043090065082,
+          "erreurReconstruction": 1.2212453270876722e-15
+        },
+        {
+          "min": 0.23073997676163163,
+          "max": 0.6321483785493559,
+          "erreurReconstruction": 1.1102230246251565e-15
+        }
+      ]
+    },
+    "chroma-tot": {
+      "valide": true,
+      "extremaCanauxLineaires": [
+        {
+          "min": 0.8193196157461785,
+          "max": 0.96345089366417,
+          "erreurReconstruction": 2.3314683517128287e-15
+        },
+        {
+          "min": 0.1384316100683693,
+          "max": 0.5915043090065077,
+          "erreurReconstruction": 1.2212453270876722e-15
+        },
+        {
+          "min": 0.23073997676163127,
+          "max": 0.6321483785493556,
+          "erreurReconstruction": 8.881784197001252e-16
+        }
+      ]
+    },
+    "fondu-retarde": {
+      "valide": true,
+      "extremaCanauxLineaires": [
+        {
+          "min": 0.8713671286551152,
+          "max": 0.9634508936641714,
+          "erreurReconstruction": 1.5543122344752192e-15
+        },
+        {
+          "min": 0.13843161006836968,
+          "max": 0.5915043090065076,
+          "erreurReconstruction": 1.1102230246251565e-15
+        },
+        {
+          "min": 0.230739976761631,
+          "max": 0.6321483785493553,
+          "erreurReconstruction": 6.661338147750939e-16
+        }
+      ]
+    },
+    "gris-clair": {
+      "valide": true,
+      "extremaCanauxLineaires": [
+        {
+          "min": 0.689585935292875,
+          "max": 0.8713671286551159,
+          "erreurReconstruction": 1.7763568394002505e-15
+        },
+        {
+          "min": 0.13843161006836976,
+          "max": 0.6895859352928753,
+          "erreurReconstruction": 1.1102230246251565e-15
+        },
+        {
+          "min": 0.23073997676163152,
+          "max": 0.6895859352928753,
+          "erreurReconstruction": 8.881784197001252e-16
+        }
+      ]
+    },
+    "lineaire-blanc": {
+      "valide": false,
+      "extremaCanauxLineaires": [
+        {
+          "min": 0.871367128655116,
+          "max": 1.0112303517586414,
+          "erreurReconstruction": 2.4424906541753444e-15
+        },
+        {
+          "min": 0.13843161006837018,
+          "max": 1.0000000000000007,
+          "erreurReconstruction": 1.6653345369377348e-15
+        },
+        {
+          "min": 0.23073997676163122,
+          "max": 1.0000000000000007,
+          "erreurReconstruction": 1.4432899320127035e-15
+        }
+      ]
+    },
+    "chroma-tard": {
+      "valide": false,
+      "extremaCanauxLineaires": [
+        {
+          "min": 0.871367128655115,
+          "max": 1.0672515477501177,
+          "erreurReconstruction": 2.886579864025407e-15
+        },
+        {
+          "min": 0.1384316100683693,
+          "max": 0.5915043090065076,
+          "erreurReconstruction": 1.1102230246251565e-15
+        },
+        {
+          "min": 0.23073997676163063,
+          "max": 0.6321483785493557,
+          "erreurReconstruction": 8.881784197001252e-16
+        }
+      ]
+    }
+  },
+  "referencesSvg": "résolues",
+  "captures": "Chromium, images autonomes décodées sans erreur"
+}
