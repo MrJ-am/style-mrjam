@@ -24,6 +24,10 @@ logoPour nom =
         image [ width (px 44), height (px 44) ]
             { src = "assets/mrjam/palette/Palette-Visio.svg", description = "Logo Vision" }
 
+    else if nom == "Audition" then
+        image [ width (px 44), height (px 44) ]
+            { src = "assets/mrjam/palette/Palette-Audio.svg", description = "Logo Audition" }
+
     else
         logo
 
