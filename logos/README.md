@@ -43,6 +43,18 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Couleurs 10 — fondu vers un rose pâle, sans disparition
+
+[SVG factorisé](essais/Licorne-rose-10.svg) ·
+[Aperçu](essais/Licorne-rose-10.png)
+
+Le dégradé oblique reprend le trajet rose vers blanc de l’essai 07, mais
+s’arrête à environ 65 % du mélange sRGB : `#f06884` vers `#facad4`.
+La clarté augmente et le chroma diminue ; la fin du drapé conserve une couleur
+rose pâle. La silhouette factorisée, les transformations et le cadrage restent
+strictement identiques. Le dégradé sRGB est entièrement représentable, sans
+clipping. Masque inchangé et aperçu Chromium vérifiés.
+
 ### Couleurs 09 — comparer clarté et chroma
 
 [Les trois dessins et SVG](essais/couleurs-09/README.md) ·
