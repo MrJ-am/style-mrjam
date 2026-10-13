@@ -43,6 +43,35 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Étude 06 — espaces et raccords
+
+- [Licorne fractale 06 — SVG factorisé](essais/Licorne-fractale-06.svg)
+- [Aperçu](essais/Licorne-fractale-06.png)
+- [Comparaison des études 05 et 06](essais/Licorne-fractale-06-comparaison.png)
+- [Détails avant et après : crinière, corne, museau](essais/Licorne-fractale-06-details.png)
+
+Cinq départs de drapés sont légèrement réduits autour de leur pointe finale,
+qui reste fixe. Un espace d’environ quatre pixels à la taille native sépare
+désormais chaque drapé du grand contour voisin. Le couple de Visio, sa
+répétition sur vingt étages et les autres mèches restent identiques à l’étude 05.
+
+À la base de la corne, les quatre anciennes pièces de raccord sont remplacées
+par le Visio suivant dans l’alternance régulière : la pièce `piece-6` est
+réutilisée au rapport `1 / 0,65` autour de `(486, 20)`. L’extension s’arrête après
+cet élément pour laisser un espace avec l’oreille ; les treize couples déjà
+présents vers la pointe sont conservés exactement.
+
+Le petit Audio inférieur du museau est réduit à 88 % autour de `(780, 493)`,
+puis déplacé de trois pixels à gauche et huit vers le bas. Ses extrémités
+ne se chevauchent plus avec les deux formes voisines ; l’ouverture blanche
+est dégagée. Le contour Audio lui-même est inchangé.
+
+Le SVG réutilise les trois contours canoniques et les mêmes motifs factorisés,
+pour 406 occurrences développées. Vérifications : XML et références,
+similitudes sans étirement, contours et placements non concernés identiques,
+pointes fixes, espacements mesurés sur les contours échantillonnés, cadrage
+et rendu à taille native et à 300 pixels de large. Aucun JPEG incorporé.
+
 ### Étude 05 — le même drapé jusqu’à la pointe
 
 - [Licorne fractale 05 — SVG factorisé](essais/Licorne-fractale-05.svg)
