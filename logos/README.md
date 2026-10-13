@@ -43,6 +43,36 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Étude 05 — le même drapé jusqu’à la pointe
+
+- [Licorne fractale 05 — SVG factorisé](essais/Licorne-fractale-05.svg)
+- [Aperçu](essais/Licorne-fractale-05.png)
+- [Comparaison des études 04 et 05](essais/Licorne-fractale-05-comparaison.png)
+- [Détail du drapé : étude 04 à gauche, étude 05 à droite](essais/Licorne-fractale-05-drape.png)
+
+La mèche choisie alterne deux Visio de sens opposés. L’étude 05 garde exactement
+ces deux premières pièces et régularise leur répétition : chaque couple est
+réduit au rapport **0,67** vers une même pointe. Dans les coordonnées du motif,
+la transformation est `T(P) = F + 0,67 × (P − F)`, avec `F = (513, 1108)`.
+Cette règle reprend le mouvement du drapé existant ; elle remplace ses derniers
+placements irréguliers par une suite convergente.
+
+Le couple est répété sur vingt étages. À la taille native de 960 × 1280,
+tous les étages suivants de la suite infinie seraient à moins de 0,081 pixel
+de la pointe, même dans la plus grande utilisation du motif. Aucun élément
+différent ne vient fermer cette pointe.
+
+Les **huit suites fractales de la crinière et la mèche du front** utilisent
+désormais ce seul `motif-meche`, lui-même factorisé à partir de `couple-drape`.
+Leurs orientations et dimensions sont adaptées par similitudes. La corne,
+l’oreille, l’œil et le museau gardent leurs contours et placements de l’étude 04.
+
+Le SVG contient toujours uniquement les trois contours canoniques Audio,
+Visio et Kino ; les 409 occurrences développées proviennent de références
+`<use>`. Contrôles effectués : XML et références, contours identiques,
+translations/rotations/homothéties/symétries sans étirement, convergence,
+cadrage et rendu à taille native et à 300 pixels de large. Aucun JPEG incorporé.
+
 ### Étude 04 — motifs de mèches et corne prolongée
 
 - [Licorne fractale 04 — SVG factorisé](essais/Licorne-fractale-04.svg)
