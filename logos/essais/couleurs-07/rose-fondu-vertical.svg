@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink" width="1400" height="1400" viewBox="-190 -77 1400 1400" role="img" fill="currentColor" style="color:#f06884" aria-labelledby="titre description">
+  <title id="titre">Fond blanc — fondu rose vertical</title>
+  <desc id="description">Forme approuvée de l’étude 06 conservée sans aucune modification de tracé ni de placement. Un seul dégradé continu sur toute la licorne, rose vers blanc sur fond blanc.</desc>
+  <defs>
+    <path id="forme-audio" d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407" />
+    <path id="forme-visio" d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3" />
+    <path id="forme-kino" d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563" />
+    <g inkscape:label="Alternance de deux Visio du drapé choisi" id="couple-drape">
+      <use id="piece-52" inkscape:label="52 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(605.9593435371455 773.6418402136603) rotate(74.92567083332493) scale(7.7265793129967415 7.7265793129967415)" />
+      <use id="piece-57" inkscape:label="57 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(589.6781145075742 831.9156969890236) rotate(-54.752065789297724) scale(-6.118544835157481 6.118544835157481)" />
+    </g>
+    <g id="motif-meche" inkscape:label="Drapé régulier vers une pointe commune">
+      <use id="drape-etage-00" href="#couple-drape" transform="translate(513 1108) scale(1) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 1" />
+      <use id="drape-etage-01" href="#couple-drape" transform="translate(513 1108) scale(0.67000000000000004) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 2" />
+      <use id="drape-etage-02" href="#couple-drape" transform="translate(513 1108) scale(0.44890000000000008) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 3" />
+      <use id="drape-etage-03" href="#couple-drape" transform="translate(513 1108) scale(0.30076300000000006) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 4" />
+      <use id="drape-etage-04" href="#couple-drape" transform="translate(513 1108) scale(0.20151121000000005) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 5" />
+      <use id="drape-etage-05" href="#couple-drape" transform="translate(513 1108) scale(0.13501251070000003) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 6" />
+      <use id="drape-etage-06" href="#couple-drape" transform="translate(513 1108) scale(0.090458382169000026) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 7" />
+      <use id="drape-etage-07" href="#couple-drape" transform="translate(513 1108) scale(0.060607116053230027) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 8" />
+      <use id="drape-etage-08" href="#couple-drape" transform="translate(513 1108) scale(0.040606767755664117) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 9" />
+      <use id="drape-etage-09" href="#couple-drape" transform="translate(513 1108) scale(0.027206534396294963) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 10" />
+      <use id="drape-etage-10" href="#couple-drape" transform="translate(513 1108) scale(0.018228378045517624) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 11" />
+      <use id="drape-etage-11" href="#couple-drape" transform="translate(513 1108) scale(0.012213013290496809) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 12" />
+      <use id="drape-etage-12" href="#couple-drape" transform="translate(513 1108) scale(0.0081827189046328637) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 13" />
+      <use id="drape-etage-13" href="#couple-drape" transform="translate(513 1108) scale(0.0054824216661040186) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 14" />
+      <use id="drape-etage-14" href="#couple-drape" transform="translate(513 1108) scale(0.0036732225162896927) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 15" />
+      <use id="drape-etage-15" href="#couple-drape" transform="translate(513 1108) scale(0.0024610590859140942) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 16" />
+      <use id="drape-etage-16" href="#couple-drape" transform="translate(513 1108) scale(0.0016489095875624432) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 17" />
+      <use id="drape-etage-17" href="#couple-drape" transform="translate(513 1108) scale(0.0011047694236668371) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 18" />
+      <use id="drape-etage-18" href="#couple-drape" transform="translate(513 1108) scale(0.00074019551385678083) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 19" />
+      <use id="drape-etage-19" href="#couple-drape" transform="translate(513 1108) scale(0.00049593099428404323) translate(-513 -1108)" xlink:href="#couple-drape" inkscape:label="Drapé étage 20" />
+    </g>
+    <g inkscape:label="Couple Visio de la corne" id="motif-corne">
+      <use id="piece-7" inkscape:label="07 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(502.60713362472677 60.734905154400735) rotate(-58.73225986102004) scale(-6.837439249090624 6.837439249090624)" />
+      <use id="piece-6" inkscape:label="06 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(472.9993460335849 58.640924152528996) rotate(58.299503269147166) scale(5.2037496879739225 5.2037496879739225)" />
+    </g>
+    <linearGradient color-interpolation="sRGB" id="fondu-licorne" gradientUnits="userSpaceOnUse" x1="510" y1="20.660637207324267" x2="510" y2="1225.9369303229473">
+      <stop stop-color="#f06884" offset="0" />
+      <stop stop-color="#ffffff" offset="1" />
+    </linearGradient>
+    <mask id="silhouette" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="-190" y="-77" width="1400" height="1400" style="mask-type:alpha">
+      <g id="licorne" fill="#ffffff">
+        <g id="corne" inkscape:groupmode="layer" inkscape:label="Corne et motifs fractals">
+          <use id="corne-etage-00" href="#motif-corne" transform="translate(486 20) scale(1) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 0" />
+          <use id="corne-etage-01" href="#motif-corne" transform="translate(486 20) scale(0.65) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 1" />
+          <use id="corne-etage-02" href="#motif-corne" transform="translate(486 20) scale(0.4225) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 2" />
+          <use id="corne-etage-03" href="#motif-corne" transform="translate(486 20) scale(0.274625) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 3" />
+          <use id="corne-etage-04" href="#motif-corne" transform="translate(486 20) scale(0.17850625) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 4" />
+          <use id="corne-etage-05" href="#motif-corne" transform="translate(486 20) scale(0.1160290625) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 5" />
+          <use id="corne-etage-06" href="#motif-corne" transform="translate(486 20) scale(0.07541889062500001) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 6" />
+          <use id="corne-etage-07" href="#motif-corne" transform="translate(486 20) scale(0.04902227890625001) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 7" />
+          <use id="corne-etage-08" href="#motif-corne" transform="translate(486 20) scale(0.03186448128906251) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 8" />
+          <use id="corne-etage-09" href="#motif-corne" transform="translate(486 20) scale(0.02071191283789063) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 9" />
+          <use id="corne-etage-10" href="#motif-corne" transform="translate(486 20) scale(0.01346274334462891) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 10" />
+          <use id="corne-etage-11" href="#motif-corne" transform="translate(486 20) scale(0.008750783174008792) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 11" />
+          <use id="corne-etage-12" href="#motif-corne" transform="translate(486 20) scale(0.005688009063105715) translate(-486 -20)" xlink:href="#motif-corne" inkscape:label="Couple Visio étage 12" />
+          <use id="corne-etage-base" href="#piece-6" transform="translate(486 20) scale(1.5384615384615383) translate(-486 -20)" xlink:href="#piece-6" inkscape:label="Élément suivant de l’alternance de la corne, rang −1" />
+        </g>
+        <g id="oreille" inkscape:groupmode="layer" inkscape:label="Oreille">
+          <use id="piece-11" inkscape:label="11 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(562.2081212030166 171.55862936314128) rotate(12.626109864605763) scale(-7.85005437620146 7.85005437620146)" />
+          <use id="piece-85" inkscape:label="85 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(433.68448936299694 63.16871387616055) rotate(69.54728201556887) scale(11.224799953962409 11.224799953962409)" />
+        </g>
+        <g id="oeil" inkscape:groupmode="layer" inkscape:label="Œil Visio">
+          <use id="piece-22" inkscape:label="22 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(388.5210422237943 358.95029501667136) rotate(-0.2626996166575108) scale(8.428113964384675 8.428113964384675)" />
+        </g>
+        <g id="visage" inkscape:groupmode="layer" inkscape:label="Visage et museau">
+          <use id="piece-13" inkscape:label="13 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(362.65655301303525 272.43359291936974) rotate(-123.83601064596) scale(-11.783545649236297 11.783545649236297)" />
+          <use id="piece-23" inkscape:label="23 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(871.4470389012995 367.34231573667057) rotate(-20.495336041871585) scale(-10.92787560836765 10.92787560836765)" />
+          <use id="piece-24" inkscape:label="24 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(858.7900160878842 471.4922603295953) rotate(22.635880754952513) scale(-6.531156449562863 6.531156449562863)" />
+          <use id="piece-29" inkscape:label="29 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(464.17169487559244 389.58614250864343) rotate(-80.86655546971487) scale(-7.166296031905871 7.166296031905871)" />
+          <use id="piece-40" inkscape:label="40 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(876.0623754299803 612.39269424073) rotate(-170.20266786873756) scale(6.749013974002495 6.749013974002495)" />
+          <use id="piece-41" inkscape:label="41 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(775.1807498600514 650.5404934498633) rotate(94.38872928851191) scale(-6.049217791153401 6.049217791153401)" />
+          <use id="piece-86" inkscape:label="86 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(-3 8) translate(780 493) scale(0.88) translate(-780 -493) translate(729.5320831718369 589.0710109029233) rotate(145.78390208089317) scale(-8.406861146711563 8.406861146711563)" />
+          <use id="meche-frontale" href="#motif-meche" transform="translate(557 332) rotate(-78.6136274209) scale(0.976628525511) translate(-582 -905)" xlink:href="#motif-meche" inkscape:label="Mèche frontale remplaçant la pointe" />
+        </g>
+        <g id="criniere" inkscape:groupmode="layer" inkscape:label="Crinière et motifs fractals">
+          <use id="piece-16" inkscape:label="16 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(48.859835761543366 616.8660563205298) rotate(-56.48247828481855) scale(16.322986664216685 16.322986664216685)" />
+          <use id="piece-21" inkscape:label="21 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(422.5225403041788 148.9584754378797) rotate(-60.6195541065359) scale(-13.382767003421133 13.382767003421133)" />
+          <use id="piece-25" inkscape:label="25 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(280.9754514526554 858.5386789182785) rotate(-80.03409281744527) scale(17.80591330250158 17.80591330250158)" />
+          <use id="piece-30" inkscape:label="30 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(19.599408086771035 796.2426333405235) rotate(-61.528138758926865) scale(15.919359175152504 15.919359175152504)" />
+          <use id="piece-35" inkscape:label="35 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(325.73982349449494 1169.4289563347374) rotate(-107.04240225463427) scale(25.603176877955296 25.603176877955296)" />
+          <use id="piece-45" inkscape:label="45 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(98.58807647352813 607.3360565158561) rotate(9.034350820332437) scale(16.957869293665492 16.957869293665492)" />
+          <use id="piece-51" inkscape:label="51 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(809.7824019620233 1147.9620957182808) rotate(71.46788061021081) scale(-19.56708314759173 19.56708314759173)" />
+          <use id="piece-53" inkscape:label="53 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(416.0982374071548 485.759806396411) rotate(71.25099533183145) scale(18.677606881575645 18.677606881575645)" />
+          <use id="piece-54" inkscape:label="54 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(436.49908316807876 737.5992840620441) rotate(53.25382467081939) scale(9.349933961109445 9.349933961109445)" />
+          <use id="meche-basse-conservee" href="#motif-meche" transform="translate(513 1108) scale(0.944) translate(-513 -1108) translate(0 0)" xlink:href="#motif-meche" inkscape:label="Mèche basse régularisée et prolongée" />
+          <use id="meche-interieure" href="#motif-meche" transform="translate(591.666854344 768.277405552) scale(0.977) translate(-591.666854344 -768.277405552) translate(468 609) rotate(-56.5996077255) scale(0.940505406395) translate(-582 -905)" xlink:href="#motif-meche" inkscape:label="Motif repris dans la mèche intérieure" />
+          <use id="meche-exterieure" href="#motif-meche" transform="translate(211.096503575 769.241934576) scale(0.92) translate(-211.096503575 -769.241934576) translate(226 634) rotate(-12.4844216638) scale(0.634592925304) translate(-582 -905)" xlink:href="#motif-meche" inkscape:label="Motif repris dans la mèche extérieure" />
+          <use id="meche-haute" href="#motif-meche" transform="translate(211 565) scale(0.89) translate(-211 -565) translate(271 470) rotate(13.5026712157) scale(0.524056897611) translate(-582 -905)" xlink:href="#motif-meche" inkscape:label="Meche haute" />
+          <use id="meche-centrale" href="#motif-meche" transform="translate(524 865) scale(0.976) translate(-524 -865) translate(398 721) rotate(-59.9588982646) scale(0.892430644896) translate(-582 -905)" xlink:href="#motif-meche" inkscape:label="Meche centrale" />
+          <use id="meche-gauche-basse" href="#motif-meche" transform="translate(272 787) rotate(-62.5669243196) scale(0.626754661143) translate(-582 -905)" xlink:href="#motif-meche" inkscape:label="Meche gauche basse" />
+          <use id="meche-intermediaire" href="#motif-meche" transform="translate(448 946) rotate(-72.2441177319) scale(0.470144082072) translate(-582 -905)" xlink:href="#motif-meche" inkscape:label="Meche intermediaire" />
+          <use id="meche-terminale" href="#motif-meche" transform="translate(468 1002) rotate(-21.8394586) scale(1.04624420219) translate(-582 -905)" xlink:href="#motif-meche" inkscape:label="Meche terminale" />
+        </g>
+      </g>
+    </mask>
+  </defs>
+  <rect id="fond-blanc" x="-190" y="-77" width="1400" height="1400" fill="#ffffff" />
+  <rect x="-190" y="-77" width="1400" height="1400" fill="url(#fondu-licorne)" mask="url(#silhouette)" />
+</svg>

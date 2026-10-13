@@ -43,6 +43,16 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Couleurs 07 — forme approuvée, écusson et fondus
+
+[Planche comparative](essais/couleurs-07/comparaison.png) ·
+[Les cinq SVG et leurs aperçus](essais/couleurs-07/README.md)
+
+La forme de l’étude 06 est conservée exactement, sans modification des contours,
+des transformations ni des placements. Trois présentations sont comparées dans
+deux colonnes : haut vers bas et haut à droite vers bas à gauche. La version
+blanche unie est identique dans les deux colonnes. Le rose reste `#f06884`.
+
 ### Étude 06 — espaces et raccords
 
 - [Licorne fractale 06 — SVG factorisé](essais/Licorne-fractale-06.svg)
