@@ -43,6 +43,21 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Optimisation 13 — moins d’étapes, RGB ou OKLCH
+
+[SVG comparés, méthode et mesures](essais/optimisation-13/README.md) ·
+[Comparaison visuelle](essais/optimisation-13/comparaison.png)
+
+Le dégradé G conserve sa silhouette et son chemin `F(t²)` : 29 étapes placées
+par contrôle d’erreur remplacent les 501 étapes régulières. Les écritures RGB
+et OKLCH sont comparées dans Chromium et Firefox, sans adoption automatique
+par le site.
+
+### Chemins 12 — progression quadratique vers le blanc
+
+[Essai G](essais/chemins-12/README.md) ·
+[Comparaison E / F / G](essais/chemins-12/comparaison.png)
+
 ### Chemins 11 — explorer les trajets OKLCH vers le blanc
 
 [Six dessins, explications et SVG](essais/chemins-11/README.md) ·
