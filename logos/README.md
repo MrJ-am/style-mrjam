@@ -43,6 +43,18 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Couleurs 08 — dégradé oblique, drapé visible
+
+[SVG factorisé](essais/Licorne-rose-08.svg) ·
+[Aperçu](essais/Licorne-rose-08.png)
+
+La licorne reste rose sur fond blanc, avec uniquement le dégradé oblique retenu,
+du haut à droite vers le bas à gauche. Il relie le rose `#f06884` à un rose plus
+sourd `#c08094`, sans aller au blanc : la fin du drapé reste visible.
+L’absence du reste du corps peut suggérer l’invisibilité de la licorne.
+La silhouette factorisée approuvée de l’étude 06 est strictement inchangée ;
+seule la couleur finale du dégradé de l’essai 07 a été remplacée.
+
 ### Couleurs 07 — forme approuvée, écusson et fondus
 
 [Planche comparative](essais/couleurs-07/comparaison.png) ·
