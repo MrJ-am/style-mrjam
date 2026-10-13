@@ -43,6 +43,30 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Étude 04 — motifs de mèches et corne prolongée
+
+- [Licorne fractale 04 — SVG factorisé](essais/Licorne-fractale-04.svg)
+- [Aperçu](essais/Licorne-fractale-04.png)
+- [Comparaison des études 03 et 04](essais/Licorne-fractale-04-comparaison.png)
+
+Le motif de neuf pièces de la mèche basse est conservé à sa place et réutilisé
+dans deux mèches de la crinière et sur le front. La mèche frontale remplace
+l’élément pointu du front et ses deux petits voisins. Le museau et l’œil gardent
+leurs placements de l’étude 03.
+
+La corne prolonge le couple de Visio choisi à sa base sur treize étages,
+par homothéties de rapport 0,65 vers la pointe commune `(486, 20)`. Les derniers
+éléments deviennent inférieurs au pixel à la taille native ; aucune pièce
+différente n’est ajoutée pour terminer la pointe.
+
+Le SVG factorise aussi les deux motifs : `motif-meche` et `motif-corne` sont
+réutilisés par `<use>`. Après développement des références, le dessin contient
+115 occurrences des trois contours canoniques inchangés. Les transformations
+restent exclusivement des translations, rotations, homothéties et symétries
+axiales ; leur composition a été vérifiée. Aucun JPEG n’est incorporé.
+
+### Étude 03 — reconstitution du dessin de référence
+
 - [Licorne fractale 03 — SVG factorisé](essais/Licorne-fractale-03.svg)
 - [Licorne fractale 03 — SVG de travail avec JPEG en calque](essais/Licorne-fractale-03-travail.svg)
 - [Comparaison avec le dessin de référence](essais/Licorne-fractale-03-comparaison.png)
