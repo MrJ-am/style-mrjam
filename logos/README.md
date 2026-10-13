@@ -43,6 +43,15 @@ de référence.
 
 Ces essais ne remplacent pas le modèle du site.
 
+### Couleurs 09 — comparer clarté et chroma
+
+[Les trois dessins et SVG](essais/couleurs-09/README.md) ·
+[Planche comparative](essais/couleurs-09/comparaison.png)
+
+Trois dégradés obliques sur la forme approuvée : augmenter L à C constant,
+diminuer C à L constant, puis combiner les deux variations. Même teinte et
+mêmes amplitudes pour isoler les effets, sans sortir du gamut sRGB.
+
 ### Couleurs 08 — dégradé oblique, drapé visible
 
 [SVG factorisé](essais/Licorne-rose-08.svg) ·
