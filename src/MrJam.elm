@@ -363,7 +363,7 @@ zoneTextePour contexte libelle valeur modifier =
 
 etiquette : String -> Saisie.Label message
 etiquette libelle =
-    Saisie.labelAbove [ Police.size 14, Police.semiBold, Element.paddingEach { top = 0, right = 0, bottom = 6, left = 0 } ] (text libelle)
+    Saisie.labelAbove [ Police.size 14, Police.semiBold, Element.paddingEach { top = 0, right = 0, bottom = 6, left = 0 } ] (paragraphe libelle)
 
 
 caseACocher : String -> Bool -> (Bool -> message) -> Element message
