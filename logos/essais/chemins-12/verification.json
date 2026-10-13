@@ -1,0 +1,49 @@
+{
+  "depart": {
+    "L": 0.6915316393559333,
+    "C": 0.1686868573164192,
+    "h": 9.870301470439369,
+    "rgb": [
+      0.9411764750927288,
+      0.4078431303393587,
+      0.5176469846153582
+    ],
+    "linear": [
+      0.8713671286551161,
+      0.13843161006836927,
+      0.2307399767616315
+    ],
+    "gamut": true
+  },
+  "arrivee": {
+    "L": 1,
+    "C": 0,
+    "h": 9.870301470439369,
+    "rgb": [
+      0.9999999999999999,
+      0.9999999999999999,
+      0.9999999999999999
+    ],
+    "linear": [
+      1,
+      1,
+      1
+    ],
+    "gamut": true
+  },
+  "progression": "F(t²)",
+  "gradient": {
+    "color-interpolation": "sRGB",
+    "id": "fondu-licorne",
+    "gradientUnits": "userSpaceOnUse",
+    "x1": "799.1745327378086",
+    "y1": "333.8254672621914",
+    "x2": "193.52789238993233",
+    "y2": "939.4721076100677"
+  },
+  "stops": 501,
+  "echantillonsVerifies": 1001,
+  "tousDansGamut": true,
+  "silhouetteEtReperesInchanges": true,
+  "erreurOKLabMaxAux500Milieux": 3.8105374195855236e-07
+}
