@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="960" height="1280" viewBox="0 0 960 1280" role="img" aria-labelledby="titre description" fill="currentColor" style="color:#f06884">
+<title id="titre">Licorne fractale étude 03</title>
+<desc id="description">Reconstitution de la référence 434261.jpg avec 86 occurrences des trois seuls contours Audio, Visio et Kino. Les contours originaux sont inchangés. Chaque transformation est une translation, une rotation, une homothétie et éventuellement une réflexion. Les valeurs absolues des deux facteurs d’échelle sont toujours identiques. Les deux bandes de l’oreille et la boucle non triangulaire du museau utilisent chacune deux éléments. Étude approximative : les courbures des formes sources sont conservées plutôt qu’étirées pour épouser le JPEG. Fond transparent et aucune image matricielle incorporée.</desc>
+<defs>
+  <path id="forme-audio" d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407"/>
+  <path id="forme-visio" d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3"/>
+  <path id="forme-kino" d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563"/>
+</defs>
+
+<g id="corne" inkscape:groupmode="layer" inkscape:label="Corne et motifs fractals">
+  <use id="piece-1" inkscape:label="01 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(446.8343034087946 80.87251635400541) rotate(189.4635319896935) scale(-2.3271562050382126 2.3271562050382126)"/>
+  <use id="piece-2" inkscape:label="02 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(475.5425038711554 40.00739297144149) rotate(51.39486139074452) scale(1.907146216772383 1.907146216772383)"/>
+  <use id="piece-3" inkscape:label="03 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(489.53452609825587 34.27550884470376) rotate(-61.08703281448361) scale(-2.875520359240129 2.875520359240129)"/>
+  <use id="piece-4" inkscape:label="04 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(466.7570450302452 47.77449853969034) rotate(50.52221352618616) scale(3.339320867481306 3.339320867481306)"/>
+  <use id="piece-5" inkscape:label="05 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(497.6305214798193 44.68326603477276) rotate(-57.848877770409146) scale(-4.5518630881931985 4.5518630881931985)"/>
+  <use id="piece-6" inkscape:label="06 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(472.9993460335849 58.640924152528996) rotate(58.299503269147166) scale(5.2037496879739225 5.2037496879739225)"/>
+  <use id="piece-7" inkscape:label="07 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(502.60713362472677 60.734905154400735) rotate(-58.73225986102004) scale(-6.837439249090624 6.837439249090624)"/>
+  <use id="piece-8" inkscape:label="08 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(568.8542190399501 142.13536303407972) rotate(-27.22838744972683) scale(-5.385707323718437 5.385707323718437)"/>
+  <use id="piece-9" inkscape:label="09 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(445.93482418442704 243.54806737323906) rotate(-169.16530656000282) scale(-2.5206792436470895 2.5206792436470895)"/>
+  <use id="piece-10" inkscape:label="10 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(500.6980920085667 174.69988496212926) rotate(64.64627769812425) scale(4.11921101382904 4.11921101382904)"/>
+  <use id="piece-12" inkscape:label="12 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(578.8914231182382 366.54475619176145) rotate(60.47837636731601) scale(-6.671949565552008 6.671949565552008)"/>
+</g>
+<g id="oreille" inkscape:groupmode="layer" inkscape:label="Oreille">
+  <use id="piece-11" inkscape:label="11 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(562.2081212030166 171.55862936314128) rotate(12.626109864605763) scale(-7.85005437620146 7.85005437620146)"/>
+  <use id="piece-85" inkscape:label="85 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(433.68448936299694 63.16871387616055) rotate(69.54728201556887) scale(11.224799953962409 11.224799953962409)"/>
+</g>
+<g id="oeil" inkscape:groupmode="layer" inkscape:label="Œil Visio">
+  <use id="piece-22" inkscape:label="22 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(388.5210422237943 358.95029501667136) rotate(-0.2626996166575108) scale(8.428113964384675 8.428113964384675)"/>
+</g>
+<g id="visage" inkscape:groupmode="layer" inkscape:label="Visage et museau">
+  <use id="piece-13" inkscape:label="13 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(362.65655301303525 272.43359291936974) rotate(-123.83601064596) scale(-11.783545649236297 11.783545649236297)"/>
+  <use id="piece-14" inkscape:label="14 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(575.0237515875996 384.54016396902364) rotate(73.45724353253563) scale(-3.0898045977080066 3.0898045977080066)"/>
+  <use id="piece-15" inkscape:label="15 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(550.9195663925611 155.482128489279) rotate(-55.960898142871294) scale(-10.02345563446529 10.02345563446529)"/>
+  <use id="piece-23" inkscape:label="23 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(871.4470389012995 367.34231573667057) rotate(-20.495336041871585) scale(-10.92787560836765 10.92787560836765)"/>
+  <use id="piece-24" inkscape:label="24 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(858.7900160878842 471.4922603295953) rotate(22.635880754952513) scale(-6.531156449562863 6.531156449562863)"/>
+  <use id="piece-29" inkscape:label="29 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(464.17169487559244 389.58614250864343) rotate(-80.86655546971487) scale(-7.166296031905871 7.166296031905871)"/>
+  <use id="piece-40" inkscape:label="40 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(876.0623754299803 612.39269424073) rotate(-170.20266786873756) scale(6.749013974002495 6.749013974002495)"/>
+  <use id="piece-41" inkscape:label="41 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(775.1807498600514 650.5404934498633) rotate(94.38872928851191) scale(-6.049217791153401 6.049217791153401)"/>
+  <use id="piece-73" inkscape:label="73 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(485.51090573080955 385.3512265114556) rotate(-72.40217641076798) scale(2.96358637006594 2.96358637006594)"/>
+  <use id="piece-86" inkscape:label="86 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(729.5320831718369 589.0710109029233) rotate(145.78390208089317) scale(-8.406861146711563 8.406861146711563)"/>
+</g>
+<g id="criniere" inkscape:groupmode="layer" inkscape:label="Crinière et motifs fractals">
+  <use id="piece-16" inkscape:label="16 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(48.859835761543366 616.8660563205298) rotate(-56.48247828481855) scale(16.322986664216685 16.322986664216685)"/>
+  <use id="piece-17" inkscape:label="17 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(356.20930621227615 401.21146426881205) rotate(102.7898622246769) scale(8.920433899576436 8.920433899576436)"/>
+  <use id="piece-18" inkscape:label="18 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(329.9570547887236 473.90252718163856) rotate(-6.421626376560524) scale(-4.900756396830957 4.900756396830957)"/>
+  <use id="piece-19" inkscape:label="19 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(245.60516875844837 502.07809789460094) rotate(96.05012960022323) scale(1.8724469798835748 1.8724469798835748)"/>
+  <use id="piece-20" inkscape:label="20 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(265.2144537465117 575.6626378322466) rotate(-179.6642678415416) scale(4.501369092914168 4.501369092914168)"/>
+  <use id="piece-21" inkscape:label="21 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(422.5225403041788 148.9584754378797) rotate(-60.6195541065359) scale(-13.382767003421133 13.382767003421133)"/>
+  <use id="piece-25" inkscape:label="25 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(280.9754514526554 858.5386789182785) rotate(-80.03409281744527) scale(17.80591330250158 17.80591330250158)"/>
+  <use id="piece-26" inkscape:label="26 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(473.38991962965594 729.5210581280651) rotate(-49.69318295860142) scale(3.2037740908453602 3.2037740908453602)"/>
+  <use id="piece-27" inkscape:label="27 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(516.5513138408834 775.5591915824367) rotate(163.97517998473782) scale(-5.63298212907056 5.63298212907056)"/>
+  <use id="piece-28" inkscape:label="28 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(517.2496489336148 739.5527503221164) rotate(-58.69044306156812) scale(1.9956311693606306 1.9956311693606306)"/>
+  <use id="piece-30" inkscape:label="30 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(19.599408086771035 796.2426333405235) rotate(-61.528138758926865) scale(15.919359175152504 15.919359175152504)"/>
+  <use id="piece-31" inkscape:label="31 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(101.97439060621298 708.4909537179785) rotate(-26.759352932957178) scale(5.416217802379246 5.416217802379246)"/>
+  <use id="piece-32" inkscape:label="32 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(214.3969568700757 671.8277084234478) rotate(59.61695681643909) scale(3.312975017236881 3.312975017236881)"/>
+  <use id="piece-33" inkscape:label="33 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(208.66432027470825 761.902165241181) rotate(-115.4198514005176) scale(1.788484511079594 1.788484511079594)"/>
+  <use id="piece-34" inkscape:label="34 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(196.64641323038956 692.7070758214434) rotate(-90.70753731270516) scale(-2.4953597465357613 2.4953597465357613)"/>
+  <use id="piece-35" inkscape:label="35 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(325.73982349449494 1169.4289563347374) rotate(-107.04240225463427) scale(25.603176877955296 25.603176877955296)"/>
+  <use id="piece-36" inkscape:label="36 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(347.02361870678794 822.4952490602456) rotate(-43.15419456769919) scale(5.804663937465656 5.804663937465656)"/>
+  <use id="piece-37" inkscape:label="37 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(420.8977948273173 823.2110945526134) rotate(-36.393067007731084) scale(3.289960437582939 3.289960437582939)"/>
+  <use id="piece-38" inkscape:label="38 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(460.9044996637282 831.278094485411) rotate(-27.95622913457396) scale(2.043156889660399 2.043156889660399)"/>
+  <use id="piece-39" inkscape:label="39 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(448.21582483567147 829.6508144309464) rotate(-19.53290677145437) scale(5.521929054206979 5.521929054206979)"/>
+  <use id="piece-42" inkscape:label="42 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(307.4376665125258 718.59841413799) rotate(-49.91326220649679) scale(8.358632324874002 8.358632324874002)"/>
+  <use id="piece-43" inkscape:label="43 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(273.3887233649807 562.8168452616923) rotate(77.2232067585839) scale(8.437427278096107 8.437427278096107)"/>
+  <use id="piece-44" inkscape:label="44 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(403.80543990134515 726.8568536374612) rotate(-49.44156185729207) scale(5.427678584209236 5.427678584209236)"/>
+  <use id="piece-45" inkscape:label="45 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(98.58807647352813 607.3360565158561) rotate(9.034350820332437) scale(16.957869293665492 16.957869293665492)"/>
+  <use id="piece-46" inkscape:label="46 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(359.0347055717464 715.115363773043) rotate(-35.496234779363924) scale(-5.254111003591661 5.254111003591661)"/>
+  <use id="piece-47" inkscape:label="47 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(247.5314288435119 906.8463076503373) rotate(172.21275651779186) scale(-8.080819275203206 8.080819275203206)"/>
+  <use id="piece-48" inkscape:label="48 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(220.2863140762385 877.1093602198354) rotate(-48.753903816953496) scale(4.486817564488421 4.486817564488421)"/>
+  <use id="piece-49" inkscape:label="49 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(354.5736695631085 824.8383308222327) rotate(-56.500752229761325) scale(-3.955661627404907 3.955661627404907)"/>
+  <use id="piece-50" inkscape:label="50 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(251.97323686053207 883.867596381137) rotate(-62.554457662297985) scale(9.80774121124219 9.80774121124219)"/>
+  <use id="piece-51" inkscape:label="51 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(809.7824019620233 1147.9620957182808) rotate(71.46788061021081) scale(-19.56708314759173 19.56708314759173)"/>
+  <use id="piece-52" inkscape:label="52 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(605.9593435371455 773.6418402136603) rotate(74.92567083332493) scale(7.7265793129967415 7.7265793129967415)"/>
+  <use id="piece-53" inkscape:label="53 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(416.0982374071548 485.759806396411) rotate(71.25099533183145) scale(18.677606881575645 18.677606881575645)"/>
+  <use id="piece-54" inkscape:label="54 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(436.49908316807876 737.5992840620441) rotate(53.25382467081939) scale(9.349933961109445 9.349933961109445)"/>
+  <use id="piece-55" inkscape:label="55 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(385.37177061213583 874.433319731487) rotate(-103.82300548411764) scale(-8.942449192833276 8.942449192833276)"/>
+  <use id="piece-56" inkscape:label="56 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(497.1222551459914 926.5929008334543) rotate(63.95972111767567) scale(3.708849907585175 3.708849907585175)"/>
+  <use id="piece-57" inkscape:label="57 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(589.6781145075742 831.9156969890236) rotate(-54.752065789297724) scale(-6.118544835157481 6.118544835157481)"/>
+  <use id="piece-58" inkscape:label="58 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(573.4765467855436 926.8229323227829) rotate(-49.34991356095425) scale(-4.105566546584804 4.105566546584804)"/>
+  <use id="piece-59" inkscape:label="59 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(567.2870031565409 969.4677991887211) rotate(86.53996063549327) scale(3.1441723049976527 3.1441723049976527)"/>
+  <use id="piece-60" inkscape:label="60 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(546.6792766459797 989.5461846957676) rotate(-54.03137351931887) scale(-2.4662784753243883 2.4662784753243883)"/>
+  <use id="piece-61" inkscape:label="61 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(546.383163965503 1016.4779561096678) rotate(86.71836799003864) scale(1.9122812727637308 1.9122812727637308)"/>
+  <use id="piece-62" inkscape:label="62 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(499.71378476014957 1056.3947831156577) rotate(-30.424088489251798) scale(2.160549518104636 2.160549518104636)"/>
+  <use id="piece-63" inkscape:label="63 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(543.9849494059813 1026.2810921649843) rotate(-46.67003849744005) scale(-2.4844986587453937 2.4844986587453937)"/>
+  <use id="piece-64" inkscape:label="64 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(605.9444217615459 875.143698265722) rotate(87.21430035815978) scale(5.791109428925385 5.791109428925385)"/>
+  <use id="piece-65" inkscape:label="65 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(456.3003457137703 852.0702735097522) rotate(-73.17982571454678) scale(-8.731681350501765 8.731681350501765)"/>
+  <use id="piece-66" inkscape:label="66 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(492.2677768890878 960.617269612962) rotate(69.33196115499074) scale(4.729669124464674 4.729669124464674)"/>
+  <use id="piece-67" inkscape:label="67 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(513.6282892605025 1008.8027047836933) rotate(-38.70612396458707) scale(-3.821737319803586 3.821737319803586)"/>
+  <use id="piece-68" inkscape:label="68 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(481.0976438671264 1022.6392470750468) rotate(63.64410530781096) scale(3.5185679328466044 3.5185679328466044)"/>
+  <use id="piece-69" inkscape:label="69 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(477.2893554557754 1033.268043028355) rotate(-66.32962551021193) scale(-3.804497131944274 3.804497131944274)"/>
+  <use id="piece-70" inkscape:label="70 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(481.47031239709537 1062.5525642982195) rotate(67.61098397835735) scale(3.433253628594435 3.433253628594435)"/>
+  <use id="piece-71" inkscape:label="71 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(513.6233644842995 1186.8847464753512) rotate(66.16156487830183) scale(-2.8504589297323575 2.8504589297323575)"/>
+  <use id="piece-72" inkscape:label="72 kino" href="#forme-kino" xlink:href="#forme-kino" transform="translate(419.8110846302449 1133.927396221604) rotate(-9.441045421180407) scale(3.5190471614840675 3.5190471614840675)"/>
+  <use id="piece-74" inkscape:label="74 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(290.3921782635297 408.1125866870993) rotate(-39.108080155312145) scale(-4.744297191358107 4.744297191358107)"/>
+  <use id="piece-75" inkscape:label="75 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(574.1184391754725 520.648034344905) rotate(-37.16880576046452) scale(-6.879750156888679 6.879750156888679)"/>
+  <use id="piece-76" inkscape:label="76 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(573.9606308086425 599.6044194341321) rotate(-38.336214275919545) scale(-4.280963810284301 4.280963810284301)"/>
+  <use id="piece-77" inkscape:label="77 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(570.5963246997181 649.6769480003736) rotate(-43.98284961762218) scale(-2.6133628984962343 2.6133628984962343)"/>
+  <use id="piece-78" inkscape:label="78 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(261.2068664964968 522.7692375095628) rotate(-48.7421619867636) scale(-6.723304875574208 6.723304875574208)"/>
+  <use id="piece-79" inkscape:label="79 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(319.79393223788713 651.6589626829018) rotate(13.933349598159785) scale(7.804063573469838 7.804063573469838)"/>
+  <use id="piece-80" inkscape:label="80 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(544.1282961662307 710.5492815208522) rotate(-29.31954419485971) scale(-4.471799629743338 4.471799629743338)"/>
+  <use id="piece-81" inkscape:label="81 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(478.249629928015 755.8437294989465) rotate(43.79383243886093) scale(2.957798792806746 2.957798792806746)"/>
+  <use id="piece-82" inkscape:label="82 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(180.56463496235222 871.4371653586948) rotate(-60.616909654217274) scale(5.643840269654943 5.643840269654943)"/>
+  <use id="piece-83" inkscape:label="83 audio" href="#forme-audio" xlink:href="#forme-audio" transform="translate(490.91137824973356 1030.4476086204265) rotate(-122.76181680955213) scale(4.776610976196117 4.776610976196117)"/>
+  <use id="piece-84" inkscape:label="84 visio" href="#forme-visio" xlink:href="#forme-visio" transform="translate(477.11629628025895 919.0601575928355) rotate(-100.6883870471249) scale(-3.189199762427279 3.189199762427279)"/>
+</g>
+</svg>

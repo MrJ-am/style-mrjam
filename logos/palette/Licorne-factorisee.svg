@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+  <defs>
+    <circle id="licorne-connaissance" cx="0" cy="0" r="2"/>
+    <g id="licorne-auditif" transform="translate(-13.8 -9)"><path d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407"/></g>
+    <g id="licorne-visuel" transform="translate(-13.8 -9)"><path d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3"/></g>
+    <g id="licorne-kinesthesique" transform="translate(-13.8 -9)"><path d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563"/></g>
+    <linearGradient id="licorne-degrade" gradientUnits="userSpaceOnUse" color-interpolation="sRGB" x1="22.66063565899783" y1="3.0222516792292806" x2="2.574234669898312" y2="23.108652668328798"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="rgb(93.93232048196253%,52.48643355318625%,64.34543937868885%)"/></linearGradient>
+    <mask id="licorne-silhouette" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
+  <use data-instance="criniere-front" href="#licorne-visuel" transform="matrix(-0.4148249569642883 -0.1657570267412069 -0.1657570267412069 0.4148249569642883 13.526185563323368 13.51939147485685)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="criniere-tempe" href="#licorne-kinesthesique" transform="matrix(-0.31766064157043356 -0.2860765827760391 -0.2860765827760391 0.31766064157043356 12.41225804972465 13.120524933423102)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="criniere-joue" href="#licorne-kinesthesique" transform="matrix(-0.47955188972372637 -0.05457855921966938 -0.05457855921966938 0.47955188972372637 11.38173386805457 14.510313307964108)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="criniere-arriere" href="#licorne-kinesthesique" transform="matrix(0.3158521237151716 0.25821691592137563 0.25821691592137563 -0.3158521237151716 3.3823118746921694 24.507575736030848)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="criniere-basse-1" href="#licorne-kinesthesique" transform="matrix(0.14410703852488785 0.18628722291441205 -0.18628722291441205 0.14410703852488785 9.578213041314315 23.715846518758507)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="criniere-basse-2" href="#licorne-kinesthesique" transform="matrix(0.09562885286151425 0.14993559019056912 -0.14993559019056912 0.09562885286151425 11.39676664589384 25.889765349799053)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="oreille-arriere" href="#licorne-kinesthesique" transform="matrix(-0.24666557934762812 -0.07818880186902759 0.07818880186902759 -0.24666557934762812 13.43770661567374 11.681098585720717)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="oreille-avant" href="#licorne-visuel" transform="matrix(-0.03523006218532222 -0.22061987526711424 0.22061987526711424 -0.03523006218532222 15.476065380474953 10.475613807784773)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="corne-base" href="#licorne-auditif" transform="matrix(0.490755735635297 -0.08271567501579909 0.08271567501579909 0.490755735635297 17.64094443687835 11.882157580039717)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="corne-2" href="#licorne-auditif" transform="matrix(0.4636138173387193 0.06073956461661875 0.06073956461661875 -0.4636138173387193 18.83600980576257 8.012875304287334)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="corne-3" href="#licorne-auditif" transform="matrix(0.39664483909878073 0.06548643751373469 0.06548643751373469 -0.39664483909878073 19.991259748793812 6.641458663676487)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="corne-4" href="#licorne-auditif" transform="matrix(0.32061478650076736 0.11431566771915004 0.11431566771915004 -0.32061478650076736 21.11721235590456 5.495383440954843)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="corne-pointe" href="#licorne-visuel" transform="matrix(0.12680909579661068 -0.2041997585079423 0.2041997585079423 0.12680909579661068 21.21151225330773 5.368087563934058)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="oeil" href="#licorne-auditif" transform="matrix(-0.20576075059041027 0.3782872987149795 -0.3782872987149795 -0.20576075059041027 14.579382030327166 15.912173911142974)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="machoire" href="#licorne-visuel" transform="matrix(0.5685072365917151 0.12148375768704563 -0.12148375768704563 0.5685072365917151 12.962264407032452 20.72587980242767)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="front" href="#licorne-kinesthesique" transform="matrix(0.17737881963739582 -0.1527304253369381 0.1527304253369381 0.17737881963739582 16.141869715459098 12.392166877151485)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="chanfrein" href="#licorne-kinesthesique" transform="matrix(0.4478185830102283 -0.1998282584195391 -0.1998282584195391 -0.4478185830102283 23.669350946496827 24.71588547402392)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="joue" href="#licorne-kinesthesique" transform="matrix(-0.24093715252326098 0.20204200960897895 -0.20204200960897895 -0.24093715252326098 15.956920190500869 20.49039545221526)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="museau" href="#licorne-auditif" transform="matrix(-0.25491602176274025 -0.392675356974041 -0.392675356974041 0.25491602176274025 21.00431461926667 23.395631879045446)" opacity="1" fill="#ffffff" stroke="none"/>
+    </mask>
+  </defs>
+  <circle cx="15" cy="15" r="15" fill="rgb(93.93232048196253%,52.48643355318625%,64.34543937868885%)"/>
+  <rect x="0" y="0" width="30" height="30" fill="url(#licorne-degrade)" mask="url(#licorne-silhouette)"/>
+</svg>

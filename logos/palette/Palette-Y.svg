@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+  <defs>
+    <circle id="ydris-connaissance" cx="0" cy="0" r="2"/>
+    <g id="ydris-auditif" transform="translate(-13.8 -9)"><path d="M 12.3,6.4019238 A 3,3 0 0 0 11.201924,10.5 5,5 0 0 1 12.3,2.1592831 a 3,3 0 0 0 0,4.2426407"/></g>
+    <g id="ydris-visuel" transform="translate(-13.8 -9)"><path d="m13.8 6a3 3 0 0 1 3 3 6 6 0 0 1 8.485281 0 8 8 0 0 0-11.485281-3"/></g>
+    <g id="ydris-kinesthesique" transform="translate(-13.8 -9)"><path d="M 12.3,11.598076 A 3,3 0 0 0 16.398076,10.5 13,13 0 0 1 12.3,28.568639 a 12,12 0 0 0 0,-16.970563"/></g>
+  </defs>
+  <circle cx="15" cy="15" r="15" fill="rgb(3.747391286168522e-12%,77.69142664980781%,70.0153182757084%)"/>
+  <use data-instance="visuel-1" href="#ydris-visuel" transform="matrix(0.45399051426724274 -0.8910065527005766 -0.8910065527005766 -0.45399051426724274 14.136732644972108 12.561555972981434)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="visuel-0" href="#ydris-visuel" transform="matrix(-0.17364818322367198 -0.9848077845260561 0.9848077845260561 -0.17364818322367198 16.0196384348549 12.842961481678763)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="kinesthesique-1" href="#ydris-kinesthesique" transform="matrix(-0.7500000239999999 0 0 0.7500000239999999 15.079212386953419 13.886925717559862)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="kinesthesique-0" href="#ydris-kinesthesique" transform="matrix(0.7500000239999999 0 0 0.7500000239999999 14.25565104058675 14.710500153363062)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="kinesthesique-2" href="#ydris-kinesthesique" transform="matrix(-0.7500000239999999 0 0 0.7500000239999999 15.079212386953419 13.886925717559862)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="kinesthesique-3" href="#ydris-kinesthesique" transform="matrix(0.7500000239999999 0 0 0.7500000239999999 14.25565104058675 14.710500153363062)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="auditif-1" href="#ydris-auditif" transform="matrix(-0.7407662867052676 0.1173258537310989 -0.1173258537310989 -0.7407662867052676 14.703647000419906 2.9347715381014736)" opacity="1" fill="#ffffff" stroke="none"/>
+  <use data-instance="auditif-0" href="#ydris-auditif" transform="matrix(0.7458914530013915 0.0783963507589155 -0.0783963507589155 0.7458914530013915 17.034785013074142 6.73882839511939)" opacity="1" fill="#ffffff" stroke="none"/>
+</svg>
