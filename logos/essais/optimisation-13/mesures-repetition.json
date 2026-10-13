@@ -1,0 +1,6830 @@
+{
+  "date": "2026-10-13T15:38:59.981Z",
+  "machine": {
+    "plateForme": "linux",
+    "processeur": "INTEL(R) XEON(R) PLATINUM 8573C",
+    "coeurs": 5
+  },
+  "noms": [
+    "G-uniforme-rgb",
+    "G-uniforme-oklch",
+    "G-adaptatif-rgb",
+    "G-adaptatif-oklch"
+  ],
+  "moteurs": [
+    {
+      "moteur": "chromium",
+      "version": "151.0.7922.173",
+      "erreurs": [],
+      "froid": [
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-uniforme-oklch",
+          "decodage": 16.600000001490116,
+          "renduLecture": 20.799999997019768,
+          "total": 37.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.199999995529652,
+          "renduLecture": 15.600000001490116,
+          "total": 26.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.399999998509884,
+          "renduLecture": 15.399999998509884,
+          "total": 28.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11,
+          "renduLecture": 18.5,
+          "total": 29.5
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.899999998509884,
+          "renduLecture": 18.400000005960464,
+          "total": 29.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11,
+          "renduLecture": 15.900000005960464,
+          "total": 26.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.599999994039536,
+          "renduLecture": 17,
+          "total": 31.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.100000001490116,
+          "renduLecture": 14.299999997019768,
+          "total": 27.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.100000001490116,
+          "renduLecture": 14.399999998509884,
+          "total": 27.5
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-uniforme-oklch",
+          "decodage": 13.800000004470348,
+          "renduLecture": 17.100000001490116,
+          "total": 30.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.799999997019768,
+          "renduLecture": 15.5,
+          "total": 26.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12.700000002980232,
+          "renduLecture": 20.299999997019768,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.700000002980232,
+          "renduLecture": 16,
+          "total": 26.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.399999998509884,
+          "renduLecture": 14.600000001490116,
+          "total": 28
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14,
+          "renduLecture": 16.799999997019768,
+          "total": 30.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.899999998509884,
+          "renduLecture": 18.30000000447035,
+          "total": 29.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.700000002980232,
+          "renduLecture": 15.700000002980232,
+          "total": 26.400000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.200000002980232,
+          "renduLecture": 17.299999997019768,
+          "total": 31.5
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.200000002980232,
+          "renduLecture": 14.799999997019768,
+          "total": 28
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.399999998509884,
+          "renduLecture": 18,
+          "total": 29.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14.5,
+          "renduLecture": 15.600000001490116,
+          "total": 30.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.5,
+          "renduLecture": 17.399999998509884,
+          "total": 31.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.5,
+          "renduLecture": 14.5,
+          "total": 28
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.899999998509884,
+          "renduLecture": 18.30000000447035,
+          "total": 29.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 17,
+          "renduLecture": 18.100000001490116,
+          "total": 35.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.700000002980232,
+          "renduLecture": 14.399999998509884,
+          "total": 28.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.600000001490116,
+          "renduLecture": 16.799999997019768,
+          "total": 31.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.299999997019768,
+          "renduLecture": 15.700000002980232,
+          "total": 27
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.199999995529652,
+          "renduLecture": 18,
+          "total": 29.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.800000004470348,
+          "renduLecture": 14.699999995529652,
+          "total": 28.5
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11,
+          "renduLecture": 18.299999997019768,
+          "total": 29.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-uniforme-oklch",
+          "decodage": 15.600000001490116,
+          "renduLecture": 17.100000001490116,
+          "total": 32.70000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.299999997019768,
+          "renduLecture": 14.399999998509884,
+          "total": 27.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.100000001490116,
+          "renduLecture": 15.399999998509884,
+          "total": 26.5
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.199999995529652,
+          "renduLecture": 16.80000000447035,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.899999998509884,
+          "renduLecture": 18.200000002980232,
+          "total": 29.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.899999998509884,
+          "renduLecture": 15.5,
+          "total": 26.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16.899999998509884,
+          "renduLecture": 14.399999998509884,
+          "total": 31.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.799999997019768,
+          "renduLecture": 19.200000002980232,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.399999998509884,
+          "renduLecture": 17.5,
+          "total": 31.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.399999998509884,
+          "renduLecture": 15.399999998509884,
+          "total": 26.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.899999998509884,
+          "renduLecture": 20.700000002980232,
+          "total": 32.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16.600000001490116,
+          "renduLecture": 15.100000001490116,
+          "total": 31.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.400000005960464,
+          "renduLecture": 16.899999998509884,
+          "total": 31.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.599999994039536,
+          "renduLecture": 17.5,
+          "total": 32.099999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 21,
+          "renduLecture": 18.100000001490116,
+          "total": 39.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16.700000002980232,
+          "renduLecture": 18.099999994039536,
+          "total": 34.79999999701977
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12.100000001490116,
+          "renduLecture": 18.299999997019768,
+          "total": 30.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.5,
+          "renduLecture": 22.400000005960464,
+          "total": 33.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-uniforme-oklch",
+          "decodage": 16.5,
+          "renduLecture": 23,
+          "total": 39.5
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.399999998509884,
+          "renduLecture": 15.799999997019768,
+          "total": 27.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14.899999998509884,
+          "renduLecture": 15.100000001490116,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-uniforme-oklch",
+          "decodage": 23.600000001490116,
+          "renduLecture": 18.399999998509884,
+          "total": 42
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-uniforme-rgb",
+          "decodage": 15.100000001490116,
+          "renduLecture": 14.799999997019768,
+          "total": 29.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.299999997019768,
+          "renduLecture": 18.5,
+          "total": 29.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14.100000001490116,
+          "renduLecture": 15.5,
+          "total": 29.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11,
+          "renduLecture": 15.699999995529652,
+          "total": 26.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 16.80000000447035,
+          "total": 34.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.600000001490116,
+          "renduLecture": 19.80000000447035,
+          "total": 34.400000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 16.399999998509884,
+          "renduLecture": 18.799999997019768,
+          "total": 35.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 23.399999998509884,
+          "renduLecture": 19,
+          "total": 42.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-uniforme-rgb",
+          "decodage": 15.899999998509884,
+          "renduLecture": 16,
+          "total": 31.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17.899999998509884,
+          "renduLecture": 129.5,
+          "total": 147.39999999850988
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13.300000004470348,
+          "renduLecture": 17.5,
+          "total": 30.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-uniforme-oklch",
+          "decodage": 28.19999999552965,
+          "renduLecture": 21.700000002980232,
+          "total": 49.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 16.5,
+          "renduLecture": 22,
+          "total": 38.5
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-uniforme-rgb",
+          "decodage": 27.899999998509884,
+          "renduLecture": 18.69999999552965,
+          "total": 46.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 20.30000000447035,
+          "renduLecture": 16.599999994039536,
+          "total": 36.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13.100000001490116,
+          "renduLecture": 19.100000001490116,
+          "total": 32.20000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-uniforme-rgb",
+          "decodage": 28.600000001490116,
+          "renduLecture": 19,
+          "total": 47.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.299999997019768,
+          "renduLecture": 15.600000001490116,
+          "total": 26.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-uniforme-oklch",
+          "decodage": 15.299999997019768,
+          "renduLecture": 17.100000001490116,
+          "total": 32.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-uniforme-oklch",
+          "decodage": 20.5,
+          "renduLecture": 27.299999997019768,
+          "total": 47.79999999701977
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.900000005960464,
+          "renduLecture": 18.299999997019768,
+          "total": 29.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.799999997019768,
+          "renduLecture": 14.700000002980232,
+          "total": 28.5
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.600000001490116,
+          "renduLecture": 16,
+          "total": 26.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.199999995529652,
+          "renduLecture": 15.5,
+          "total": 25.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-uniforme-rgb",
+          "decodage": 15.300000004470348,
+          "renduLecture": 15.299999997019768,
+          "total": 30.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14,
+          "renduLecture": 17.299999997019768,
+          "total": 31.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 19.100000001490116,
+          "renduLecture": 21.700000002980232,
+          "total": 40.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-uniforme-oklch",
+          "decodage": 15.900000005960464,
+          "renduLecture": 16.799999997019768,
+          "total": 32.70000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-uniforme-rgb",
+          "decodage": 12.899999998509884,
+          "renduLecture": 15.799999997019768,
+          "total": 28.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13.400000005960464,
+          "renduLecture": 19.599999994039536,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12.300000004470348,
+          "renduLecture": 15.699999995529652,
+          "total": 28
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.600000001490116,
+          "renduLecture": 18.799999997019768,
+          "total": 30.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.100000001490116,
+          "renduLecture": 17.200000002980232,
+          "total": 28.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.5,
+          "renduLecture": 17.5,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14.399999998509884,
+          "renduLecture": 14.400000005960464,
+          "total": 28.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-uniforme-oklch",
+          "decodage": 16.100000001490116,
+          "renduLecture": 16.80000000447035,
+          "total": 32.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.799999997019768,
+          "renduLecture": 16,
+          "total": 26.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.799999997019768,
+          "renduLecture": 14.600000001490116,
+          "total": 28.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.100000001490116,
+          "renduLecture": 25.600000001490116,
+          "total": 36.70000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-uniforme-oklch",
+          "decodage": 22.399999998509884,
+          "renduLecture": 20.200000002980232,
+          "total": 42.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13.799999997019768,
+          "renduLecture": 15.800000004470348,
+          "total": 29.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-uniforme-rgb",
+          "decodage": 15.699999995529652,
+          "renduLecture": 15.100000001490116,
+          "total": 30.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.600000001490116,
+          "renduLecture": 18.69999999552965,
+          "total": 30.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14,
+          "renduLecture": 15.600000001490116,
+          "total": 29.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.299999997019768,
+          "renduLecture": 16.700000002980232,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12.899999998509884,
+          "renduLecture": 18.80000000447035,
+          "total": 31.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12.700000002980232,
+          "renduLecture": 15.699999995529652,
+          "total": 28.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.800000004470348,
+          "renduLecture": 19.69999999552965,
+          "total": 31.5
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14.100000001490116,
+          "renduLecture": 15.200000002980232,
+          "total": 29.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-uniforme-oklch",
+          "decodage": 15,
+          "renduLecture": 18,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13.599999994039536,
+          "renduLecture": 15.800000004470348,
+          "total": 29.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.099999994039536,
+          "renduLecture": 17.30000000447035,
+          "total": 31.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.699999995529652,
+          "renduLecture": 15,
+          "total": 28.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.100000001490116,
+          "renduLecture": 15.899999998509884,
+          "total": 27
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13.5,
+          "renduLecture": 18.299999997019768,
+          "total": 31.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.5,
+          "renduLecture": 17.30000000447035,
+          "total": 31.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.299999997019768,
+          "renduLecture": 15.700000002980232,
+          "total": 26
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.599999994039536,
+          "renduLecture": 14.5,
+          "total": 28.099999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.700000002980232,
+          "renduLecture": 19.799999997019768,
+          "total": 30.5
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.299999997019768,
+          "renduLecture": 18.700000002980232,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.799999997019768,
+          "renduLecture": 15.5,
+          "total": 26.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-uniforme-oklch",
+          "decodage": 15.200000002980232,
+          "renduLecture": 17.19999999552965,
+          "total": 32.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14,
+          "renduLecture": 15.300000004470348,
+          "total": 29.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13.099999994039536,
+          "renduLecture": 18.400000005960464,
+          "total": 31.5
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.800000004470348,
+          "renduLecture": 16.899999998509884,
+          "total": 31.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.600000001490116,
+          "renduLecture": 15.599999994039536,
+          "total": 26.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-uniforme-rgb",
+          "decodage": 15.5,
+          "renduLecture": 14.899999998509884,
+          "total": 30.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.400000005960464,
+          "renduLecture": 15.699999995529652,
+          "total": 27.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16.100000001490116,
+          "renduLecture": 14.700000002980232,
+          "total": 30.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-uniforme-oklch",
+          "decodage": 13.799999997019768,
+          "renduLecture": 17.200000002980232,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.099999994039536,
+          "renduLecture": 19.200000002980232,
+          "total": 30.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.899999998509884,
+          "renduLecture": 16.799999997019768,
+          "total": 27.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.200000002980232,
+          "renduLecture": 17.100000001490116,
+          "total": 31.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.399999998509884,
+          "renduLecture": 18.899999998509884,
+          "total": 29.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17.100000001490116,
+          "renduLecture": 14.399999998509884,
+          "total": 31.5
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17.69999999552965,
+          "renduLecture": 17.200000002980232,
+          "total": 34.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.899999998509884,
+          "renduLecture": 18.399999998509884,
+          "total": 30.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14.399999998509884,
+          "renduLecture": 15,
+          "total": 29.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.699999995529652,
+          "renduLecture": 15.900000005960464,
+          "total": 27.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.5,
+          "renduLecture": 19.400000005960464,
+          "total": 30.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18.600000001490116,
+          "renduLecture": 15,
+          "total": 33.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17.19999999552965,
+          "renduLecture": 17,
+          "total": 34.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.600000001490116,
+          "renduLecture": 18.5,
+          "total": 29.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-uniforme-rgb",
+          "decodage": 15.899999998509884,
+          "renduLecture": 14.799999997019768,
+          "total": 30.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12.600000001490116,
+          "renduLecture": 18.5,
+          "total": 31.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-uniforme-oklch",
+          "decodage": 13.600000001490116,
+          "renduLecture": 17.099999994039536,
+          "total": 30.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.300000004470348,
+          "renduLecture": 16.5,
+          "total": 27.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-uniforme-oklch",
+          "decodage": 13.800000004470348,
+          "renduLecture": 17.600000001490116,
+          "total": 31.400000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.899999998509884,
+          "renduLecture": 18.19999999552965,
+          "total": 29.099999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.100000001490116,
+          "renduLecture": 15.799999997019768,
+          "total": 26.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.200000002980232,
+          "renduLecture": 15,
+          "total": 28.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13,
+          "renduLecture": 14.799999997019768,
+          "total": 27.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17.399999998509884,
+          "renduLecture": 23.899999998509884,
+          "total": 41.29999999701977
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 15.100000001490116,
+          "renduLecture": 18.100000001490116,
+          "total": 33.20000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13.600000001490116,
+          "renduLecture": 15.699999995529652,
+          "total": 29.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.799999997019768,
+          "renduLecture": 18.700000002980232,
+          "total": 29.5
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.600000001490116,
+          "renduLecture": 17.5,
+          "total": 32.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12.299999997019768,
+          "renduLecture": 15.700000002980232,
+          "total": 28
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16.799999997019768,
+          "renduLecture": 14.600000001490116,
+          "total": 31.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.399999998509884,
+          "renduLecture": 14.800000004470348,
+          "total": 28.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14,
+          "renduLecture": 18.30000000447035,
+          "total": 32.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.399999998509884,
+          "renduLecture": 18,
+          "total": 29.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.199999995529652,
+          "renduLecture": 15.5,
+          "total": 25.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14.100000001490116,
+          "renduLecture": 14.5,
+          "total": 28.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.5,
+          "renduLecture": 18,
+          "total": 28.5
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.699999995529652,
+          "renduLecture": 17.200000002980232,
+          "total": 31.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.699999995529652,
+          "renduLecture": 17.30000000447035,
+          "total": 28
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.899999998509884,
+          "renduLecture": 18.299999997019768,
+          "total": 29.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.299999997019768,
+          "renduLecture": 15.600000001490116,
+          "total": 26.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13,
+          "renduLecture": 14.399999998509884,
+          "total": 27.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.5,
+          "renduLecture": 16.899999998509884,
+          "total": 31.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11.100000001490116,
+          "renduLecture": 15.5,
+          "total": 26.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.600000001490116,
+          "renduLecture": 14.399999998509884,
+          "total": 28
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.099999994039536,
+          "renduLecture": 16.900000005960464,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.200000002980232,
+          "renduLecture": 18.100000001490116,
+          "total": 28.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.799999997019768,
+          "renduLecture": 22.600000001490116,
+          "total": 33.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.399999998509884,
+          "renduLecture": 16.700000002980232,
+          "total": 31.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.5,
+          "renduLecture": 15.800000004470348,
+          "total": 26.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-uniforme-rgb",
+          "decodage": 12.799999997019768,
+          "renduLecture": 14.399999998509884,
+          "total": 27.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 11.300000004470348,
+          "renduLecture": 18,
+          "total": 29.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-uniforme-oklch",
+          "decodage": 13.800000004470348,
+          "renduLecture": 17.299999997019768,
+          "total": 31.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-uniforme-rgb",
+          "decodage": 20.5,
+          "renduLecture": 14.5,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.799999997019768,
+          "renduLecture": 108.90000000596046,
+          "total": 119.70000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 55.70000000298023,
+          "renduLecture": 71.5,
+          "total": 127.20000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 33.399999998509884,
+          "renduLecture": 71,
+          "total": 104.39999999850988
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-uniforme-oklch",
+          "decodage": 37.29999999701977,
+          "renduLecture": 61.600000001490116,
+          "total": 98.89999999850988
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-uniforme-rgb",
+          "decodage": 60.29999999701977,
+          "renduLecture": 35,
+          "total": 95.29999999701977
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-uniforme-oklch",
+          "decodage": 38.100000001490116,
+          "renduLecture": 43.600000001490116,
+          "total": 81.70000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 74.79999999701977,
+          "renduLecture": 25.700000002980232,
+          "total": 100.5
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 16.899999998509884,
+          "renduLecture": 20,
+          "total": 36.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-uniforme-rgb",
+          "decodage": 24.5,
+          "renduLecture": 23.700000002980232,
+          "total": 48.20000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 18.80000000447035,
+          "renduLecture": 22.799999997019768,
+          "total": 41.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-uniforme-oklch",
+          "decodage": 24.399999998509884,
+          "renduLecture": 20.5,
+          "total": 44.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-uniforme-rgb",
+          "decodage": 20.900000005960464,
+          "renduLecture": 19.299999997019768,
+          "total": 40.20000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14.299999997019768,
+          "renduLecture": 20.30000000447035,
+          "total": 34.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-uniforme-oklch",
+          "decodage": 20.600000001490116,
+          "renduLecture": 20.30000000447035,
+          "total": 40.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-uniforme-rgb",
+          "decodage": 24.400000005960464,
+          "renduLecture": 23.599999994039536,
+          "total": 48
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 15.700000002980232,
+          "renduLecture": 20.200000002980232,
+          "total": 35.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 16,
+          "renduLecture": 25.099999994039536,
+          "total": 41.099999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14.800000004470348,
+          "renduLecture": 25,
+          "total": 39.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14.5,
+          "renduLecture": 20,
+          "total": 34.5
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19.80000000447035,
+          "renduLecture": 19.899999998509884,
+          "total": 39.70000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14.600000001490116,
+          "renduLecture": 18.899999998509884,
+          "total": 33.5
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-uniforme-rgb",
+          "decodage": 22.399999998509884,
+          "renduLecture": 19.399999998509884,
+          "total": 41.79999999701977
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 16.799999997019768,
+          "renduLecture": 18.600000001490116,
+          "total": 35.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14.799999997019768,
+          "renduLecture": 22.900000005960464,
+          "total": 37.70000000298023
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-uniforme-oklch",
+          "decodage": 25.299999997019768,
+          "renduLecture": 21.100000001490116,
+          "total": 46.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-uniforme-oklch",
+          "decodage": 24.100000001490116,
+          "renduLecture": 21.5,
+          "total": 45.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 15.300000004470348,
+          "renduLecture": 18,
+          "total": 33.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.100000001490116,
+          "renduLecture": 17,
+          "total": 30.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.899999998509884,
+          "renduLecture": 18.30000000447035,
+          "total": 29.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.399999998509884,
+          "renduLecture": 15.899999998509884,
+          "total": 26.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-uniforme-oklch",
+          "decodage": 13.799999997019768,
+          "renduLecture": 16.900000005960464,
+          "total": 30.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.600000001490116,
+          "renduLecture": 18.30000000447035,
+          "total": 28.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.100000001490116,
+          "renduLecture": 14.5,
+          "total": 27.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.100000001490116,
+          "renduLecture": 14.299999997019768,
+          "total": 27.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.700000002980232,
+          "renduLecture": 18.19999999552965,
+          "total": 28.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.100000001490116,
+          "renduLecture": 15.5,
+          "total": 25.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14.5,
+          "renduLecture": 19.5,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14.899999998509884,
+          "renduLecture": 14.600000001490116,
+          "total": 29.5
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14,
+          "renduLecture": 16.600000001490116,
+          "total": 30.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.5,
+          "renduLecture": 18.099999994039536,
+          "total": 28.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.100000001490116,
+          "renduLecture": 15.700000002980232,
+          "total": 25.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.400000005960464,
+          "renduLecture": 18.19999999552965,
+          "total": 28.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 15.5,
+          "renduLecture": 15.800000004470348,
+          "total": 31.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.299999997019768,
+          "renduLecture": 14.5,
+          "total": 27.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-uniforme-oklch",
+          "decodage": 13.5,
+          "renduLecture": 16.69999999552965,
+          "total": 30.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14.300000004470348,
+          "renduLecture": 15.599999994039536,
+          "total": 29.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.300000004470348,
+          "renduLecture": 14.399999998509884,
+          "total": 27.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.399999998509884,
+          "renduLecture": 18.100000001490116,
+          "total": 28.5
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-uniforme-oklch",
+          "decodage": 15.699999995529652,
+          "renduLecture": 16.899999998509884,
+          "total": 32.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.900000005960464,
+          "renduLecture": 15,
+          "total": 28.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-uniforme-oklch",
+          "decodage": 14,
+          "renduLecture": 17,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.699999995529652,
+          "renduLecture": 15.800000004470348,
+          "total": 26.5
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.5,
+          "renduLecture": 18.099999994039536,
+          "total": 28.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-uniforme-oklch",
+          "decodage": 13.800000004470348,
+          "renduLecture": 20.099999994039536,
+          "total": 33.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.399999998509884,
+          "renduLecture": 18.200000002980232,
+          "total": 28.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-uniforme-rgb",
+          "decodage": 14.899999998509884,
+          "renduLecture": 15,
+          "total": 29.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11,
+          "renduLecture": 15.5,
+          "total": 26.5
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.5,
+          "renduLecture": 14.699999995529652,
+          "total": 28.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.600000001490116,
+          "renduLecture": 18.30000000447035,
+          "total": 28.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.299999997019768,
+          "renduLecture": 15.600000001490116,
+          "total": 25.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-uniforme-oklch",
+          "decodage": 15.399999998509884,
+          "renduLecture": 17,
+          "total": 32.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 10.899999998509884,
+          "renduLecture": 15.600000001490116,
+          "total": 26.5
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17.19999999552965,
+          "renduLecture": 17.100000001490116,
+          "total": 34.29999999701977
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 10.5,
+          "renduLecture": 18.5,
+          "total": 29
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-uniforme-rgb",
+          "decodage": 13.100000001490116,
+          "renduLecture": 14.5,
+          "total": 27.600000001490116
+        }
+      ],
+      "chaud": [
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-uniforme-rgb",
+          "total": 18.5
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-uniforme-oklch",
+          "total": 19.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.5
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-uniforme-rgb",
+          "total": 15.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-uniforme-oklch",
+          "total": 19.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-adaptatif-rgb",
+          "total": 18.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-adaptatif-oklch",
+          "total": 19
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-uniforme-oklch",
+          "total": 15.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-uniforme-rgb",
+          "total": 13.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-uniforme-oklch",
+          "total": 15.5
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.199999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-uniforme-rgb",
+          "total": 13.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-uniforme-oklch",
+          "total": 15.300000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-uniforme-rgb",
+          "total": 17.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-uniforme-rgb",
+          "total": 12.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-adaptatif-rgb",
+          "total": 13.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-uniforme-oklch",
+          "total": 18.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-adaptatif-oklch",
+          "total": 24.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-uniforme-rgb",
+          "total": 13.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-uniforme-oklch",
+          "total": 15.199999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-uniforme-oklch",
+          "total": 16.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-uniforme-rgb",
+          "total": 16.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-adaptatif-rgb",
+          "total": 16.5
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-uniforme-oklch",
+          "total": 15.5
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-uniforme-rgb",
+          "total": 16.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-adaptatif-rgb",
+          "total": 16.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-adaptatif-oklch",
+          "total": 21
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-uniforme-oklch",
+          "total": 28.5
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-uniforme-rgb",
+          "total": 17.5
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-adaptatif-rgb",
+          "total": 16.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-uniforme-rgb",
+          "total": 14
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-adaptatif-rgb",
+          "total": 14
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-uniforme-oklch",
+          "total": 15.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-uniforme-oklch",
+          "total": 15
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-adaptatif-rgb",
+          "total": 14
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-uniforme-rgb",
+          "total": 12.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-uniforme-oklch",
+          "total": 17.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-adaptatif-oklch",
+          "total": 23.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-uniforme-rgb",
+          "total": 17.400000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-uniforme-rgb",
+          "total": 13.099999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-uniforme-oklch",
+          "total": 15.300000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-adaptatif-oklch",
+          "total": 20.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-uniforme-rgb",
+          "total": 13.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-uniforme-oklch",
+          "total": 15.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-uniforme-rgb",
+          "total": 13.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-uniforme-oklch",
+          "total": 15.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-adaptatif-rgb",
+          "total": 15.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-uniforme-oklch",
+          "total": 16.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-adaptatif-rgb",
+          "total": 15.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-adaptatif-oklch",
+          "total": 18.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-uniforme-rgb",
+          "total": 13.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-uniforme-oklch",
+          "total": 15.300000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-uniforme-rgb",
+          "total": 13
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.5
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-uniforme-oklch",
+          "total": 15.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-uniforme-rgb",
+          "total": 13.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-uniforme-oklch",
+          "total": 24
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-adaptatif-rgb",
+          "total": 15.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-uniforme-rgb",
+          "total": 13.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-adaptatif-oklch",
+          "total": 22.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-adaptatif-rgb",
+          "total": 15.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-uniforme-oklch",
+          "total": 15.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-uniforme-rgb",
+          "total": 13.099999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-uniforme-rgb",
+          "total": 13
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-adaptatif-rgb",
+          "total": 14
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-uniforme-oklch",
+          "total": 15.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-uniforme-oklch",
+          "total": 16.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-uniforme-rgb",
+          "total": 14
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-uniforme-rgb",
+          "total": 14
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-uniforme-oklch",
+          "total": 16.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-adaptatif-oklch",
+          "total": 19.5
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-adaptatif-rgb",
+          "total": 16.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-adaptatif-rgb",
+          "total": 16
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-uniforme-rgb",
+          "total": 53.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-uniforme-oklch",
+          "total": 15.699999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-uniforme-rgb",
+          "total": 13
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-uniforme-oklch",
+          "total": 15.5
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-uniforme-rgb",
+          "total": 12.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-uniforme-oklch",
+          "total": 15.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-uniforme-rgb",
+          "total": 17.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-uniforme-oklch",
+          "total": 16.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-uniforme-rgb",
+          "total": 12.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-uniforme-oklch",
+          "total": 15.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-uniforme-rgb",
+          "total": 12.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-uniforme-oklch",
+          "total": 15.199999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.5
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-adaptatif-rgb",
+          "total": 13.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.5
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.699999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-uniforme-rgb",
+          "total": 13.5
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-uniforme-oklch",
+          "total": 16.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-uniforme-rgb",
+          "total": 14.5
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-uniforme-oklch",
+          "total": 15.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-uniforme-oklch",
+          "total": 15
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-adaptatif-oklch",
+          "total": 21.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-adaptatif-rgb",
+          "total": 15
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-uniforme-rgb",
+          "total": 13.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-uniforme-rgb",
+          "total": 13.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-uniforme-oklch",
+          "total": 19.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-uniforme-rgb",
+          "total": 12.800000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.699999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-uniforme-oklch",
+          "total": 16.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-uniforme-oklch",
+          "total": 16.099999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-uniforme-rgb",
+          "total": 13.5
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.400000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-uniforme-rgb",
+          "total": 12.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-uniforme-oklch",
+          "total": 15.5
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.199999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-uniforme-oklch",
+          "total": 15.300000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-uniforme-rgb",
+          "total": 13.300000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-adaptatif-rgb",
+          "total": 13.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-uniforme-rgb",
+          "total": 13.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-uniforme-oklch",
+          "total": 15.5
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.199999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-uniforme-rgb",
+          "total": 13.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-uniforme-oklch",
+          "total": 15.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-uniforme-rgb",
+          "total": 14.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-uniforme-oklch",
+          "total": 15
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-uniforme-oklch",
+          "total": 15.5
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.5
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-uniforme-rgb",
+          "total": 12.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-adaptatif-oklch",
+          "total": 18.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-uniforme-rgb",
+          "total": 13.199999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-uniforme-oklch",
+          "total": 15.800000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.799999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-adaptatif-oklch",
+          "total": 19.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-uniforme-rgb",
+          "total": 13.5
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-adaptatif-rgb",
+          "total": 17.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-uniforme-oklch",
+          "total": 16
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-uniforme-oklch",
+          "total": 15.700000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-uniforme-rgb",
+          "total": 13
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.5
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-uniforme-rgb",
+          "total": 13.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-uniforme-oklch",
+          "total": 15.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.5
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-uniforme-oklch",
+          "total": 15.5
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-uniforme-rgb",
+          "total": 12.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-adaptatif-oklch",
+          "total": 20.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-uniforme-oklch",
+          "total": 16.400000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-uniforme-rgb",
+          "total": 14.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-adaptatif-rgb",
+          "total": 18.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-uniforme-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-uniforme-rgb",
+          "total": 12.800000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.19999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-uniforme-oklch",
+          "total": 15.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.5
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-uniforme-rgb",
+          "total": 12.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-uniforme-rgb",
+          "total": 13.599999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-adaptatif-rgb",
+          "total": 16.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.30000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-uniforme-oklch",
+          "total": 15.899999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-adaptatif-rgb",
+          "total": 15.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-uniforme-oklch",
+          "total": 18.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-uniforme-rgb",
+          "total": 13.099999994039536
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-uniforme-oklch",
+          "total": 15.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-uniforme-rgb",
+          "total": 13.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-uniforme-oklch",
+          "total": 15.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-uniforme-rgb",
+          "total": 13.5
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.400000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.5
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-uniforme-oklch",
+          "total": 15.900000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-uniforme-rgb",
+          "total": 13
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-uniforme-oklch",
+          "total": 15.299999997019768
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.80000000447035
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-uniforme-rgb",
+          "total": 13.400000005960464
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-adaptatif-rgb",
+          "total": 18.5
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-uniforme-rgb",
+          "total": 13.199999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.200000002980232
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-uniforme-oklch",
+          "total": 15.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.199999995529652
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-uniforme-oklch",
+          "total": 15.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-adaptatif-oklch",
+          "total": 17
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-uniforme-rgb",
+          "total": 14.300000004470348
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-adaptatif-oklch",
+          "total": 17.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-uniforme-rgb",
+          "total": 13.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-adaptatif-rgb",
+          "total": 14.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-uniforme-oklch",
+          "total": 15.100000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-adaptatif-oklch",
+          "total": 16.69999999552965
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-uniforme-rgb",
+          "total": 12.600000001490116
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-uniforme-oklch",
+          "total": 15.399999998509884
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-adaptatif-rgb",
+          "total": 16
+        }
+      ],
+      "pixels": [
+        {
+          "largeur": 800,
+          "nom": "G-uniforme-oklch",
+          "reference": "G-uniforme-rgb",
+          "ecartCanalMax": 1,
+          "ecartCanalMoyen": 0.01845030864197531,
+          "pixelsDifferents": 46500,
+          "canauxDifferents": 59779
+        },
+        {
+          "largeur": 800,
+          "nom": "G-adaptatif-rgb",
+          "reference": "G-uniforme-rgb",
+          "ecartCanalMax": 1,
+          "ecartCanalMoyen": 0.021912962962962964,
+          "pixelsDifferents": 53032,
+          "canauxDifferents": 70998
+        },
+        {
+          "largeur": 800,
+          "nom": "G-adaptatif-oklch",
+          "reference": "G-uniforme-rgb",
+          "ecartCanalMax": 1,
+          "ecartCanalMoyen": 0.018477777777777777,
+          "pixelsDifferents": 46419,
+          "canauxDifferents": 59868
+        }
+      ],
+      "agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+      "contexte": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "colorType": "unorm8",
+        "desynchronized": false,
+        "toneMapping": {
+          "mode": "standard"
+        },
+        "willReadFrequently": true
+      }
+    },
+    {
+      "moteur": "firefox",
+      "version": "151.0",
+      "erreurs": [],
+      "froid": [
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 16,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 15,
+          "renduLecture": 23,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16,
+          "renduLecture": 18,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 23,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 19,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-uniforme-rgb",
+          "decodage": 24,
+          "renduLecture": 19,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 19,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 20,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-uniforme-rgb",
+          "decodage": 20,
+          "renduLecture": 22,
+          "total": 42
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-uniforme-oklch",
+          "decodage": 23,
+          "renduLecture": 20,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 21,
+          "renduLecture": 23,
+          "total": 44
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 17,
+          "renduLecture": 19,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19,
+          "renduLecture": 20,
+          "total": 39
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 19,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 19,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19,
+          "renduLecture": 18,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 19,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 19,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-uniforme-rgb",
+          "decodage": 19,
+          "renduLecture": 18,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19,
+          "renduLecture": 18,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 18,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 20,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 19,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12,
+          "renduLecture": 20,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 17,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 17,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 17,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 16,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 18,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 20,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 18,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19,
+          "renduLecture": 18,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-uniforme-rgb",
+          "decodage": 19,
+          "renduLecture": 19,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19,
+          "renduLecture": 18,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 18,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 17,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 24,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16,
+          "renduLecture": 18,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19,
+          "renduLecture": 17,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 17,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 17,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-uniforme-oklch",
+          "decodage": 16,
+          "renduLecture": 18,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12,
+          "renduLecture": 18,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-uniforme-oklch",
+          "decodage": 20,
+          "renduLecture": 17,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 17,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 15,
+          "renduLecture": 18,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 17,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 17,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 19,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-uniforme-rgb",
+          "decodage": 20,
+          "renduLecture": 18,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 17,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 17,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 18,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 19,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 16,
+          "renduLecture": 19,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-uniforme-oklch",
+          "decodage": 30,
+          "renduLecture": 17,
+          "total": 47
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 19,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 19,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-uniforme-oklch",
+          "decodage": 16,
+          "renduLecture": 18,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-uniforme-rgb",
+          "decodage": 20,
+          "renduLecture": 18,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 15,
+          "renduLecture": 19,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-uniforme-rgb",
+          "decodage": 26,
+          "renduLecture": 30,
+          "total": 56
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-uniforme-oklch",
+          "decodage": 26,
+          "renduLecture": 19,
+          "total": 45
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 27,
+          "total": 41
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 40,
+          "renduLecture": 28,
+          "total": 68
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-uniforme-oklch",
+          "decodage": 24,
+          "renduLecture": 22,
+          "total": 46
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 18,
+          "renduLecture": 27,
+          "total": 45
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 21,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-uniforme-oklch",
+          "decodage": 23,
+          "renduLecture": 32,
+          "total": 55
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 27,
+          "renduLecture": 23,
+          "total": 50
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 22,
+          "total": 40
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 27,
+          "total": 40
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 19,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-uniforme-rgb",
+          "decodage": 19,
+          "renduLecture": 24,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-uniforme-oklch",
+          "decodage": 25,
+          "renduLecture": 18,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 21,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-uniforme-rgb",
+          "decodage": 23,
+          "renduLecture": 24,
+          "total": 47
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 20,
+          "renduLecture": 26,
+          "total": 46
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-uniforme-oklch",
+          "decodage": 35,
+          "renduLecture": 35,
+          "total": 70
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 30,
+          "renduLecture": 48,
+          "total": 78
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-uniforme-oklch",
+          "decodage": 21,
+          "renduLecture": 19,
+          "total": 40
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 24,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 18,
+          "renduLecture": 29,
+          "total": 47
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-uniforme-rgb",
+          "decodage": 27,
+          "renduLecture": 28,
+          "total": 55
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 19,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-uniforme-oklch",
+          "decodage": 21,
+          "renduLecture": 19,
+          "total": 40
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 16,
+          "renduLecture": 20,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 17,
+          "renduLecture": 23,
+          "total": 40
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 18,
+          "renduLecture": 28,
+          "total": 46
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19,
+          "renduLecture": 23,
+          "total": 42
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 18,
+          "renduLecture": 30,
+          "total": 48
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-uniforme-rgb",
+          "decodage": 29,
+          "renduLecture": 92,
+          "total": 121
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-uniforme-rgb",
+          "decodage": 19,
+          "renduLecture": 20,
+          "total": 39
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-uniforme-oklch",
+          "decodage": 23,
+          "renduLecture": 19,
+          "total": 42
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 16,
+          "renduLecture": 21,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 17,
+          "renduLecture": 21,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-uniforme-rgb",
+          "decodage": 21,
+          "renduLecture": 17,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 19,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 15,
+          "renduLecture": 19,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 17,
+          "renduLecture": 20,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16,
+          "renduLecture": 19,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 27,
+          "total": 44
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 23,
+          "renduLecture": 20,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 14,
+          "renduLecture": 19,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-uniforme-oklch",
+          "decodage": 16,
+          "renduLecture": 17,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-uniforme-rgb",
+          "decodage": 19,
+          "renduLecture": 22,
+          "total": 41
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 18,
+          "renduLecture": 20,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 14,
+          "renduLecture": 22,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 16,
+          "renduLecture": 22,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16,
+          "renduLecture": 19,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-uniforme-oklch",
+          "decodage": 23,
+          "renduLecture": 21,
+          "total": 44
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 26,
+          "total": 39
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-uniforme-rgb",
+          "decodage": 31,
+          "renduLecture": 20,
+          "total": 51
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12,
+          "renduLecture": 18,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-uniforme-oklch",
+          "decodage": 25,
+          "renduLecture": 23,
+          "total": 48
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 17,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11,
+          "renduLecture": 19,
+          "total": 30
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16,
+          "renduLecture": 18,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 21,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-uniforme-oklch",
+          "decodage": 22,
+          "renduLecture": 21,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-uniforme-rgb",
+          "decodage": 19,
+          "renduLecture": 29,
+          "total": 48
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 25,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16,
+          "renduLecture": 18,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-uniforme-oklch",
+          "decodage": 20,
+          "renduLecture": 21,
+          "total": 41
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 19,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-uniforme-rgb",
+          "decodage": 17,
+          "renduLecture": 17,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-uniforme-oklch",
+          "decodage": 19,
+          "renduLecture": 18,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 20,
+          "total": 38
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 19,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 22,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-uniforme-rgb",
+          "decodage": 20,
+          "renduLecture": 21,
+          "total": 41
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 19,
+          "total": 32
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-uniforme-rgb",
+          "decodage": 20,
+          "renduLecture": 20,
+          "total": 40
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 18,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16,
+          "renduLecture": 18,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 18,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-uniforme-oklch",
+          "decodage": 18,
+          "renduLecture": 18,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 17,
+          "renduLecture": 26,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-uniforme-rgb",
+          "decodage": 22,
+          "renduLecture": 19,
+          "total": 41
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 13,
+          "renduLecture": 20,
+          "total": 33
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-uniforme-rgb",
+          "decodage": 16,
+          "renduLecture": 18,
+          "total": 34
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 13,
+          "renduLecture": 22,
+          "total": 35
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 11,
+          "renduLecture": 18,
+          "total": 29
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 20,
+          "total": 37
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-adaptatif-rgb",
+          "decodage": 12,
+          "renduLecture": 19,
+          "total": 31
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-uniforme-oklch",
+          "decodage": 17,
+          "renduLecture": 19,
+          "total": 36
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-adaptatif-oklch",
+          "decodage": 19,
+          "renduLecture": 24,
+          "total": 43
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-uniforme-rgb",
+          "decodage": 18,
+          "renduLecture": 19,
+          "total": 37
+        }
+      ],
+      "chaud": [
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-adaptatif-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 0,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-adaptatif-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-uniforme-oklch",
+          "total": 9
+        },
+        {
+          "largeur": 800,
+          "tour": 1,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 2,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 3,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 4,
+          "nom": "G-adaptatif-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-uniforme-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 5,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 6,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 7,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 8,
+          "nom": "G-adaptatif-rgb",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 9,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 10,
+          "nom": "G-adaptatif-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-adaptatif-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 11,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-adaptatif-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-uniforme-rgb",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 12,
+          "nom": "G-adaptatif-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-uniforme-rgb",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 13,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 14,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 15,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-uniforme-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 16,
+          "nom": "G-uniforme-rgb",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 17,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-uniforme-rgb",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 18,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 19,
+          "nom": "G-adaptatif-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 20,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 21,
+          "nom": "G-uniforme-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 22,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-adaptatif-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 23,
+          "nom": "G-adaptatif-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 24,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 25,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-adaptatif-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 26,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 27,
+          "nom": "G-uniforme-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 28,
+          "nom": "G-adaptatif-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-adaptatif-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 29,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 30,
+          "nom": "G-uniforme-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 31,
+          "nom": "G-uniforme-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 32,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 33,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-uniforme-rgb",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-adaptatif-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 34,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 35,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 36,
+          "nom": "G-adaptatif-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 37,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-uniforme-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 38,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 39,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 40,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 41,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 42,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 43,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 44,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 45,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-uniforme-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 46,
+          "nom": "G-adaptatif-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-uniforme-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 47,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 48,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 49,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 50,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-uniforme-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 51,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-uniforme-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 52,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 53,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-uniforme-oklch",
+          "total": 6
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-adaptatif-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 54,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-uniforme-oklch",
+          "total": 5
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-adaptatif-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 55,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-adaptatif-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 56,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-adaptatif-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 57,
+          "nom": "G-uniforme-rgb",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-adaptatif-oklch",
+          "total": 2
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-adaptatif-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 58,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-adaptatif-oklch",
+          "total": 4
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-uniforme-rgb",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-uniforme-oklch",
+          "total": 3
+        },
+        {
+          "largeur": 800,
+          "tour": 59,
+          "nom": "G-adaptatif-rgb",
+          "total": 4
+        }
+      ],
+      "pixels": [
+        {
+          "largeur": 800,
+          "nom": "G-uniforme-oklch",
+          "reference": "G-uniforme-rgb",
+          "ecartCanalMax": 0,
+          "ecartCanalMoyen": 0,
+          "pixelsDifferents": 0,
+          "canauxDifferents": 0
+        },
+        {
+          "largeur": 800,
+          "nom": "G-adaptatif-rgb",
+          "reference": "G-uniforme-rgb",
+          "ecartCanalMax": 1,
+          "ecartCanalMoyen": 0.017814197530864197,
+          "pixelsDifferents": 47258,
+          "canauxDifferents": 57718
+        },
+        {
+          "largeur": 800,
+          "nom": "G-adaptatif-oklch",
+          "reference": "G-uniforme-rgb",
+          "ecartCanalMax": 1,
+          "ecartCanalMoyen": 0.017814197530864197,
+          "pixelsDifferents": 47258,
+          "canauxDifferents": 57718
+        }
+      ],
+      "agent": "Mozilla/5.0 (X11; Linux x86_64; rv:151.0) Gecko/20100101 Firefox/151.0",
+      "contexte": {
+        "alpha": true,
+        "colorSpace": "srgb",
+        "desynchronized": false,
+        "willReadFrequently": true
+      }
+    }
+  ]
+}
