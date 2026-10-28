@@ -4,26 +4,18 @@ Bibliothèque de composants **ElmUI**, avec une API française, destinée aux ap
 
 > **Logo et signature : toute utilisation est strictement réservée.** La présence publique du logo, de la signature MrJ.am, de leurs fichiers et de leurs déclinaisons ne vaut aucune autorisation de reproduction, de modification, d’intégration, de redistribution ou d’exploitation. Toute utilisation exige l’autorisation préalable expresse de leur titulaire. Les éventuelles licences du code et les licences des dépendances ne s’étendent pas à ces éléments d’identité.
 
-## Chantier actuel
+## Préparation Rust/Elm
 
-Le socle utilise des contextes de marque explicites, elm-ui et elm-animator.
-Les anciennes publications ci-dessous sont des preuves historiques ; elles ne
-qualifient pas le portage actuel. Les règles, sources verrouillées et commandes
-bloquantes sont centralisées dans [VPS Infrastructure](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/FRONTENDS.md).
-Aucune promotion tant que les applications, l'atelier et leurs ressources ne
-passent pas ces contrôles et les parcours affectés.
-
-## État de cette publication
-
-Le noyau et les compléments disposent d’une galerie et de tests d’interaction. **Vision utilise la révision `c7b4d6e00cd0014a0a05e5a4e77627357498faa9` en production depuis le 21 septembre 2026 à 22:32 UTC**, sur [vision.mrj.am](https://vision.mrj.am/). Les tableaux, valeurs spécialisées, lecteur Markdown et dialogues sont intégrés et vérifiés. Cette publication de Vision ne prouve pas la migration des autres applications ni l’installation de l’orchestrateur collectif. Consulter les exécutions de vérification de chaque révision et les preuves propres à chaque déploiement.
-
-**Matheval est publié depuis le 21 septembre 2026 à 23:11 UTC**, sur
-[principiipetit.io/matheval](https://principiipetit.io/matheval/), avec la révision
-`553e5a85fc28d09ab2d034401c6cb912ef97320d`. Le questionnaire, le prototype et
-l’administration utilisent les composants communs ; 50 parcours navigateur
-et les contrôles de collecte ont réussi. Les 104 fichiers HTTPS servis ont
-été comparés à l’artefact testé. Voir le
-[bilan de publication](https://github.com/MrJ-am/M-moire/blob/master/docs/PORTAGE-ELMUI.md).
+La préparation Rust/Elm du 28 octobre 2026 gèle tous les déploiements.
+L'assemblage applicatif est dans [mrjam-plateforme](https://github.com/MrJ-am/mrjam-plateforme),
+les propositions de règles indépendantes dans [mrjam-validation](https://github.com/MrJ-am/mrjam-validation),
+et l'environnement de développement dans [vps-infrastructure/environment](https://github.com/MrJ-am/vps-infrastructure/tree/main/environment).
+La forge cible est https://forge.mrj.am ; son raccordement et les ACL restent à établir.
+Ne créer ni workflow, ni déclencheur de déploiement dans ce dépôt.
+Une vérification locale ne vaut ni qualification complète ni autorisation de production.
+Conserver les révisions exactes des dépendances, les licences et les ressources réservées.
+Aucune donnée personnelle, aucun accès de production, aucun secret dans le dépôt.
+L'historique Git conserve les versions antérieures ; aucune réécriture forcée.
 
 La licence de réutilisation du code n’a pas été choisie. Le caractère public du dépôt ne remplace pas cette décision. Les dépendances conservent leurs licences propres.
 
@@ -63,8 +55,8 @@ Les composants couvrent les boutons, liens, champs, recherches, mots de passe, z
 
 ## Vérifier la bibliothèque
 
-Utiliser les [commandes locales centrales](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/DEVELOPPEMENT.md),
-les versions verrouillées et [elm-review obligatoire](https://github.com/MrJ-am/vps-infrastructure/blob/main/assemblage/FRONTENDS.md).
+Utiliser les [commandes locales centrales](https://github.com/MrJ-am/mrjam-validation/tree/main/frontend-qualification),
+les versions verrouillées et [elm-review obligatoire](https://github.com/MrJ-am/mrjam-validation/tree/main/review).
 Le socle commun utilise elm-ui et elm-animator ; les tests de transitions/focus
 et reduced-motion complètent les règles statiques. Aucun test au push ou
 workflow de bibliothèque. Les scripts ci-dessous sont des détails appelés par

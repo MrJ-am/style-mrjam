@@ -1,0 +1,10 @@
+#+title: Préparation du 28 octobre 2026
+#+language: fr
+
+Le seul changement de compilation est la déclaration directe de elm/url 1.0.0
+dans ateliers/logo/elm.json, nécessaire à MrJam.Videos. Il corrige un défaut
+antérieur révélé par la compilation exhaustive. Les sources visuelles, les
+révisions de style déjà consommées et les ressources restent inchangées.
+Compilation exhaustive, points d'entrée et elm-review sans suppressions ont
+réussi. Cela ne qualifie pas les ressources, les parcours Playwright ou une
+publication. Preuves exactes dans mrjam-validation/frontend-qualification.
